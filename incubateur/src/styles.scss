@@ -13,14 +13,27 @@
    1. DESIGN TOKENS
    ===================================================== */
 :root {
-  /* Couleurs de marque */
-  --gold:          #F59E0B;
-  --gold-light:    #FCD34D;
-  --gold-subtle:   #FFFBEB;
-  --navy:          #1E3A8A;
-  --blue:          #2563EB;
-  --blue-dark:     #1D4ED8;
-  --blue-subtle:   #EFF6FF;
+  /* =====================================================
+     Couleurs de marque — Envol Impact (dérivées du logo)
+     Navy #01306F = ossature · Orange #FE8701 = action
+     ===================================================== */
+  --navy:          #01306F;  /* couleur structurante : navbar, footer, titres */
+  --navy-dark:     #02245A;  /* hover / surfaces sombres */
+  --navy-subtle:   #EEF2F9;  /* fonds doux bleutés */
+
+  --orange:        #FE8701;  /* accent & action : CTA, liens actifs, hovers */
+  --orange-dark:   #E5740A;  /* hover CTA */
+  --orange-subtle: #FFF4E8;  /* fonds doux orangés */
+
+  /* Compat — anciens tokens "blue"/"gold" remappés sur la
+     nouvelle marque pour que les composants legacy suivent.
+     L'or n'existe plus comme couleur de marque. */
+  --blue:          var(--navy);
+  --blue-dark:     var(--navy-dark);
+  --blue-subtle:   var(--navy-subtle);
+  --gold:          var(--orange);
+  --gold-light:    #FFA133;
+  --gold-subtle:   var(--orange-subtle);
 
   /* Neutres */
   --text-primary:  #0F172A;
@@ -59,9 +72,9 @@
    À supprimer au fil de la migration de ces fichiers.
    ----------------------------------------------------- */
 :root {
-  --jaune-primary: var(--gold);
+  --jaune-primary: var(--orange);
   --jaune-light:   var(--gold-light);
-  --jaune-dark:    #D97706;
+  --jaune-dark:    var(--orange-dark);
   --bleu-primary:  var(--blue);
   --bleu-dark:     var(--blue-dark);
   --text-dark:     var(--text-primary);
@@ -144,46 +157,46 @@ app-root {
   transition: var(--transition) !important;
 }
 
-/* Primary — or */
+/* Primary — orange (couleur d'action "Impact") */
 .mat-mdc-raised-button.mat-primary,
 .mat-mdc-unelevated-button.mat-primary {
-  background: var(--gold) !important;
-  color: var(--text-primary) !important;
-  box-shadow: 0 2px 10px rgba(245,158,11,.35) !important;
+  background: var(--orange) !important;
+  color: var(--white) !important;
+  box-shadow: 0 2px 10px rgba(254,135,1,.32) !important;
 }
 .mat-mdc-raised-button.mat-primary:hover,
 .mat-mdc-unelevated-button.mat-primary:hover {
-  background: var(--gold-light) !important;
+  background: var(--orange-dark) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(245,158,11,.42) !important;
+  box-shadow: 0 6px 20px rgba(254,135,1,.40) !important;
 }
 
-/* Primary outline / text */
+/* Primary outline / text — orange */
 .mat-mdc-outlined-button.mat-primary {
   background: transparent !important;
-  color: var(--gold) !important;
-  border: 1.5px solid var(--gold) !important;
+  color: var(--orange-dark) !important;
+  border: 1.5px solid var(--orange) !important;
 }
 .mat-mdc-outlined-button.mat-primary:hover {
-  background: var(--gold-subtle) !important;
+  background: var(--orange-subtle) !important;
 }
 .mat-mdc-button.mat-primary {
-  color: var(--gold) !important;
+  color: var(--orange-dark) !important;
 }
 .mat-mdc-button.mat-primary:hover {
-  background: var(--gold-subtle) !important;
+  background: var(--orange-subtle) !important;
 }
 
-/* Accent — bleu */
+/* Accent — navy (ossature / secondaire) */
 .mat-mdc-raised-button.mat-accent,
 .mat-mdc-unelevated-button.mat-accent {
-  background: var(--blue) !important;
+  background: var(--navy) !important;
   color: var(--white) !important;
-  box-shadow: 0 2px 10px rgba(37,99,235,.30) !important;
+  box-shadow: 0 2px 10px rgba(1,48,111,.28) !important;
 }
 .mat-mdc-raised-button.mat-accent:hover,
 .mat-mdc-unelevated-button.mat-accent:hover {
-  background: var(--blue-dark) !important;
+  background: var(--navy-dark) !important;
   transform: translateY(-2px) !important;
 }
 

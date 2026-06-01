@@ -1,17 +1,17 @@
 @use 'sass:color';
 
-// Variables de couleurs uniformes
-$primary-color: #1e7aa0;
-$primary-dark: #165a75;
-$secondary-color: #ff6b35;
-$secondary-dark: #e55a2e;
-$accent-color: #f7931e;
+// Variables couleur — Envol Impact (navy/orange)
+$primary-color: #FE8701;   // accent orange (hovers, icônes, liens actifs)
+$primary-dark: #E5740A;
+$secondary-color: #FE8701;
+$secondary-dark: #E5740A;
+$accent-color: #FE8701;
 $text-dark: #333333;
 $text-light: #666666;
 $bg-light: #f8f9fa;
 $white: #ffffff;
-$footer-bg: #1a1a1a;
-$footer-text: #e0e0e0;
+$footer-bg: #01306F;       // navy de marque — raccord avec le fond du logo
+$footer-text: #C9D4E5;     // bleu très clair lisible sur navy
 
 .footer {
   background: $footer-bg;
@@ -52,14 +52,11 @@ $footer-text: #e0e0e0;
 
     .footer-wordmark {
       display: block;
-      height: 96px;
+      height: 64px;
       width: auto;
       max-width: 100%;
-      // Sortir le logo sur fond clair en l'inversant légèrement : le footer est sombre,
-      // le PNG a un fond blanc qui détonne. On compose avec un encart blanc arrondi.
-      background: $white;
-      padding: 10px 14px;
-      border-radius: 12px;
+      // Wordmark blanc/orange détouré : il se pose directement sur le footer
+      // navy, raccord parfait avec le fond du logo. Pas d'encart.
     }
   }
   
@@ -80,7 +77,7 @@ $footer-text: #e0e0e0;
       justify-content: center;
       width: 44px;
       height: 44px;
-      background: rgba(40, 143, 190, 0.1);
+      background: rgba(254, 135, 1, 0.12);
       border-radius: 50%;
       color: $primary-color;
       text-decoration: none;

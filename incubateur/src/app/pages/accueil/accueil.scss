@@ -4,15 +4,17 @@
    VARIABLES
    ===================================================== */
 :root {
-  --gold:          #F59E0B;
-  --gold-light:    #FCD34D;
-  --gold-subtle:   #FFFBEB;
-  --gold-border:   #FDE68A;
-  --gold-text:     #92400E;
-  --navy:          #1E3A8A;
-  --blue:          #2563EB;
-  --blue-hover:    #1D4ED8;
-  --blue-subtle:   #EFF6FF;
+  /* Marque Envol Impact — navy/orange. "gold" conservé comme
+     nom de token mais repointé sur l'orange (héritage home). */
+  --gold:          #FE8701;
+  --gold-light:    #FFA133;
+  --gold-subtle:   #FFF4E8;
+  --gold-border:   #FFD8A8;
+  --gold-text:     #B85600;
+  --navy:          #01306F;
+  --blue:          #01306F;
+  --blue-hover:    #02245A;
+  --blue-subtle:   #EEF2F9;
   --text-primary:  #0F172A;
   --text-body:     #475569;
   --text-muted:    #94A3B8;
