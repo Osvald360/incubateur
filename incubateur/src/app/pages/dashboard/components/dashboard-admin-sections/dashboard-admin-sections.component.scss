@@ -214,5 +214,22 @@
 @media (max-width: 768px) {
   .admin-candidatures-overview .candidatures-actions {
     flex-direction: column;
+
+    button { width: 100%; justify-content: center; }
+  }
+
+  /* actions rapides : les boutons « Gérer / Réviser » pleine largeur */
+  .admin-management .admin-action-card button { width: 100%; }
+
+  .user-management-section .user-management-actions .action-buttons button {
+    width: 100%;
+  }
+}
+
+/* tres petits ecrans : la grille de stats 2 colonnes devient 1 colonne
+   pour eviter l'ecrasement des chiffres dores. */
+@media (max-width: 380px) {
+  .user-management-section .user-management-actions .stats-grid {
+    grid-template-columns: 1fr;
   }
 }
