@@ -2,53 +2,92 @@
   display: block;
 }
 
-/* Bloc sidebar: navigation latérale isolée */
+/* =====================================================
+   SIDEBAR — chrome nuit d'encre, navigation latérale.
+   DA « Envol » : surface ardoise sur fond encre, item
+   actif marqué d'un filet d'or à gauche.
+   ===================================================== */
 .sidebar {
   width: 250px;
   position: fixed;
   top: 64px;
   left: 0;
   height: calc(100vh - 64px);
-  background: #0b63ce;
-  color: #ffffff;
+  background: var(--ei-slate);
+  color: var(--ei-on-dark);
   padding: 0;
   display: flex;
   flex-direction: column;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+  border-right: 1px solid rgba(237, 230, 216, 0.08);
+  box-shadow: 2px 0 24px rgba(5, 12, 20, 0.4);
   z-index: 999;
+  font-family: var(--ei-font-text);
 
   .sidebar-nav {
     flex: 1;
-    padding: 20px 0;
+    padding: var(--ei-s-16) 0;
+    overflow-y: auto;
 
     button {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       width: 100%;
       text-align: left;
-      padding: 15px 20px;
+      padding: 13px 22px;
       border: none;
       background: none;
-      color: #ffffff;
-      font-size: 14px;
-      transition: background-color 0.2s ease, transform 0.2s ease;
+      color: var(--ei-on-dark-dim);
+      font-family: var(--ei-font-text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      border-radius: 0;
+      transition: background-color 160ms var(--ei-ease-soft),
+                  color 160ms var(--ei-ease-soft);
+
+      /* filet d'envol révélé au survol / actif */
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 0;
+        background: var(--ei-gold-grad);
+        transition: height 200ms var(--ei-ease-launch);
+      }
 
       &:hover {
-        background: #0952a8;
-        transform: translateX(2px);
+        background: rgba(237, 230, 216, 0.05);
+        color: var(--ei-on-dark);
+        &::before { height: 22px; }
+      }
+
+      /* lien actif (routerLinkActive non posé côté HTML → on
+         couvre l'état clavier/focus pour la lisibilité) */
+      &:focus-visible {
+        outline: none;
+        background: rgba(30, 91, 255, 0.12);
+        color: #fff;
+        box-shadow: inset 0 0 0 1px var(--ei-elan);
       }
 
       mat-icon {
         margin-right: 12px;
-        font-size: 22px;
-        width: 22px;
-        height: 22px;
+        font-size: 21px;
+        width: 21px;
+        height: 21px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+        color: var(--ei-haze);
+        transition: color 160ms var(--ei-ease-soft);
       }
+      &:hover mat-icon { color: var(--ei-gold-2); }
 
       span {
         flex: 1;
@@ -56,29 +95,42 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
+      /* bouton de déconnexion (color="warn") */
+      &.mat-warn,
+      &[color='warn'] {
+        color: #E0928D;
+        mat-icon { color: #C9514B; }
+        &:hover {
+          background: rgba(201, 81, 75, 0.12);
+          color: #F0B6B1;
+          &::before { background: #C9514B; }
+        }
+      }
     }
   }
 
   .sidebar-separator {
     height: 1px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 15px 20px;
+    background: rgba(237, 230, 216, 0.12);
+    margin: var(--ei-s-12) 22px;
   }
 
   .sidebar-footer {
-    padding: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: var(--ei-s-24) 22px;
+    border-top: 1px solid rgba(237, 230, 216, 0.1);
 
     a {
-      color: #d9e9ff;
+      color: var(--ei-haze);
       text-decoration: none;
       font-size: 12px;
-      line-height: 1.4;
+      line-height: 1.5;
       font-weight: 500;
+      transition: color 160ms var(--ei-ease-soft);
 
       &:hover {
-        color: #ffffff;
-        text-decoration: underline;
+        color: var(--ei-gold-2);
+        text-decoration: none;
       }
     }
   }
