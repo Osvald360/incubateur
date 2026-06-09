@@ -167,14 +167,21 @@ export class AccueilComponent implements OnInit, OnDestroy {
     items.forEach(el => {
       const group = el.querySelectorAll<HTMLElement>('[data-reveal-child]');
       const targets = group.length ? Array.from(group) : [el];
-      gsap.from(targets, {
-        y: 24,
-        opacity: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-        stagger: 0.08,
-        scrollTrigger: { trigger: el, start: 'top 85%' }
-      });
+      gsap.fromTo(targets, 
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          stagger: 0.15,
+          scrollTrigger: { 
+            trigger: el, 
+            start: 'top 85%',
+            toggleActions: 'play reverse play reverse'
+          }
+        }
+      );
     });
   }
 
