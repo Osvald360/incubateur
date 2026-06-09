@@ -1,17 +1,17 @@
 @use 'sass:color';
 
-// Variables couleur — Envol Impact (navy/orange)
-$primary-color: #FE8701;   // accent orange (hovers, icônes, liens actifs)
-$primary-dark: #E5740A;
-$secondary-color: #FE8701;
-$secondary-dark: #E5740A;
-$accent-color: #FE8701;
+// Variables couleur — Envol Impact (DA noir & doré)
+$primary-color: #C9A24B;   // or — hovers, icônes, liens actifs
+$primary-dark: #9A7B33;
+$secondary-color: #C9A24B;
+$secondary-dark: #9A7B33;
+$accent-color: #C9A24B;
 $text-dark: #333333;
 $text-light: #666666;
 $bg-light: #f8f9fa;
-$white: #ffffff;
-$footer-bg: #01306F;       // navy de marque — raccord avec le fond du logo
-$footer-text: #C9D4E5;     // bleu très clair lisible sur navy
+$white: #F3EFE6;           // craie chaude — titres sur sombre
+$footer-bg: #0C0D11;       // nuit d'encre — raccord avec la navbar
+$footer-text: #B5B0A4;     // texte secondaire lisible sur encre
 
 .footer {
   background: $footer-bg;
@@ -52,11 +52,11 @@ $footer-text: #C9D4E5;     // bleu très clair lisible sur navy
 
     .footer-wordmark {
       display: block;
-      height: 64px;
+      height: 88px;
       width: auto;
       max-width: 100%;
-      // Wordmark blanc/orange détouré : il se pose directement sur le footer
-      // navy, raccord parfait avec le fond du logo. Pas d'encart.
+      // Logo complet doré détouré (fond transparent) : se pose directement
+      // sur le footer nuit d'encre, raccord parfait avec la DA noir & doré.
     }
   }
   
@@ -77,7 +77,7 @@ $footer-text: #C9D4E5;     // bleu très clair lisible sur navy
       justify-content: center;
       width: 44px;
       height: 44px;
-      background: rgba(254, 135, 1, 0.12);
+      background: rgba(201, 162, 75, 0.12);
       border-radius: 50%;
       color: $primary-color;
       text-decoration: none;
@@ -85,7 +85,7 @@ $footer-text: #C9D4E5;     // bleu très clair lisible sur navy
       
       &:hover {
         background: $primary-color;
-        color: $white;
+        color: #1A130A;
         transform: translateY(-2px);
       }
       
@@ -164,7 +164,7 @@ $footer-text: #C9D4E5;     // bleu très clair lisible sur navy
 
 // Newsletter Section
 .newsletter-section {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(201, 162, 75, 0.16);
   padding: 40px 0;
   
   .newsletter-content {
@@ -207,7 +207,7 @@ $footer-text: #C9D4E5;     // bleu très clair lisible sur navy
       .email-input {
         flex: 1;
         padding: 14px 20px;
-        border: 2px solid rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(201, 162, 75, 0.16);
         border-radius: 25px;
         background: rgba(255, 255, 255, 0.05);
         color: $white;
@@ -216,28 +216,28 @@ $footer-text: #C9D4E5;     // bleu très clair lisible sur navy
         transition: all 0.3s ease;
         
         &::placeholder {
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(243, 239, 230, 0.5);
         }
         
         &:focus {
           border-color: $primary-color;
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(201, 162, 75, 0.16);
         }
       }
       
       .subscribe-btn {
         background: $accent-color;
-        color: $white;
+        color: #1A130A;
         border-radius: 25px;
         padding: 14px 28px;
         font-weight: 600;
-        box-shadow: 0 8px 24px rgba(247, 147, 30, 0.3);
+        box-shadow: 0 8px 24px rgba(201, 162, 75, 0.30);
         transition: all 0.3s ease;
         
         &:hover {
           background: color.adjust($accent-color, $lightness: -10%);
           transform: translateY(-2px);
-          box-shadow: 0 12px 32px rgba(247, 147, 30, 0.4);
+          box-shadow: 0 12px 32px rgba(201, 162, 75, 0.40);
         }
         
         mat-icon {
@@ -255,7 +255,7 @@ $footer-text: #C9D4E5;     // bleu très clair lisible sur navy
 
 // Bottom Bar
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(201, 162, 75, 0.16);
   padding: 24px 0;
   
   .bottom-content {
@@ -272,7 +272,7 @@ $footer-text: #C9D4E5;     // bleu très clair lisible sur navy
   
   .copyright {
     p {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(243, 239, 230, 0.5);
       font-size: 0.9rem;
       margin: 0;
     }
@@ -288,7 +288,7 @@ $footer-text: #C9D4E5;     // bleu très clair lisible sur navy
     }
     
     a {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(243, 239, 230, 0.5);
       text-decoration: none;
       font-size: 0.9rem;
       transition: color 0.3s ease;
