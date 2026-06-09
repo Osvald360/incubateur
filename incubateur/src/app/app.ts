@@ -1,11 +1,12 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar';
 import { FooterComponent } from './components/footer/footer';
 import { NotificationComponent } from './components/notification/notification';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
-export class App {
+export class App implements OnInit {
   protected title = 'incubateur';
   showFooter = true;
 
@@ -24,5 +25,15 @@ export class App {
         this.showFooter = !event.url.includes('/dashboard');
       }
     });
+  }
+
+  ngOnInit() {
+    if (typeof document !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        once: false,
+        easing: 'ease-out-cubic'
+      });
+    }
   }
 }
