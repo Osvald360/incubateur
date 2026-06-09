@@ -15,7 +15,6 @@ import { NotificationService } from '../../services/notification.service';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
 
 @Component({
   selector: 'app-accueil',
@@ -27,8 +26,6 @@ import Lenis from 'lenis';
 export class AccueilComponent implements OnInit, OnDestroy {
   showCelebration = false;
 
-  private lenis?: Lenis;
-  private tickerFn?: (time: number) => void;
   private rafId?: number;
   private cleanups: Array<() => void> = [];
   private reduced = false;
@@ -85,17 +82,6 @@ export class AccueilComponent implements OnInit, OnDestroy {
     }
 
     gsap.registerPlugin(ScrollTrigger);
-
-    // ---- Lenis smooth scroll, synchronisé à ScrollTrigger ----
-    this.lenis = new Lenis({
-      duration: 1.15,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true
-    });
-    this.lenis.on('scroll', ScrollTrigger.update);
-    this.tickerFn = (time: number) => this.lenis?.raf(time * 1000);
-    gsap.ticker.add(this.tickerFn);
-    gsap.ticker.lagSmoothing(0);
 
     const ctx = gsap.context(() => {
       this.buildHeroIntro(root);
@@ -252,9 +238,7 @@ export class AccueilComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.cleanups.forEach(fn => fn());
-    if (this.tickerFn) gsap.ticker.remove(this.tickerFn);
     if (this.rafId) cancelAnimationFrame(this.rafId);
-    this.lenis?.destroy();
     ScrollTrigger.getAll().forEach(t => t.kill());
   }
 
