@@ -1,13 +1,43 @@
-<div class="accueil-container">
-  <!-- Hero Section -->
-  <section class="hero-section" [class.celebration-mode]="showCelebration">
-    <!-- Effet de célébration -->
-    <div class="celebration-overlay" *ngIf="showCelebration">
-      <div class="confetti" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]"></div>
-    </div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">L'incubateur solidaire de l'association F.A.T.E.</p>
-      <h1>Envol Impact</h1>
+<div class="ei-home" [class.celebration-mode]="showCelebration">
+
+  <!-- Célébration retour candidature (conservée) -->
+  <div class="celebration-overlay" *ngIf="showCelebration" aria-hidden="true">
+    <div class="confetti" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]"></div>
+  </div>
+
+  <!-- ===================================================== -->
+  <!--  HERO                                                  -->
+  <!-- ===================================================== -->
+  <section class="hero" aria-label="Envol Impact">
+    <div class="hero-grain" aria-hidden="true"></div>
+    <div class="hero-halo" aria-hidden="true"></div>
+
+    <!-- Trajectoire d'or : du sol bas-gauche vers la lumière haut-droite -->
+    <svg class="hero-traj-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="goldHero" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#C9A24B" stop-opacity="0.25" />
+          <stop offset="55%" stop-color="#C9A24B" />
+          <stop offset="100%" stop-color="#E9CE86" />
+        </linearGradient>
+      </defs>
+      <path class="hero-trajectory trajectory-path"
+            d="M -40 880 C 280 760, 470 700, 690 540 S 1080 300, 1500 90"
+            fill="none" stroke="url(#goldHero)" stroke-width="2" stroke-linecap="round" />
+    </svg>
+
+    <svg class="hero-bird" viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M4 40 C 16 34, 22 24, 30 14 L 24 16 L 40 6 L 38 24 L 34 18 C 26 28, 18 36, 4 40 Z"
+            fill="#E9CE86" />
+    </svg>
+
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Fonds d'investissement solidaire&ensp;·&ensp;Incubateur</p>
+      <h1 class="hero-title">
+        <span class="line"><span class="line-inner">Faire décoller</span></span>
+        <span class="line"><span class="line-inner">les projets qui</span></span>
+        <span class="line"><span class="line-inner"><em>transforment des vies.</em></span></span>
+      </h1>
       <p class="hero-subtitle">
         Le manque de ressources ne devrait jamais empêcher d'entreprendre. Envol Impact
         accompagne et finance des porteurs de projets en situation de précarité ou vivant
@@ -22,6 +52,11 @@
           Comment ça marche
         </a>
       </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Faites défiler</span>
+      <span class="hint-line"></span>
     </div>
   </section>
 
