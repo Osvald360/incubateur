@@ -2,6 +2,30 @@
   "buildCommand": "npm run build:prod",
   "outputDirectory": "dist/incubateur/browser",
   "framework": "angular",
+  "headers": [
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "CDN-Cache-Control", "value": "no-store" },
+        { "key": "Vercel-CDN-Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/((?!.*\\.[a-zA-Z0-9]+$).*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "CDN-Cache-Control", "value": "no-store" },
+        { "key": "Vercel-CDN-Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/(chunk-[a-zA-Z0-9]+\\.js|main-[a-zA-Z0-9]+\\.js|polyfills-[a-zA-Z0-9]+\\.js|styles-[a-zA-Z0-9]+\\.css)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
