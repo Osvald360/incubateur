@@ -25,84 +25,73 @@
     </div>
   </section>
 
-  <!-- Mission Section -->
-  <section class="mission-section">
-    <div class="container">
-      <h2>Notre Mission</h2>
-      <p class="section-subtitle">
-        Créer un écosystème solidaire pour accompagner l'entrepreneuriat dans les quartiers populaires
-      </p>
-      
-      <div class="mission-grid">
-        <mat-card class="mission-card">
-          <mat-card-content>
-            <div class="mission-icon">
-              <mat-icon>volunteer_activism</mat-icon>
-            </div>
-            <h3>Soutenir l'Innovation Sociale</h3>
-            <p>Identifier et financer des projets portés par des habitants de quartiers défavorisés : insertion par l'activité économique, création de micro-entreprises, rénovation de logements sociaux.</p>
-          </mat-card-content>
-        </mat-card>
+  <!-- Ligne d'or maîtresse qui traverse les sections au scroll -->
+  <div class="trajectory-spine" aria-hidden="true">
+    <svg class="spine-svg" viewBox="0 0 200 2400" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="goldSpine" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#C9A24B" />
+          <stop offset="100%" stop-color="#E9CE86" />
+        </linearGradient>
+      </defs>
+      <path class="spine-path trajectory-path"
+            d="M 20 2380 C 60 2000, 150 1900, 110 1500 S 30 1100, 120 800 S 180 400, 150 40"
+            fill="none" stroke="url(#goldSpine)" stroke-width="1.5" stroke-linecap="round" />
+    </svg>
+  </div>
 
-        <mat-card class="mission-card">
-          <mat-card-content>
-            <div class="mission-icon">
-              <mat-icon>diversity_3</mat-icon>
-            </div>
-            <h3>Renforcer la Cohésion Locale</h3>
-            <p>Créer un réseau d'échange et d'entraide entre porteurs de projets, associations, financeurs et acteurs locaux engagés.</p>
-          </mat-card-content>
-        </mat-card>
+  <div class="ei-flow">
 
-        <mat-card class="mission-card">
-          <mat-card-content>
-            <div class="mission-icon">
-              <mat-icon>payments</mat-icon>
-            </div>
-            <h3>Valoriser l'Épargne Citoyenne</h3>
-            <p>Proposer aux particuliers et entreprises une offre d'investissement à impact social, labellisée et transparente.</p>
-          </mat-card-content>
-        </mat-card>
+    <!-- ===================================================== -->
+    <!--  ESSENCE · Vision / Mission / Promesse                 -->
+    <!-- ===================================================== -->
+    <section class="essence" data-reveal>
+      <header class="block-head" data-reveal-child>
+        <p class="eyebrow">Ce qui nous porte</p>
+        <h2 class="block-title">
+          Un fonds solidaire doté d'un incubateur,
+          <span class="title-em">pour que la solidarité devienne autonomie.</span>
+        </h2>
+      </header>
+
+      <div class="essence-grid">
+        <article class="essence-card" *ngFor="let e of essence" data-reveal-child>
+          <span class="essence-num">{{ e.num }}</span>
+          <p class="essence-label">{{ e.label }}</p>
+          <h3 class="essence-title">{{ e.title }}</h3>
+          <p class="essence-text">{{ e.description }}</p>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Services Section -->
-  <section class="services-section">
-    <div class="container">
-      <h2>Nos Services d'Accompagnement</h2>
-      <p class="section-subtitle">
-        Un parcours en 5 étapes pour transformer votre idée en projet viable
-      </p>
-      
-      <div class="services-timeline">
-        <div class="timeline-line"></div>
-        <div class="services-grid">
-          <div *ngFor="let service of services; let i = index; let last = last" 
-               class="service-step" 
-               [class.last-step]="last">
-            <mat-card class="service-card">
-              <mat-card-content>
-                <div class="step-header">
-                  <div class="service-number">{{i + 1}}</div>
-                  <div class="service-icon">
-                    <mat-icon>{{service.icon}}</mat-icon>
-                  </div>
-                </div>
-                <h3>{{service.title}}</h3>
-                <p>{{service.description}}</p>
-              </mat-card-content>
-            </mat-card>
-            
-            <!-- Flèche de progression -->
-            <div class="progress-connector" *ngIf="!last">
-              <div class="connector-line"></div>
-            </div>
+    <!-- ===================================================== -->
+    <!--  PARCOURS · 5 étapes                                   -->
+    <!-- ===================================================== -->
+    <section class="parcours" id="parcours" data-reveal>
+      <header class="block-head" data-reveal-child>
+        <p class="eyebrow">Le parcours d'incubation</p>
+        <h2 class="block-title">
+          De l'idée au lancement,
+          <span class="title-em">un chemin que l'on fait ensemble.</span>
+        </h2>
+      </header>
+
+      <ol class="steps">
+        <li class="step-node" *ngFor="let s of steps; let i = index; let last = last"
+            [class.is-last]="last" data-reveal-child>
+          <div class="step-marker">
+            <span class="step-index">{{ i + 1 }}</span>
+            <mat-icon class="step-icon">{{ s.icon }}</mat-icon>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="step-content">
+            <h3 class="step-title">{{ s.title }}</h3>
+            <p class="step-text">{{ s.description }}</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+  </div><!-- /.ei-flow -->
 
   <!-- ===================================================== -->
   <!--  SECTEURS · 7 champs d'activité                        -->
@@ -147,68 +136,55 @@
         <p class="gov-text">{{ g.description }}</p>
       </article>
     </div>
+
+    <p class="gov-chain" data-reveal-child>
+      <span>Assemblée des Sociétaires</span>
+      <span>Conseil d'Administration</span>
+      <span>Comité d'Investissement</span>
+      <span>Direction & Incubateur</span>
+      <span class="gov-chain-end">Projets financés</span>
+    </p>
   </section>
 
-  <!-- Success Factors Section -->
-  <section class="success-factors-section">
-    <div class="container">
-      <h2>Nos Facteurs de Succès</h2>
-      <p class="section-subtitle">
-        Ce qui garantit l'efficacité de notre accompagnement
+  <!-- ===================================================== -->
+  <!--  FINANCEMENT · sources                                 -->
+  <!-- ===================================================== -->
+  <section class="funding" data-reveal>
+    <div class="funding-inner" data-reveal-child>
+      <p class="eyebrow">D'où viennent les ressources</p>
+      <h2 class="funding-title">
+        Une mobilisation collective qui crée un cercle vertueux.
+      </h2>
+      <ul class="funding-sources">
+        <li><span>Mécénat</span></li>
+        <li><span>Subventions</span></li>
+        <li><span>Partenariats</span></li>
+        <li><span>Contributions des membres</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================================================== -->
+  <!--  CTA FINAL                                             -->
+  <!-- ===================================================== -->
+  <section class="summit" data-reveal>
+    <div class="summit-halo" aria-hidden="true"></div>
+    <div class="summit-inner" data-reveal-child>
+      <p class="eyebrow">Votre projet commence ici</p>
+      <h2 class="summit-title">Et si c'était à votre tour de décoller&nbsp;?</h2>
+      <p class="summit-quote">
+        « Transformer les idées en opportunités, et les opportunités en entreprises. »
       </p>
-      
-      <div class="factors-grid">
-        <div class="factor-card" *ngFor="let factor of successFactors">
-          <div class="factor-icon">
-            <mat-icon>{{factor.icon}}</mat-icon>
-          </div>
-          <h3>{{factor.title}}</h3>
-          <p>{{factor.description}}</p>
-        </div>
+      <div class="summit-actions">
+        <a routerLink="/candidature" class="ei-btn ei-btn--gold" data-magnetic>
+          Déposer un projet
+          <mat-icon>north_east</mat-icon>
+        </a>
+        <a routerLink="/apropos" class="ei-btn ei-btn--ghost" data-magnetic>
+          Découvrir Envol Impact
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Project Types Section -->
-  <section class="project-types-section">
-    <div class="container">
-      <h2>Types de Projets Accompagnés</h2>
-      <p class="section-subtitle">
-        Nous concentrons notre accompagnement sur des secteurs à fort impact social
-      </p>
-      
-      <div class="types-grid">
-        <div class="type-card" *ngFor="let type of projectTypes">
-          <div class="type-icon">
-            <mat-icon>{{type.icon}}</mat-icon>
-          </div>
-          <h3>{{type.title}}</h3>
-          <p>{{type.description}}</p>
-          <div class="examples">
-            <div class="examples-list">
-              <span *ngFor="let example of type.examples" class="example-tag">
-                {{example}}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA Section -->
-  <section class="final-cta-section">
-    <div class="container">
-      <h2>Prêt à concrétiser votre projet ?</h2>
-      <p>Rejoignez notre communauté d'entrepreneurs sociaux et transformez votre idée en impact positif.</p>
-      <div class="cta-actions">
-        <button mat-raised-button routerLink="/candidature" class="cta-button primary">
-          Soumettre mon projet
-        </button>
-        <button mat-stroked-button routerLink="/apropos" class="cta-button secondary">
-          En savoir plus
-        </button>
-      </div>
-    </div>
-  </section>
 </div>
