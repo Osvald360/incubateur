@@ -1,6 +1,6 @@
 /* =====================================================
    NAVBAR — Envol Impact
-   Barre fixe, fond blanc, accents or de la marque.
+   Barre fixe, nuit d'encre, accents or de la marque.
    Tokens définis dans src/styles.scss.
    ===================================================== */
 
@@ -10,10 +10,11 @@ mat-toolbar {
   z-index: 1001;
   height: 64px;
   padding: 0;
-  background: var(--white);
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 1px 3px rgba(15, 23, 42, .06);
+  background: rgba(10, 10, 12, .92);
+  backdrop-filter: saturate(140%) blur(10px);
+  color: #F3EFE6;
+  border-bottom: 1px solid rgba(201, 162, 75, .16);
+  box-shadow: 0 1px 0 rgba(201, 162, 75, .06);
 }
 
 /* ---- Conteneurs ---- */
@@ -48,19 +49,24 @@ mat-toolbar {
 }
 
 .brand-mark {
-  height: 40px;
-  width: auto;
+  width: 38px;
+  height: 38px;
   display: block;
   flex-shrink: 0;
+  svg { width: 100%; height: 100%; display: block; }
 }
 
 .brand-text {
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--navy);
+  font-family: 'Clash Display', var(--font-display), sans-serif;
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
 }
+.brand-envol { color: #F3EFE6; }
+.brand-impact { color: #C9A24B; margin-left: .4ch; }
 
 /* ---- Liens de navigation ---- */
 .nav-links {
@@ -73,9 +79,9 @@ mat-toolbar {
 }
 
 .nav-links .mat-mdc-button {
-  color: var(--text-body) !important;
+  color: #B5B0A4 !important;
   background: transparent !important;
-  border-radius: 8px !important;
+  border-radius: 6px !important;
   padding: 8px 14px !important;
   font-family: var(--font-body) !important;
   font-weight: 500 !important;
@@ -86,13 +92,13 @@ mat-toolbar {
 }
 
 .nav-links .mat-mdc-button:hover {
-  background: var(--bg-soft) !important;
-  color: var(--text-primary) !important;
+  background: rgba(243, 239, 230, .06) !important;
+  color: #F3EFE6 !important;
 }
 
 .nav-links .mat-mdc-button.active {
-  color: var(--gold-text, #92400E) !important;
-  background: var(--gold-subtle) !important;
+  color: #E9CE86 !important;
+  background: rgba(201, 162, 75, .10) !important;
   font-weight: 600 !important;
 }
 
@@ -111,9 +117,9 @@ mat-toolbar {
   align-items: center;
   gap: 6px;
   background: transparent !important;
-  color: var(--text-primary) !important;
-  border: 1.5px solid var(--border) !important;
-  border-radius: var(--radius-btn) !important;
+  color: #F3EFE6 !important;
+  border: 1px solid rgba(201, 162, 75, .22) !important;
+  border-radius: 2px !important;
   padding: 8px 18px !important;
   font-weight: 600 !important;
   min-height: 40px !important;
@@ -122,12 +128,13 @@ mat-toolbar {
   transition: var(--transition) !important;
 }
 .login-btn:hover {
-  border-color: var(--navy) !important;
-  background: var(--bg-soft) !important;
+  border-color: #C9A24B !important;
+  color: #E9CE86 !important;
+  background: rgba(201, 162, 75, .06) !important;
 }
 .login-btn.active-auth {
-  border-color: var(--navy) !important;
-  color: var(--navy) !important;
+  border-color: #C9A24B !important;
+  color: #E9CE86 !important;
 }
 
 /* Inscription — plein or */
@@ -135,28 +142,32 @@ mat-toolbar {
   display: inline-flex !important;
   align-items: center;
   gap: 6px;
-  background: var(--gold) !important;
-  color: var(--text-primary) !important;
+  background: linear-gradient(120deg, #C9A24B 0%, #E9CE86 100%) !important;
+  color: #1A130A !important;
   border: none !important;
-  border-radius: var(--radius-btn) !important;
+  border-radius: 2px !important;
   padding: 9px 18px !important;
   font-weight: 700 !important;
   min-height: 40px !important;
   white-space: nowrap;
   text-decoration: none !important;
-  box-shadow: 0 2px 10px rgba(245, 158, 11, .35) !important;
+  box-shadow: 0 8px 22px rgba(201, 162, 75, .26) !important;
   transition: var(--transition) !important;
 }
+.inscription-btn mat-icon { color: #1A130A !important; }
 .inscription-btn:hover {
-  background: var(--gold-light) !important;
+  filter: brightness(1.05);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, .42) !important;
+  box-shadow: 0 12px 28px rgba(201, 162, 75, .34) !important;
 }
 .inscription-btn.active-auth {
-  background: var(--navy) !important;
-  color: var(--white) !important;
+  background: rgba(201, 162, 75, .14) !important;
+  color: #E9CE86 !important;
+  border: 1px solid rgba(201, 162, 75, .50) !important;
+  box-shadow: none !important;
 }
-.inscription-btn.active-auth mat-icon { color: var(--white) !important; }
+.inscription-btn.active-auth:hover { transform: none; filter: none; }
+.inscription-btn.active-auth mat-icon { color: #E9CE86 !important; }
 
 /* ---- Menu utilisateur connecté ---- */
 .user-menu {
@@ -172,9 +183,9 @@ mat-toolbar {
   min-width: 42px !important;
   padding: 0 !important;
   border-radius: 50% !important;
-  background: var(--navy) !important;
-  border: 2px solid var(--white) !important;
-  box-shadow: 0 2px 8px rgba(30, 58, 138, .25) !important;
+  background: linear-gradient(120deg, #C9A24B 0%, #E9CE86 100%) !important;
+  border: 2px solid rgba(201, 162, 75, .55) !important;
+  box-shadow: 0 2px 8px rgba(201, 162, 75, .28) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -183,11 +194,11 @@ mat-toolbar {
 
   &:hover {
     transform: scale(1.06);
-    box-shadow: 0 4px 14px rgba(30, 58, 138, .35) !important;
+    box-shadow: 0 4px 14px rgba(201, 162, 75, .38) !important;
   }
 
   .avatar-initials-navbar {
-    color: var(--white) !important;
+    color: #1A130A !important;
     font-size: 1rem !important;
     font-weight: 700 !important;
     text-transform: uppercase;
@@ -196,7 +207,7 @@ mat-toolbar {
 }
 
 .welcome-text {
-  color: var(--text-body);
+  color: #B5B0A4;
   font-weight: 500;
   font-size: 0.9rem;
 }
@@ -215,9 +226,10 @@ mat-toolbar {
   margin-top: 8px;
 
   .mat-mdc-menu-panel {
-    border-radius: 12px !important;
-    border: 1px solid var(--border) !important;
-    box-shadow: var(--shadow-lg) !important;
+    border-radius: 4px !important;
+    background: #16171D !important;
+    border: 1px solid rgba(201, 162, 75, .16) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .5) !important;
     min-width: 210px !important;
   }
 
@@ -227,18 +239,18 @@ mat-toolbar {
 
     mat-icon {
       margin-right: 14px !important;
-      color: var(--blue) !important;
+      color: #C9A24B !important;
       font-size: 20px !important;
       width: 20px !important;
       height: 20px !important;
     }
-    span { color: var(--text-primary) !important; font-weight: 500 !important; }
-    &:hover { background: var(--bg-soft) !important; }
+    span { color: #F3EFE6 !important; font-weight: 500 !important; }
+    &:hover { background: rgba(243, 239, 230, .06) !important; }
   }
 
   .mat-mdc-menu-item:last-child {
-    mat-icon, span { color: var(--danger) !important; }
-    &:hover { background: rgba(220, 38, 38, .08) !important; }
+    mat-icon, span { color: #E8806A !important; }
+    &:hover { background: rgba(220, 38, 38, .12) !important; }
   }
 }
 
@@ -262,15 +274,15 @@ mat-toolbar {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: var(--navy);
-  border: 2px solid var(--white);
-  box-shadow: 0 2px 8px rgba(30, 58, 138, .2);
+  background: linear-gradient(120deg, #C9A24B 0%, #E9CE86 100%);
+  border: 2px solid rgba(201, 162, 75, .55);
+  box-shadow: 0 2px 8px rgba(201, 162, 75, .22);
   display: flex;
   align-items: center;
   justify-content: center;
 
   .avatar-initials-mobile {
-    color: var(--white);
+    color: #1A130A;
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -279,12 +291,12 @@ mat-toolbar {
 }
 
 .mobile-nav .mat-mdc-icon-button {
-  color: var(--navy) !important;
+  color: #E9CE86 !important;
 }
 
 /* Items du menu mobile */
 .mat-mdc-menu-item.active-mobile {
-  background: var(--gold-subtle) !important;
+  background: rgba(201, 162, 75, .12) !important;
   font-weight: 600 !important;
 }
 
@@ -297,20 +309,20 @@ mat-toolbar {
   width: 52px !important;
   height: 52px !important;
   border-radius: 50% !important;
-  background: var(--gold) !important;
-  color: var(--text-primary) !important;
-  box-shadow: 0 6px 20px rgba(245, 158, 11, .35) !important;
+  background: linear-gradient(120deg, #C9A24B 0%, #E9CE86 100%) !important;
+  color: #1A130A !important;
+  box-shadow: 0 6px 20px rgba(201, 162, 75, .35) !important;
   opacity: 0;
   transform: translateY(80px);
   transition: var(--transition) !important;
 
   &.visible { opacity: 1; transform: translateY(0); }
   &:hover {
-    background: var(--gold-light) !important;
+    filter: brightness(1.05);
     transform: translateY(-4px);
-    box-shadow: 0 10px 26px rgba(245, 158, 11, .45) !important;
+    box-shadow: 0 10px 26px rgba(201, 162, 75, .45) !important;
   }
-  mat-icon { color: var(--text-primary) !important; }
+  mat-icon { color: #1A130A !important; }
 }
 
 /* ---- Responsive ---- */

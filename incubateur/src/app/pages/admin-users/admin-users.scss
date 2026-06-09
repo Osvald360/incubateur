@@ -221,7 +221,7 @@
       tr:hover { background: rgba(244, 201, 93, 0.06); }
 
       .email-link {
-        color: #93B2FF;
+        color: #E9CE86;
         text-decoration: none;
         &:hover { text-decoration: underline; }
       }
@@ -316,7 +316,7 @@
 ::ng-deep .admin-users-container .mat-mdc-chip,
 ::ng-deep .mat-mdc-chip.mat-primary {
   background: rgba(30, 91, 255, 0.16) !important;
-  color: #93B2FF !important;
+  color: #E9CE86 !important;
   border-radius: var(--ei-r-4) !important;
 }
 ::ng-deep .mat-mdc-chip.mat-accent {

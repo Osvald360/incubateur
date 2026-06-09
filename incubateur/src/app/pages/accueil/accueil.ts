@@ -262,120 +262,139 @@ export class AccueilComponent implements OnInit, OnDestroy {
   }
 
   // =========================================================
-  //  CONTENU — repris à l'identique de la page existante
+  //  CONTENU — source : note de cadrage Envol Impact (F.A.T.E.)
   // =========================================================
-  piliers = [
+
+  // Vision · Mission · Promesse
+  essence = [
     {
       num: '01',
-      icon: 'volunteer_activism',
-      title: "Soutenir l'innovation sociale",
+      label: 'Notre vision',
+      title: "Entreprendre ne devrait pas dépendre de son point de départ.",
       description:
-        "Identifier et financer des projets portés par des habitants de quartiers défavorisés : insertion par l'activité économique, création de micro-entreprises, rénovation de logements sociaux."
+        "Quel que soit son parcours, son milieu ou son lieu de vie, chaque porteur de projet mérite les moyens d'entreprendre, de réussir et de faire grandir sa communauté."
     },
     {
       num: '02',
-      icon: 'diversity_3',
-      title: 'Renforcer la cohésion locale',
+      label: 'Notre mission',
+      title: "Repérer et financer celles et ceux que les circuits classiques laissent de côté.",
       description:
-        "Créer un réseau d'échange et d'entraide entre porteurs de projets, associations, financeurs et acteurs locaux engagés."
+        "Nous accompagnons des entrepreneurs à fort potentiel issus de milieux défavorisés ou de zones rurales, pour bâtir leur autonomie économique et leur impact sur le terrain."
     },
     {
       num: '03',
-      icon: 'payments',
-      title: "Valoriser l'épargne citoyenne",
+      label: 'Notre promesse',
+      title: "D'une idée à une activité qui change la donne.",
       description:
-        "Proposer aux particuliers et entreprises une offre d'investissement à impact social, labellisée et transparente."
+        "Transformer les idées en opportunités, les opportunités en activités, et les activités en moteurs de changement durable pour tout un territoire."
     }
   ];
 
+  // Le parcours d'incubation : de l'idée au développement
   steps = [
     {
-      icon: 'app_registration',
-      title: 'Admission',
+      icon: 'how_to_reg',
+      title: 'Candidature',
       description:
-        'Intégration dans notre écosystème après validation de votre profil et de vos motivations.'
+        "Vous nous présentez votre projet et rejoignez les sociétaires d'Envol Impact."
     },
     {
-      icon: 'tips_and_updates',
-      title: 'Conceptualisation',
+      icon: 'architecture',
+      title: 'Construction',
       description:
-        'Développement et structuration de votre idée avec nos experts sectoriels.'
+        "On structure l'idée avec vous : modèle économique, faisabilité, premiers jalons."
     },
     {
-      icon: 'school',
-      title: 'Formation',
+      icon: 'fact_check',
+      title: 'Validation',
       description:
-        'Programme personnalisé : business plan, juridique, marketing et gestion financière.'
+        "Le Comité d'Investissement évalue la viabilité et l'impact social de votre projet."
     },
     {
-      icon: 'payments',
+      icon: 'savings',
       title: 'Financement',
       description:
-        'Accès aux financements solidaires et mise en relation avec les investisseurs.'
+        "Les projets retenus reçoivent un soutien financier partiel de notre fonds solidaire."
     },
     {
-      icon: 'flight_takeoff',
-      title: 'Lancement',
+      icon: 'rocket_launch',
+      title: 'Développement',
       description:
-        'Accompagnement opérationnel et suivi continu de votre projet sur le terrain.'
+        "On reste à vos côtés sur la mise en œuvre et le suivi, jusqu'au décollage de l'activité."
     }
   ];
 
-  successFactors = [
-    {
-      icon: 'psychology',
-      title: 'Adéquation marché-produit',
-      description:
-        'Compréhension approfondie des besoins réels du marché et adaptation de votre solution en conséquence.'
-    },
-    {
-      icon: 'diversity_3',
-      title: 'Équipe complémentaire',
-      description:
-        "Constitution d'une équipe pluridisciplinaire aux compétences techniques, commerciales et sectorielles."
-    },
-    {
-      icon: 'trending_up',
-      title: 'Modèle économique viable',
-      description:
-        "Développement d'un modèle économique robuste alliant rentabilité et impact social positif."
-    },
-    {
-      icon: 'support',
-      title: 'Accompagnement personnalisé',
-      description:
-        "Bénéfice d'un mentorat expert et d'un réseau professionnel pour accélérer votre développement."
-    }
-  ];
-
+  // 7 secteurs d'activité accompagnés (note de cadrage)
   projectTypes = [
     {
-      icon: 'recycling',
-      title: 'Économie circulaire',
+      icon: 'agriculture',
+      title: 'Agriculture & agroalimentaire',
       description:
-        "Réutilisation, recyclage, upcycling et réduction des déchets pour un impact environnemental positif.",
-      examples: ['Recyclage innovant', 'Agriculture urbaine', 'Réparation collaborative']
+        "Production agricole, transformation et distribution de produits locaux."
     },
     {
-      icon: 'health_and_safety',
-      title: 'Santé & bien-être',
+      icon: 'storefront',
+      title: 'Commerce & distribution',
       description:
-        "Solutions pour améliorer l'accès aux soins, la prévention santé et le bien-être des communautés.",
-      examples: ['Télémédecine solidaire', 'Prévention santé', 'Aide aux aidants']
+        "Vente, micro-commerce et commerce de proximité au cœur des territoires."
+    },
+    {
+      icon: 'handyman',
+      title: 'Artisanat & métiers manuels',
+      description:
+        "Couture, coiffure, menuiserie, fabrication artisanale et savoir-faire locaux."
+    },
+    {
+      icon: 'volunteer_activism',
+      title: 'Services à la personne',
+      description:
+        "Aide à domicile, soutien scolaire, accompagnement social et services de proximité."
+    },
+    {
+      icon: 'devices',
+      title: 'Numérique & innovation',
+      description:
+        "Marketing, création de contenu, freelancing et services en ligne."
     },
     {
       icon: 'school',
-      title: 'Éducation & formation',
+      title: 'Éducation & insertion',
       description:
-        "Initiatives pour démocratiser l'accès à l'éducation, la formation professionnelle et l'insertion.",
-      examples: ['Formation numérique', 'Orientation professionnelle', 'Alphabétisation']
+        "Formation, renforcement des compétences et accompagnement vers l'emploi."
     },
     {
-      icon: 'home',
-      title: 'Cohésion sociale',
+      icon: 'eco',
+      title: 'Économie verte',
       description:
-        "Projets renforçant le lien social, l'entraide communautaire et l'inclusion des populations vulnérables.",
-      examples: ['Logement participatif', 'Services de proximité', 'Médiation sociale']
+        "Recyclage, gestion des déchets, énergie durable et agriculture écologique."
+    }
+  ];
+
+  // Principes de gouvernance
+  engagements = [
+    {
+      icon: 'visibility',
+      title: 'Transparence',
+      description:
+        "Nous rendons compte régulièrement de l'usage des ressources et des résultats obtenus."
+    },
+    {
+      icon: 'groups',
+      title: 'Participation',
+      description:
+        "Les sociétaires prennent part aux orientations et à l'évolution du fonds."
+    },
+    {
+      icon: 'balance',
+      title: 'Égalité des chances',
+      description:
+        "Chaque projet est jugé sur son potentiel et son impact, sans aucune discrimination."
+    },
+    {
+      icon: 'verified_user',
+      title: 'Responsabilité',
+      description:
+        "Une gestion rigoureuse des fonds issus du mécénat, des subventions et des partenaires."
     }
   ];
 }

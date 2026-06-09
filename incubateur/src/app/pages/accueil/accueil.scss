@@ -1,726 +1,528 @@
 @use 'sass:math';
 
-/* =====================================================
-   ENVOL IMPACT · Accueil « Décollage »
-   DA validée : la trajectoire d'envol. Ligne d'or qui se
-   trace du sol (bas-gauche) vers la lumière (haut-droite).
-   Tokens : voir src/styles.scss (--ei-*).
-   ===================================================== */
+// =============================================================
+//  ENVOL IMPACT — Accueil · direction artistique NOIR & DORÉ
+//  Tout est scopé sous .ei-home pour ne pas toucher les autres pages.
+// =============================================================
 
-:host {
-  display: block;
-  background: var(--ei-ink);
-  color: var(--ei-on-dark);
-  font-family: var(--ei-font-text);
-}
+// --- palette locale (noir & doré, or restreint = anti-slop) ---
+$ink:        #0A0A0C;   // fond page
+$ink-2:      #101116;   // surface relevée
+$ink-3:      #16171D;   // carte / hover
+$gold:       #C9A24B;   // or principal
+$gold-hi:    #E9CE86;   // or clair (lumière)
+$gold-deep:  #9A7B33;   // or sombre
+$cream:      #F3EFE6;   // texte sur sombre
+$cream-dim:  #B5B0A4;   // texte secondaire
+$muted:      #7C786E;   // méta / légendes
+$hair:       rgba(201, 162, 75, .16);
+$hair-soft:  rgba(243, 239, 230, .08);
+
+$f-display: 'Clash Display', 'Syne', sans-serif;
+$f-text:    'Supreme', 'DM Sans', system-ui, sans-serif;
+$f-accent:  'Gambetta', Georgia, serif;
+
+$ease: cubic-bezier(.22, 1, .36, 1);
 
 .ei-home {
   position: relative;
+  background: $ink;
+  color: $cream;
+  font-family: $f-text;
   overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Primitives typographiques ---------- */
-.eyebrow {
-  margin: 0 0 var(--ei-s-16);
-  font-family: var(--ei-font-text);
-  font-size: clamp(0.7rem, 0.9vw, 0.8rem);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ei-gold-2);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+// =============================================================
+//  Primitives partagées
+// =============================================================
+.ei-home {
 
-  &::before {
-    content: '';
-    width: 28px;
-    height: 1px;
-    background: var(--ei-gold-grad);
-  }
-  &.eyebrow--ink { color: #9a6a16; &::before { background: #c98a22; } }
-}
+  .eyebrow {
+    font-family: $f-text;
+    font-size: .74rem;
+    font-weight: 500;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: $gold;
+    margin: 0 0 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
 
-.block-title {
-  margin: 0;
-  font-family: var(--ei-font-display);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.02;
-  font-size: clamp(2rem, 4.4vw, 3.6rem);
-  color: var(--ei-on-dark);
-  max-width: 18ch;
-
-  .title-em { color: var(--ei-gold-2); }
-  &--ink { color: var(--ei-on-light); .title-em--ink { color: #b8761a; } }
-}
-
-.block-head {
-  margin-bottom: clamp(var(--ei-s-48), 6vw, var(--ei-s-96));
-  &--center { text-align: center; .block-title { margin: 0 auto; } }
-}
-
-/* ---------- Boutons de marque DA ---------- */
-.ei-btn {
-  --pad-x: 26px;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 15px var(--pad-x);
-  border-radius: var(--ei-r-4);
-  font-family: var(--ei-font-text);
-  font-size: 0.98rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: transform 160ms var(--ei-ease-launch),
-              box-shadow 160ms var(--ei-ease-launch),
-              background 160ms var(--ei-ease-soft),
-              color 160ms var(--ei-ease-soft);
-  will-change: transform;
-
-  mat-icon {
-    font-size: 1.05rem;
-    width: 1.05rem;
-    height: 1.05rem;
-    transition: transform 160ms var(--ei-ease-launch);
-  }
-
-  &--gold {
-    background: var(--ei-gold-grad);
-    color: #2a1a04;
-    box-shadow: 0 6px 22px rgba(232, 162, 61, 0.28);
-    &:hover {
-      box-shadow: 0 14px 38px rgba(232, 162, 61, 0.42);
-      mat-icon { transform: translate(3px, -3px); }
+    &::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: linear-gradient(90deg, $gold, transparent);
     }
   }
 
-  &--ghost {
-    background: transparent;
-    color: var(--ei-on-dark);
-    border-color: rgba(237, 230, 216, 0.28);
-    &:hover {
-      border-color: var(--ei-elan);
-      color: #fff;
-      box-shadow: 0 0 0 1px var(--ei-elan), 0 10px 30px rgba(30, 91, 255, 0.25);
+  .block-head { max-width: 46rem; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+
+  .block-title {
+    font-family: $f-display;
+    font-weight: 600;
+    font-size: clamp(1.85rem, 4vw, 3.1rem);
+    line-height: 1.08;
+    letter-spacing: -.015em;
+    color: $cream;
+    margin: 0;
+
+    .title-em {
+      display: block;
+      color: $cream-dim;
+      font-weight: 600;
     }
   }
-}
 
-/* =====================================================
-   HERO · DÉCOLLAGE
-   ===================================================== */
-.hero {
-  position: relative;
-  min-height: 100svh;
-  padding: clamp(96px, 12vh, 160px) clamp(24px, 6vw, 120px) clamp(48px, 8vh, 96px);
-  display: flex;
-  align-items: flex-end;          /* titre ancré bas-gauche */
-  overflow: hidden;
-  background:
-    radial-gradient(120% 90% at 88% 8%, rgba(244, 201, 93, 0.10), transparent 55%),
-    var(--ei-ink);
-}
-
-.hero-grain {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.5;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
-}
-
-.hero-halo {
-  position: absolute;
-  top: -14%;
-  right: -8%;
-  width: min(46vw, 620px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(244, 201, 93, 0.5) 0%, rgba(232, 162, 61, 0.18) 38%, transparent 68%);
-  filter: blur(18px);
-}
-
-.hero-traj-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-.hero-trajectory {
-  filter: drop-shadow(0 0 10px rgba(244, 201, 93, 0.45));
-}
-
-.hero-bird {
-  position: absolute;
-  top: 8%;
-  right: 6%;
-  width: clamp(34px, 4vw, 56px);
-  height: auto;
-  filter: drop-shadow(0 0 14px rgba(244, 201, 93, 0.7));
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 60ch;
-}
-
-.hero-eyebrow {
-  margin: 0 0 clamp(20px, 3vh, 32px);
-  font-size: clamp(0.72rem, 1vw, 0.85rem);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ei-gold-2);
-}
-
-.hero-title {
-  margin: 0;
-  font-family: var(--ei-font-display);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 0.96;
-  font-size: clamp(3rem, 10vw, 8.2rem);
-  color: var(--ei-on-dark);
-
-  .line { display: block; overflow: hidden; }
-  .line-inner { display: block; }
-  em {
-    font-style: normal;
-    background: var(--ei-gold-grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-}
-
-.hero-subtitle {
-  margin: clamp(24px, 3.5vh, 36px) 0 0;
-  max-width: 52ch;
-  font-size: clamp(1rem, 1.4vw, 1.22rem);
-  line-height: 1.6;
-  color: var(--ei-on-dark-dim);
-}
-
-.hero-actions {
-  margin-top: clamp(28px, 4vh, 44px);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--ei-s-16);
-}
-
-.hero-scroll-hint {
-  position: absolute;
-  left: clamp(24px, 6vw, 120px);
-  bottom: clamp(20px, 4vh, 36px);
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ei-haze);
-
-  .hint-line {
-    width: 60px;
-    height: 1px;
-    background: linear-gradient(90deg, var(--ei-haze), transparent);
+  // ---- boutons ----
+  .ei-btn {
+    --pad-y: .95rem;
     position: relative;
-    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    padding: var(--pad-y) 1.7rem;
+    border-radius: 2px;
+    font-family: $f-text;
+    font-size: .95rem;
+    font-weight: 500;
+    letter-spacing: .01em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .4s $ease, background .35s $ease, color .35s $ease, border-color .35s $ease;
+    will-change: transform;
+
+    mat-icon { font-size: 1.15rem; width: 1.15rem; height: 1.15rem; transition: transform .35s $ease; }
+
+    &--gold {
+      background: linear-gradient(120deg, $gold 0%, $gold-hi 100%);
+      color: #1A130A;
+      box-shadow: 0 1px 0 rgba(255,255,255,.25) inset, 0 14px 34px rgba(201,162,75,.22);
+      &:hover { mat-icon { transform: translate(2px, -2px); } }
+    }
+
+    &--ghost {
+      background: transparent;
+      color: $cream;
+      border: 1px solid $hair;
+      &:hover { border-color: $gold; color: $gold-hi; }
+    }
+  }
+}
+
+// =============================================================
+//  HERO
+// =============================================================
+.ei-home .hero {
+  position: relative;
+  min-height: clamp(640px, 94vh, 980px);
+  display: flex;
+  align-items: center;
+  padding: clamp(7rem, 13vh, 10rem) clamp(1.4rem, 6vw, 6rem) clamp(4rem, 8vh, 6rem);
+  background:
+    radial-gradient(120% 80% at 85% 8%, rgba(201,162,75,.10) 0%, transparent 55%),
+    radial-gradient(100% 70% at 0% 100%, rgba(201,162,75,.05) 0%, transparent 60%),
+    $ink;
+  isolation: isolate;
+  overflow: hidden;
+
+  .hero-grain {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+  .hero-halo {
+    position: absolute; z-index: 0; top: -8%; right: -6%;
+    width: 46vw; height: 46vw; max-width: 620px; max-height: 620px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(233,206,134,.16) 0%, transparent 68%);
+    filter: blur(6px);
+  }
+  .hero-traj-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: .8; }
+  .hero-bird {
+    position: absolute; z-index: 2; top: 11%; right: 8%; width: 38px; height: 38px;
+    filter: drop-shadow(0 0 14px rgba(233,206,134,.6));
+  }
+
+  .hero-inner { position: relative; z-index: 3; max-width: 60rem; }
+
+  .hero-eyebrow {
+    font-size: .8rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+    color: $gold; margin: 0 0 1.6rem;
+  }
+
+  .hero-title {
+    font-family: $f-display;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 7.4vw, 5.6rem);
+    line-height: 1.02;
+    letter-spacing: -.025em;
+    margin: 0;
+    color: $cream;
+
+    .line { display: block; overflow: hidden; }
+    .line-inner { display: block; }
+    em {
+      font-family: $f-accent;
+      font-style: italic;
+      font-weight: 400;
+      color: $gold-hi;
+      background: linear-gradient(100deg, $gold 0%, $gold-hi 60%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .hero-subtitle {
+    margin: 2rem 0 0;
+    max-width: 38rem;
+    font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+    line-height: 1.65;
+    color: $cream-dim;
+  }
+
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.6rem; }
+
+  .hero-scroll-hint {
+    position: absolute; z-index: 3; left: clamp(1.4rem, 6vw, 6rem); bottom: 2.2rem;
+    display: flex; align-items: center; gap: .8rem;
+    font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: $muted;
+    .hint-line {
+      width: 56px; height: 1px; background: linear-gradient(90deg, $gold, transparent);
+      transform-origin: left;
+      animation: hintPulse 2.4s $ease infinite;
+    }
+  }
+}
+
+@keyframes hintPulse {
+  0%, 100% { transform: scaleX(.4); opacity: .5; }
+  50%      { transform: scaleX(1);  opacity: 1; }
+}
+
+// =============================================================
+//  SPINE — ligne d'or maîtresse
+// =============================================================
+.ei-home .trajectory-spine {
+  position: absolute;
+  top: 100vh; left: 0; right: 0;
+  height: 2400px;
+  z-index: 0; pointer-events: none;
+  display: flex; justify-content: center;
+  opacity: .5;
+  .spine-svg { width: min(70vw, 900px); height: 100%; }
+}
+
+.ei-home .ei-flow {
+  position: relative;
+  z-index: 1;
+  padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 6vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(5rem, 11vw, 9rem);
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+// =============================================================
+//  ESSENCE — Vision / Mission / Promesse
+// =============================================================
+.ei-home .essence {
+  .essence-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.2rem, 2.5vw, 2rem);
+  }
+  .essence-card {
+    position: relative;
+    padding: 2.4rem 1.8rem 2rem;
+    background: linear-gradient(180deg, $ink-2, $ink);
+    border: 1px solid $hair-soft;
+    border-top: 2px solid transparent;
+    border-radius: 3px;
+    transition: border-color .4s $ease, transform .4s $ease, background .4s $ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-top-color: $gold;
+      background: linear-gradient(180deg, $ink-3, $ink);
+    }
+  }
+  .essence-num {
+    font-family: $f-display;
+    font-size: 1rem; font-weight: 600; color: $gold;
+    letter-spacing: .1em;
+  }
+  .essence-label {
+    margin: 1.4rem 0 .7rem;
+    font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: $muted;
+  }
+  .essence-title {
+    font-family: $f-display; font-weight: 600;
+    font-size: 1.28rem; line-height: 1.25; letter-spacing: -.01em;
+    color: $cream; margin: 0 0 .9rem;
+  }
+  .essence-text { font-size: .98rem; line-height: 1.62; color: $cream-dim; margin: 0; }
+}
+
+// =============================================================
+//  PARCOURS — 5 étapes sur la trajectoire
+// =============================================================
+.ei-home .parcours {
+  .steps {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column;
+  }
+  .step-node {
+    position: relative;
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 1.6rem;
+    padding: 1.7rem 0;
+    border-top: 1px solid $hair-soft;
+
+    &:last-child { border-bottom: 1px solid $hair-soft; }
+
+    // connecteur vertical entre marqueurs
     &::after {
       content: '';
-      position: absolute;
-      inset: 0;
-      width: 24px;
-      background: var(--ei-gold-2);
-      animation: hint-run 2.4s var(--ei-ease-soft) infinite;
+      position: absolute; left: 37px; top: 50%; bottom: -1.7rem;
+      width: 1px; background: $hair-soft;
+    }
+    &.is-last::after { display: none; }
+  }
+  .step-marker {
+    position: relative;
+    width: 76px; height: 76px;
+    display: grid; place-items: center;
+    border: 1px solid $hair;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 40%, $ink-3, $ink);
+    transition: border-color .5s $ease, box-shadow .5s $ease;
+
+    .step-index {
+      position: absolute; top: 6px; right: 10px;
+      font-family: $f-display; font-size: .72rem; font-weight: 600;
+      color: $muted; transition: color .5s $ease;
+    }
+    .step-icon {
+      font-size: 1.7rem; width: 1.7rem; height: 1.7rem;
+      color: $cream-dim; transition: color .5s $ease, transform .5s $ease;
     }
   }
-}
-@keyframes hint-run {
-  0% { transform: translateX(-24px); opacity: 0; }
-  40% { opacity: 1; }
-  100% { transform: translateX(60px); opacity: 0; }
-}
-
-/* =====================================================
-   SPINE · ligne d'or maîtresse derrière le flux nuit
-   ===================================================== */
-.ei-flow { position: relative; }
-
-.trajectory-spine {
-  position: absolute;
-  top: 0;
-  left: clamp(16px, 5vw, 90px);
-  width: clamp(80px, 14vw, 200px);
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-
-  .spine-svg { width: 100%; height: 100%; }
-  .spine-path { filter: drop-shadow(0 0 8px rgba(232, 162, 61, 0.4)); }
-}
-
-/* Au-dessus de la spine, contenu en lecture */
-.mission, .parcours, .figures {
-  position: relative;
-  z-index: 1;
-  padding: clamp(var(--ei-s-96), 13vh, var(--ei-s-192)) clamp(24px, 6vw, 120px);
-}
-
-/* =====================================================
-   MISSION · piliers éditoriaux (pas de cartes)
-   ===================================================== */
-.mission { padding-left: clamp(24px, 14vw, 280px); }   /* aligné sur la diagonale */
-
-.piliers {
-  display: grid;
-  gap: clamp(var(--ei-s-32), 4vw, var(--ei-s-64));
-}
-
-.pilier {
-  display: grid;
-  grid-template-columns: clamp(72px, 9vw, 132px) 1fr;
-  gap: clamp(20px, 3vw, 48px);
-  align-items: start;
-  padding-bottom: clamp(var(--ei-s-32), 4vw, var(--ei-s-48));
-  border-bottom: 1px solid rgba(237, 230, 216, 0.1);
-
-  &:last-child { border-bottom: 0; }
-}
-
-.pilier-num {
-  font-family: var(--ei-font-display);
-  font-weight: 600;
-  font-size: clamp(2.4rem, 6vw, 4.6rem);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  background: var(--ei-gold-grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.pilier-title {
-  margin: 0 0 12px;
-  font-family: var(--ei-font-display);
-  font-weight: 600;
-  font-size: clamp(1.25rem, 2vw, 1.7rem);
-  letter-spacing: -0.01em;
-  color: var(--ei-on-dark);
-}
-.pilier-text {
-  margin: 0;
-  max-width: 56ch;
-  font-size: clamp(0.98rem, 1.2vw, 1.1rem);
-  line-height: 1.65;
-  color: var(--ei-on-dark-dim);
-}
-
-/* =====================================================
-   PARCOURS · étapes posées SUR la trajectoire
-   ===================================================== */
-.parcours { padding-left: clamp(24px, 14vw, 280px); }
-
-.steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: relative;
-
-  /* fil reliant les étapes */
-  &::before {
-    content: '';
-    position: absolute;
-    left: clamp(26px, 3.4vw, 38px);
-    top: 32px;
-    bottom: 32px;
-    width: 2px;
-    background: linear-gradient(180deg, rgba(232,162,61,0.12), rgba(232,162,61,0.4), rgba(244,201,93,0.12));
-  }
-}
-
-.step-node {
-  display: grid;
-  grid-template-columns: clamp(56px, 7vw, 78px) 1fr;
-  gap: clamp(20px, 3vw, 44px);
-  align-items: flex-start;
-  padding: clamp(20px, 3vh, 34px) 0;
-  position: relative;
-
-  &.is-last { padding-bottom: 0; }
-}
-
-.step-marker {
-  position: relative;
-  width: clamp(56px, 7vw, 78px);
-  height: clamp(56px, 7vw, 78px);
-  border-radius: var(--ei-r-16);
-  display: grid;
-  place-items: center;
-  background: var(--ei-slate);
-  border: 1px solid rgba(237, 230, 216, 0.12);
-  color: var(--ei-haze);
-  transition: border-color 300ms var(--ei-ease-soft),
-              box-shadow 300ms var(--ei-ease-soft),
-              color 300ms var(--ei-ease-soft),
-              background 300ms var(--ei-ease-soft);
-
-  .step-index {
-    position: absolute;
-    top: 6px;
-    left: 10px;
-    font-family: var(--ei-font-display);
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--ei-haze);
-    transition: color 300ms var(--ei-ease-soft);
-  }
-  .step-icon {
-    font-size: clamp(1.5rem, 2.4vw, 2rem);
-    width: clamp(1.5rem, 2.4vw, 2rem);
-    height: clamp(1.5rem, 2.4vw, 2rem);
-  }
-}
-
-/* allumage or quand l'étape entre dans le viewport */
-.step-node.is-lit .step-marker {
-  background: linear-gradient(150deg, #1a3550, var(--ei-slate));
-  border-color: var(--ei-gold-1);
-  color: var(--ei-gold-2);
-  box-shadow: 0 0 0 1px rgba(244, 201, 93, 0.35), 0 12px 34px rgba(232, 162, 61, 0.22);
-  .step-index { color: var(--ei-gold-2); }
-}
-
-.step-title {
-  margin: 4px 0 8px;
-  font-family: var(--ei-font-display);
-  font-weight: 600;
-  font-size: clamp(1.2rem, 2vw, 1.7rem);
-  letter-spacing: -0.01em;
-  color: var(--ei-on-dark);
-}
-.step-text {
-  margin: 0;
-  max-width: 54ch;
-  font-size: clamp(0.96rem, 1.2vw, 1.08rem);
-  line-height: 1.62;
-  color: var(--ei-on-dark-dim);
-}
-
-/* =====================================================
-   CHIFFRES · count-up + facteurs de succès
-   ===================================================== */
-.figures-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: clamp(var(--ei-s-24), 3vw, var(--ei-s-48));
-}
-
-.figure {
-  padding: clamp(20px, 2.4vw, 32px) 0;
-  border-top: 1px solid rgba(237, 230, 216, 0.12);
-
-  .figure-num {
-    display: block;
-    font-family: var(--ei-font-display);
-    font-weight: 600;
-    font-size: clamp(2.6rem, 6vw, 4.4rem);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    background: var(--ei-gold-grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-
-    &--tbc {
-      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
-      letter-spacing: 0;
-      color: var(--ei-haze);
-      background: none;
-      -webkit-text-fill-color: var(--ei-haze);
-    }
-  }
-  .figure-label {
-    display: block;
-    margin-top: 10px;
-    max-width: 26ch;
-    font-size: clamp(0.86rem, 1vw, 0.96rem);
-    line-height: 1.5;
-    color: var(--ei-on-dark-dim);
-    em { color: var(--ei-haze); font-style: italic; }
-  }
-}
-
-.figures-grid.factors {
-  margin-top: clamp(var(--ei-s-48), 6vw, var(--ei-s-96));
-}
-
-.factor {
-  padding: clamp(24px, 2.8vw, 36px);
-  background: var(--ei-slate);
-  border: 1px solid rgba(237, 230, 216, 0.08);
-  border-radius: var(--ei-r-16);
-  transition: border-color 200ms var(--ei-ease-soft), transform 200ms var(--ei-ease-launch);
-
-  &:hover {
-    border-color: rgba(244, 201, 93, 0.32);
-    transform: translateY(-4px);
+  // état "allumé" piloté par le JS (ScrollTrigger)
+  .step-node.is-lit .step-marker {
+    border-color: $gold;
+    box-shadow: 0 0 0 1px rgba(201,162,75,.3), 0 12px 30px rgba(201,162,75,.14);
+    .step-index { color: $gold; }
+    .step-icon { color: $gold-hi; transform: translateY(-1px); }
   }
 
-  .factor-icon {
-    font-size: 1.8rem;
-    width: 1.8rem;
-    height: 1.8rem;
-    color: var(--ei-gold-2);
-    margin-bottom: 16px;
+  .step-content { padding-top: .55rem; }
+  .step-title {
+    font-family: $f-display; font-weight: 600;
+    font-size: 1.35rem; letter-spacing: -.01em; color: $cream; margin: 0 0 .5rem;
   }
-  .factor-title {
-    margin: 0 0 8px;
-    font-family: var(--ei-font-display);
-    font-weight: 600;
-    font-size: 1.16rem;
-    letter-spacing: -0.01em;
-    color: var(--ei-on-dark);
-  }
-  .factor-text {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--ei-on-dark-dim);
-  }
+  .step-text { font-size: 1rem; line-height: 1.6; color: $cream-dim; max-width: 44rem; margin: 0; }
 }
 
-/* =====================================================
-   SECTORS · bandeau craie (full-bleed clair)
-   ===================================================== */
-.sectors {
-  position: relative;
-  z-index: 1;
-  background: var(--ei-chalk);
-  color: var(--ei-on-light);
-  /* coupe diagonale d'envol en haut */
-  clip-path: polygon(0 4vw, 100% 0, 100% 100%, 0 100%);
-  margin-top: -2vw;
-  padding: clamp(var(--ei-s-128), 16vh, calc(var(--ei-s-192) + 40px)) 0 clamp(var(--ei-s-96), 12vh, var(--ei-s-128));
-}
-
-.sectors-inner {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 clamp(24px, 6vw, 80px);
-}
-
-.sectors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1px;
-  background: rgba(26, 42, 56, 0.12);
-  border: 1px solid rgba(26, 42, 56, 0.12);
-}
-
-.sector {
-  position: relative;
-  background: var(--ei-chalk);
-  padding: clamp(28px, 3.4vw, 44px);
-  transition: background 200ms var(--ei-ease-soft);
-
-  &:hover { background: #fffdf7; }
-
-  .sector-num {
-    font-family: var(--ei-font-display);
-    font-weight: 600;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    color: #b8761a;
-  }
-  .sector-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 18px 0 14px;
-  }
-  .sector-icon {
-    font-size: 1.7rem;
-    width: 1.7rem;
-    height: 1.7rem;
-    color: #9a6a16;
-  }
-  .sector-title {
-    margin: 0;
-    font-family: var(--ei-font-display);
-    font-weight: 600;
-    font-size: clamp(1.2rem, 1.7vw, 1.5rem);
-    letter-spacing: -0.01em;
-    color: var(--ei-on-light);
-  }
-  .sector-text {
-    margin: 0 0 18px;
-    font-size: 0.96rem;
-    line-height: 1.6;
-    color: #3a4c5a;
-  }
-  .sector-tags {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-
-    li {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      padding: 5px 11px;
-      border-radius: var(--ei-r-4);
-      background: rgba(232, 162, 61, 0.14);
-      color: #8a5e12;
-    }
-  }
-}
-
-/* =====================================================
-   SUMMIT · CTA final, le sommet lumineux
-   ===================================================== */
-.summit {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  padding: clamp(var(--ei-s-128), 18vh, calc(var(--ei-s-192) + 60px)) clamp(24px, 6vw, 80px);
+// =============================================================
+//  SECTEURS — 7 champs d'activité (bandeau plus dense)
+// =============================================================
+.ei-home .sectors {
+  position: relative; z-index: 1;
+  padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 6vw, 6rem);
   background:
-    radial-gradient(120% 120% at 50% 120%, rgba(244, 201, 93, 0.16), transparent 60%),
-    linear-gradient(180deg, var(--ei-ink) 0%, #0d2236 100%);
+    radial-gradient(90% 60% at 100% 0%, rgba(201,162,75,.06), transparent 60%),
+    $ink-2;
+  border-top: 1px solid $hair-soft;
+  border-bottom: 1px solid $hair-soft;
+
+  .sectors-inner { max-width: 1180px; margin: 0 auto; }
+
+  .sectors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+    gap: 1px;
+    background: $hair-soft;
+    border: 1px solid $hair-soft;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .sector {
+    position: relative;
+    padding: 2.1rem 1.7rem 2rem;
+    background: $ink-2;
+    transition: background .4s $ease;
+    &:hover { background: $ink-3; }
+
+    .sector-num {
+      font-family: $f-display; font-size: .76rem; font-weight: 600;
+      color: $gold-deep; letter-spacing: .12em;
+    }
+    .sector-icon {
+      display: block; margin: 1rem 0 1.1rem;
+      font-size: 2rem; width: 2rem; height: 2rem; color: $gold;
+    }
+    .sector-title {
+      font-family: $f-display; font-weight: 600; font-size: 1.12rem;
+      letter-spacing: -.01em; color: $cream; margin: 0 0 .6rem;
+    }
+    .sector-text { font-size: .94rem; line-height: 1.55; color: $cream-dim; margin: 0; }
+  }
 }
 
-.summit-halo {
-  position: absolute;
-  left: 50%;
-  top: -10%;
-  transform: translateX(-50%);
-  width: min(70vw, 760px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(244, 201, 93, 0.28) 0%, transparent 62%);
-  filter: blur(24px);
+// =============================================================
+//  GOUVERNANCE — principes + chaîne
+// =============================================================
+.ei-home .governance {
+  position: relative; z-index: 1;
+  max-width: 1180px; margin: 0 auto;
+  padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 6vw, 6rem);
+
+  .gov-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: clamp(1.2rem, 2.5vw, 2rem);
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+  .gov-card {
+    padding: 1.9rem 1.6rem;
+    border-left: 2px solid $hair;
+    transition: border-color .4s $ease, transform .4s $ease;
+    &:hover { border-left-color: $gold; transform: translateX(3px); }
+
+    .gov-icon { font-size: 1.7rem; width: 1.7rem; height: 1.7rem; color: $gold; margin-bottom: 1rem; }
+    .gov-title {
+      font-family: $f-display; font-weight: 600; font-size: 1.18rem;
+      color: $cream; margin: 0 0 .6rem;
+    }
+    .gov-text { font-size: .95rem; line-height: 1.58; color: $cream-dim; margin: 0; }
+  }
+
+  // chaîne de gouvernance (organigramme linéaire)
+  .gov-chain {
+    display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 0;
+    padding: 1.6rem 1.8rem;
+    background: linear-gradient(180deg, $ink-2, $ink);
+    border: 1px solid $hair-soft;
+    border-radius: 3px;
+    margin: 0;
+
+    span {
+      font-size: .85rem; color: $cream-dim; white-space: nowrap;
+      padding: 0 1rem;
+      position: relative;
+      &:not(:last-child)::after {
+        content: '→'; position: absolute; right: -.35rem; color: $gold-deep;
+      }
+    }
+    .gov-chain-end { color: $gold-hi; font-weight: 500; }
+  }
 }
 
-.summit-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+// =============================================================
+//  FINANCEMENT — sources
+// =============================================================
+.ei-home .funding {
+  position: relative; z-index: 1;
+  padding: clamp(4rem, 8vw, 6.5rem) clamp(1.4rem, 6vw, 6rem);
+  border-top: 1px solid $hair-soft;
 
-.summit-title {
-  margin: 18px 0 0;
-  font-family: var(--ei-font-display);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1;
-  font-size: clamp(2.4rem, 7vw, 5.2rem);
-  background: var(--ei-gold-grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  .funding-inner { max-width: 1180px; margin: 0 auto; }
+  .funding-title {
+    font-family: $f-display; font-weight: 600;
+    font-size: clamp(1.5rem, 3vw, 2.3rem); line-height: 1.15; letter-spacing: -.015em;
+    color: $cream; margin: 0 0 2.4rem; max-width: 30rem;
+  }
+  .funding-sources {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    border-top: 1px solid $hair;
+    li {
+      padding: 1.5rem .5rem;
+      border-bottom: 1px solid $hair-soft;
+      span {
+        font-family: $f-display; font-weight: 600; font-size: 1.15rem; color: $cream;
+        position: relative; padding-left: 1.4rem;
+        &::before { content: '—'; position: absolute; left: 0; color: $gold; }
+      }
+    }
+  }
 }
 
-.summit-quote {
-  margin: clamp(20px, 3vh, 30px) auto 0;
-  max-width: 30ch;
-  font-family: var(--ei-font-accent);
-  font-style: italic;
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  line-height: 1.4;
-  color: var(--ei-on-dark);
-}
-
-.summit-actions {
-  margin-top: clamp(32px, 4vh, 44px);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--ei-s-16);
-}
-.summit .eyebrow { justify-content: center; }
-
-/* =====================================================
-   CÉLÉBRATION (conservée du legacy, retravaillée)
-   ===================================================== */
-.celebration-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
+// =============================================================
+//  CTA FINAL
+// =============================================================
+.ei-home .summit {
+  position: relative; z-index: 1;
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.4rem, 6vw, 6rem);
+  text-align: center;
   overflow: hidden;
-}
-.confetti {
-  position: absolute;
-  top: -10%;
-  width: 9px;
-  height: 9px;
-  background: var(--ei-gold-2);
-  opacity: 0.9;
-  animation: confetti-fall 3s linear infinite;
-}
-.confetti:nth-child(odd)  { background: var(--ei-elan); }
-.confetti:nth-child(3n)   { background: var(--ei-gold-1); }
-@for $i from 1 through 15 {
-  .confetti:nth-child(#{$i}) {
-    left: math.percentage(math.div($i, 16));
-    animation-delay: #{$i * 0.18}s;
-    animation-duration: #{2.4 + ($i % 5) * 0.4}s;
+  background:
+    radial-gradient(80% 120% at 50% 120%, rgba(201,162,75,.12), transparent 60%),
+    $ink;
+
+  .summit-halo {
+    position: absolute; left: 50%; bottom: -40%; transform: translateX(-50%);
+    width: 70vw; height: 70vw; max-width: 780px; max-height: 780px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(233,206,134,.14), transparent 64%);
+    pointer-events: none;
   }
-}
-@keyframes confetti-fall {
-  0%   { transform: translateY(0) rotate(0); opacity: 1; }
-  100% { transform: translateY(105vh) rotate(540deg); opacity: 0; }
+  .summit-inner { position: relative; z-index: 1; max-width: 44rem; margin: 0 auto; }
+  .summit-title {
+    font-family: $f-display; font-weight: 600;
+    font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.08; letter-spacing: -.02em;
+    color: $cream; margin: 0 0 1.4rem;
+  }
+  .summit-quote {
+    font-family: $f-accent; font-style: italic; font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    color: $gold-hi; margin: 0 0 2.4rem;
+  }
+  .summit-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
 }
 
-/* =====================================================
-   RESPONSIVE — la mobile a sa propre composition
-   ===================================================== */
+// =============================================================
+//  Célébration (conservée)
+// =============================================================
+.ei-home .celebration-overlay {
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none; overflow: hidden;
+  .confetti {
+    position: absolute; top: -10px; width: 9px; height: 9px;
+    background: $gold; opacity: .9;
+    animation: confettiFall 3s linear forwards;
+  }
+  @for $i from 1 through 15 {
+    .confetti:nth-child(#{$i}) {
+      left: math.percentage(math.div($i, 16));
+      animation-delay: #{$i * .12}s;
+      background: if($i % 2 == 0, $gold-hi, $gold);
+    }
+  }
+}
+@keyframes confettiFall {
+  to { transform: translateY(105vh) rotate(540deg); opacity: 0; }
+}
+
+// =============================================================
+//  RESPONSIVE
+// =============================================================
 @media (max-width: 900px) {
-  .trajectory-spine { display: none; }   /* la spine verticale n'a pas de sens en colonne étroite */
-
-  .mission, .parcours { padding-left: clamp(20px, 6vw, 40px); }
-
-  .hero { align-items: flex-end; }
-  .hero-title { font-size: clamp(2.6rem, 14vw, 4.4rem); }
-
-  .pilier {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  .pilier-num { font-size: 2.4rem; }
-
-  .sectors { clip-path: polygon(0 3vw, 100% 0, 100% 100%, 0 100%); }
+  .ei-home .essence .essence-grid { grid-template-columns: 1fr; }
+  .ei-home .trajectory-spine { display: none; }
+}
+@media (max-width: 620px) {
+  .ei-home .hero { min-height: 88vh; }
+  .ei-home .parcours .step-node { grid-template-columns: 60px 1fr; gap: 1.1rem; }
+  .ei-home .parcours .step-marker { width: 60px; height: 60px; }
+  .ei-home .parcours .step-node::after { left: 29px; }
+  .ei-home .gov-chain span { white-space: normal; }
 }
 
-@media (max-width: 560px) {
-  .hero-actions, .summit-actions { width: 100%; }
-  .ei-btn { flex: 1 1 auto; justify-content: center; }
-  .step-node { grid-template-columns: 48px 1fr; gap: 16px; }
-  .step-marker { width: 48px; height: 48px; }
-  .figure .figure-num { font-size: clamp(2.4rem, 13vw, 3.4rem); }
-}
-
-/* =====================================================
-   ACCESSIBILITÉ — mouvement réduit
-   Le contenu reste pleinement lisible ; on neutralise
-   traçage, scrub, halos animés et hint.
-   ===================================================== */
+// reduced-motion : le JS gère déjà l'état final ; on neutralise le hint.
 @media (prefers-reduced-motion: reduce) {
-  .hero-trajectory, .spine-path { stroke-dashoffset: 0 !important; }
-  .hint-line::after, .confetti { animation: none !important; }
-  .hero-scroll-hint { display: none; }
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    transition-duration: 0.001ms !important;
-  }
+  .ei-home .hero-scroll-hint .hint-line { animation: none; }
 }

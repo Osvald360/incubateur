@@ -157,6 +157,15 @@ app-root {
   min-height: 100vh;
 }
 
+/* Liens de contenu sans classe — or moyen, lisible sur fond clair et sombre */
+a:not([class]) {
+  color: #B8893C;
+  text-decoration-color: rgba(201, 162, 75, .45);
+  text-underline-offset: 2px;
+  transition: color var(--transition);
+}
+a:not([class]):hover { color: #C9A24B; }
+
 /* =====================================================
    3. LAYOUT — compense la navbar fixe (64px)
    ===================================================== */
@@ -195,48 +204,69 @@ app-root {
   transition: var(--transition) !important;
 }
 
-/* Primary — orange (couleur d'action "Impact") */
+/* Primary — or (couleur d'action "Impact", DA noir & doré) */
 .mat-mdc-raised-button.mat-primary,
 .mat-mdc-unelevated-button.mat-primary {
-  background: var(--orange) !important;
-  color: var(--white) !important;
-  box-shadow: 0 2px 10px rgba(254,135,1,.32) !important;
+  background: linear-gradient(120deg, #C9A24B 0%, #E9CE86 100%) !important;
+  color: #1A130A !important;
+  box-shadow: 0 8px 22px rgba(201,162,75,.26) !important;
 }
 .mat-mdc-raised-button.mat-primary:hover,
 .mat-mdc-unelevated-button.mat-primary:hover {
-  background: var(--orange-dark) !important;
+  filter: brightness(1.05) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(254,135,1,.40) !important;
+  box-shadow: 0 12px 28px rgba(201,162,75,.34) !important;
 }
+.mat-mdc-raised-button.mat-primary mat-icon,
+.mat-mdc-unelevated-button.mat-primary mat-icon { color: #1A130A !important; }
 
-/* Primary outline / text — orange */
+/* Primary outline / text — or */
 .mat-mdc-outlined-button.mat-primary {
   background: transparent !important;
-  color: var(--orange-dark) !important;
-  border: 1.5px solid var(--orange) !important;
+  color: #E9CE86 !important;
+  border: 1.5px solid rgba(201,162,75,.55) !important;
 }
 .mat-mdc-outlined-button.mat-primary:hover {
-  background: var(--orange-subtle) !important;
+  background: rgba(201,162,75,.10) !important;
+  border-color: #C9A24B !important;
 }
 .mat-mdc-button.mat-primary {
-  color: var(--orange-dark) !important;
+  color: #E9CE86 !important;
 }
 .mat-mdc-button.mat-primary:hover {
-  background: var(--orange-subtle) !important;
+  background: rgba(201,162,75,.10) !important;
 }
 
-/* Accent — navy (ossature / secondaire) */
+/* Stroked / outlined par défaut (sans couleur) — neutre or sur sombre */
+.mat-mdc-outlined-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
+  background: transparent !important;
+  color: #E9CE86 !important;
+  border-color: rgba(201,162,75,.40) !important;
+}
+.mat-mdc-outlined-button:not(.mat-primary):not(.mat-accent):not(.mat-warn):hover {
+  background: rgba(201,162,75,.10) !important;
+  border-color: #C9A24B !important;
+}
+.mat-mdc-outlined-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) mat-icon {
+  color: #C9A24B !important;
+}
+
+/* Accent — encre + contour or (secondaire) */
 .mat-mdc-raised-button.mat-accent,
 .mat-mdc-unelevated-button.mat-accent {
-  background: var(--navy) !important;
-  color: var(--white) !important;
-  box-shadow: 0 2px 10px rgba(1,48,111,.28) !important;
+  background: #16171D !important;
+  color: #F3EFE6 !important;
+  border: 1px solid rgba(201,162,75,.30) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.35) !important;
 }
 .mat-mdc-raised-button.mat-accent:hover,
 .mat-mdc-unelevated-button.mat-accent:hover {
-  background: var(--navy-dark) !important;
+  background: #1E2027 !important;
+  border-color: rgba(201,162,75,.55) !important;
   transform: translateY(-2px) !important;
 }
+.mat-mdc-raised-button.mat-accent mat-icon,
+.mat-mdc-unelevated-button.mat-accent mat-icon { color: #C9A24B !important; }
 
 /* Warn — rouge */
 .mat-mdc-raised-button.mat-warn,

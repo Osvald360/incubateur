@@ -6,50 +6,50 @@
   </div>
 
   <!-- ===================================================== -->
-  <!--  HERO · DÉCOLLAGE                                      -->
+  <!--  HERO                                                  -->
   <!-- ===================================================== -->
-  <section class="hero" aria-label="Envol Impact — décollage">
+  <section class="hero" aria-label="Envol Impact">
     <div class="hero-grain" aria-hidden="true"></div>
     <div class="hero-halo" aria-hidden="true"></div>
 
-    <!-- Trajectoire d'or du hero : du sol bas-gauche vers la lumière haut-droite -->
+    <!-- Trajectoire d'or : du sol bas-gauche vers la lumière haut-droite -->
     <svg class="hero-traj-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
         <linearGradient id="goldHero" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#E8A23D" stop-opacity="0.35" />
-          <stop offset="55%" stop-color="#E8A23D" />
-          <stop offset="100%" stop-color="#F4C95D" />
+          <stop offset="0%" stop-color="#C9A24B" stop-opacity="0.25" />
+          <stop offset="55%" stop-color="#C9A24B" />
+          <stop offset="100%" stop-color="#E9CE86" />
         </linearGradient>
       </defs>
       <path class="hero-trajectory trajectory-path"
             d="M -40 880 C 280 760, 470 700, 690 540 S 1080 300, 1500 90"
-            fill="none" stroke="url(#goldHero)" stroke-width="2.5" stroke-linecap="round" />
+            fill="none" stroke="url(#goldHero)" stroke-width="2" stroke-linecap="round" />
     </svg>
 
-    <!-- Repère « oiseau » au sommet de la trajectoire -->
     <svg class="hero-bird" viewBox="0 0 48 48" aria-hidden="true">
       <path d="M4 40 C 16 34, 22 24, 30 14 L 24 16 L 40 6 L 38 24 L 34 18 C 26 28, 18 36, 4 40 Z"
-            fill="#F4C95D" />
+            fill="#E9CE86" />
     </svg>
 
     <div class="hero-inner">
-      <p class="hero-eyebrow">L'incubateur solidaire de l'association F.A.T.E.</p>
+      <p class="hero-eyebrow">Fonds d'investissement solidaire&ensp;·&ensp;Incubateur</p>
       <h1 class="hero-title">
-        <span class="line"><span class="line-inner">Ici, on prend</span></span>
-        <span class="line"><span class="line-inner">de la <em>hauteur.</em></span></span>
+        <span class="line"><span class="line-inner">Faire décoller</span></span>
+        <span class="line"><span class="line-inner">les projets qui</span></span>
+        <span class="line"><span class="line-inner"><em>transforment des vies.</em></span></span>
       </h1>
       <p class="hero-subtitle">
-        Un accompagnement humain et un financement solidaire pour transformer vos idées
-        en projets viables — et donner aux habitants des quartiers populaires les moyens
-        de créer leur avenir.
+        Le manque de ressources ne devrait jamais empêcher d'entreprendre. Envol Impact
+        accompagne et finance des porteurs de projets en situation de précarité ou vivant
+        en zones rurales — de la première idée jusqu'au développement de leur activité.
       </p>
       <div class="hero-actions">
         <a routerLink="/candidature" class="ei-btn ei-btn--gold" data-magnetic>
-          Soumettre mon projet
+          Déposer un projet
           <mat-icon>north_east</mat-icon>
         </a>
         <a href="#parcours" class="ei-btn ei-btn--ghost" data-magnetic>
-          Découvrir la trajectoire
+          Comment ça marche
         </a>
       </div>
     </div>
@@ -60,57 +60,54 @@
     </div>
   </section>
 
-  <!-- ===================================================== -->
-  <!--  SPINE · la ligne d'or maîtresse traverse les sections -->
-  <!-- ===================================================== -->
+  <!-- Ligne d'or maîtresse qui traverse les sections au scroll -->
   <div class="trajectory-spine" aria-hidden="true">
     <svg class="spine-svg" viewBox="0 0 200 2400" preserveAspectRatio="none">
       <defs>
         <linearGradient id="goldSpine" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#E8A23D" />
-          <stop offset="100%" stop-color="#F4C95D" />
+          <stop offset="0%" stop-color="#C9A24B" />
+          <stop offset="100%" stop-color="#E9CE86" />
         </linearGradient>
       </defs>
       <path class="spine-path trajectory-path"
             d="M 20 2380 C 60 2000, 150 1900, 110 1500 S 30 1100, 120 800 S 180 400, 150 40"
-            fill="none" stroke="url(#goldSpine)" stroke-width="2" stroke-linecap="round" />
+            fill="none" stroke="url(#goldSpine)" stroke-width="1.5" stroke-linecap="round" />
     </svg>
   </div>
 
   <div class="ei-flow">
 
     <!-- ===================================================== -->
-    <!--  MISSION · piliers, registre éditorial nuit            -->
+    <!--  ESSENCE · Vision / Mission / Promesse                 -->
     <!-- ===================================================== -->
-    <section class="mission" data-reveal>
+    <section class="essence" data-reveal>
       <header class="block-head" data-reveal-child>
-        <p class="eyebrow">Notre mission</p>
+        <p class="eyebrow">Ce qui nous porte</p>
         <h2 class="block-title">
-          Créer un écosystème solidaire pour l'entrepreneuriat
-          <span class="title-em">des quartiers populaires.</span>
+          Un fonds solidaire doté d'un incubateur,
+          <span class="title-em">pour que la solidarité devienne autonomie.</span>
         </h2>
       </header>
 
-      <div class="piliers">
-        <article class="pilier" *ngFor="let p of piliers" data-reveal-child>
-          <span class="pilier-num">{{ p.num }}</span>
-          <div class="pilier-body">
-            <h3 class="pilier-title">{{ p.title }}</h3>
-            <p class="pilier-text">{{ p.description }}</p>
-          </div>
+      <div class="essence-grid">
+        <article class="essence-card" *ngFor="let e of essence" data-reveal-child>
+          <span class="essence-num">{{ e.num }}</span>
+          <p class="essence-label">{{ e.label }}</p>
+          <h3 class="essence-title">{{ e.title }}</h3>
+          <p class="essence-text">{{ e.description }}</p>
         </article>
       </div>
     </section>
 
     <!-- ===================================================== -->
-    <!--  PARCOURS · 5 étapes posées sur la trajectoire         -->
+    <!--  PARCOURS · 5 étapes                                   -->
     <!-- ===================================================== -->
     <section class="parcours" id="parcours" data-reveal>
       <header class="block-head" data-reveal-child>
-        <p class="eyebrow">La trajectoire</p>
+        <p class="eyebrow">Le parcours d'incubation</p>
         <h2 class="block-title">
-          Cinq étapes pour transformer
-          <span class="title-em">une idée en projet viable.</span>
+          De l'idée au lancement,
+          <span class="title-em">un chemin que l'on fait ensemble.</span>
         </h2>
       </header>
 
@@ -129,94 +126,97 @@
       </ol>
     </section>
 
-    <!-- ===================================================== -->
-    <!--  CHIFFRES · count-up                                   -->
-    <!-- ===================================================== -->
-    <section class="figures" data-reveal>
-      <header class="block-head block-head--center" data-reveal-child>
-        <p class="eyebrow">Ce qui fait décoller un projet</p>
-        <h2 class="block-title">Nos facteurs de succès, en clair.</h2>
-      </header>
-
-      <div class="figures-grid">
-        <div class="figure" data-reveal-child>
-          <span class="figure-num"><span data-count="5" data-decimals="0">0</span></span>
-          <span class="figure-label">étapes d'accompagnement, du dépôt au lancement</span>
-        </div>
-        <div class="figure" data-reveal-child>
-          <span class="figure-num"><span data-count="4" data-decimals="0">0</span></span>
-          <span class="figure-label">secteurs à fort impact social ciblés</span>
-        </div>
-        <div class="figure" data-reveal-child>
-          <span class="figure-num">
-            <span data-count="100" data-decimals="0" data-suffix="%">0</span>
-          </span>
-          <span class="figure-label">des projets accompagnés portés depuis les quartiers</span>
-        </div>
-        <div class="figure" data-reveal-child>
-          <span class="figure-num figure-num--tbc">[à confirmer]</span>
-          <span class="figure-label">projets déjà financés <em>— chiffre à valider avec F.A.T.E.</em></span>
-        </div>
-      </div>
-
-      <div class="figures-grid factors">
-        <article class="factor" *ngFor="let f of successFactors" data-reveal-child>
-          <mat-icon class="factor-icon">{{ f.icon }}</mat-icon>
-          <h3 class="factor-title">{{ f.title }}</h3>
-          <p class="factor-text">{{ f.description }}</p>
-        </article>
-      </div>
-    </section>
-
   </div><!-- /.ei-flow -->
 
   <!-- ===================================================== -->
-  <!--  TYPES DE PROJETS · bandeau craie (full-bleed clair)   -->
+  <!--  SECTEURS · 7 champs d'activité                        -->
   <!-- ===================================================== -->
   <section class="sectors" data-reveal>
     <div class="sectors-inner">
       <header class="block-head" data-reveal-child>
-        <p class="eyebrow eyebrow--ink">Champs d'action</p>
-        <h2 class="block-title block-title--ink">
-          Les terrains où l'impact
-          <span class="title-em title-em--ink">se mesure vraiment.</span>
+        <p class="eyebrow">Les projets que nous soutenons</p>
+        <h2 class="block-title">
+          Sept secteurs où une activité locale
+          <span class="title-em">peut tout changer.</span>
         </h2>
       </header>
 
       <div class="sectors-grid">
         <article class="sector" *ngFor="let t of projectTypes; let i = index" data-reveal-child>
           <span class="sector-num">{{ (i + 1).toString().padStart(2, '0') }}</span>
-          <div class="sector-head">
-            <mat-icon class="sector-icon">{{ t.icon }}</mat-icon>
-            <h3 class="sector-title">{{ t.title }}</h3>
-          </div>
+          <mat-icon class="sector-icon">{{ t.icon }}</mat-icon>
+          <h3 class="sector-title">{{ t.title }}</h3>
           <p class="sector-text">{{ t.description }}</p>
-          <ul class="sector-tags">
-            <li *ngFor="let ex of t.examples">{{ ex }}</li>
-          </ul>
         </article>
       </div>
     </div>
   </section>
 
   <!-- ===================================================== -->
-  <!--  CTA FINAL · le sommet lumineux                        -->
+  <!--  GOUVERNANCE · principes                               -->
+  <!-- ===================================================== -->
+  <section class="governance" data-reveal>
+    <header class="block-head" data-reveal-child>
+      <p class="eyebrow">Notre façon de décider</p>
+      <h2 class="block-title">
+        Une gouvernance transparente,
+        <span class="title-em">participative et responsable.</span>
+      </h2>
+    </header>
+
+    <div class="gov-grid">
+      <article class="gov-card" *ngFor="let g of engagements" data-reveal-child>
+        <mat-icon class="gov-icon">{{ g.icon }}</mat-icon>
+        <h3 class="gov-title">{{ g.title }}</h3>
+        <p class="gov-text">{{ g.description }}</p>
+      </article>
+    </div>
+
+    <p class="gov-chain" data-reveal-child>
+      <span>Assemblée des Sociétaires</span>
+      <span>Conseil d'Administration</span>
+      <span>Comité d'Investissement</span>
+      <span>Direction & Incubateur</span>
+      <span class="gov-chain-end">Projets financés</span>
+    </p>
+  </section>
+
+  <!-- ===================================================== -->
+  <!--  FINANCEMENT · sources                                 -->
+  <!-- ===================================================== -->
+  <section class="funding" data-reveal>
+    <div class="funding-inner" data-reveal-child>
+      <p class="eyebrow">D'où viennent les ressources</p>
+      <h2 class="funding-title">
+        Une mobilisation collective qui crée un cercle vertueux.
+      </h2>
+      <ul class="funding-sources">
+        <li><span>Mécénat</span></li>
+        <li><span>Subventions</span></li>
+        <li><span>Partenariats</span></li>
+        <li><span>Contributions des membres</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================================================== -->
+  <!--  CTA FINAL                                             -->
   <!-- ===================================================== -->
   <section class="summit" data-reveal>
     <div class="summit-halo" aria-hidden="true"></div>
     <div class="summit-inner" data-reveal-child>
-      <p class="eyebrow">Au sommet de la trajectoire</p>
-      <h2 class="summit-title">Rejoignez la trajectoire.</h2>
+      <p class="eyebrow">Votre projet commence ici</p>
+      <h2 class="summit-title">Et si c'était à votre tour de décoller&nbsp;?</h2>
       <p class="summit-quote">
-        « Donner à chacun les moyens de prendre de la hauteur. »
+        « Transformer les idées en opportunités, et les opportunités en entreprises. »
       </p>
       <div class="summit-actions">
         <a routerLink="/candidature" class="ei-btn ei-btn--gold" data-magnetic>
-          Soumettre mon projet
+          Déposer un projet
           <mat-icon>north_east</mat-icon>
         </a>
         <a routerLink="/apropos" class="ei-btn ei-btn--ghost" data-magnetic>
-          En savoir plus
+          Découvrir Envol Impact
         </a>
       </div>
     </div>
