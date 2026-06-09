@@ -1,13 +1,28 @@
 <div class="candidature-container page-content">
   <!-- Form Section -->
   <div class="form-section">
-    <div class="container">
-      <div class="page-header">
-        <h1>Candidature</h1>
-        <p>Rejoignez Envol Impact et transformez votre idée en projet à impact social</p>
+    
+    <!-- Trajectoire d'or : propulsion -->
+    <svg class="hero-traj-svg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;">
+      <defs>
+        <linearGradient id="goldCandidature" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#E8A23D" stop-opacity="0.2" />
+          <stop offset="60%" stop-color="#E8A23D" />
+          <stop offset="100%" stop-color="#F4C95D" />
+        </linearGradient>
+      </defs>
+      <path class="hero-trajectory trajectory-path"
+            d="M -40 550 C 300 450, 450 350, 700 200 S 1100 100, 1500 -50"
+            fill="none" stroke="url(#goldCandidature)" stroke-width="3" stroke-linecap="round" style="filter: drop-shadow(0 0 12px rgba(244, 201, 93, 0.5));" />
+    </svg>
+
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="page-header" data-reveal>
+        <h1 data-reveal-child>Candidature</h1>
+        <p data-reveal-child>Rejoignez Envol Impact et transformez votre idée en projet à impact social</p>
       </div>
-      <div class="candidature-form-wrapper">
-        <mat-stepper [linear]="true" #stepper orientation="vertical" class="modern-stepper">
+      <div class="candidature-form-wrapper" data-reveal>
+        <mat-stepper [linear]="true" #stepper orientation="vertical" class="modern-stepper" data-reveal-child>
           <!-- Étape 1: Informations personnelles -->
           <mat-step [stepControl]="informationsPersonnellesForm">
             <form [formGroup]="informationsPersonnellesForm">
