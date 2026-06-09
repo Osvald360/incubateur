@@ -1,12 +1,11 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar';
 import { FooterComponent } from './components/footer/footer';
 import { NotificationComponent } from './components/notification/notification';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
-import * as AOS from 'aos';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,26 +13,155 @@ import * as AOS from 'aos';
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
-export class App implements OnInit {
+export class App implements OnInit, OnDestroy {
   protected title = 'incubateur';
   showFooter = true;
 
+  private routerSubscription: Subscription;
+  private revealObserver?: IntersectionObserver;
+  private revealFrame?: number;
+  private revealTimer?: number;
+  private reducedMotion = false;
+
   constructor(private router: Router) {
-    this.router.events.subscribe(event => {
+    this.routerSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // Masquer le footer sur la page dashboard
         this.showFooter = !event.url.includes('/dashboard');
+        this.scheduleRevealRefresh();
       }
     });
   }
 
   ngOnInit() {
-    if (typeof document !== 'undefined') {
-      AOS.init({
-        duration: 800,
-        once: false,
-        easing: 'ease-out-cubic'
-      });
+    if (typeof window === 'undefined') {
+      return;
     }
+
+    this.reducedMotion =
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    this.scheduleRevealRefresh();
+  }
+
+  ngOnDestroy() {
+    this.routerSubscription.unsubscribe();
+    this.revealObserver?.disconnect();
+
+    if (typeof window === 'undefined') {
+      return;
+    }
+    if (this.revealFrame !== undefined) {
+      window.cancelAnimationFrame(this.revealFrame);
+    }
+    if (this.revealTimer !== undefined) {
+      window.clearTimeout(this.revealTimer);
+    }
+  }
+
+  private scheduleRevealRefresh(): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (this.revealFrame !== undefined) {
+      window.cancelAnimationFrame(this.revealFrame);
+    }
+    if (this.revealTimer !== undefined) {
+      window.clearTimeout(this.revealTimer);
+    }
+
+    this.revealFrame = window.requestAnimationFrame(() => {
+      this.revealFrame = undefined;
+      this.revealTimer = window.setTimeout(() => {
+        this.revealTimer = undefined;
+        this.setupScrollReveals();
+      }, 80);
+    });
+  }
+
+  private setupScrollReveals(): void {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    const root = document.querySelector<HTMLElement>('.main-content');
+    if (!root) {
+      return;
+    }
+
+    this.revealObserver?.disconnect();
+
+    const revealBlocks = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-reveal]')
+    );
+    const stepNodes = Array.from(root.querySelectorAll<HTMLElement>('.step-node'));
+    const canObserve =
+      typeof window !== 'undefined' &&
+      'IntersectionObserver' in window &&
+      !this.reducedMotion;
+
+    revealBlocks.forEach(block => this.prepareRevealBlock(block, !canObserve));
+    stepNodes.forEach(node => {
+      node.classList.add('scroll-reveal-step');
+      if (!canObserve) {
+        node.classList.add('is-lit');
+      }
+    });
+
+    if (!canObserve) {
+      return;
+    }
+
+    this.revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const target = entry.target as HTMLElement;
+          if (target.classList.contains('scroll-reveal-step')) {
+            target.classList.add('is-lit');
+          } else {
+            this.revealBlock(target);
+          }
+
+          this.revealObserver?.unobserve(target);
+        });
+      },
+      {
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.12
+      }
+    );
+
+    revealBlocks.forEach(block => this.revealObserver?.observe(block));
+    stepNodes.forEach(node => this.revealObserver?.observe(node));
+  }
+
+  private prepareRevealBlock(block: HTMLElement, revealNow: boolean): void {
+    const children = Array.from(
+      block.querySelectorAll<HTMLElement>('[data-reveal-child]')
+    );
+    const targets = children.length ? children : [block];
+
+    block.classList.add('scroll-reveal');
+    block.classList.toggle('is-revealed', revealNow);
+
+    targets.forEach((target, index) => {
+      target.classList.add('scroll-reveal-item');
+      target.style.setProperty('--reveal-delay', `${Math.min(index * 90, 540)}ms`);
+      target.classList.toggle('is-revealed', revealNow);
+    });
+  }
+
+  private revealBlock(block: HTMLElement): void {
+    const children = Array.from(
+      block.querySelectorAll<HTMLElement>('[data-reveal-child]')
+    );
+    const targets = children.length ? children : [block];
+
+    block.classList.add('is-revealed');
+    targets.forEach(target => target.classList.add('is-revealed'));
   }
 }

@@ -8,7 +8,6 @@
    ===================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
-@import 'aos/dist/aos.css';
 
 /* =====================================================
    1. DESIGN TOKENS
@@ -317,4 +316,46 @@ mat-icon,
 .mat-mdc-unelevated-button mat-icon,
 .mat-mdc-icon-button mat-icon {
   flex-shrink: 0;
+}
+
+/* =====================================================
+   6. SCROLL REVEAL — apparition fluide des blocs
+   Les templates utilisent data-reveal / data-reveal-child ;
+   App observe ces blocs et ajoute is-revealed au bon moment.
+   ===================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .main-content .scroll-reveal-item {
+    opacity: 0;
+    transform: translate3d(0, 34px, 0) scale(.985);
+    filter: blur(10px);
+    transition:
+      opacity 680ms var(--ei-ease-launch),
+      transform 680ms var(--ei-ease-launch),
+      filter 680ms var(--ei-ease-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform, filter;
+  }
+
+  .main-content .scroll-reveal-item.is-revealed {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+
+  .main-content [data-magnetic] {
+    transition: transform 180ms var(--ei-ease-launch);
+  }
+
+  .main-content [data-magnetic]:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-content .scroll-reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
 }

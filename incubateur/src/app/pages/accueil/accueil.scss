@@ -313,7 +313,7 @@ $ease: cubic-bezier(.22, 1, .36, 1);
       color: $cream-dim; transition: color .5s $ease, transform .5s $ease;
     }
   }
-  // état "allumé" piloté par le JS (ScrollTrigger)
+  // état "allumé" piloté par l'observer global au scroll
   .step-node.is-lit .step-marker {
     border-color: $gold;
     box-shadow: 0 0 0 1px rgba(201,162,75,.3), 0 12px 30px rgba(201,162,75,.14);
