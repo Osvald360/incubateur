@@ -71,14 +71,14 @@
      Contraste AA respecté sur chaque paire fond/texte.
      ===================================================== */
   /* Couleurs */
-  --ei-ink:        #0B1B2B;  /* nuit d'encre — fond dominant */
-  --ei-slate:      #11283D;  /* ardoise — surfaces sur sombre */
+  --ei-ink:        #0A0A0C;  /* fond page (noir pur accueil) */
+  --ei-slate:      #101116;  /* surface relevée sur sombre */
   --ei-chalk:      #F7F4ED;  /* craie chaude — sections lecture (jamais blanc pur) */
   --ei-gold-1:     #E8A23D;  /* or — départ du dégradé */
   --ei-gold-2:     #F4C95D;  /* or clair — arrivée du dégradé / lumière */
   --ei-elan:       #1E5BFF;  /* bleu élan — CTA secondaire, focus */
-  --ei-on-dark:    #EDE6D8;  /* texte sur fond sombre */
-  --ei-on-dark-dim:#C2BBAE;  /* texte secondaire sur sombre (AA sur ink) */
+  --ei-on-dark:    #F3EFE6;  /* texte sur fond sombre */
+  --ei-on-dark-dim:#B5B0A4;  /* texte secondaire sur sombre */
   --ei-on-light:   #1A2A38;  /* encre — texte sur fond clair */
   --ei-haze:       #8A9AA8;  /* brume — légendes, méta */
   --ei-sprout:     #3FA88A;  /* vert pousse — succès */
