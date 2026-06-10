@@ -47,7 +47,7 @@
     </header>
 
     <div class="partners-rows">
-      <article class="partner-row" *ngFor="let p of institutionnels; let i = index" data-reveal-child>
+      <article class="partner-row ei-glass-card" *ngFor="let p of institutionnels; let i = index" data-reveal-child style="padding: 24px; border-radius: 16px;">
         <span class="partner-index">{{ (i + 1).toString().padStart(2, '0') }}</span>
         <div class="partner-emblem" aria-hidden="true">
           <mat-icon>{{ p.icon }}</mat-icon>
@@ -74,13 +74,13 @@
       </header>
 
       <div class="finance-grid">
-        <article class="finance-cell" *ngFor="let p of financiers; let i = index" data-reveal-child>
-          <span class="finance-num">{{ (i + 1).toString().padStart(2, '0') }}</span>
+        <article class="finance-cell" *ngFor="let p of financiers; let i = index" data-reveal-child style="background: white !important; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 8px 24px rgba(0,0,0,0.05); border-radius: 16px; transition: transform 0.3s; padding: 32px;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+          <span class="finance-num" style="color: rgba(10,10,12,0.2);">{{ (i + 1).toString().padStart(2, '0') }}</span>
           <div class="finance-head">
-            <mat-icon class="finance-icon" aria-hidden="true">{{ p.icon }}</mat-icon>
-            <h3 class="finance-title">{{ p.title }}</h3>
+            <mat-icon class="finance-icon" aria-hidden="true" style="color: var(--ei-ink);">{{ p.icon }}</mat-icon>
+            <h3 class="finance-title" style="color: var(--ei-ink);">{{ p.title }}</h3>
           </div>
-          <p class="finance-text">{{ p.description }}</p>
+          <p class="finance-text" style="color: rgba(10,10,12,0.7);">{{ p.description }}</p>
         </article>
       </div>
     </div>

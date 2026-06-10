@@ -90,7 +90,7 @@
       </header>
 
       <div class="essence-grid">
-        <article class="essence-card" *ngFor="let e of essence" data-reveal-child>
+        <article class="essence-card ei-glass-card" *ngFor="let e of essence" data-reveal-child>
           <span class="essence-num">{{ e.num }}</span>
           <p class="essence-label">{{ e.label }}</p>
           <h3 class="essence-title">{{ e.title }}</h3>
@@ -112,8 +112,8 @@
       </header>
 
       <ol class="steps">
-        <li class="step-node" *ngFor="let s of steps; let i = index; let last = last"
-            [class.is-last]="last" data-reveal-child>
+        <li class="step-node ei-glass-card" *ngFor="let s of steps; let i = index; let last = last"
+            [class.is-last]="last" data-reveal-child style="padding: 24px; border-radius: 16px;">
           <div class="step-marker">
             <span class="step-index">{{ i + 1 }}</span>
             <mat-icon class="step-icon">{{ s.icon }}</mat-icon>
@@ -142,7 +142,7 @@
       </header>
 
       <div class="sectors-grid">
-        <article class="sector" *ngFor="let t of projectTypes; let i = index" data-reveal-child>
+        <article class="sector ei-glass-card" *ngFor="let t of projectTypes; let i = index" data-reveal-child>
           <span class="sector-num">{{ (i + 1).toString().padStart(2, '0') }}</span>
           <mat-icon class="sector-icon">{{ t.icon }}</mat-icon>
           <h3 class="sector-title">{{ t.title }}</h3>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar';
 import { FooterComponent } from './components/footer/footer';
@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 export class App implements OnInit, OnDestroy, AfterViewInit {
   protected title = 'incubateur';
   showFooter = true;
+  isLoaded = false;
 
   private routerSubscription: Subscription;
   private revealObserver?: IntersectionObserver;
@@ -24,11 +25,12 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
   private revealTimer?: number;
   private reducedMotion = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {
     this.routerSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // Masquer le footer sur la page dashboard
         this.showFooter = !event.url.includes('/dashboard');
+        this.cdr.detectChanges();
         this.scheduleRevealRefresh();
       }
     });
@@ -37,6 +39,12 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     if (typeof window === 'undefined') return;
     this.scheduleRevealRefresh();
+
+    // Simulate loader
+    setTimeout(() => {
+      this.isLoaded = true;
+      this.cdr.detectChanges();
+    }, 1800);
   }
 
   ngAfterViewInit() {
@@ -121,6 +129,46 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
         if (!canObserve) node.classList.add('is-lit');
         if (canObserve) this.revealObserver?.observe(node);
       }
+    });
+
+    this.setupMagneticButtons(root);
+    this.setupGlassCards(root);
+  }
+
+  private setupMagneticButtons(root: HTMLElement): void {
+    const magneticElements = Array.from(root.querySelectorAll<HTMLElement>('[data-magnetic]'));
+    
+    magneticElements.forEach(el => {
+      if (el.classList.contains('magnetic-ready')) return;
+      el.classList.add('magnetic-ready');
+
+      el.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      });
+
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'translate(0px, 0px)';
+      });
+    });
+  }
+
+  private setupGlassCards(root: HTMLElement): void {
+    const glassCards = Array.from(root.querySelectorAll<HTMLElement>('.ei-glass-card'));
+
+    glassCards.forEach(card => {
+      if (card.classList.contains('glass-ready')) return;
+      card.classList.add('glass-ready');
+
+      card.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+      });
     });
   }
 

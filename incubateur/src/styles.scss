@@ -346,3 +346,157 @@ mat-icon,
 .main-content [data-magnetic]:hover {
   transform: translateY(-2px);
 }
+
+/* =====================================================
+   7. EFFET WOW — Premium Design (Glassmorphism & Orbs)
+   ===================================================== */
+
+/* Scrollbar Custom (Dark & Gold) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ei-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(244, 201, 93, 0.3); /* Gold transluscide */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(244, 201, 93, 0.7);
+}
+
+/* Orbes globaux (à placer derrière tout) */
+.ei-global-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.ei-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  animation: orbFloat 20s infinite alternate ease-in-out;
+  will-change: transform;
+}
+.ei-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--ei-gold-2);
+  top: -10%;
+  left: -10%;
+}
+.ei-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: #3B82F6; /* Un bleu très doux pour contraster avec l'or */
+  bottom: -20%;
+  right: -5%;
+  animation-duration: 25s;
+  animation-delay: -5s;
+}
+
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(150px, 100px) scale(1.2); }
+}
+
+/* Utilitaires Glassmorphism pour les cartes */
+.ei-glass-card {
+  background: rgba(16, 17, 22, 0.4) !important; /* Ardoise très transparente */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: transform 300ms var(--ei-ease-launch), box-shadow 300ms var(--ei-ease-launch), border-color 300ms var(--ei-ease-launch);
+}
+
+.ei-glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(244, 201, 93, 0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 300ms;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ei-glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(244, 201, 93, 0.2); /* Highlight doré discret */
+}
+.ei-glass-card:hover::before {
+  opacity: 1;
+}
+
+/* Loader / Preloader */
+.ei-loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 12, 0.75); /* Translucide au lieu de noir complet */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 800ms var(--ei-ease-soft), visibility 800ms var(--ei-ease-soft);
+}
+.ei-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.ei-loader-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.ei-loader-img {
+  height: 48px;
+  width: auto;
+  opacity: 0;
+  animation: loaderImagePop 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.ei-loader-progress {
+  width: 140px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.6s forwards;
+}
+.ei-loader-progress::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  background: linear-gradient(to right, var(--ei-gold-2), var(--ei-gold-1));
+  animation: loaderFill 1.8s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+}
+
+@keyframes loaderImagePop {
+  0% { transform: scale(0.95) translateY(10px); opacity: 0; filter: blur(4px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; filter: blur(0); }
+}
+@keyframes loaderFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
