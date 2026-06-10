@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
@@ -8,12 +8,14 @@ import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule],
+  imports: [CommonModule, FormsModule, MatIconModule, RouterModule],
   templateUrl: './accueil.html',
   styleUrls: ['./accueil.scss']
 })
 export class AccueilComponent implements OnInit {
   showCelebration = false;
+  emailValue = '';
+  emailSent = false;
 
   constructor(
     private router: Router,
@@ -42,140 +44,48 @@ export class AccueilComponent implements OnInit {
     setTimeout(() => (this.showCelebration = false), 8000);
   }
 
-  // =========================================================
-  //  CONTENU — source : note de cadrage Envol Impact (F.A.T.E.)
-  // =========================================================
+  submitEmail() {
+    if (!this.emailValue?.includes('@')) return;
+    this.emailSent = true;
+    this.emailValue = '';
+  }
 
-  // Vision · Mission · Promesse
-  essence = [
+  tontineFeatures = [
     {
-      num: '01',
-      label: 'Notre vision',
-      title: "Entreprendre ne devrait pas dépendre de son point de départ.",
-      description:
-        "Quel que soit son parcours, son milieu ou son lieu de vie, chaque porteur de projet mérite les moyens d'entreprendre, de réussir et de faire grandir sa communauté."
+      icon: 'percent',
+      title: 'Taux Ultra-Bas',
+      text: 'Un crédit solidaire pour te propulser, pas pour t\'étouffer. La tontine permet de casser les taux bancaires traditionnels.',
+      highlight: false
     },
     {
-      num: '02',
-      label: 'Notre mission',
-      title: "Repérer et financer celles et ceux que les circuits classiques laissent de côté.",
-      description:
-        "Nous accompagnons des entrepreneurs à fort potentiel issus de milieux défavorisés ou de zones rurales, pour bâtir leur autonomie économique et leur impact sur le terrain."
+      icon: 'hourglass_empty',
+      title: 'Durée Longue',
+      text: 'Prends le temps de construire. Les remboursements sont étalés intelligemment pour te laisser respirer et développer ton activité.',
+      highlight: true
     },
     {
-      num: '03',
-      label: 'Notre promesse',
-      title: "D'une idée à une activité qui change la donne.",
-      description:
-        "Transformer les idées en opportunités, les opportunités en activités, et les activités en moteurs de changement durable pour tout un territoire."
+      icon: 'gps_fixed',
+      title: 'Suivi Trimestriel',
+      text: 'Tous les 3 mois, un point stratégique avec nos experts pour éviter les pièges et ajuster ta trajectoire.',
+      highlight: false
     }
   ];
 
-  // Le parcours d'incubation : de l'idée au développement
-  steps = [
+  profiles = [
     {
-      icon: 'how_to_reg',
-      title: 'Candidature',
-      description:
-        "Vous nous présentez votre projet et rejoignez les sociétaires d'Envol Impact."
+      icon: 'workspace_premium',
+      title: 'Propriétaire',
+      text: 'Monte ta propre structure de A à Z. Le prêt de la tontine sert de capital de départ massif.'
     },
     {
-      icon: 'architecture',
-      title: 'Construction',
-      description:
-        "On structure l'idée avec vous : modèle économique, faisabilité, premiers jalons."
+      icon: 'work',
+      title: 'Salarié de sa boîte',
+      text: 'Sois incubé et deviens salarié de ta propre entreprise pour un démarrage sécurisé.'
     },
     {
-      icon: 'fact_check',
-      title: 'Validation',
-      description:
-        "Le Comité d'Investissement évalue la viabilité et l'impact social de votre projet."
-    },
-    {
-      icon: 'savings',
-      title: 'Financement',
-      description:
-        "Les projets retenus reçoivent un soutien financier partiel de notre fonds solidaire."
-    },
-    {
-      icon: 'rocket_launch',
-      title: 'Développement',
-      description:
-        "On reste à vos côtés sur la mise en œuvre et le suivi, jusqu'au décollage de l'activité."
-    }
-  ];
-
-  // 7 secteurs d'activité accompagnés (note de cadrage)
-  projectTypes = [
-    {
-      icon: 'agriculture',
-      title: 'Agriculture & agroalimentaire',
-      description:
-        "Production agricole, transformation et distribution de produits locaux."
-    },
-    {
-      icon: 'storefront',
-      title: 'Commerce & distribution',
-      description:
-        "Vente, micro-commerce et commerce de proximité au cœur des territoires."
-    },
-    {
-      icon: 'handyman',
-      title: 'Artisanat & métiers manuels',
-      description:
-        "Couture, coiffure, menuiserie, fabrication artisanale et savoir-faire locaux."
-    },
-    {
-      icon: 'volunteer_activism',
-      title: 'Services à la personne',
-      description:
-        "Aide à domicile, soutien scolaire, accompagnement social et services de proximité."
-    },
-    {
-      icon: 'devices',
-      title: 'Numérique & innovation',
-      description:
-        "Marketing, création de contenu, freelancing et services en ligne."
-    },
-    {
-      icon: 'school',
-      title: 'Éducation & insertion',
-      description:
-        "Formation, renforcement des compétences et accompagnement vers l'emploi."
-    },
-    {
-      icon: 'eco',
-      title: 'Économie verte',
-      description:
-        "Recyclage, gestion des déchets, énergie durable et agriculture écologique."
-    }
-  ];
-
-  // Principes de gouvernance
-  engagements = [
-    {
-      icon: 'visibility',
-      title: 'Transparence',
-      description:
-        "Nous rendons compte régulièrement de l'usage des ressources et des résultats obtenus."
-    },
-    {
-      icon: 'groups',
-      title: 'Participation',
-      description:
-        "Les sociétaires prennent part aux orientations et à l'évolution du fonds."
-    },
-    {
-      icon: 'balance',
-      title: 'Égalité des chances',
-      description:
-        "Chaque projet est jugé sur son potentiel et son impact, sans aucune discrimination."
-    },
-    {
-      icon: 'verified_user',
-      title: 'Responsabilité',
-      description:
-        "Une gestion rigoureuse des fonds issus du mécénat, des subventions et des partenaires."
+      icon: 'pie_chart',
+      title: 'Actionnaire',
+      text: 'Deviens actionnaire d\'un projet du réseau Envol en apportant ta force sans gérer seul.'
     }
   ];
 }

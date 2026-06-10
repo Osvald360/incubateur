@@ -171,8 +171,8 @@ a:not([class]):hover { color: #C9A24B; }
    ===================================================== */
 .page-content,
 .page-content-dashboard {
-  padding-top: 80px;
-  min-height: calc(100vh - 64px);
+  padding-top: 106px;
+  min-height: calc(100vh - 90px);
 }
 
 /* Conteneur centré standard (surchargeable par page) */
@@ -499,4 +499,196 @@ mat-icon,
 @keyframes fadeUp {
   0% { opacity: 0; transform: translateY(5px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================================================
+   SOUS-MENUS NAVBAR — navy+orange (ciblage CDK overlay global)
+   ===================================================== */
+
+/* Overlay au-dessus de la navbar (z-index 1001) */
+.cdk-overlay-container {
+  z-index: 1002 !important;
+}
+
+/* Panneau — largeur auto calée sur le contenu */
+.nav-submenu .mat-mdc-menu-panel,
+.cdk-overlay-container .nav-submenu .mat-mdc-menu-panel {
+  background: #003B5C !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  border-top: 3px solid #F39200 !important;
+  border-radius: 0 0 12px 12px !important;
+  box-shadow:
+    0 12px 36px rgba(0,0,0,.40),
+    0 2px 8px rgba(0,0,0,.20) !important;
+  min-width: 0 !important;
+  width: max-content !important;
+  overflow: hidden;
+  margin-top: 0 !important;
+  transform-origin: top center !important;
+}
+
+.nav-submenu .mat-mdc-menu-content {
+  padding: 4px 0 8px !important;
+  background: #003B5C !important;
+}
+
+/* Items */
+.nav-submenu .mat-mdc-menu-item {
+  background: transparent !important;
+  color: rgba(255,255,255,.80) !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: .82rem !important;
+  font-weight: 500 !important;
+  letter-spacing: .02em !important;
+  min-height: 44px !important;
+  padding: 0 20px !important;
+  border-left: 2px solid transparent !important;
+  transition: all 160ms ease !important;
+
+  mat-icon {
+    color: #F39200 !important;
+    font-size: 1rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    margin-right: 10px !important;
+    flex-shrink: 0;
+    opacity: .80;
+  }
+
+  .mat-mdc-menu-item-text,
+  span {
+    color: rgba(255,255,255,.80) !important;
+    white-space: nowrap !important;
+  }
+
+  &:hover,
+  &:focus {
+    background: rgba(243,146,0,.10) !important;
+    border-left-color: #F39200 !important;
+
+    .mat-mdc-menu-item-text,
+    span { color: #fff !important; }
+    mat-icon { opacity: 1; }
+  }
+}
+
+.nav-submenu .mat-mdc-menu-item.active-sub {
+  background: rgba(243,146,0,.14) !important;
+  border-left-color: #F39200 !important;
+  span, .mat-mdc-menu-item-text { color: #F39200 !important; font-weight: 700 !important; }
+  mat-icon { opacity: 1; }
+}
+
+/* =====================================================
+   PAGE CLAIRE (/engagements) — navbar lumineuse
+   Activée via body.page-light (ajoutée/retirée par le
+   composant EngagementsComponent).
+   ===================================================== */
+body.page-light {
+
+  mat-toolbar {
+    background: rgba(255, 255, 255, .97) !important;
+    color: #003B5C !important;
+    border-bottom: 1px solid rgba(0, 59, 92, .12) !important;
+    box-shadow: 0 2px 16px rgba(0, 59, 92, .07) !important;
+  }
+
+  /* Marque */
+  .brand-envol  { color: #003B5C !important; }
+  .brand-impact { color: #F39200 !important; }
+
+  /* Liens nav desktop */
+  .nav-links .mat-mdc-button {
+    color: #003B5C !important;
+    &:hover {
+      background: rgba(0, 59, 92, .06) !important;
+      color: #003B5C !important;
+    }
+    &.active {
+      color: #F39200 !important;
+      background: rgba(243, 146, 0, .08) !important;
+    }
+  }
+
+  /* Triggers dropdown */
+  .nav-dropdown-trigger {
+    color: #003B5C !important;
+    .dropdown-arrow { color: #003B5C !important; opacity: .5; }
+  }
+
+  /* Bouton connexion */
+  .login-btn {
+    color: #003B5C !important;
+    border-color: rgba(0, 59, 92, .22) !important;
+    &:hover {
+      border-color: #003B5C !important;
+      background: rgba(0, 59, 92, .05) !important;
+      color: #003B5C !important;
+    }
+  }
+
+  /* CTA inscription — pill orange marque */
+  .inscription-btn {
+    background: #F39200 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 100px !important;
+    box-shadow: 0 4px 14px rgba(243, 146, 0, .28) !important;
+    &:hover {
+      background: #D47F00 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(243, 146, 0, .38) !important;
+      filter: none;
+    }
+  }
+
+  /* Avatar connecté */
+  .user-avatar-navbar {
+    background: linear-gradient(120deg, #003B5C, #005A8A) !important;
+    border-color: rgba(0, 59, 92, .35) !important;
+    box-shadow: 0 2px 8px rgba(0, 59, 92, .20) !important;
+    .avatar-initials-navbar { color: #fff !important; }
+  }
+
+  /* Mobile */
+  .mobile-nav .mat-mdc-icon-button { color: #003B5C !important; }
+  .user-avatar-mobile {
+    background: linear-gradient(120deg, #003B5C, #005A8A) !important;
+    border-color: rgba(0, 59, 92, .35) !important;
+    .avatar-initials-mobile { color: #fff !important; }
+  }
+
+  /* Bouton retour en haut */
+  .scroll-to-top-btn {
+    background: linear-gradient(120deg, #F39200, #FFB340) !important;
+    box-shadow: 0 6px 20px rgba(243, 146, 0, .35) !important;
+    mat-icon { color: #fff !important; }
+  }
+
+  /* Sous-menus en lumière */
+  .nav-submenu .mat-mdc-menu-panel,
+  .cdk-overlay-container .nav-submenu .mat-mdc-menu-panel {
+    background: #fff !important;
+    border: 1px solid rgba(0, 59, 92, .10) !important;
+    border-top: 3px solid #F39200 !important;
+    box-shadow: 0 12px 36px rgba(0,59,92,.15), 0 2px 8px rgba(0,59,92,.08) !important;
+  }
+  .nav-submenu .mat-mdc-menu-content { background: #fff !important; }
+  .nav-submenu .mat-mdc-menu-item {
+    color: #003B5C !important;
+    border-left-color: transparent !important;
+    mat-icon { color: #F39200 !important; opacity: .80; }
+    span, .mat-mdc-menu-item-text { color: #003B5C !important; }
+    &:hover {
+      background: rgba(243,146,0,.07) !important;
+      border-left-color: #F39200 !important;
+      span, .mat-mdc-menu-item-text { color: #003B5C !important; }
+      mat-icon { opacity: 1; }
+    }
+  }
+  .nav-submenu .mat-mdc-menu-item.active-sub {
+    background: rgba(243,146,0,.10) !important;
+    border-left-color: #F39200 !important;
+    span, .mat-mdc-menu-item-text { color: #F39200 !important; }
+  }
 }

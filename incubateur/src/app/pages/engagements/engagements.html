@@ -1,0 +1,327 @@
+<div class="eng-page">
+
+  <!-- Barre de progression lecture -->
+  <div class="read-progress" aria-hidden="true">
+    <div class="read-progress-fill" [style.width.%]="scrollProgress"></div>
+  </div>
+
+  <!-- ============================================ HERO -->
+  <section class="eng-hero">
+    <div class="hero-art" aria-hidden="true">
+      <div class="hero-art-orb hero-art-orb--1"></div>
+      <div class="hero-art-orb hero-art-orb--2"></div>
+      <div class="hero-art-orb hero-art-orb--3"></div>
+      <div class="hero-art-grid"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="eng-eyebrow" data-reveal>Ce qui nous guide</p>
+      <h1 class="hero-title" data-reveal>
+        <span class="hero-title-line">Nos</span>
+        <span class="hero-title-line hero-title-line--em">engagements</span>
+      </h1>
+      <p class="hero-lead" data-reveal>
+        Quatre principes fondateurs orientent chacune de nos décisions —
+        de la sélection des projets jusqu'à la gestion des ressources.
+      </p>
+
+      <nav class="hero-anchors" data-reveal aria-label="Engagements">
+        <a class="hero-anchor" href="#transparence">
+          <span class="ha-num">01</span>
+          <span class="ha-dot" style="background:#4A8DB5"></span>
+          Transparence
+        </a>
+        <a class="hero-anchor" href="#participation">
+          <span class="ha-num">02</span>
+          <span class="ha-dot" style="background:#F39200"></span>
+          Participation
+        </a>
+        <a class="hero-anchor" href="#egalite">
+          <span class="ha-num">03</span>
+          <span class="ha-dot" style="background:#84BD00"></span>
+          Égalité
+        </a>
+        <a class="hero-anchor" href="#responsabilite">
+          <span class="ha-num">04</span>
+          <span class="ha-dot" style="background:#C9A24B"></span>
+          Responsabilité
+        </a>
+      </nav>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span class="scroll-line"></span>
+      <span class="scroll-label">Faites défiler</span>
+    </div>
+  </section>
+
+  <!-- ====================================== PILIERS -->
+
+  <!-- ── 01 TRANSPARENCE ──────────────────────────── -->
+  <section class="pillar pillar--navy" id="transparence">
+    <div class="pillar-visual">
+      <div class="pillar-art pillar-art--transparence" aria-hidden="true">
+        <div class="pa-layer pa-layer--1"></div>
+        <div class="pa-layer pa-layer--2"></div>
+        <div class="pa-rings">
+          <div class="pa-ring pa-ring--1"></div>
+          <div class="pa-ring pa-ring--2"></div>
+          <div class="pa-ring pa-ring--3"></div>
+        </div>
+        <div class="pa-scan-lines"></div>
+        <div class="pa-stat">
+          <span class="pa-stat-num">100%</span>
+          <span class="pa-stat-label">des comptes publiés</span>
+        </div>
+      </div>
+      <div class="pillar-index" aria-hidden="true">01</div>
+    </div>
+
+    <div class="pillar-text">
+      <div class="pillar-text-inner">
+        <div class="pillar-badge" data-reveal>
+          <mat-icon>visibility</mat-icon>
+          <span>Engagement fondateur</span>
+        </div>
+        <h2 class="pillar-title" data-reveal>Transparence</h2>
+        <p class="pillar-kicker" data-reveal>
+          Redevabilité · Lisibilité · Confiance
+        </p>
+        <ul class="pillar-tags" data-reveal>
+          <li>Comptes ouverts</li>
+          <li>Critères publics</li>
+          <li>Rapport annuel</li>
+        </ul>
+        <p class="pillar-body" data-reveal>
+          Nous rendons compte régulièrement et publiquement de l'usage de chaque euro collecté,
+          des projets financés et des résultats obtenus sur le terrain. Nos rapports d'activité,
+          nos comptes et nos critères de sélection sont accessibles à tous les sociétaires.
+        </p>
+        <ul class="pillar-items" data-reveal>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Rapport d'activité annuel publié
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Critères de sélection documentés et stables
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Suivi détaillé des financements accordés
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Résultats mesurés et partagés avec les membres
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 02 PARTICIPATION ──────────────────────────── -->
+  <section class="pillar pillar--orange pillar--reverse" id="participation">
+    <div class="pillar-visual">
+      <div class="pillar-art pillar-art--participation" aria-hidden="true">
+        <div class="pa-layer pa-layer--1"></div>
+        <div class="pa-layer pa-layer--2"></div>
+        <div class="pa-rays">
+          <div class="pa-ray" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12]"
+               [style.--i]="i"></div>
+        </div>
+        <div class="pa-stat">
+          <span class="pa-stat-num">+200</span>
+          <span class="pa-stat-label">sociétaires actifs</span>
+        </div>
+      </div>
+      <div class="pillar-index" aria-hidden="true">02</div>
+    </div>
+
+    <div class="pillar-text">
+      <div class="pillar-text-inner">
+        <div class="pillar-badge" data-reveal>
+          <mat-icon>groups</mat-icon>
+          <span>Engagement fondateur</span>
+        </div>
+        <h2 class="pillar-title" data-reveal>Participation</h2>
+        <p class="pillar-kicker" data-reveal>
+          Démocratie interne · Gouvernance · Voix des membres
+        </p>
+        <ul class="pillar-tags" data-reveal>
+          <li>Droit de vote</li>
+          <li>Comités ouverts</li>
+          <li>Assemblée annuelle</li>
+        </ul>
+        <p class="pillar-body" data-reveal>
+          Les sociétaires ne sont pas de simples contributeurs financiers — ils sont partie
+          prenante des décisions stratégiques du fonds. L'Assemblée des Sociétaires se réunit
+          régulièrement pour orienter les priorités et élire le Conseil d'Administration.
+        </p>
+        <ul class="pillar-items" data-reveal>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Droit de vote à l'Assemblée des Sociétaires
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Accès aux délibérations du Conseil d'Administration
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Possibilité de siéger dans les comités
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Consultation avant toute révision des statuts
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 03 ÉGALITÉ DES CHANCES ───────────────────── -->
+  <section class="pillar pillar--green" id="egalite">
+    <div class="pillar-visual">
+      <div class="pillar-art pillar-art--egalite" aria-hidden="true">
+        <div class="pa-layer pa-layer--1"></div>
+        <div class="pa-layer pa-layer--2"></div>
+        <div class="pa-balance">
+          <div class="pa-balance-axis"></div>
+          <div class="pa-balance-left"></div>
+          <div class="pa-balance-right"></div>
+        </div>
+        <div class="pa-stat">
+          <span class="pa-stat-num">0</span>
+          <span class="pa-stat-label">discrimination tolérée</span>
+        </div>
+      </div>
+      <div class="pillar-index" aria-hidden="true">03</div>
+    </div>
+
+    <div class="pillar-text">
+      <div class="pillar-text-inner">
+        <div class="pillar-badge" data-reveal>
+          <mat-icon>balance</mat-icon>
+          <span>Engagement fondateur</span>
+        </div>
+        <h2 class="pillar-title" data-reveal>Égalité des chances</h2>
+        <p class="pillar-kicker" data-reveal>
+          Inclusion · Diversité · Accessibilité
+        </p>
+        <ul class="pillar-tags" data-reveal>
+          <li>Évaluation anonyme</li>
+          <li>Comité paritaire</li>
+          <li>Zones rurales & QPV</li>
+        </ul>
+        <p class="pillar-body" data-reveal>
+          Chaque projet est évalué exclusivement sur son potentiel, sa viabilité et son impact
+          social — jamais sur l'origine, le genre ou le niveau d'études du porteur. Nous
+          nous interdisons toute forme de discrimination dans l'accès au fonds.
+        </p>
+        <ul class="pillar-items" data-reveal>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Grille d'évaluation anonymisée à la première lecture
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Comité paritaire et diversifié
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Accompagnement adapté à chaque profil
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Accès prioritaire aux zones rurales et QPV
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 04 RESPONSABILITÉ ────────────────────────── -->
+  <section class="pillar pillar--gold pillar--reverse" id="responsabilite">
+    <div class="pillar-visual">
+      <div class="pillar-art pillar-art--responsabilite" aria-hidden="true">
+        <div class="pa-layer pa-layer--1"></div>
+        <div class="pa-layer pa-layer--2"></div>
+        <div class="pa-grid-art">
+          <div class="pa-grid-col" *ngFor="let c of [1,2,3,4,5]"></div>
+          <div class="pa-grid-row" *ngFor="let r of [1,2,3,4,5]"></div>
+        </div>
+        <div class="pa-shield">
+          <mat-icon>verified_user</mat-icon>
+        </div>
+        <div class="pa-stat">
+          <span class="pa-stat-num">3</span>
+          <span class="pa-stat-label">niveaux de contrôle</span>
+        </div>
+      </div>
+      <div class="pillar-index" aria-hidden="true">04</div>
+    </div>
+
+    <div class="pillar-text">
+      <div class="pillar-text-inner">
+        <div class="pillar-badge" data-reveal>
+          <mat-icon>verified_user</mat-icon>
+          <span>Engagement fondateur</span>
+        </div>
+        <h2 class="pillar-title" data-reveal>Responsabilité</h2>
+        <p class="pillar-kicker" data-reveal>
+          Rigueur · Éthique · Suivi
+        </p>
+        <ul class="pillar-tags" data-reveal>
+          <li>Audit indépendant</li>
+          <li>Zéro conflit d'intérêts</li>
+          <li>Suivi post-financement</li>
+        </ul>
+        <p class="pillar-body" data-reveal>
+          Nous gérons avec rigueur les ressources qui nous sont confiées — qu'elles viennent du
+          mécénat, des subventions publiques ou des cotisations. Chaque décision de financement
+          engage notre responsabilité morale envers les donateurs et les bénéficiaires.
+        </p>
+        <ul class="pillar-items" data-reveal>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Commissariat aux comptes indépendant
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Comité d'Investissement distinct de la Direction
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Politique de prévention des conflits d'intérêts
+          </li>
+          <li>
+            <mat-icon class="pi-check">check_circle</mat-icon>
+            Suivi post-financement des projets aidés
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== CTA -->
+  <section class="eng-cta">
+    <div class="cta-art" aria-hidden="true"></div>
+    <div class="cta-inner">
+      <p class="eng-eyebrow" data-reveal>Rejoignez le mouvement</p>
+      <h2 class="cta-title" data-reveal>
+        En vous associant à Envol Impact,<br>
+        <em>vous soutenez et partagez ces valeurs.</em>
+      </h2>
+      <div class="cta-actions" data-reveal>
+        <a routerLink="/candidature" class="cta-btn cta-btn--orange">
+          Lancer mon projet
+          <mat-icon>north_east</mat-icon>
+        </a>
+        <a routerLink="/apropos" class="cta-btn cta-btn--ghost">
+          Qui sommes-nous ?
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>

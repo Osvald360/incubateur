@@ -7,25 +7,50 @@
       <div class="main-nav-row">
         <!-- Logo -->
         <a class="brand" routerLink="/" aria-label="Envol Impact — accueil">
-          <img class="brand-logo-img" src="/brand/envol-impact-horizontal-gold.png" alt="Envol Impact" height="36" />
+          <img class="brand-logo-img" src="/brand/envol-impact-logo.png" alt="Envol Impact" height="82" />
         </a>
 
         <!-- Navigation principale -->
-        <div class="nav-links">
-          <button mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</button>
-          <button mat-button routerLink="/apropos" routerLinkActive="active">À propos</button>
-          <button mat-button routerLink="/partenaires" routerLinkActive="active">Partenaires</button>
-          <button mat-button routerLink="/faq" routerLinkActive="active">FAQ</button>
+        <nav class="nav-links">
+
+          <!-- Dropdown : Fonds d'investissement solidaire -->
+          <button mat-button [matMenuTriggerFor]="fondsMenu" class="nav-dropdown-trigger">
+            Fonds d'investissement solidaire
+            <mat-icon class="dropdown-arrow">expand_more</mat-icon>
+          </button>
+          <mat-menu #fondsMenu="matMenu" class="nav-submenu">
+            <a mat-menu-item routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active-sub">
+              <mat-icon>home</mat-icon><span>Présentation</span>
+            </a>
+            <a mat-menu-item routerLink="/apropos" routerLinkActive="active-sub">
+              <mat-icon>groups</mat-icon><span>Qui sommes-nous ?</span>
+            </a>
+          </mat-menu>
+
+          <!-- Dropdown : Nos engagements -->
+          <button mat-button [matMenuTriggerFor]="engagementsMenu" class="nav-dropdown-trigger">
+            Nos engagements
+            <mat-icon class="dropdown-arrow">expand_more</mat-icon>
+          </button>
+          <mat-menu #engagementsMenu="matMenu" class="nav-submenu">
+            <a mat-menu-item routerLink="/engagements" fragment="transparence" routerLinkActive="active-sub">
+              <mat-icon>visibility</mat-icon><span>Transparence</span>
+            </a>
+            <a mat-menu-item routerLink="/engagements" fragment="participation" routerLinkActive="active-sub">
+              <mat-icon>groups</mat-icon><span>Participation</span>
+            </a>
+            <a mat-menu-item routerLink="/engagements" fragment="egalite" routerLinkActive="active-sub">
+              <mat-icon>balance</mat-icon><span>Égalité des chances</span>
+            </a>
+            <a mat-menu-item routerLink="/engagements" fragment="responsabilite" routerLinkActive="active-sub">
+              <mat-icon>verified_user</mat-icon><span>Responsabilité</span>
+            </a>
+          </mat-menu>
+
           <button mat-button routerLink="/contact" routerLinkActive="active">Contact</button>
-          
-          <!-- Navigation pour utilisateur connecté -->
           <button mat-button routerLink="/dashboard" routerLinkActive="active" *ngIf="isAuthenticated()">Dashboard</button>
-          
-          <!-- Boutons admin -->
-          <ng-container *ngIf="isAuthenticated() && getCurrentUser()?.role === 'ADMIN'">
-            <!--<button mat-button routerLink="/utilisateurs">Utilisateurs</button> -->
-          </ng-container>
-        </div>
+
+        </nav>
 
         <!-- Section authentification -->
         <div class="auth-section">
@@ -35,9 +60,8 @@
               <mat-icon>person</mat-icon>
               Connexion
             </button>
-            <a class="inscription-btn" routerLink="/candidature" routerLinkActive="active-auth">
-              <mat-icon>flight_takeoff</mat-icon>
-              S'inscrire
+            <a class="inscription-btn" routerLink="/candidature">
+              Adhérer ou s'inscrire
             </a>
           </div>
           
@@ -133,51 +157,45 @@
     </button>
 
     <mat-menu #mobileMenu="matMenu">
-      <button mat-menu-item routerLink="/" routerLinkActive="active-mobile" [routerLinkActiveOptions]="{ exact: true }">
-        <mat-icon>home</mat-icon>
-        <span>Accueil</span>
-      </button>
+      <!-- Fonds d'investissement solidaire -->
+      <p class="mobile-menu-label">Fonds d'investissement solidaire</p>
+      <a mat-menu-item routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active-mobile">
+        <mat-icon>home</mat-icon><span>Présentation</span>
+      </a>
+      <a mat-menu-item routerLink="/apropos" routerLinkActive="active-mobile">
+        <mat-icon>groups</mat-icon><span>Qui sommes-nous ?</span>
+      </a>
 
-      <button mat-menu-item routerLink="/apropos" routerLinkActive="active-mobile">
-        <mat-icon>info</mat-icon>
-        <span>À propos</span>
-      </button>
+      <mat-divider></mat-divider>
 
-      <button mat-menu-item routerLink="/partenaires" routerLinkActive="active-mobile">
-        <mat-icon>volunteer_activism</mat-icon>
-        <span>Partenaires</span>
-      </button>
+      <!-- Nos engagements -->
+      <p class="mobile-menu-label">Nos engagements</p>
+      <a mat-menu-item routerLink="/engagements" fragment="transparence" routerLinkActive="active-mobile">
+        <mat-icon>visibility</mat-icon><span>Transparence</span>
+      </a>
+      <a mat-menu-item routerLink="/engagements" fragment="participation" routerLinkActive="active-mobile">
+        <mat-icon>groups</mat-icon><span>Participation</span>
+      </a>
+      <a mat-menu-item routerLink="/engagements" fragment="egalite" routerLinkActive="active-mobile">
+        <mat-icon>balance</mat-icon><span>Égalité des chances</span>
+      </a>
+      <a mat-menu-item routerLink="/engagements" fragment="responsabilite" routerLinkActive="active-mobile">
+        <mat-icon>verified_user</mat-icon><span>Responsabilité</span>
+      </a>
 
-      <button mat-menu-item routerLink="/faq" routerLinkActive="active-mobile">
-        <mat-icon>help_center</mat-icon>
-        <span>FAQ</span>
-      </button>
+      <mat-divider></mat-divider>
 
-      <button mat-menu-item routerLink="/contact" routerLinkActive="active-mobile">
-        <mat-icon>contact_support</mat-icon>
-        <span>Contact</span>
-      </button>
-      
-      <!-- Dashboard pour utilisateur connecté -->
+      <a mat-menu-item routerLink="/contact" routerLinkActive="active-mobile">
+        <mat-icon>contact_support</mat-icon><span>Contact</span>
+      </a>
+
       <button mat-menu-item routerLink="/dashboard" routerLinkActive="active-mobile" *ngIf="isAuthenticated()">
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
       </button>
-      
-      <!-- Boutons admin sur mobile -->
-      <ng-container *ngIf="isAuthenticated() && getCurrentUser()?.role === 'ADMIN'">
-        <button mat-menu-item routerLink="/utilisateurs" routerLinkActive="active-mobile">
-          <mat-icon>groups_2</mat-icon>
-          <span>Utilisateurs</span>
-        </button>
-        <button mat-menu-item routerLink="/profil" routerLinkActive="active-mobile">
-          <mat-icon>account_circle</mat-icon>
-          <span>Profil</span>
-        </button>
-      </ng-container>
-      
+
       <mat-divider></mat-divider>
-      
+
       <!-- Utilisateur non connecté -->
       <div *ngIf="!isAuthenticated()">
         <button mat-menu-item routerLink="/connexion" routerLinkActive="active-mobile">
@@ -186,7 +204,7 @@
         </button>
         <button mat-menu-item routerLink="/candidature" routerLinkActive="active-mobile">
           <mat-icon>person_add</mat-icon>
-          <span>Candidater</span>
+          <span>Adhérer ou s'inscrire</span>
         </button>
       </div>
       

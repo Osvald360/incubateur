@@ -1,223 +1,204 @@
-<div class="ei-home" [class.celebration-mode]="showCelebration">
+<div class="accueil" [class.celebration-mode]="showCelebration">
 
-  <!-- Célébration retour candidature (conservée) -->
+  <!-- Confettis -->
   <div class="celebration-overlay" *ngIf="showCelebration" aria-hidden="true">
     <div class="confetti" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]"></div>
   </div>
 
-  <!-- ===================================================== -->
-  <!--  HERO                                                  -->
-  <!-- ===================================================== -->
-  <section class="hero" aria-label="Envol Impact">
-    <div class="hero-grain" aria-hidden="true"></div>
-    <div class="hero-halo" aria-hidden="true"></div>
+  <!-- ============================================================ HERO -->
+  <header class="hero">
+    <div class="hero-bg">
+      <img
+        src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        alt=""
+        aria-hidden="true"
+        class="hero-bg-img"
+      />
+      <div class="hero-overlay hero-overlay--left"></div>
+      <div class="hero-overlay hero-overlay--bottom"></div>
+    </div>
 
-    <!-- Trajectoire d'or : du sol bas-gauche vers la lumière haut-droite -->
-    <svg class="hero-traj-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <linearGradient id="goldHero" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#C9A24B" stop-opacity="0.25" />
-          <stop offset="55%" stop-color="#C9A24B" />
-          <stop offset="100%" stop-color="#E9CE86" />
-        </linearGradient>
-      </defs>
-      <path class="hero-trajectory trajectory-path"
-            d="M -40 880 C 280 760, 470 700, 690 540 S 1080 300, 1500 90"
-            fill="none" stroke="url(#goldHero)" stroke-width="2" stroke-linecap="round" />
-    </svg>
-
-    <svg class="hero-bird" viewBox="0 0 48 48" aria-hidden="true">
-      <path d="M4 40 C 16 34, 22 24, 30 14 L 24 16 L 40 6 L 38 24 L 34 18 C 26 28, 18 36, 4 40 Z"
-            fill="#E9CE86" />
-    </svg>
-
-    <div class="hero-inner" data-reveal>
-      <p class="hero-eyebrow" data-reveal-child>Fonds d'investissement solidaire&ensp;·&ensp;Incubateur</p>
-      <h1 class="hero-title" data-reveal-child>
-        <span class="line"><span class="line-inner">Faire décoller</span></span>
-        <span class="line"><span class="line-inner">les projets qui</span></span>
-        <span class="line"><span class="line-inner"><em>transforment des vies.</em></span></span>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        L'envol de vos<br>
+        <span class="hero-title--orange">projets</span><br>
+        <span class="hero-title--outline">commence ici.</span>
       </h1>
-      <p class="hero-subtitle" data-reveal-child>
-        Le manque de ressources ne devrait jamais empêcher d'entreprendre. Envol Impact
-        accompagne et finance des porteurs de projets en situation de précarité ou vivant
-        en zones rurales — de la première idée jusqu'au développement de leur activité.
+
+      <p class="hero-subtitle">
+        Découvrez le premier <strong>fonds solidaire sous forme de tontine géante</strong>
+        pour financer l'entrepreneuriat dans nos quartiers.
       </p>
-      <div class="hero-actions" data-reveal-child>
-        <a routerLink="/candidature" class="ei-btn ei-btn--gold" data-magnetic>
-          Déposer un projet
-          <mat-icon>north_east</mat-icon>
+
+      <div class="hero-actions">
+        <a routerLink="/candidature" class="btn btn--orange btn--pill btn--lg">
+          Lancer mon projet
         </a>
-        <a href="#parcours" class="ei-btn ei-btn--ghost" data-magnetic>
-          Comment ça marche
+        <a href="#mission" class="btn btn--ghost btn--pill btn--lg">
+          En savoir plus
+          <mat-icon>arrow_forward</mat-icon>
         </a>
       </div>
-    </div>
 
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <span>Faites défiler</span>
-      <span class="hint-line"></span>
-    </div>
-  </section>
-
-  <!-- Ligne d'or maîtresse qui traverse les sections au scroll -->
-  <div class="trajectory-spine" aria-hidden="true">
-    <svg class="spine-svg" viewBox="0 0 200 2400" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="goldSpine" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#C9A24B" />
-          <stop offset="100%" stop-color="#E9CE86" />
-        </linearGradient>
-      </defs>
-      <path class="spine-path trajectory-path"
-            d="M 20 2380 C 60 2000, 150 1900, 110 1500 S 30 1100, 120 800 S 180 400, 150 40"
-            fill="none" stroke="url(#goldSpine)" stroke-width="1.5" stroke-linecap="round" />
-    </svg>
-  </div>
-
-  <div class="ei-flow">
-
-    <!-- ===================================================== -->
-    <!--  ESSENCE · Vision / Mission / Promesse                 -->
-    <!-- ===================================================== -->
-    <section class="essence" data-reveal>
-      <header class="block-head" data-reveal-child>
-        <p class="eyebrow">Ce qui nous porte</p>
-        <h2 class="block-title">
-          Un fonds solidaire doté d'un incubateur,
-          <span class="title-em">pour que la solidarité devienne autonomie.</span>
-        </h2>
-      </header>
-
-      <div class="essence-grid">
-        <article class="essence-card ei-glass-card" *ngFor="let e of essence" data-reveal-child>
-          <span class="essence-num">{{ e.num }}</span>
-          <p class="essence-label">{{ e.label }}</p>
-          <h3 class="essence-title">{{ e.title }}</h3>
-          <p class="essence-text">{{ e.description }}</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===================================================== -->
-    <!--  PARCOURS · 5 étapes                                   -->
-    <!-- ===================================================== -->
-    <section class="parcours" id="parcours" data-reveal>
-      <header class="block-head" data-reveal-child>
-        <p class="eyebrow">Le parcours d'incubation</p>
-        <h2 class="block-title">
-          De l'idée au lancement,
-          <span class="title-em">un chemin que l'on fait ensemble.</span>
-        </h2>
-      </header>
-
-      <ol class="steps">
-        <li class="step-node ei-glass-card" *ngFor="let s of steps; let i = index; let last = last"
-            [class.is-last]="last" data-reveal-child style="padding: 24px; border-radius: 16px;">
-          <div class="step-marker">
-            <span class="step-index">{{ i + 1 }}</span>
-            <mat-icon class="step-icon">{{ s.icon }}</mat-icon>
-          </div>
-          <div class="step-content">
-            <h3 class="step-title">{{ s.title }}</h3>
-            <p class="step-text">{{ s.description }}</p>
-          </div>
+      <ul class="hero-bullets">
+        <li>
+          <mat-icon class="bullet-icon">check_circle</mat-icon>
+          Zéro barrière bancaire
         </li>
-      </ol>
-    </section>
-
-  </div><!-- /.ei-flow -->
-
-  <!-- ===================================================== -->
-  <!--  SECTEURS · 7 champs d'activité                        -->
-  <!-- ===================================================== -->
-  <section class="sectors" data-reveal>
-    <div class="sectors-inner">
-      <header class="block-head" data-reveal-child>
-        <p class="eyebrow">Les projets que nous soutenons</p>
-        <h2 class="block-title">
-          Sept secteurs où une activité locale
-          <span class="title-em">peut tout changer.</span>
-        </h2>
-      </header>
-
-      <div class="sectors-grid">
-        <article class="sector ei-glass-card" *ngFor="let t of projectTypes; let i = index" data-reveal-child>
-          <span class="sector-num">{{ (i + 1).toString().padStart(2, '0') }}</span>
-          <mat-icon class="sector-icon">{{ t.icon }}</mat-icon>
-          <h3 class="sector-title">{{ t.title }}</h3>
-          <p class="sector-text">{{ t.description }}</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================================================== -->
-  <!--  GOUVERNANCE · principes                               -->
-  <!-- ===================================================== -->
-  <section class="governance" data-reveal>
-    <header class="block-head" data-reveal-child>
-      <p class="eyebrow">Notre façon de décider</p>
-      <h2 class="block-title">
-        Une gouvernance transparente,
-        <span class="title-em">participative et responsable.</span>
-      </h2>
-    </header>
-
-    <div class="gov-grid">
-      <article class="gov-card" *ngFor="let g of engagements" data-reveal-child>
-        <mat-icon class="gov-icon">{{ g.icon }}</mat-icon>
-        <h3 class="gov-title">{{ g.title }}</h3>
-        <p class="gov-text">{{ g.description }}</p>
-      </article>
-    </div>
-
-    <p class="gov-chain" data-reveal-child>
-      <span>Assemblée des Sociétaires</span>
-      <span>Conseil d'Administration</span>
-      <span>Comité d'Investissement</span>
-      <span>Direction & Incubateur</span>
-      <span class="gov-chain-end">Projets financés</span>
-    </p>
-  </section>
-
-  <!-- ===================================================== -->
-  <!--  FINANCEMENT · sources                                 -->
-  <!-- ===================================================== -->
-  <section class="funding" data-reveal>
-    <div class="funding-inner" data-reveal-child>
-      <p class="eyebrow">D'où viennent les ressources</p>
-      <h2 class="funding-title">
-        Une mobilisation collective qui crée un cercle vertueux.
-      </h2>
-      <ul class="funding-sources">
-        <li><span>Mécénat</span></li>
-        <li><span>Subventions</span></li>
-        <li><span>Partenariats</span></li>
-        <li><span>Contributions des membres</span></li>
+        <li>
+          <mat-icon class="bullet-icon">check_circle</mat-icon>
+          Accompagnement 360°
+        </li>
+        <li>
+          <mat-icon class="bullet-icon">check_circle</mat-icon>
+          100% Impact local
+        </li>
       </ul>
     </div>
+  </header>
+
+  <!-- =========================================================== MISSION -->
+  <section class="mission" id="mission">
+    <div class="mission-inner">
+
+      <div class="mission-text">
+        <h2 class="section-title section-title--dark">
+          NOTRE<br>
+          <span class="section-title--accent">MISSION</span>
+        </h2>
+        <p class="mission-lead">
+          Une longue expérience du CA auprès des jeunes de quartier. Une conclusion : il y a des choses à faire.
+        </p>
+        <p class="mission-body">
+          On cible les jeunes avec une énergie créatrice immense. Le problème n'est pas le talent, c'est le mur invisible de l'argent et du réseau. Nous sommes issus du monde de l'entreprise et nous bâtissons le pont qui manque grâce à notre fonds solidaire.
+        </p>
+
+        <div class="mission-card">
+          <div class="mission-card-icon">
+            <mat-icon>handshake</mat-icon>
+          </div>
+          <div>
+            <h4 class="mission-card-title">Notre force</h4>
+            <p class="mission-card-body">On ouvre notre carnet d'adresses et on garantit le financement.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mission-visual">
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80"
+          alt="L'équipe Envol Impact"
+          class="mission-img"
+        />
+        <div class="mission-img-overlay"></div>
+      </div>
+
+    </div>
   </section>
 
-  <!-- ===================================================== -->
-  <!--  CTA FINAL                                             -->
-  <!-- ===================================================== -->
-  <section class="summit" data-reveal>
-    <div class="summit-halo" aria-hidden="true"></div>
-    <div class="summit-inner" data-reveal-child>
-      <p class="eyebrow">Votre projet commence ici</p>
-      <h2 class="summit-title">Et si c'était à votre tour de décoller&nbsp;?</h2>
-      <p class="summit-quote">
-        « Transformer les idées en opportunités, et les opportunités en entreprises. »
+  <!-- =========================================================== TONTINE -->
+  <section class="tontine" id="tontine">
+    <div class="tontine-glow" aria-hidden="true"></div>
+
+    <div class="tontine-inner">
+      <div class="section-badge">Le modèle économique</div>
+      <h2 class="section-title section-title--light">
+        La <span class="section-title--gradient">Tontine</span> Géante
+      </h2>
+      <p class="tontine-lead">
+        Un prêt d'argent spécifique conçu pour la réalité de votre lancement. L'argent ne doit plus être une barrière, c'est un levier communautaire.
       </p>
-      <div class="summit-actions">
-        <a routerLink="/candidature" class="ei-btn ei-btn--gold" data-magnetic>
-          Déposer un projet
-          <mat-icon>north_east</mat-icon>
-        </a>
-        <a routerLink="/apropos" class="ei-btn ei-btn--ghost" data-magnetic>
-          Découvrir Envol Impact
-        </a>
+
+      <div class="tontine-grid">
+        <div
+          class="tontine-card"
+          [class.tontine-card--highlight]="feat.highlight"
+          *ngFor="let feat of tontineFeatures"
+        >
+          <div class="tontine-card-icon">
+            <mat-icon>{{ feat.icon }}</mat-icon>
+          </div>
+          <h3 class="tontine-card-title">{{ feat.title }}</h3>
+          <p class="tontine-card-body">{{ feat.text }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== STATUTS -->
+  <section class="statuts" id="statuts">
+    <div class="statuts-text">
+      <h2 class="section-title section-title--dark">
+        Ton Statut.<br>
+        <span class="section-title--orange">Ta Règle.</span>
+      </h2>
+      <p class="statuts-lead">
+        Envol s'adapte à ton profil et à ton ambition. À travers la tontine, plusieurs voies s'offrent à toi pour structurer ta réussite professionnelle.
+      </p>
+
+      <div class="profile-list">
+        <div class="profile-item" *ngFor="let p of profiles">
+          <div class="profile-icon">
+            <mat-icon>{{ p.icon }}</mat-icon>
+          </div>
+          <div class="profile-content">
+            <h4 class="profile-title">{{ p.title }}</h4>
+            <p class="profile-body">{{ p.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="statuts-visual">
+      <img
+        src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+        alt="Réussite entrepreneuriale"
+        class="statuts-img"
+      />
+      <div class="statuts-img-overlay"></div>
+
+      <div class="statuts-badge">
+        <div class="statuts-badge-stars">
+          <mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon><mat-icon>star</mat-icon>
+        </div>
+        <p class="statuts-badge-quote">« Grâce à la Tontine Envol, j'ai pu créer ma boîte sans l'accord d'une banque classique. »</p>
+        <p class="statuts-badge-author">— Yassine, Propriétaire</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== CTA -->
+  <section class="cta-contact" id="contact">
+    <div class="cta-dots" aria-hidden="true"></div>
+
+    <div class="cta-inner">
+      <h2 class="cta-title">
+        L'envol<br>
+        <span class="cta-title--orange">commence ici.</span>
+      </h2>
+      <p class="cta-lead">
+        Rejoins le mouvement. Que tu souhaites proposer un projet ou investir dans la tontine solidaire.
+      </p>
+
+      <form class="email-form" (ngSubmit)="submitEmail()" *ngIf="!emailSent">
+        <input
+          type="email"
+          [(ngModel)]="emailValue"
+          name="email"
+          placeholder="Ton adresse email..."
+          required
+          class="email-input"
+          aria-label="Adresse email"
+        />
+        <button type="submit" class="email-submit">
+          Investir / Postuler
+        </button>
+      </form>
+
+      <div class="email-success" *ngIf="emailSent">
+        <mat-icon>check_circle</mat-icon>
+        Ton message est bien passé. On s'appelle vite.
       </div>
     </div>
   </section>

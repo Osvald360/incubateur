@@ -1,155 +1,163 @@
-<div class="ei-apropos">
+<div class="apropos">
 
-  <!-- ===================================================== -->
-  <!--  HERO · l'intention                                   -->
-  <!-- ===================================================== -->
-  <section class="hero" aria-label="À propos — Envol Impact">
-    <div class="hero-grain" aria-hidden="true"></div>
-    <div class="hero-halo" aria-hidden="true"></div>
+  <!-- ============================================================ HERO -->
+  <header class="hero">
+    <div class="hero-bg">
+      <img
+        src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        alt=""
+        aria-hidden="true"
+        class="hero-bg-img"
+      />
+      <div class="hero-overlay"></div>
+    </div>
 
-    <svg class="hero-traj-svg" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <linearGradient id="goldAproposHero" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#E8A23D" stop-opacity="0.3" />
-          <stop offset="55%" stop-color="#E8A23D" />
-          <stop offset="100%" stop-color="#F4C95D" />
-        </linearGradient>
-      </defs>
-      <path class="hero-trajectory trajectory-path"
-            d="M -40 700 C 320 600, 520 520, 760 380 S 1120 160, 1500 40"
-            fill="none" stroke="url(#goldAproposHero)" stroke-width="2.5" stroke-linecap="round" />
-    </svg>
-
-    <div class="hero-inner" data-reveal>
-      <p class="hero-eyebrow" data-reveal-child>L'association F.A.T.E.</p>
-      <h1 class="hero-title" data-reveal-child>
-        <span class="line"><span class="line-inner">Donner à chacun</span></span>
-        <span class="line"><span class="line-inner">les moyens de <em>décoller.</em></span></span>
+    <div class="hero-content" data-reveal>
+      <span class="section-badge section-badge--orange">Association F.A.T.E.</span>
+      <h1 class="hero-title">
+        L'équipe derrière<br>
+        <span class="hero-title--orange">l'envol.</span>
       </h1>
-      <p class="hero-subtitle" data-reveal-child>
-        Envol Impact est l'incubateur solidaire de l'association F.A.T.E. Nous accompagnons les
-        habitants des quartiers populaires, du dépôt d'une idée jusqu'au lancement, par un
-        suivi humain et un financement à impact social.
+      <p class="hero-subtitle">
+        Des professionnels engagés, issus du monde de l'entreprise,
+        qui consacrent leur expertise à ouvrir les portes de l'entrepreneuriat
+        aux talents des quartiers populaires.
       </p>
+      <a routerLink="/candidature" class="btn btn--orange btn--pill btn--lg">
+        Rejoindre le mouvement
+        <mat-icon>arrow_forward</mat-icon>
+      </a>
+    </div>
+  </header>
+
+  <!-- ============================================================ MANIFESTE -->
+  <section class="manifeste">
+    <div class="manifeste-inner">
+
+      <div class="manifeste-text" data-reveal>
+        <span class="label-tag">Notre histoire</span>
+        <h2 class="section-title section-title--dark">
+          Nés d'un constat,<br>
+          <span class="section-title--accent">portés par une conviction.</span>
+        </h2>
+        <p class="manifeste-lead">
+          Dans les quartiers populaires, les idées ne manquent pas — ce sont les portes d'entrée qui font défaut. Accès au financement, au réseau, à l'expertise : autant de marches invisibles pour beaucoup de porteurs de projet.
+        </p>
+        <p class="manifeste-body">
+          Envol Impact est né de la rencontre entre des entrepreneurs aguerris et une jeunesse créatrice trop souvent freinée. Nous réunissons accompagnement humain, formation concrète et financement solidaire dans un même parcours, pour que la viabilité d'un projet ne dépende plus de l'origine de celui qui le porte.
+        </p>
+        <blockquote class="manifeste-quote">
+          « Ici, on prend de la hauteur — ensemble. »
+        </blockquote>
+      </div>
+
+      <div class="manifeste-stats" data-reveal>
+        <div class="stat-card">
+          <span class="stat-num">F.A.T.E.</span>
+          <span class="stat-label">Association fondatrice, moteur de la démarche</span>
+        </div>
+        <div class="stat-card stat-card--accent">
+          <span class="stat-num">360°</span>
+          <span class="stat-label">Accompagnement de l'idée au lancement</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Bénévoles — une équipe qui donne de son temps</span>
+        </div>
+        <div class="stat-card stat-card--green">
+          <span class="stat-num">0€</span>
+          <span class="stat-label">De frais d'entrée pour les candidats sélectionnés</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ===================================================== -->
-  <!--  SPINE · ligne d'or maîtresse                          -->
-  <!-- ===================================================== -->
-  <div class="trajectory-spine" aria-hidden="true">
-    <svg class="spine-svg" viewBox="0 0 200 1800" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="goldAproposSpine" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#E8A23D" />
-          <stop offset="100%" stop-color="#F4C95D" />
-        </linearGradient>
-      </defs>
-      <path class="spine-path trajectory-path"
-            d="M 30 1780 C 70 1500, 160 1380, 110 1040 S 30 700, 130 420 S 180 180, 150 30"
-            fill="none" stroke="url(#goldAproposSpine)" stroke-width="2" stroke-linecap="round" />
-    </svg>
-  </div>
+  <!-- ============================================================ ÉQUIPE -->
+  <section class="team" id="equipe">
+    <div class="team-inner">
 
-  <div class="ei-flow">
-
-    <!-- ===================================================== -->
-    <!--  HISTOIRE · manifeste éditorial                        -->
-    <!-- ===================================================== -->
-    <section class="story" data-reveal>
-      <header class="block-head" data-reveal-child>
-        <p class="eyebrow">Notre histoire</p>
-        <h2 class="block-title">
-          Née d'un constat de terrain,
-          <span class="title-em">portée par une conviction.</span>
+      <div class="team-header" data-reveal>
+        <span class="label-tag">Les personnes</span>
+        <h2 class="section-title section-title--dark">
+          Notre <span class="section-title--accent">équipe</span>
         </h2>
-      </header>
-
-      <div class="story-body">
-        <p class="story-lead" data-reveal-child>
-          Dans les quartiers populaires, les idées ne manquent pas — ce sont les portes
-          d'entrée qui manquent. Accès au financement, au réseau, à l'expertise : autant
-          de marches trop hautes pour beaucoup de porteurs de projet.
-        </p>
-        <p class="story-text" data-reveal-child>
-          Envol Impact existe pour abaisser ces marches. Nous réunissons accompagnement
-          humain, formation concrète et financement solidaire dans un même parcours, afin
-          que la viabilité d'un projet ne dépende plus de l'origine de celui qui le porte.
-        </p>
-        <p class="story-quote" data-reveal-child>
-          « Ici, on prend de la hauteur — ensemble. »
+        <p class="team-intro">
+          Des expertes et experts du monde de l'entreprise qui mettent leur réseau et leurs compétences au service de l'entrepreneuriat solidaire.
         </p>
       </div>
-    </section>
 
-    <!-- ===================================================== -->
-    <!--  CHIFFRES · jalons d'impact (honnêtes, à confirmer)    -->
-    <!-- ===================================================== -->
-    <section class="figures" data-reveal>
-      <header class="block-head" data-reveal-child>
-        <p class="eyebrow">Notre impact</p>
-        <h2 class="block-title">
-          Une trajectoire qui se mesure
-          <span class="title-em">au fil des projets.</span>
-        </h2>
-      </header>
-
-      <div class="figures-grid">
-        <div class="figure" *ngFor="let stat of stats" data-reveal-child>
-          <span class="figure-num figure-num--tbc">{{ stat.number }}</span>
-          <span class="figure-label">{{ stat.label }}</span>
-        </div>
-      </div>
-      <p class="figures-note" data-reveal-child>
-        Indicateurs en cours de consolidation <em>— chiffres à valider avec F.A.T.E.</em>
-      </p>
-    </section>
-
-    <!-- ===================================================== -->
-    <!--  VALEURS · entrées éditoriales numérotées sur nuit    -->
-    <!-- ===================================================== -->
-    <section class="values" data-reveal>
-      <header class="block-head" data-reveal-child>
-        <p class="eyebrow">Nos valeurs</p>
-        <h2 class="block-title">
-          Les principes qui guident
-          <span class="title-em">chacune de nos décisions.</span>
-        </h2>
-      </header>
-
-      <ol class="values-list">
-        <li class="value-node" *ngFor="let value of values; let i = index" data-reveal-child>
-          <span class="value-num">{{ (i + 1).toString().padStart(2, '0') }}</span>
-          <div class="value-body">
-            <div class="value-head">
-              <mat-icon class="value-icon">{{ value.icon }}</mat-icon>
-              <h3 class="value-title">{{ value.title }}</h3>
-            </div>
-            <p class="value-text">{{ value.description }}</p>
+      <div class="team-grid">
+        <article
+          class="team-card"
+          *ngFor="let member of team"
+          data-reveal
+        >
+          <div class="team-card-avatar">
+            <img [src]="member.photo" [alt]="member.name" class="team-photo" loading="lazy" />
           </div>
-        </li>
-      </ol>
-    </section>
+          <div class="team-card-body">
+            <h3 class="team-card-name">{{ member.name }}</h3>
+            <span class="team-card-role">{{ member.role }}</span>
+            <p class="team-card-bio">{{ member.bio }}</p>
+          </div>
+        </article>
+      </div>
 
-  </div><!-- /.ei-flow -->
+    </div>
+  </section>
 
-  <!-- ===================================================== -->
-  <!--  CTA · le sommet lumineux                              -->
-  <!-- ===================================================== -->
-  <section class="summit" data-reveal>
-    <div class="summit-halo" aria-hidden="true"></div>
-    <div class="summit-inner" data-reveal-child>
-      <p class="eyebrow">Rejoindre le mouvement</p>
-      <h2 class="summit-title">Devenez acteur du changement.</h2>
-      <p class="summit-quote">
-        Une idée pour votre territoire&nbsp;? Donnons-lui de la hauteur, ensemble.
+  <!-- ============================================================ PARTENAIRES -->
+  <section class="partenaires" id="partenaires">
+    <div class="partenaires-bg-shape" aria-hidden="true"></div>
+    <div class="partenaires-inner">
+
+      <div class="partenaires-header" data-reveal>
+        <span class="label-tag label-tag--light">Notre réseau</span>
+        <h2 class="section-title section-title--light">
+          Nos <span class="section-title--gradient">partenaires</span>
+        </h2>
+        <p class="partenaires-intro">
+          Envol Impact s'appuie sur un écosystème de partenaires institutionnels, financiers et associatifs pour offrir un accompagnement complet à chaque entrepreneur.
+        </p>
+      </div>
+
+      <div class="partenaires-grid">
+        <article
+          class="partenaire-card"
+          *ngFor="let p of partenaires"
+          data-reveal
+        >
+          <div class="partenaire-card-top">
+            <div class="partenaire-icon">
+              <mat-icon>{{ p.icon }}</mat-icon>
+            </div>
+            <span class="partenaire-tag">{{ p.categorie }}</span>
+          </div>
+          <h3 class="partenaire-name">{{ p.name }}</h3>
+          <p class="partenaire-desc">{{ p.description }}</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ CTA -->
+  <section class="cta-bottom">
+    <div class="cta-bottom-inner" data-reveal>
+      <h2 class="cta-bottom-title">
+        Devenez acteur<br>
+        <span class="cta-bottom-title--orange">du changement.</span>
+      </h2>
+      <p class="cta-bottom-lead">
+        Une idée pour votre territoire&nbsp;? Notre équipe vous accompagne du premier rendez-vous jusqu'au lancement.
       </p>
-      <div class="summit-actions">
-        <a routerLink="/candidature" class="ei-btn ei-btn--gold" data-magnetic>
+      <div class="cta-bottom-actions">
+        <a routerLink="/candidature" class="btn btn--orange btn--pill btn--lg">
           Candidater maintenant
           <mat-icon>flight_takeoff</mat-icon>
         </a>
-        <a routerLink="/contact" class="ei-btn ei-btn--ghost" data-magnetic>
+        <a routerLink="/contact" class="btn btn--ghost-navy btn--pill btn--lg">
           Nous contacter
         </a>
       </div>

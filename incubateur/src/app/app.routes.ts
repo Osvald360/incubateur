@@ -28,6 +28,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/apropos/apropos').then(m => m.AproposComponent)
   },
   {
+    path: 'engagements',
+    loadComponent: () => import('./pages/engagements/engagements').then(m => m.EngagementsComponent)
+  },
+  {
     path: 'faq',
     loadComponent: () => import('./pages/faq/faq').then(m => m.FaqComponent)
   },
