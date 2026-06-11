@@ -1,0 +1,416 @@
+/* =====================================================
+   ENVOL IMPACT · Contact
+   Propagation de la DA « trajectoire d'envol ».
+   Hero nuit → corps split : formulaire (craie) + infos (nuit).
+   Tokens : src/styles.scss (--ei-*). Form fonctionnel préservé.
+   ===================================================== */
+
+:host {
+  display: block;
+  background: var(--ei-ink);
+  color: var(--ei-on-dark);
+  font-family: var(--ei-font-text);
+}
+
+.ei-contact {
+  position: relative;
+  overflow-x: clip;
+}
+
+/* ---------- Primitives reprises de la home ---------- */
+.eyebrow {
+  margin: 0 0 var(--ei-s-16);
+  font-family: var(--ei-font-text);
+  font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ei-gold-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  &::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--ei-gold-grad);
+  }
+  &.eyebrow--ink { color: var(--orange-dark); &::before { background: var(--orange); } }
+}
+
+/* ---------- Boutons de marque ---------- */
+.ei-btn {
+  --pad-x: 26px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px var(--pad-x);
+  border-radius: var(--ei-r-4);
+  font-family: var(--ei-font-text);
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 160ms var(--ei-ease-launch),
+              box-shadow 160ms var(--ei-ease-launch),
+              background 160ms var(--ei-ease-soft),
+              color 160ms var(--ei-ease-soft),
+              opacity 160ms var(--ei-ease-soft);
+  will-change: transform;
+
+  mat-icon {
+    font-size: 1.05rem;
+    width: 1.05rem;
+    height: 1.05rem;
+    transition: transform 160ms var(--ei-ease-launch);
+  }
+
+  &--gold {
+    background: var(--ei-gold-grad);
+    color: #ffffff;
+    box-shadow: 0 6px 22px rgba(254, 135, 1, 0.28);
+    &:hover:not(:disabled) {
+      box-shadow: 0 14px 38px rgba(254, 135, 1, 0.42);
+      mat-icon { transform: translate(3px, -3px); }
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: var(--ei-on-dark);
+    border-color: rgba(255, 255, 255, 0.2);
+    &:hover { border-color: var(--ei-elan); color: #fff; }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ei-elan);
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+    box-shadow: none;
+  }
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+.hero {
+  position: relative;
+  min-height: 64svh;
+  padding: clamp(120px, 15vh, 190px) clamp(24px, 6vw, 120px) clamp(48px, 7vh, 88px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 88% 8%, rgba(254, 135, 1, 0.10), transparent 55%),
+    var(--ei-ink);
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+.hero-halo {
+  position: absolute;
+  top: -18%;
+  right: -8%;
+  width: min(44vw, 560px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(254, 135, 1, 0.3) 0%, rgba(254, 135, 1, 0.1) 38%, transparent 68%);
+  filter: blur(18px);
+}
+
+.hero-traj-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero-trajectory { filter: drop-shadow(0 0 10px rgba(254, 135, 1, 0.45)); }
+
+.hero-inner { position: relative; z-index: 2; max-width: 56ch; }
+
+.hero-eyebrow {
+  margin: 0 0 clamp(18px, 3vh, 30px);
+  font-size: clamp(0.72rem, 1vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ei-gold-2);
+}
+
+.hero-title {
+  margin: 0;
+  font-family: var(--ei-font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+  font-size: clamp(2.6rem, 7.2vw, 5.6rem);
+  color: var(--ei-on-dark);
+
+  .line { display: block; overflow: hidden; }
+  .line-inner { display: block; }
+  em {
+    font-style: normal;
+    background: var(--ei-gold-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.hero-subtitle {
+  margin: clamp(22px, 3vh, 32px) 0 0;
+  max-width: 52ch;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.6;
+  color: var(--ei-on-dark-dim);
+}
+
+/* =====================================================
+   CORPS · grille formulaire + infos
+   ===================================================== */
+.contact-main {
+  position: relative;
+  background: var(--ei-ink);
+  padding: clamp(var(--ei-s-64), 10vh, var(--ei-s-128)) clamp(24px, 6vw, 120px) clamp(var(--ei-s-96), 14vh, var(--ei-s-192));
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: clamp(var(--ei-s-32), 5vw, var(--ei-s-96));
+  align-items: start;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: clamp(var(--ei-s-48), 8vw, var(--ei-s-64));
+  }
+}
+
+/* =====================================================
+   FORMULAIRE · panneau
+   ===================================================== */
+.form-panel {
+  padding: clamp(28px, 3.6vw, 56px);
+  /* Léger biseau supprimé pour s'accorder au glassmorphism avec bordures arrondies */
+}
+
+.panel-head { margin-bottom: clamp(24px, 3vw, 36px); }
+
+.panel-title {
+  margin: 0;
+  font-family: var(--ei-font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+.panel-sub {
+  margin: 10px 0 0;
+  font-size: 0.98rem;
+}
+
+.contact-form {
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  .form-field, .form-field-full { width: 100%; }
+  .form-field-full { display: block; }
+
+  .submit-button {
+    width: 100%;
+    justify-content: center;
+    margin-top: var(--ei-s-16);
+    font-size: 1.02rem;
+    padding: 17px 26px;
+  }
+}
+
+/* =====================================================
+   INFOS · sur nuit, registre éditorial
+   ===================================================== */
+.info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--ei-s-32), 4vw, var(--ei-s-48));
+}
+
+.locations {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--ei-s-24), 3vw, var(--ei-s-32));
+}
+
+.location {
+  padding-bottom: clamp(var(--ei-s-24), 3vw, var(--ei-s-32));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  &:last-child { border-bottom: 0; padding-bottom: 0; }
+}
+
+.location-num {
+  font-family: var(--ei-font-display);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--ei-gold-2);
+}
+
+.location-title {
+  margin: 8px 0 18px;
+  font-family: var(--ei-font-display);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  letter-spacing: -0.01em;
+  color: var(--ei-on-dark);
+}
+
+.location-details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.location-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  mat-icon {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 3px;
+    color: var(--ei-gold-2);
+  }
+  span {
+    font-size: 0.96rem;
+    line-height: 1.55;
+    color: var(--ei-on-dark-dim);
+  }
+}
+
+/* ---- Contact rapide ---- */
+.quick-contact {
+  padding-top: clamp(var(--ei-s-24), 3vw, var(--ei-s-32));
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.quick-title {
+  margin: 0 0 18px;
+  font-family: var(--ei-font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  color: var(--ei-on-dark);
+}
+
+.quick-options { display: grid; gap: 12px; }
+
+.quick-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--ei-r-8);
+  background: var(--ei-slate);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  transition: border-color 200ms var(--ei-ease-soft),
+              transform 200ms var(--ei-ease-launch);
+
+  mat-icon {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--ei-gold-2);
+  }
+
+  .quick-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+
+    strong {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--ei-on-dark);
+    }
+    span {
+      font-size: 0.88rem;
+      color: var(--ei-on-dark-dim);
+    }
+  }
+
+  &:not(.quick-item--static):hover {
+    border-color: rgba(254, 135, 1, 0.4);
+    transform: translateX(4px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ei-gold-2);
+    outline-offset: 2px;
+  }
+
+  &--static { cursor: default; }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 1024px) {
+  .form-panel { clip-path: none; }
+}
+
+@media (max-width: 600px) {
+  .hero-title { font-size: clamp(2.2rem, 10vw, 3.4rem); }
+  .form-panel { clip-path: none; }
+  /* le panneau craie respire jusqu'au bord sans coller au viewport */
+  .form-panel { padding: clamp(22px, 6vw, 32px); }
+}
+
+/* --- très petits écrans (360/390) : titre + email longs maîtrisés --- */
+@media (max-width: 400px) {
+  .hero-title { font-size: clamp(1.9rem, 8.6vw, 2.5rem); }
+  .hero-title .line { overflow: clip visible; }
+  .hero-title .line-inner { white-space: normal; }
+  /* email/valeurs longues : pas de débordement dans le contact rapide */
+  .quick-item .quick-text span { word-break: break-word; overflow-wrap: anywhere; }
+  .location-item span { overflow-wrap: anywhere; }
+}
+
+/* =====================================================
+   ACCESSIBILITÉ — mouvement réduit
+   ===================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .hero-trajectory, .trajectory-path { stroke-dashoffset: 0 !important; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+

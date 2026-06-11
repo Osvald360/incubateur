@@ -58,7 +58,7 @@
   overflow: hidden;
   padding: clamp(72px, 10vh, 128px) clamp(24px, 6vw, 96px) clamp(40px, 6vh, 72px);
   background:
-    radial-gradient(120% 90% at 90% 6%, rgba(244, 201, 93, 0.10), transparent 55%),
+    radial-gradient(120% 90% at 90% 6%, rgba(255, 179, 64, 0.10), transparent 55%),
     var(--ei-ink);
 }
 
@@ -70,7 +70,7 @@
   aspect-ratio: 1;
   border-radius: 50%;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(244, 201, 93, 0.36) 0%, rgba(232, 162, 61, 0.14) 38%, transparent 68%);
+  background: radial-gradient(circle, rgba(255, 179, 64, 0.36) 0%, rgba(254, 135, 1, 0.14) 38%, transparent 68%);
   filter: blur(18px);
 }
 
@@ -219,7 +219,7 @@
     width: 36px;
     height: 36px;
     border-radius: var(--ei-r-8);
-    background: rgba(232, 162, 61, 0.14);
+    background: rgba(254, 135, 1, 0.14);
     mat-icon {
       font-size: 1.2rem;
       width: 1.2rem;
@@ -277,7 +277,7 @@
     border-color: var(--ei-gold-1) !important;
     border-top-width: 2px !important;
   }
-  ::ng-deep .mat-mdc-tab .mat-ripple-element { background-color: rgba(244, 201, 93, 0.12); }
+  ::ng-deep .mat-mdc-tab .mat-ripple-element { background-color: rgba(255, 179, 64, 0.12); }
 }
 
 .tab-content {
@@ -356,7 +356,7 @@
   transition: border-color 200ms var(--ei-ease-soft), background 200ms var(--ei-ease-soft);
 
   &:hover {
-    border-color: rgba(244, 201, 93, 0.30);
+    border-color: rgba(255, 179, 64, 0.30);
     background: rgba(17, 40, 61, 0.7);
   }
 
@@ -379,7 +379,7 @@
       height: 38px;
       flex-shrink: 0;
       border-radius: var(--ei-r-8);
-      background: rgba(232, 162, 61, 0.12);
+      background: rgba(254, 135, 1, 0.12);
       mat-icon {
         font-size: 1.2rem;
         width: 1.2rem;
@@ -581,7 +581,7 @@
     transition: background 160ms var(--ei-ease-soft);
   }
   ::ng-deep .mat-mdc-row:nth-child(even) { background: rgba(17, 40, 61, 0.45); }
-  ::ng-deep .mat-mdc-row:hover { background: rgba(232, 162, 61, 0.07); }
+  ::ng-deep .mat-mdc-row:hover { background: rgba(254, 135, 1, 0.07); }
   ::ng-deep .mat-mdc-cell {
     color: var(--ei-on-dark-dim);
     border-bottom-color: rgba(237, 230, 216, 0.07);
@@ -649,7 +649,7 @@
     font-weight: 600;
     font-size: 0.82rem;
     letter-spacing: 0.1em;
-    color: rgba(244, 201, 93, 0.55);
+    color: rgba(255, 179, 64, 0.55);
   }
   .opportunity-icon {
     font-size: 1.9rem;
@@ -679,12 +679,12 @@
       background: var(--ei-gold-grad) !important;
       color: #2a1a04 !important;
       border-radius: var(--ei-r-4) !important;
-      box-shadow: 0 6px 22px rgba(232, 162, 61, 0.22) !important;
+      box-shadow: 0 6px 22px rgba(254, 135, 1, 0.22) !important;
       font-family: var(--ei-font-text) !important;
       font-weight: 500 !important;
     }
     &.mat-mdc-raised-button:hover {
-      box-shadow: 0 12px 32px rgba(232, 162, 61, 0.36) !important;
+      box-shadow: 0 12px 32px rgba(254, 135, 1, 0.36) !important;
       transform: translateY(-2px);
     }
   }
@@ -804,3 +804,4 @@
     transition-duration: 0.001ms !important;
   }
 }
+

@@ -17,6 +17,7 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
   protected title = 'incubateur';
   showFooter = true;
   isLoaded = false;
+  scrollProgress = 0;
 
   private routerSubscription: Subscription;
   private revealObserver?: IntersectionObserver;
@@ -24,6 +25,13 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
   private revealFrame?: number;
   private revealTimer?: number;
   private reducedMotion = false;
+
+  private onScroll = () => {
+    const d = document.documentElement;
+    const progress = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
+    this.scrollProgress = isNaN(progress) ? 0 : progress;
+    this.cdr.detectChanges();
+  };
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {
     this.routerSubscription = this.router.events.subscribe(event => {
@@ -39,6 +47,7 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     if (typeof window === 'undefined') return;
     this.scheduleRevealRefresh();
+    window.addEventListener('scroll', this.onScroll, { passive: true });
 
     // Simulate loader
     setTimeout(() => {
@@ -67,9 +76,11 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
     this.revealObserver?.disconnect();
     this.domObserver?.disconnect();
 
-    if (typeof window === 'undefined') return;
-    if (this.revealFrame !== undefined) window.cancelAnimationFrame(this.revealFrame);
-    if (this.revealTimer !== undefined) window.clearTimeout(this.revealTimer);
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', this.onScroll);
+      if (this.revealFrame !== undefined) window.cancelAnimationFrame(this.revealFrame);
+      if (this.revealTimer !== undefined) window.clearTimeout(this.revealTimer);
+    }
   }
 
   private scheduleRevealRefresh(): void {

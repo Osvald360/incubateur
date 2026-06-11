@@ -19,7 +19,7 @@
   margin-left: 250px;
   margin-top: 64px;
   background:
-    radial-gradient(120% 80% at 100% 0%, rgba(244, 201, 93, 0.05), transparent 55%),
+    radial-gradient(120% 80% at 100% 0%, rgba(255, 179, 64, 0.05), transparent 55%),
     var(--ei-ink);
   color: var(--ei-on-dark);
   font-family: var(--ei-font-text);
@@ -84,3 +84,4 @@
 @media (max-width: 390px) {
   .dashboard-main-grid { padding: var(--ei-s-12); padding-bottom: calc(var(--ei-s-12) + 72px); }
 }
+

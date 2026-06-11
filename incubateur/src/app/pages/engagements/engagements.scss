@@ -21,21 +21,6 @@ $muted:  #6B7A8A;
   &.revealed { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Read progress bar ── */
-.read-progress {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: rgba($navy, .12);
-  z-index: 2000;
-  pointer-events: none;
-}
-.read-progress-fill {
-  height: 100%;
-  background: $orange;
-  transition: width 80ms linear;
-}
-
 /* ── Shared primitives ── */
 .eng-badge {
   display: inline-block;

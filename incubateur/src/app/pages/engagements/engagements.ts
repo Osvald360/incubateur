@@ -11,19 +11,13 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./engagements.scss']
 })
 export class EngagementsComponent implements OnInit, OnDestroy {
-  scrollProgress = 0;
 
   private observer?: IntersectionObserver;
-  private onScroll = () => {
-    const d = document.documentElement;
-    this.scrollProgress = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
-  };
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   ngOnInit() {
     if (!isPlatformBrowser(this.platformId)) return;
-    window.addEventListener('scroll', this.onScroll, { passive: true });
     this.observer = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
@@ -40,6 +34,5 @@ export class EngagementsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.observer?.disconnect();
-    window.removeEventListener('scroll', this.onScroll);
   }
 }

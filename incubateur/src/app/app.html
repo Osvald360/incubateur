@@ -1,7 +1,7 @@
 <!-- Loader (Preloader) -->
 <div class="ei-loader" [class.is-hidden]="isLoaded">
   <div class="ei-loader-logo">
-    <img src="/brand/envol-impact-horizontal-gold.png" alt="Envol Impact" class="ei-loader-img" />
+    <img src="/brand/envol-impact-logo.png" alt="Envol Impact" class="ei-loader-img" />
     <div class="ei-loader-progress"></div>
   </div>
 </div>
@@ -10,6 +10,11 @@
 <div class="ei-global-orbs" aria-hidden="true">
   <div class="ei-orb ei-orb-1"></div>
   <div class="ei-orb ei-orb-2"></div>
+</div>
+
+<!-- Barre de progression de lecture globale -->
+<div class="read-progress" aria-hidden="true">
+  <div class="read-progress-fill" [style.width.%]="scrollProgress"></div>
 </div>
 
 <app-navbar></app-navbar>

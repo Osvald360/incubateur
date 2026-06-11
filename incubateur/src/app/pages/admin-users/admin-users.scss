@@ -10,7 +10,7 @@
   margin: 80px auto 0;
   min-height: calc(100vh - 80px);
   background:
-    radial-gradient(110% 60% at 100% 0%, rgba(244, 201, 93, 0.05), transparent 55%),
+    radial-gradient(110% 60% at 100% 0%, rgba(255, 179, 64, 0.05), transparent 55%),
     var(--ei-ink);
   color: var(--ei-on-dark);
   font-family: var(--ei-font-text);
@@ -82,7 +82,7 @@
 
     &:hover {
       transform: translateY(-3px);
-      border-color: rgba(244, 201, 93, 0.32) !important;
+      border-color: rgba(255, 179, 64, 0.32) !important;
     }
 
     .stat-content {
@@ -185,11 +185,11 @@
     border: 1px solid rgba(237, 230, 216, 0.08);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
-    scrollbar-color: rgba(244, 201, 93, 0.4) transparent;
+    scrollbar-color: rgba(255, 179, 64, 0.4) transparent;
 
     &::-webkit-scrollbar { height: 8px; }
     &::-webkit-scrollbar-thumb {
-      background: rgba(244, 201, 93, 0.4);
+      background: rgba(255, 179, 64, 0.4);
       border-radius: 999px;
     }
 
@@ -205,7 +205,7 @@
         letter-spacing: 0.05em;
         text-transform: uppercase;
         color: var(--ei-on-dark-dim);
-        border-bottom: 1px solid rgba(244, 201, 93, 0.28);
+        border-bottom: 1px solid rgba(255, 179, 64, 0.28);
         padding: var(--ei-s-16) var(--ei-s-12);
       }
 
@@ -218,10 +218,10 @@
 
       ::ng-deep .mat-sort-header-arrow { color: var(--ei-gold-2); }
 
-      tr:hover { background: rgba(244, 201, 93, 0.06); }
+      tr:hover { background: rgba(255, 179, 64, 0.06); }
 
       .email-link {
-        color: #E9CE86;
+        color: #FFB340;
         text-decoration: none;
         &:hover { text-decoration: underline; }
       }
@@ -298,7 +298,7 @@
     color: var(--ei-on-dark);
     &:hover:not(.mdc-list-item--disabled) { background: rgba(237, 230, 216, 0.06); }
     &.mdc-list-item--selected {
-      background: rgba(244, 201, 93, 0.14);
+      background: rgba(255, 179, 64, 0.14);
       .mdc-list-item__primary-text { color: var(--ei-gold-2); }
     }
   }
@@ -316,11 +316,11 @@
 ::ng-deep .admin-users-container .mat-mdc-chip,
 ::ng-deep .mat-mdc-chip.mat-primary {
   background: rgba(30, 91, 255, 0.16) !important;
-  color: #E9CE86 !important;
+  color: #FFB340 !important;
   border-radius: var(--ei-r-4) !important;
 }
 ::ng-deep .mat-mdc-chip.mat-accent {
-  background: rgba(244, 201, 93, 0.18) !important;
+  background: rgba(255, 179, 64, 0.18) !important;
   color: var(--ei-gold-2) !important;
 }
 ::ng-deep .mat-mdc-chip.mat-warn {
@@ -434,3 +434,5 @@
   .filters-card,
   .table-card { animation: none; }
 }
+
+

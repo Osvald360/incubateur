@@ -11,7 +11,7 @@
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(120% 140% at 100% 0%, rgba(244, 201, 93, 0.08), transparent 55%),
+    radial-gradient(120% 140% at 100% 0%, rgba(255, 179, 64, 0.08), transparent 55%),
     var(--ei-slate);
   border: 1px solid rgba(237, 230, 216, 0.1);
   border-radius: var(--ei-r-8);
@@ -40,8 +40,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(244, 201, 93, 0.5);
-    box-shadow: 0 6px 20px rgba(232, 162, 61, 0.3);
+    border: 1px solid rgba(255, 179, 64, 0.5);
+    box-shadow: 0 6px 20px rgba(254, 135, 1, 0.3);
 
     .avatar-initials {
       color: #2a1a04;
@@ -84,9 +84,9 @@
     text-transform: uppercase;
 
     &.admin-badge {
-      background: rgba(244, 201, 93, 0.16);
+      background: rgba(255, 179, 64, 0.16);
       color: var(--ei-gold-2);
-      box-shadow: inset 0 0 0 1px rgba(244, 201, 93, 0.32);
+      box-shadow: inset 0 0 0 1px rgba(255, 179, 64, 0.32);
     }
     &.user-badge {
       background: rgba(63, 168, 138, 0.16);
@@ -211,3 +211,4 @@
     h2 { font-size: 1.25rem; }
   }
 }
+

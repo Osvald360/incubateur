@@ -12,7 +12,7 @@ mat-toolbar {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 1001;
-  height: 90px;
+  height: 110px;
   padding: 0;
   background: rgba($navy, .96);
   backdrop-filter: saturate(140%) blur(12px);
@@ -33,7 +33,7 @@ mat-toolbar {
 .main-nav-row {
   display: flex; align-items: center;
   justify-content: space-between; gap: 20px;
-  height: 90px; box-sizing: border-box;
+  height: 110px; box-sizing: border-box;
 }
 
 /* ---- Marque ---- */
@@ -43,12 +43,11 @@ mat-toolbar {
 }
 
 .brand-logo-img {
-  height: 82px;
+  height: 96px;
   width: auto;
   display: block;
   flex-shrink: 0;
-  mix-blend-mode: screen;
-  filter: brightness(1.15) contrast(1.05);
+  margin-top: -3px;
 }
 
 .brand-text {
