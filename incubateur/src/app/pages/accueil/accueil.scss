@@ -162,7 +162,7 @@ $white:   #FFFFFF;
 .bullet-icon { color: $green; font-size: 22px; width: 22px; height: 22px; }
 
 // ── MISSION ──────────────────────────────────────────
-.mission { background: $light; overflow: hidden; }
+.mission { background: $white; overflow: hidden; }
 
 .mission-inner {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -226,68 +226,184 @@ $white:   #FFFFFF;
 .mission-img-overlay { position: absolute; inset: 0; background: rgba($navy, .20); mix-blend-mode: multiply; }
 
 // ── TONTINE ──────────────────────────────────────────
-.tontine { position: relative; background: $deep; padding: 120px 0; overflow: hidden; }
-
-.tontine-glow {
-  position: absolute; top: -200px; right: -200px;
-  width: 800px; height: 800px; background: $navy;
-  border-radius: 50%; filter: blur(150px);
-  opacity: .5; mix-blend-mode: screen; pointer-events: none;
+.tontine {
+  background: $deep;
 }
 
-.tontine-inner {
-  position: relative; z-index: 1;
-  max-width: 1100px; margin: 0 auto;
-  padding: 0 48px; text-align: center;
-  @media (max-width: 768px) { padding: 0 24px; }
+.tontine-split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  min-height: 620px;
+
+  @media (max-width: 960px) { grid-template-columns: 1fr; }
 }
 
-.tontine-lead {
-  font-size: 1.15rem; color: rgba($white, .70);
-  max-width: 640px; margin: 0 auto 64px; line-height: 1.7;
+/* Côté photo */
+.tontine-photo-side {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+
+  @media (max-width: 960px) { min-height: 380px; }
 }
 
-.tontine-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 24px; align-items: center;
-  @media (max-width: 768px) { grid-template-columns: 1fr; }
+.tontine-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 600ms ease;
+  .tontine-photo-side:hover & { transform: scale(1.03); }
 }
 
-.tontine-card {
-  background: $navy; padding: 40px 36px;
-  border-radius: 2rem; border: 1px solid rgba($white, .10);
-  text-align: left; transition: border-color 300ms ease;
-  &:hover { border-color: rgba($orange, .50); }
+/* Témoignage flottant sur la photo */
+.tontine-testimonial {
+  position: absolute;
+  bottom: 28px; left: 24px; right: 24px;
+  background: rgba(0, 20, 35, .70);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba($white, .12);
+  border-left: 3px solid $orange;
+  border-radius: 16px;
+  padding: 22px 24px;
+}
 
-  &--highlight {
-    background: $orange; border: none;
-    transform: translateY(-28px);
-    box-shadow: 0 20px 50px rgba($orange, .35);
+.tontine-testimonial-text {
+  font-family: 'Lato', sans-serif;
+  font-size: .95rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba($white, .92);
+  margin: 0 0 14px;
+}
 
-    .tontine-card-icon  { background: rgba($white, .20); }
-    .tontine-card-title { color: $white; }
-    .tontine-card-body  { color: rgba($white, .90); }
+.tontine-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
-    @media (max-width: 768px) { transform: none; }
+  strong {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: .85rem;
+    font-weight: 700;
+    color: $white;
+  }
+
+  span {
+    font-family: 'Lato', sans-serif;
+    font-size: .78rem;
+    color: rgba($white, .55);
   }
 }
 
-.tontine-card-icon {
-  width: 64px; height: 64px; background: rgba($white, .10);
-  border-radius: 1rem; display: flex; align-items: center; justify-content: center;
-  margin-bottom: 24px; transition: all 300ms ease;
-  mat-icon { font-size: 28px; width: 28px; height: 28px; color: $white; }
+.tontine-testimonial-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: $orange;
+  color: $white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
 
-  .tontine-card:not(.tontine-card--highlight):hover & {
-    background: $orange; transform: scale(1.1);
+/* Côté contenu */
+.tontine-content-side {
+  background: $deep;
+  padding: 72px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+
+  @media (max-width: 1100px) { padding: 56px 36px; }
+  @media (max-width: 960px)  { padding: 56px 24px; }
+}
+
+.section-badge--navy {
+  color: $orange;
+  background: rgba($orange, .15);
+  margin-bottom: 20px;
+}
+
+.tontine-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  color: $white;
+  margin: 0 0 20px;
+
+  &--orange { color: $orange; }
+}
+
+.tontine-desc {
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba($white, .70);
+  margin: 0 0 36px;
+}
+
+/* Liste des 3 avantages */
+.tontine-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tontine-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba($white, .10);
+
+  &:first-child { border-top: 1px solid rgba($white, .10); }
+
+  strong {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: .95rem;
+    color: $white;
+    margin-bottom: 3px;
+  }
+
+  p {
+    font-family: 'Lato', sans-serif;
+    font-size: .88rem;
+    line-height: 1.6;
+    color: rgba($white, .56);
+    margin: 0;
   }
 }
 
-.tontine-card-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.3rem; color: $white; margin: 0 0 12px; }
-.tontine-card-body  { color: rgba($white, .65); line-height: 1.65; font-size: .95rem; margin: 0; }
+.tontine-feature-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba($orange, .10);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  mat-icon { font-size: 20px; width: 20px; height: 20px; color: $orange; }
+}
 
 // ── STATUTS ──────────────────────────────────────────
-.statuts { display: grid; grid-template-columns: 1fr 1fr; min-height: 700px; @media (max-width: 1024px) { grid-template-columns: 1fr; } }
+.statuts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  min-height: 700px;
+  @media (max-width: 1024px) { grid-template-columns: 1fr; }
+}
 
 .statuts-text {
   background: $light; padding: 96px 64px 96px 48px;
@@ -313,15 +429,26 @@ $white:   #FFFFFF;
 .profile-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.1rem; color: $deep; margin: 0 0 6px; }
 .profile-body  { color: #5A6A74; font-size: .95rem; margin: 0; line-height: 1.6; }
 
-.statuts-visual { position: relative; overflow: hidden; min-height: 600px; @media (max-width: 1024px) { min-height: 420px; } }
+.statuts-visual {
+  position: relative; overflow: hidden;
+  min-height: 600px; height: 100%;
+  @media (max-width: 1024px) { min-height: 420px; height: auto; }
+}
 
 .statuts-img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: center;
   transition: transform .7s ease;
   .statuts-visual:hover & { transform: scale(1.04); }
 }
 
-.statuts-img-overlay { position: absolute; inset: 0; background: rgba($navy, .30); mix-blend-mode: multiply; }
+.statuts-img-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba($navy, .35);
+}
 
 .statuts-badge {
   position: absolute; bottom: 40px; right: 32px;
@@ -338,16 +465,36 @@ $white:   #FFFFFF;
 // ── CTA CONTACT ──────────────────────────────────────
 .cta-contact {
   position: relative; overflow: hidden;
-  background: $navy; padding: 120px 24px; text-align: center;
+  background: $deep; padding: 120px 24px; text-align: center;
+}
+
+.cta-bg {
+  position: absolute; inset: 0; z-index: 0;
+}
+
+.cta-bg-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 30%;
+  display: block;
+}
+
+.cta-bg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba($deep, .90) 0%,
+    rgba($navy, .80) 50%,
+    rgba($deep, .92) 100%
+  );
 }
 
 .cta-dots {
-  position: absolute; inset: 0; z-index: 0; opacity: .10;
+  position: absolute; inset: 0; z-index: 1; opacity: .07;
   background-image: radial-gradient(rgba($orange, 1) 2px, transparent 2px);
   background-size: 30px 30px;
 }
 
-.cta-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+.cta-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
 
 .cta-title {
   font-family: 'Poppins', sans-serif;

@@ -92,7 +92,7 @@ mat-toolbar {
   background: rgba($orange, .12) !important;
 }
 
-/* Trigger dropdown */
+/* Trigger dropdown simple */
 .nav-dropdown-trigger {
   .dropdown-arrow {
     font-size: .9rem !important; width: .9rem !important;
@@ -100,6 +100,29 @@ mat-toolbar {
     opacity: .55; transition: transform 200ms ease !important;
   }
   &[aria-expanded="true"] .dropdown-arrow { transform: rotate(180deg); }
+}
+
+/* Split button : lien + chevron séparés */
+.nav-split-btn {
+  display: inline-flex;
+  align-items: center;
+
+  .nav-split-link {
+    padding-right: 4px !important;
+  }
+
+  .nav-split-chevron {
+    width: 28px !important; height: 28px !important;
+    min-width: 28px !important;
+    padding: 0 !important;
+
+    .dropdown-arrow {
+      font-size: 1rem !important; width: 1rem !important;
+      height: 1rem !important;
+      opacity: .55; transition: transform 200ms ease !important;
+    }
+    &[aria-expanded="true"] .dropdown-arrow { transform: rotate(180deg); }
+  }
 }
 
 /* Label catégorie menu mobile */

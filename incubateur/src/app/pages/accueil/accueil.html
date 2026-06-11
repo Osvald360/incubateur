@@ -43,15 +43,15 @@
       <ul class="hero-bullets">
         <li>
           <mat-icon class="bullet-icon">check_circle</mat-icon>
-          Zéro barrière bancaire
+          Des gens, pas des formulaires
         </li>
         <li>
           <mat-icon class="bullet-icon">check_circle</mat-icon>
-          Accompagnement 360°
+          On lâche pas tant que t'as pas décollé
         </li>
         <li>
           <mat-icon class="bullet-icon">check_circle</mat-icon>
-          100% Impact local
+          Né ici, pour ici
         </li>
       </ul>
     </div>
@@ -98,30 +98,61 @@
 
   <!-- =========================================================== TONTINE -->
   <section class="tontine" id="tontine">
-    <div class="tontine-glow" aria-hidden="true"></div>
+    <div class="tontine-split">
 
-    <div class="tontine-inner">
-      <div class="section-badge">Le modèle économique</div>
-      <h2 class="section-title section-title--light">
-        La <span class="section-title--gradient">Tontine</span> Géante
-      </h2>
-      <p class="tontine-lead">
-        Un prêt d'argent spécifique conçu pour la réalité de votre lancement. L'argent ne doit plus être une barrière, c'est un levier communautaire.
-      </p>
-
-      <div class="tontine-grid">
-        <div
-          class="tontine-card"
-          [class.tontine-card--highlight]="feat.highlight"
-          *ngFor="let feat of tontineFeatures"
-        >
-          <div class="tontine-card-icon">
-            <mat-icon>{{ feat.icon }}</mat-icon>
+      <!-- Photo + témoignage -->
+      <div class="tontine-photo-side">
+        <img
+          src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+          alt="Entrepreneurs réunis autour d'un projet"
+          class="tontine-img"
+          loading="lazy"
+        />
+        <div class="tontine-testimonial">
+          <p class="tontine-testimonial-text">
+            « Grâce à la tontine, j'ai lancé ma boutique sans passer par une banque. Pour la première fois, quelqu'un croyait en moi. »
+          </p>
+          <div class="tontine-testimonial-author">
+            <div class="tontine-testimonial-avatar">Y</div>
+            <div>
+              <strong>Yasmine</strong>
+              <span>Créatrice, boutique de mode — Paris 93</span>
+            </div>
           </div>
-          <h3 class="tontine-card-title">{{ feat.title }}</h3>
-          <p class="tontine-card-body">{{ feat.text }}</p>
         </div>
       </div>
+
+      <!-- Contenu -->
+      <div class="tontine-content-side">
+        <span class="section-badge section-badge--navy">La Tontine Géante</span>
+
+        <h2 class="tontine-title">
+          Un prêt entre nous,<br>
+          <span class="tontine-title--orange">pas entre vous et une banque.</span>
+        </h2>
+
+        <p class="tontine-desc">
+          La tontine, c'est un mécanisme de financement communautaire que nous avons adapté pour le lancement d'entreprise. Des taux bas, du temps, et des gens qui vous connaissent.
+        </p>
+
+        <ul class="tontine-features">
+          <li class="tontine-feature" *ngFor="let feat of tontineFeatures">
+            <div class="tontine-feature-icon">
+              <mat-icon>{{ feat.icon }}</mat-icon>
+            </div>
+            <div class="tontine-feature-text">
+              <strong>{{ feat.title }}</strong>
+              <p>{{ feat.text }}</p>
+            </div>
+          </li>
+        </ul>
+
+        <a routerLink="/candidature" class="btn btn--orange btn--pill btn--lg">
+          Déposer ma candidature
+          <mat-icon>arrow_forward</mat-icon>
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -151,9 +182,10 @@
 
     <div class="statuts-visual">
       <img
-        src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"
         alt="Réussite entrepreneuriale"
         class="statuts-img"
+        loading="lazy"
       />
       <div class="statuts-img-overlay"></div>
 
@@ -170,6 +202,15 @@
 
   <!-- =========================================================== CTA -->
   <section class="cta-contact" id="contact">
+    <div class="cta-bg" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        alt=""
+        class="cta-bg-img"
+        loading="lazy"
+      />
+      <div class="cta-bg-overlay"></div>
+    </div>
     <div class="cta-dots" aria-hidden="true"></div>
 
     <div class="cta-inner">

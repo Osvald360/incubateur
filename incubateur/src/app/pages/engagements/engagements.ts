@@ -23,7 +23,6 @@ export class EngagementsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (!isPlatformBrowser(this.platformId)) return;
-    document.body.classList.add('page-light');
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.observer = new IntersectionObserver(
       entries => entries.forEach(e => {
@@ -40,9 +39,6 @@ export class EngagementsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (isPlatformBrowser(this.platformId)) {
-      document.body.classList.remove('page-light');
-    }
     this.observer?.disconnect();
     window.removeEventListener('scroll', this.onScroll);
   }

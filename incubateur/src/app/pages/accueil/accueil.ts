@@ -55,18 +55,24 @@ export class AccueilComponent implements OnInit {
       icon: 'percent',
       title: 'Taux Ultra-Bas',
       text: 'Un crédit solidaire pour te propulser, pas pour t\'étouffer. La tontine permet de casser les taux bancaires traditionnels.',
+      stat: '< 2%',
+      statLabel: 'taux annuel moyen',
       highlight: false
     },
     {
       icon: 'hourglass_empty',
       title: 'Durée Longue',
       text: 'Prends le temps de construire. Les remboursements sont étalés intelligemment pour te laisser respirer et développer ton activité.',
+      stat: '24',
+      statLabel: 'mois de remboursement',
       highlight: true
     },
     {
       icon: 'gps_fixed',
       title: 'Suivi Trimestriel',
       text: 'Tous les 3 mois, un point stratégique avec nos experts pour éviter les pièges et ajuster ta trajectoire.',
+      stat: '×4',
+      statLabel: 'bilans stratégiques / an',
       highlight: false
     }
   ];

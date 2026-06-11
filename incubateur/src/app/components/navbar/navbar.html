@@ -28,10 +28,14 @@
           </mat-menu>
 
           <!-- Dropdown : Nos engagements -->
-          <button mat-button [matMenuTriggerFor]="engagementsMenu" class="nav-dropdown-trigger">
-            Nos engagements
-            <mat-icon class="dropdown-arrow">expand_more</mat-icon>
-          </button>
+          <div class="nav-split-btn">
+            <a mat-button routerLink="/engagements" routerLinkActive="active" class="nav-split-link">
+              Nos engagements
+            </a>
+            <button mat-icon-button [matMenuTriggerFor]="engagementsMenu" class="nav-split-chevron" aria-label="Sous-menu engagements">
+              <mat-icon class="dropdown-arrow">expand_more</mat-icon>
+            </button>
+          </div>
           <mat-menu #engagementsMenu="matMenu" class="nav-submenu">
             <a mat-menu-item routerLink="/engagements" fragment="transparence" routerLinkActive="active-sub">
               <mat-icon>visibility</mat-icon><span>Transparence</span>
