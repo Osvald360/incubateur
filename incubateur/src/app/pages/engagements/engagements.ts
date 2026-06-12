@@ -12,12 +12,22 @@ import { RouterModule } from '@angular/router';
 })
 export class EngagementsComponent implements OnInit, OnDestroy {
 
+  scrollProgress = 0;
   private observer?: IntersectionObserver;
+  private scrollHandler = () => {
+    const el = document.documentElement;
+    const scrolled = el.scrollTop || document.body.scrollTop;
+    const total = el.scrollHeight - el.clientHeight;
+    this.scrollProgress = total > 0 ? (scrolled / total) * 100 : 0;
+  };
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   ngOnInit() {
     if (!isPlatformBrowser(this.platformId)) return;
+
+    window.addEventListener('scroll', this.scrollHandler, { passive: true });
+
     this.observer = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
@@ -33,6 +43,7 @@ export class EngagementsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    window.removeEventListener('scroll', this.scrollHandler);
     this.observer?.disconnect();
   }
 }

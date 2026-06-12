@@ -20,22 +20,23 @@
 
     <div class="hero-content">
       <h1 class="hero-title">
-        L'envol de vos<br>
-        <span class="hero-title--orange">projets</span><br>
-        <span class="hero-title--outline">commence&nbsp;ici.</span>
+        Transformer<br>
+        <span class="hero-title--orange">l'épargne solidaire</span><br>
+        <span class="hero-title--outline">en opportunités.</span>
       </h1>
 
       <p class="hero-subtitle">
-        Découvrez le premier <strong>fonds solidaire sous forme de tontine géante</strong>
-        pour financer l'entrepreneuriat dans nos quartiers.
+        Envol Impact est un fonds d'investissement solidaire doté d'un incubateur
+        qui accompagne, finance et structure les projets des entrepreneurs issus
+        des <strong>quartiers populaires</strong> et des <strong>zones rurales</strong>.
       </p>
 
       <div class="hero-actions">
         <a routerLink="/candidature" class="btn btn--orange btn--pill btn--lg">
-          Lancer mon projet
+          Déposer mon projet
         </a>
-        <a href="#mission" class="btn btn--ghost btn--pill btn--lg">
-          En savoir plus
+        <a routerLink="/register" class="btn btn--ghost btn--pill btn--lg">
+          Devenir sociétaire
           <mat-icon>arrow_forward</mat-icon>
         </a>
       </div>
@@ -57,29 +58,37 @@
     </div>
   </header>
 
-  <!-- =========================================================== MISSION -->
+  <!-- ============================================================ POURQUOI -->
   <section class="mission" id="mission">
     <div class="mission-inner">
 
       <div class="mission-text">
+        <span class="section-badge">Pourquoi nous existons</span>
         <h2 class="section-title section-title--dark">
-          NOTRE<br>
-          <span class="section-title--accent">MISSION</span>
+          Le problème<br>
+          <span class="section-title--orange">qu'on refuse</span><br>
+          d'ignorer
         </h2>
         <p class="mission-lead">
-          Une longue expérience du CA auprès des jeunes de quartier. Une conclusion : il y a des choses à faire.
+          Aujourd'hui, l'accès au financement entrepreneurial reste fortement inégal.
         </p>
         <p class="mission-body">
-          On cible les jeunes avec une énergie créatrice immense. Le problème n'est pas le talent, c'est le mur invisible de l'argent et du réseau. Nous sommes issus du monde de l'entreprise et nous bâtissons le pont qui manque grâce à notre fonds solidaire.
+          De nombreux porteurs de projets talentueux sont exclus des circuits classiques
+          en raison de leur origine sociale, géographique ou économique. Dans les quartiers
+          populaires et les zones rurales, des idées fortes ne deviennent jamais des
+          entreprises faute d'accompagnement et de ressources.
         </p>
 
         <div class="mission-card">
           <div class="mission-card-icon">
-            <mat-icon>handshake</mat-icon>
+            <mat-icon>lightbulb</mat-icon>
           </div>
           <div>
-            <h4 class="mission-card-title">Notre force</h4>
-            <p class="mission-card-body">On ouvre notre carnet d'adresses et on garantit le financement.</p>
+            <h4 class="mission-card-title">Notre conviction</h4>
+            <p class="mission-card-body">
+              Chacun doit pouvoir accéder aux ressources nécessaires pour transformer
+              une idée en activité génératrice d'impact social.
+            </p>
           </div>
         </div>
       </div>
@@ -96,7 +105,7 @@
     </div>
   </section>
 
-  <!-- =========================================================== TONTINE -->
+  <!-- ============================================================ NOTRE RÉPONSE -->
   <section class="tontine" id="tontine">
     <div class="tontine-split">
 
@@ -110,7 +119,7 @@
         />
         <div class="tontine-testimonial">
           <p class="tontine-testimonial-text">
-            « Grâce à la tontine, j'ai lancé ma boutique sans passer par une banque. Pour la première fois, quelqu'un croyait en moi. »
+            « Envol Impact m'a permis de structurer mon projet et de croire en sa faisabilité. »
           </p>
           <div class="tontine-testimonial-author">
             <div class="tontine-testimonial-avatar">Y</div>
@@ -124,15 +133,16 @@
 
       <!-- Contenu -->
       <div class="tontine-content-side">
-        <span class="section-badge section-badge--navy">La Tontine Géante</span>
+        <span class="section-badge section-badge--navy">Notre modèle</span>
 
         <h2 class="tontine-title">
-          Un prêt entre nous,<br>
-          <span class="tontine-title--orange">pas entre vous et une banque.</span>
+          Une solution collective<br>
+          <span class="tontine-title--orange">et solidaire.</span>
         </h2>
 
         <p class="tontine-desc">
-          La tontine, c'est un mécanisme de financement communautaire que nous avons adapté pour le lancement d'entreprise. Des taux bas, du temps, et des gens qui vous connaissent.
+          Trois engagements simples pour transformer l'épargne citoyenne
+          en opportunités entrepreneuriales réelles.
         </p>
 
         <ul class="tontine-features">
@@ -156,51 +166,46 @@
     </div>
   </section>
 
-  <!-- =========================================================== STATUTS -->
-  <section class="statuts" id="statuts">
-    <div class="statuts-text">
-      <h2 class="section-title section-title--dark">
-        Ton Statut.<br>
-        <span class="section-title--orange">Ta Règle.</span>
-      </h2>
-      <p class="statuts-lead">
-        Envol s'adapte à ton profil et à ton ambition. À travers la tontine, plusieurs voies s'offrent à toi pour structurer ta réussite professionnelle.
-      </p>
-
-      <div class="profile-list">
-        <div class="profile-item" *ngFor="let p of profiles">
-          <div class="profile-icon">
-            <mat-icon>{{ p.icon }}</mat-icon>
-          </div>
-          <div class="profile-content">
-            <h4 class="profile-title">{{ p.title }}</h4>
-            <p class="profile-body">{{ p.text }}</p>
-          </div>
-        </div>
+  <!-- ============================================================ AMBITION -->
+  <section class="ambition" id="ambition">
+    <div class="ambition-inner">
+      <div class="ambition-header">
+        <span class="section-badge ambition-badge">Notre objectif</span>
+        <h2 class="ambition-title">
+          Une ambition à la hauteur<br>
+          <span>du défi.</span>
+        </h2>
+        <p class="ambition-subtitle">
+          Des chiffres qui guident nos actions dès aujourd'hui.
+        </p>
       </div>
-    </div>
-
-    <div class="statuts-visual">
-      <img
-        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"
-        alt="Réussite entrepreneuriale"
-        class="statuts-img"
-        loading="lazy"
-      />
-      <div class="statuts-img-overlay"></div>
-
-      <div class="statuts-badge">
-        <div class="statuts-badge-stars">
-          <mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon>
-          <mat-icon>star</mat-icon><mat-icon>star</mat-icon>
+      <div class="ambition-grid">
+        <div class="ambition-stat" *ngFor="let stat of ambitionStats">
+          <span class="ambition-num">{{ stat.num }}</span>
+          <span class="ambition-label">{{ stat.label }}</span>
         </div>
-        <p class="statuts-badge-quote">« Grâce à la Tontine Envol, j'ai pu créer ma boîte sans l'accord d'une banque classique. »</p>
-        <p class="statuts-badge-author">— Yassine, Propriétaire</p>
       </div>
     </div>
   </section>
 
-  <!-- =========================================================== CTA -->
+  <!-- ============================================================ DOMAINES -->
+  <section class="domaines" id="domaines">
+    <div class="domaines-inner">
+      <span class="section-badge">Secteurs soutenus</span>
+      <h2 class="section-title section-title--dark domaines-title">
+        7 secteurs<br>
+        <span class="section-title--orange">en focus</span>
+      </h2>
+      <div class="domaines-grid">
+        <div class="domaine-pill" *ngFor="let d of domaines">
+          <mat-icon>{{ d.icon }}</mat-icon>
+          {{ d.label }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ CTA -->
   <section class="cta-contact" id="contact">
     <div class="cta-bg" aria-hidden="true">
       <img
@@ -215,31 +220,22 @@
 
     <div class="cta-inner">
       <h2 class="cta-title">
-        L'envol<br>
-        <span class="cta-title--orange">commence&nbsp;ici.</span>
+        Une nouvelle<br>
+        <span class="cta-title--orange">façon d'investir.</span>
       </h2>
       <p class="cta-lead">
-        Rejoins le mouvement. Que tu souhaites proposer un projet ou investir dans la tontine solidaire.
+        Votre épargne peut devenir un moteur d'impact social et de création
+        d'emplois dans les territoires qui en ont le plus besoin.
       </p>
 
-      <form class="email-form" (ngSubmit)="submitEmail()" *ngIf="!emailSent">
-        <input
-          type="email"
-          [(ngModel)]="emailValue"
-          name="email"
-          placeholder="Ton adresse email..."
-          required
-          class="email-input"
-          aria-label="Adresse email"
-        />
-        <button type="submit" class="email-submit">
-          Investir / Postuler
-        </button>
-      </form>
-
-      <div class="email-success" *ngIf="emailSent">
-        <mat-icon>check_circle</mat-icon>
-        Ton message est bien passé. On s'appelle vite.
+      <div class="cta-actions-btns">
+        <a routerLink="/register" class="btn btn--green btn--pill btn--lg">
+          Je deviens sociétaire
+          <mat-icon>north_east</mat-icon>
+        </a>
+        <a routerLink="/candidature" class="btn btn--ghost btn--pill btn--lg">
+          Je dépose mon projet
+        </a>
       </div>
     </div>
   </section>

@@ -43,6 +43,12 @@ $white:   #FFFFFF;
     &:hover { background: rgba($white, .10); border-color: $white; }
     mat-icon { font-size: 1rem; width: 1rem; height: 1rem; }
   }
+
+  &--green {
+    background: $green; color: $white;
+    box-shadow: 0 10px 30px rgba($green, .30);
+    &:hover { background: #6EA200; color: $white; transform: scale(1.04); }
+  }
 }
 
 // ── Titres de section ─────────────────────────────────
@@ -540,6 +546,147 @@ $white:   #FFFFFF;
   font-family: 'Poppins', sans-serif; font-weight: 700;
   font-size: .85rem; letter-spacing: .08em; text-transform: uppercase;
   mat-icon { font-size: 20px; width: 20px; height: 20px; }
+}
+
+// ── AMBITION ─────────────────────────────────────────
+.ambition {
+  background: $navy;
+  padding: 100px 48px;
+  text-align: center;
+  @media (max-width: 768px) { padding: 72px 24px; }
+}
+
+.ambition-inner { max-width: 1200px; margin: 0 auto; }
+
+.ambition-header { margin-bottom: 64px; }
+
+.ambition-badge {
+  background: rgba($orange, .20) !important;
+  color: $orange !important;
+}
+
+.ambition-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: $white;
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 16px 0 12px;
+
+  span { color: $orange; }
+}
+
+.ambition-subtitle {
+  color: rgba($white, .55);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.ambition-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 480px) { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+
+.ambition-stat {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 40px 24px;
+  background: rgba($white, .05);
+  border: 1px solid rgba($white, .08);
+  border-radius: 20px;
+  transition: all 220ms ease;
+
+  &:hover {
+    background: rgba($orange, .08);
+    border-color: rgba($orange, .22);
+    transform: translateY(-4px);
+  }
+}
+
+.ambition-num {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  color: $orange;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+
+.ambition-label {
+  font-family: 'Lato', sans-serif;
+  font-size: .88rem;
+  color: rgba($white, .60);
+  text-align: center;
+  line-height: 1.4;
+}
+
+// ── DOMAINES ─────────────────────────────────────────
+.domaines {
+  background: $white;
+  padding: 100px 48px;
+  text-align: center;
+  @media (max-width: 768px) { padding: 72px 24px; }
+}
+
+.domaines-inner { max-width: 900px; margin: 0 auto; }
+
+.domaines-title {
+  font-size: clamp(2.4rem, 6vw, 4.5rem) !important;
+  margin-bottom: 48px !important;
+}
+
+.domaines-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.domaine-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: $light;
+  border: 1.5px solid rgba($navy, .10);
+  border-radius: 100px;
+  padding: 14px 24px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: .82rem;
+  letter-spacing: .04em;
+  color: $navy;
+  transition: all 200ms ease;
+  cursor: default;
+
+  mat-icon {
+    color: $orange;
+    font-size: 20px; width: 20px; height: 20px;
+  }
+
+  &:hover {
+    background: rgba($orange, .07);
+    border-color: rgba($orange, .28);
+    color: $orange;
+    transform: translateY(-2px);
+  }
+}
+
+// ── CTA — actions doubles ─────────────────────────────
+.cta-actions-btns {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: center;
+    .btn { width: 100%; justify-content: center; }
+  }
 }
 
 // ── FOOTER ───────────────────────────────────────────

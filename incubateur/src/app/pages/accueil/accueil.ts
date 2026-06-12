@@ -52,46 +52,36 @@ export class AccueilComponent implements OnInit {
 
   tontineFeatures = [
     {
-      icon: 'percent',
-      title: 'Taux Ultra-Bas',
-      text: 'Un crédit solidaire pour te propulser, pas pour t\'étouffer. La tontine permet de casser les taux bancaires traditionnels.',
-      stat: '< 2%',
-      statLabel: 'taux annuel moyen',
-      highlight: false
+      icon: 'savings',
+      title: 'Épargner ensemble',
+      text: "Des citoyens mettent leur épargne en commun dans un fonds solidaire au service de l'entrepreneuriat local.",
     },
     {
-      icon: 'hourglass_empty',
-      title: 'Durée Longue',
-      text: 'Prends le temps de construire. Les remboursements sont étalés intelligemment pour te laisser respirer et développer ton activité.',
-      stat: '24',
-      statLabel: 'mois de remboursement',
-      highlight: true
+      icon: 'school',
+      title: 'Accompagner les projets',
+      text: "Notre incubateur aide les entrepreneurs à structurer, développer et professionnaliser leurs projets.",
     },
     {
-      icon: 'gps_fixed',
-      title: 'Suivi Trimestriel',
-      text: 'Tous les 3 mois, un point stratégique avec nos experts pour éviter les pièges et ajuster ta trajectoire.',
-      stat: '×4',
-      statLabel: 'bilans stratégiques / an',
-      highlight: false
+      icon: 'rocket_launch',
+      title: 'Financer les lauréats',
+      text: "Les projets sélectionnés reçoivent un financement direct et un accompagnement stratégique sur la durée.",
     }
   ];
 
-  profiles = [
-    {
-      icon: 'workspace_premium',
-      title: 'Propriétaire',
-      text: 'Monte ta propre structure de A à Z. Le prêt de la tontine sert de capital de départ massif.'
-    },
-    {
-      icon: 'work',
-      title: 'Salarié de sa boîte',
-      text: 'Sois incubé et deviens salarié de ta propre entreprise pour un démarrage sécurisé.'
-    },
-    {
-      icon: 'pie_chart',
-      title: 'Actionnaire',
-      text: 'Deviens actionnaire d\'un projet du réseau Envol en apportant ta force sans gérer seul.'
-    }
+  ambitionStats = [
+    { num: '2 500', label: 'sociétaires engagés' },
+    { num: '100+', label: 'projets financés' },
+    { num: '300', label: 'entrepreneurs accompagnés' },
+    { num: '7', label: 'secteurs couverts' },
+  ];
+
+  domaines = [
+    { icon: 'agriculture', label: 'Agriculture & agroalimentaire' },
+    { icon: 'storefront', label: 'Commerce & distribution' },
+    { icon: 'handyman', label: 'Artisanat' },
+    { icon: 'support_agent', label: 'Services à la personne' },
+    { icon: 'computer', label: 'Numérique & innovation' },
+    { icon: 'menu_book', label: 'Éducation & formation' },
+    { icon: 'park', label: 'Économie verte' },
   ];
 }
