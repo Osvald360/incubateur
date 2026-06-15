@@ -166,6 +166,56 @@
     </div>
   </section>
 
+  <!-- ============================================================ COMMENT ÇA MARCHE -->
+  <section class="parcours" id="parcours">
+    <div class="parcours-bg" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        alt=""
+        class="parcours-bg-img"
+        loading="lazy"
+      />
+      <div class="parcours-bg-overlay"></div>
+    </div>
+    <div class="parcours-dots" aria-hidden="true"></div>
+
+    <div class="parcours-inner">
+      <div class="parcours-header">
+        <span class="section-badge">Comment ça marche</span>
+        <h2 class="parcours-title">
+          De l'épargne
+          <span class="parcours-title--orange">à l'impact.</span>
+        </h2>
+        <p class="parcours-subtitle">
+          Un circuit clair et solidaire, du citoyen sociétaire jusqu'à la création
+          d'emplois durables dans les territoires.
+        </p>
+      </div>
+
+      <ol class="parcours-flow">
+        <li class="parcours-step" *ngFor="let step of parcours; let i = index; let last = last">
+          <div class="parcours-node">
+            <div class="parcours-photo">
+              <img [src]="step.img" [alt]="step.title" loading="lazy" />
+              <div class="parcours-photo-overlay"></div>
+              <span class="parcours-step-num">{{ i + 1 }}</span>
+              <div class="parcours-step-icon">
+                <mat-icon>{{ step.icon }}</mat-icon>
+              </div>
+            </div>
+            <div class="parcours-node-body">
+              <strong class="parcours-step-title">{{ step.title }}</strong>
+              <p class="parcours-step-text">{{ step.text }}</p>
+            </div>
+          </div>
+          <span class="parcours-arrow" *ngIf="!last" aria-hidden="true">
+            <mat-icon>arrow_forward</mat-icon>
+          </span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
   <!-- ============================================================ AMBITION -->
   <section class="ambition" id="ambition">
     <div class="ambition-inner">
@@ -200,6 +250,40 @@
         <div class="domaine-pill" *ngFor="let d of domaines">
           <mat-icon>{{ d.icon }}</mat-icon>
           {{ d.label }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ UN MODÈLE UNIQUE -->
+  <section class="unique" id="unique">
+    <div class="unique-bg" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        alt=""
+        class="unique-bg-img"
+        loading="lazy"
+      />
+      <div class="unique-bg-overlay"></div>
+    </div>
+    <div class="unique-dots" aria-hidden="true"></div>
+    <div class="unique-inner">
+      <span class="section-badge unique-badge">Ce qui nous rend unique</span>
+      <h2 class="unique-title">
+        Bien plus qu'un<br>
+        <span class="unique-title--orange">incubateur.</span>
+      </h2>
+      <p class="unique-lead">
+        Envol Impact est un <strong>modèle d'investissement citoyen</strong>, où chaque
+        personne peut transformer son épargne en levier de développement économique local.
+      </p>
+
+      <div class="unique-points">
+        <div class="unique-point" *ngFor="let p of differenciation">
+          <div class="unique-point-icon">
+            <mat-icon>{{ p.icon }}</mat-icon>
+          </div>
+          <span>{{ p.text }}</span>
         </div>
       </div>
     </div>

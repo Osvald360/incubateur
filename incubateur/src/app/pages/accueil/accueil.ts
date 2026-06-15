@@ -84,4 +84,18 @@ export class AccueilComponent implements OnInit {
     { icon: 'menu_book', label: 'Éducation & formation' },
     { icon: 'park', label: 'Économie verte' },
   ];
+
+  parcours = [
+    { icon: 'groups', title: 'Sociétaires', text: 'Des citoyens mettent leur épargne en commun.', img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+    { icon: 'savings', title: "Fonds d'épargne solidaire", text: "Une réserve collective dédiée à l'impact.", img: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+    { icon: 'school', title: 'Incubateur Envol Impact', text: 'Les projets sont structurés et accompagnés.', img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+    { icon: 'diversity_3', title: 'Entrepreneurs accompagnés', text: 'Financement et suivi stratégique sur la durée.', img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+    { icon: 'trending_up', title: 'Emplois & impact social', text: 'Des retombées concrètes sur le territoire.', img: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+  ];
+
+  differenciation = [
+    { icon: 'account_balance', text: "Un fonds d'investissement solidaire, pas une simple plateforme." },
+    { icon: 'school', text: 'Un incubateur qui accompagne les projets sur la durée.' },
+    { icon: 'groups', text: 'Une communauté de sociétaires citoyens et engagés.' },
+  ];
 }
