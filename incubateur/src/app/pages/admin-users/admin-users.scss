@@ -1,89 +1,171 @@
 /* =====================================================
-   ADMIN · UTILISATEURS — back-office DA « Envol ».
-   Outil pro premium : chrome nuit d'encre, surfaces
-   ardoise, tableau dense lisible, rôles/statuts en
-   signaux sobres. Tokens : src/styles.scss (--ei-*).
+   ADMIN · UTILISATEURS — charte « Envol Impact ».
+   Bandeau d'en-tête dégradé deep→navy + trame de points
+   or · cartes blanches premium · tableau dense lisible ·
+   rôles/statuts en pastilles signal. Poppins (titres) · Lato.
+   Cohérent avec admin-candidatures.
    ===================================================== */
+
+$deep:    #002235;
+$navy:    #003B5C;
+$orange:  #F39200;
+$green:   #84BD00;
+$light:   #F8FAFC;
+$white:   #FFFFFF;
+
+$ink:     #1E3A4C;   // texte principal sur clair
+$muted:   #5A6E7C;   // texte secondaire
+$red:     #D64545;   // statut négatif
+
 .admin-users-container {
-  padding: var(--ei-s-24);
+  padding: 0 0 var(--ei-s-48);
   max-width: 1400px;
-  margin: 80px auto 0;
-  min-height: calc(100vh - 80px);
-  background:
-    radial-gradient(110% 60% at 100% 0%, rgba(255, 179, 64, 0.05), transparent 55%),
-    var(--ei-ink);
-  color: var(--ei-on-dark);
-  font-family: var(--ei-font-text);
+  margin: 64px auto 0;
+  min-height: calc(100vh - 64px);
+  background: $light;
+  color: $ink;
+  font-family: 'Lato', sans-serif;
 }
 
-/* En-tête */
+/* ── En-tête : bandeau dégradé deep→navy ───────────── */
 .users-header {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, $deep 0%, $navy 100%);
+  padding: var(--ei-s-48) var(--ei-s-32);
+  margin-bottom: var(--ei-s-32);
+  border-bottom: 3px solid $orange;
+}
+
+.header-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: .08;
+  background-image: radial-gradient($orange 2px, transparent 2px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+.header-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: var(--ei-s-24);
-  margin-bottom: var(--ei-s-24);
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-  .header-title {
-    h1 {
-      display: flex;
-      align-items: center;
-      gap: var(--ei-s-12);
-      margin: 0 0 var(--ei-s-8);
-      font-family: var(--ei-font-display);
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--ei-on-dark);
+.section-badge {
+  display: inline-block;
+  background: rgba($orange, .20);
+  color: $orange;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+}
 
-      mat-icon {
-        font-size: 2rem;
-        width: 2rem;
-        height: 2rem;
-        color: var(--ei-gold-2);
-      }
+.users-header .header-title {
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: var(--ei-s-12);
+    margin: 0 0 var(--ei-s-8);
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+    font-weight: 900;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    line-height: 1.05;
+    color: $white;
+
+    mat-icon {
+      font-size: 2.1rem;
+      width: 2.1rem;
+      height: 2.1rem;
+      color: $orange;
+      flex-shrink: 0;
     }
 
-    p {
-      margin: 0;
-      color: var(--ei-on-dark-dim);
-      font-size: 1.05rem;
-    }
+    .header-title--orange { color: $orange; }
   }
 
-  .header-actions {
-    display: flex;
-    gap: var(--ei-s-12);
+  p {
+    margin: 0;
+    color: rgba($white, .72);
+    font-size: 1.05rem;
   }
 }
 
-/* ---- Cartes Material : surface ardoise ---- */
+.users-header .header-actions {
+  display: flex;
+  gap: var(--ei-s-12);
+}
+
+/* Bouton « Exporter » accent marque sur le bandeau */
+::ng-deep .users-header .header-actions .mat-mdc-raised-button {
+  background: $orange !important;
+  color: $white !important;
+  border-radius: 100px !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 22px rgba($orange, .35) !important;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba($orange, .45) !important;
+  }
+}
+
+/* ── Contenu sous le bandeau : conteneur centré ─────── */
+.stats-overview,
+.filters-card,
+.table-card {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--ei-s-32);
+  padding-right: var(--ei-s-32);
+}
+
+/* ── Cartes Material : surface blanche premium ──────── */
 ::ng-deep .admin-users-container {
   mat-card,
   .mat-mdc-card {
-    background: var(--ei-slate);
-    border: 1px solid rgba(237, 230, 216, 0.1);
-    border-radius: var(--ei-r-8);
-    box-shadow: none;
-    color: var(--ei-on-dark);
+    background: $white;
+    border: 1px solid rgba($navy, .08);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba($deep, .06);
+    color: $ink;
   }
 }
 
-/* Statistiques */
+/* ── Statistiques rapides ───────────────────────────── */
 .stats-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--ei-s-16);
   margin-bottom: var(--ei-s-24);
 
   .stat-card {
-    transition: border-color 200ms var(--ei-ease-soft),
-                transform 200ms var(--ei-ease-launch);
+    transition: border-color 220ms ease, transform 220ms ease,
+                box-shadow 220ms ease;
 
     &:hover {
-      transform: translateY(-3px);
-      border-color: rgba(255, 179, 64, 0.32) !important;
+      transform: translateY(-4px);
+      border-color: rgba($orange, .45) !important;
+      box-shadow: 0 12px 30px rgba($deep, .12) !important;
     }
+
+    ::ng-deep mat-card-content { padding: var(--ei-s-24) !important; }
 
     .stat-content {
       display: flex;
@@ -94,7 +176,7 @@
         font-size: 2.4rem;
         width: 2.4rem;
         height: 2.4rem;
-        color: var(--ei-gold-2);
+        color: $orange;
         flex-shrink: 0;
       }
 
@@ -103,42 +185,45 @@
         flex-direction: column;
 
         .stat-number {
-          font-family: var(--ei-font-display);
-          font-size: 2rem;
-          font-weight: 600;
-          letter-spacing: -0.02em;
-          color: var(--ei-on-dark);
+          font-family: 'Poppins', sans-serif;
+          font-size: 2.1rem;
+          font-weight: 900;
+          letter-spacing: -.02em;
+          color: $orange;
           line-height: 1;
         }
 
         .stat-label {
-          font-size: 0.78rem;
-          letter-spacing: 0.05em;
+          font-size: .76rem;
+          letter-spacing: .06em;
           text-transform: uppercase;
-          color: var(--ei-haze);
+          color: $muted;
           margin-top: 6px;
+          font-weight: 600;
         }
       }
     }
   }
 }
 
-/* Filtres */
+/* ── Filtres ────────────────────────────────────────── */
 .filters-card {
   margin-bottom: var(--ei-s-24);
+
+  ::ng-deep mat-card-content { padding: var(--ei-s-24) !important; }
 
   h3 {
     display: flex;
     align-items: center;
     gap: var(--ei-s-8);
     margin: 0 0 var(--ei-s-16);
-    font-family: var(--ei-font-display);
-    font-weight: 600;
-    color: var(--ei-on-dark);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: $navy;
     font-size: 1.15rem;
-    letter-spacing: -0.01em;
+    letter-spacing: -.01em;
 
-    mat-icon { color: var(--ei-gold-2); }
+    mat-icon { color: $orange; }
   }
 
   .filters-grid {
@@ -156,8 +241,54 @@
   }
 }
 
-/* Tableau */
+/* Champs de formulaire Material (appearance="outline") sur surface claire */
+::ng-deep .admin-users-container {
+  .mat-mdc-form-field {
+    --mat-form-field-container-text-color: #{$ink};
+    --mdc-outlined-text-field-input-text-color: #{$ink};
+    --mdc-outlined-text-field-label-text-color: #{$muted};
+    --mdc-outlined-text-field-caret-color: #{$orange};
+    --mdc-outlined-text-field-outline-color: rgba(0, 59, 92, .2);
+    --mdc-outlined-text-field-hover-outline-color: rgba(0, 59, 92, .34);
+    --mdc-outlined-text-field-focus-outline-color: #{$orange};
+    --mdc-outlined-text-field-focus-label-text-color: #{$orange};
+  }
+
+  .mat-mdc-select-value,
+  .mat-mdc-select-placeholder { color: $ink; }
+  .mat-mdc-select-arrow { color: $muted; }
+  .mat-mdc-form-field-icon-suffix mat-icon { color: $muted; }
+  input::placeholder { color: $muted; }
+
+  /* bouton « Réinitialiser » secondaire navy */
+  .mat-mdc-outlined-button {
+    border-radius: 100px !important;
+    color: $navy !important;
+    --mdc-outlined-button-outline-color: rgba(0, 59, 92, .3);
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* Panneau de sélection (overlay global) → blanc */
+::ng-deep .cdk-overlay-pane .mat-mdc-select-panel {
+  background: $white;
+  border: 1px solid rgba($navy, .12);
+
+  .mat-mdc-option {
+    color: $ink;
+    &:hover:not(.mdc-list-item--disabled) { background: rgba($navy, .05); }
+    &.mdc-list-item--selected {
+      background: rgba($orange, .14);
+      .mdc-list-item__primary-text { color: $orange; }
+    }
+  }
+}
+
+/* ── Tableau ────────────────────────────────────────── */
 .table-card {
+  ::ng-deep mat-card-content { padding: var(--ei-s-16) !important; }
+
   .table-header {
     display: flex;
     justify-content: space-between;
@@ -169,27 +300,27 @@
       align-items: center;
       gap: var(--ei-s-8);
       margin: 0;
-      font-family: var(--ei-font-display);
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: var(--ei-on-dark);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: $navy;
 
-      mat-icon { color: var(--ei-gold-2); }
+      mat-icon { color: $orange; }
     }
   }
 
   .table-container {
     position: relative;
     overflow-x: auto;
-    border-radius: var(--ei-r-8);
-    border: 1px solid rgba(237, 230, 216, 0.08);
+    border-radius: 12px;
+    border: 1px solid rgba($navy, .10);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 179, 64, 0.4) transparent;
+    scrollbar-color: rgba($orange, .5) transparent;
 
     &::-webkit-scrollbar { height: 8px; }
     &::-webkit-scrollbar-thumb {
-      background: rgba(255, 179, 64, 0.4);
+      background: rgba($orange, .5);
       border-radius: 999px;
     }
 
@@ -198,62 +329,72 @@
       background: transparent;
 
       ::ng-deep th.mat-mdc-header-cell {
-        background: rgba(11, 27, 43, 0.85);
-        font-family: var(--ei-font-text);
-        font-weight: 600;
-        font-size: 0.78rem;
-        letter-spacing: 0.05em;
+        background: $navy;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: .74rem;
+        letter-spacing: .06em;
         text-transform: uppercase;
-        color: var(--ei-on-dark-dim);
-        border-bottom: 1px solid rgba(255, 179, 64, 0.28);
+        color: $white;
+        border-bottom: 2px solid $orange;
         padding: var(--ei-s-16) var(--ei-s-12);
+        position: sticky;
+        top: 0;
+        z-index: 2;
       }
 
       ::ng-deep td.mat-mdc-cell {
         padding: var(--ei-s-16) var(--ei-s-12);
-        border-bottom: 1px solid rgba(237, 230, 216, 0.07);
-        color: var(--ei-on-dark);
+        border-bottom: 1px solid rgba($navy, .08);
+        color: $ink;
         vertical-align: middle;
       }
 
-      ::ng-deep .mat-sort-header-arrow { color: var(--ei-gold-2); }
+      ::ng-deep .mat-sort-header-arrow { color: $white; }
 
-      tr:hover { background: rgba(255, 179, 64, 0.06); }
+      tr.mat-mdc-row {
+        transition: background-color 160ms ease;
+        &:nth-child(even) { background: rgba($navy, .02); }
+        &:hover { background: rgba($orange, .08); }
+      }
 
       .email-link {
-        color: #FFB340;
+        color: $orange;
         text-decoration: none;
+        font-weight: 600;
         &:hover { text-decoration: underline; }
       }
 
       ::ng-deep .mat-mdc-chip {
-        font-size: 0.82rem;
-        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        font-size: .74rem;
+        font-weight: 700;
+        letter-spacing: .03em;
       }
 
-      ::ng-deep .mat-mdc-icon-button { color: var(--ei-on-dark-dim); }
+      ::ng-deep .mat-mdc-icon-button { color: $navy; }
     }
   }
 
   .no-data {
     text-align: center;
-    padding: var(--ei-s-48) var(--ei-s-24);
-    color: var(--ei-on-dark-dim);
+    padding: var(--ei-s-64) var(--ei-s-24);
+    color: $muted;
 
     mat-icon {
       font-size: 4rem;
       width: 4rem;
       height: 4rem;
       margin-bottom: var(--ei-s-16);
-      color: rgba(237, 230, 216, 0.22);
+      color: rgba($navy, .22);
     }
 
     h3 {
       margin: 0 0 var(--ei-s-8);
-      font-family: var(--ei-font-display);
-      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
       font-size: 1.4rem;
-      color: var(--ei-on-dark);
+      color: $navy;
     }
 
     p { margin: 0; font-size: 1rem; }
@@ -262,73 +403,42 @@
 
 /* Pagination */
 .table-card ::ng-deep .mat-mdc-paginator {
-  border-top: 1px solid rgba(237, 230, 216, 0.08);
+  border-top: 1px solid rgba($navy, .08);
   background: transparent;
-  color: var(--ei-on-dark-dim);
-  border-radius: 0 0 var(--ei-r-8) var(--ei-r-8);
-}
-
-/* ---- Champs de formulaire Material (appearance="outline")
-   sur surface sombre : réaccordés au chrome ardoise. ---- */
-::ng-deep .admin-users-container {
-  .mat-mdc-form-field {
-    --mat-form-field-container-text-color: var(--ei-on-dark);
-    --mdc-outlined-text-field-input-text-color: var(--ei-on-dark);
-    --mdc-outlined-text-field-label-text-color: var(--ei-haze);
-    --mdc-outlined-text-field-caret-color: var(--ei-gold-2);
-    --mdc-outlined-text-field-outline-color: rgba(237, 230, 216, 0.2);
-    --mdc-outlined-text-field-hover-outline-color: rgba(237, 230, 216, 0.34);
-    --mdc-outlined-text-field-focus-outline-color: var(--ei-gold-2);
-    --mdc-outlined-text-field-focus-label-text-color: var(--ei-gold-2);
-  }
-
-  .mat-mdc-select-value,
-  .mat-mdc-select-placeholder { color: var(--ei-on-dark); }
-  .mat-mdc-select-arrow { color: var(--ei-haze); }
-  .mat-mdc-form-field-icon-suffix mat-icon { color: var(--ei-haze); }
-  input::placeholder { color: var(--ei-haze); }
-}
-
-/* Panneau de sélection (overlay global) → ardoise */
-::ng-deep .cdk-overlay-pane .mat-mdc-select-panel {
-  background: var(--ei-slate);
-  border: 1px solid rgba(237, 230, 216, 0.14);
-
-  .mat-mdc-option {
-    color: var(--ei-on-dark);
-    &:hover:not(.mdc-list-item--disabled) { background: rgba(237, 230, 216, 0.06); }
-    &.mdc-list-item--selected {
-      background: rgba(255, 179, 64, 0.14);
-      .mdc-list-item__primary-text { color: var(--ei-gold-2); }
-    }
-  }
+  color: $muted;
 }
 
 /* Menu d'actions ligne (overlay global) */
 ::ng-deep .mat-mdc-menu-panel .danger-item {
-  color: #E0928D !important;
-  mat-icon { color: #C9514B !important; }
+  color: $red !important;
+  mat-icon { color: $red !important; }
 }
 
-/* ---- Chips de rôle / statut : signaux sobres ----
+/* ── Chips rôle / statut : pastilles signal Envol ──────
    role/statut posés via [color] Material (primary/accent/warn).
-   On réaccorde sur la palette Envol, AA sur ardoise. */
+   Réaccordés sur la palette Envol, lisibles sur surface claire. */
 ::ng-deep .admin-users-container .mat-mdc-chip,
-::ng-deep .mat-mdc-chip.mat-primary {
-  background: rgba(30, 91, 255, 0.16) !important;
-  color: #FFB340 !important;
-  border-radius: var(--ei-r-4) !important;
+::ng-deep .admin-users-container .mat-mdc-chip.mat-primary {
+  background: rgba($green, .18) !important;
+  color: #4F7000 !important;
+  border-radius: 100px !important;
+
+  mat-icon { color: #4F7000 !important; }
 }
-::ng-deep .mat-mdc-chip.mat-accent {
-  background: rgba(255, 179, 64, 0.18) !important;
-  color: var(--ei-gold-2) !important;
+::ng-deep .admin-users-container .mat-mdc-chip.mat-accent {
+  background: rgba($orange, .16) !important;
+  color: #B36900 !important;
+
+  mat-icon { color: #B36900 !important; }
 }
-::ng-deep .mat-mdc-chip.mat-warn {
-  background: rgba(201, 81, 75, 0.18) !important;
-  color: #E0928D !important;
+::ng-deep .admin-users-container .mat-mdc-chip.mat-warn {
+  background: rgba($red, .15) !important;
+  color: #B02B2B !important;
+
+  mat-icon { color: #B02B2B !important; }
 }
 
-/* Responsive */
+/* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 1200px) {
   .filters-grid {
     grid-template-columns: 1fr 1fr;
@@ -345,34 +455,42 @@
   }
 }
 
-/* Indice de defilement horizontal — mobile uniquement. */
+/* Indice de défilement horizontal — mobile uniquement. */
 .scroll-hint {
   display: none;
   align-items: center;
   gap: 6px;
   margin: 0 0 var(--ei-s-8);
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
-  color: var(--ei-haze);
+  font-size: .78rem;
+  letter-spacing: .02em;
+  color: $muted;
 
   mat-icon {
     font-size: 18px;
     width: 18px;
     height: 18px;
-    color: var(--ei-gold-2);
+    color: $orange;
   }
 }
 
 @media (max-width: 768px) {
-  .admin-users-container { padding: var(--ei-s-16); }
-
   .users-header {
+    padding: var(--ei-s-32) var(--ei-s-16);
+  }
+  .header-inner {
     flex-direction: column;
     gap: var(--ei-s-16);
     align-items: stretch;
+  }
+  .users-header .header-title h1 { font-size: 1.6rem; }
+  .users-header .header-actions { justify-content: center; }
+  .users-header .header-actions button { width: 100%; justify-content: center; }
 
-    .header-actions { justify-content: center; }
-    .header-actions button { width: 100%; justify-content: center; }
+  .stats-overview,
+  .filters-card,
+  .table-card {
+    padding-left: var(--ei-s-16);
+    padding-right: var(--ei-s-16);
   }
 
   .stats-overview { grid-template-columns: 1fr; }
@@ -392,14 +510,14 @@
   }
 
   .table-container {
-    font-size: 0.9rem;
+    font-size: .9rem;
     th, td { padding: var(--ei-s-12) var(--ei-s-8); }
   }
 }
 
 @media (max-width: 480px) {
-  /* colonnes secondaires masquees : email et date moins critiques
-     que nom / role / statut / actions sur tres petit ecran. */
+  /* colonnes secondaires masquées : email et date moins critiques
+     que nom / role / statut / actions sur très petit écran. */
   .users-table {
     .mat-column-email,
     .mat-column-dateCreation,
@@ -411,17 +529,24 @@
 }
 
 @media (max-width: 390px) {
-  .admin-users-container { padding: var(--ei-s-12); }
+  .users-header { padding: var(--ei-s-24) var(--ei-s-12); }
   .users-header .header-title h1 { font-size: 1.4rem; }
+  .stats-overview,
+  .filters-card,
+  .table-card {
+    padding-left: var(--ei-s-12);
+    padding-right: var(--ei-s-12);
+  }
   .table-card .table-header h3 { font-size: 1rem; }
+  .table-card .users-table { min-width: 380px; }
 }
 
-/* Apparition douce des cartes (réservé, désactivé si
-   l'utilisateur réduit les animations) */
+/* Apparition douce des cartes (désactivée si l'utilisateur
+   réduit les animations) */
 .stat-card,
 .filters-card,
 .table-card {
-  animation: fadeInUp 0.5s var(--ei-ease-launch) both;
+  animation: fadeInUp 0.5s var(--ei-ease-launch, ease) both;
 }
 
 @keyframes fadeInUp {
@@ -434,5 +559,3 @@
   .filters-card,
   .table-card { animation: none; }
 }
-
-

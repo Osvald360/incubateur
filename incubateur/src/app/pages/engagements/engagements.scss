@@ -132,8 +132,16 @@ $muted:  #6B7A8A;
   to   { transform: scale(1.12); }
 }
 
+/* Trame de points orange (signature accueil) */
+.hero-dots {
+  position: absolute; inset: 0; z-index: 1; opacity: .07;
+  background-image: radial-gradient($orange 2px, transparent 2px);
+  background-size: 30px 30px;
+  pointer-events: none;
+}
+
 .hero-content {
-  position: relative; z-index: 1;
+  position: relative; z-index: 2;
   max-width: 1280px; margin: 0 auto;
   padding: 140px 48px 120px; width: 100%;
 
@@ -149,8 +157,12 @@ $muted:  #6B7A8A;
   color: $white;
   margin: 0 0 28px;
   text-transform: uppercase;
+  text-shadow: 0 20px 60px rgba($deep, .45);
 
-  &--orange { color: $orange; }
+  &--orange {
+    color: $orange;
+    text-shadow: 0 0 50px rgba($orange, .4);
+  }
 }
 
 .hero-lead {
@@ -250,15 +262,29 @@ $muted:  #6B7A8A;
    PILLAR SECTIONS — layout contenu + photo arrondie
    ============================================================ */
 .pillar {
+  position: relative;
   padding: 100px 48px;
+  overflow: hidden;
 
   &--white { background: $white; }
-  &--gray  { background: $light; }
+  &--gray  {
+    background: $light;
+    &::before {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: .5;
+      background-image: radial-gradient(rgba($navy, .06) 1.5px, transparent 1.5px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+  }
 
   @media (max-width: 768px) { padding: 72px 24px; }
 }
 
 .pillar-container {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -310,7 +336,8 @@ $muted:  #6B7A8A;
   position: relative;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba($deep, .14);
+  box-shadow: 0 30px 70px rgba($deep, .18);
+  transition: transform 500ms ease, box-shadow 500ms ease;
 
   img {
     width: 100%;
@@ -318,7 +345,7 @@ $muted:  #6B7A8A;
     object-fit: cover;
     object-position: center;
     display: block;
-    transition: transform 600ms ease;
+    transition: transform 700ms ease;
 
     @media (max-width: 960px) { height: 380px; }
     @media (max-width: 640px) { height: 280px; }
@@ -327,11 +354,38 @@ $muted:  #6B7A8A;
   &::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba($deep, .12) 0%, transparent 40%);
+    background: linear-gradient(to top, rgba($deep, .35) 0%, transparent 45%);
     pointer-events: none;
   }
 
-  &:hover img { transform: scale(1.05); }
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 40px 90px rgba($deep, .28);
+  }
+  &:hover img { transform: scale(1.06); }
+}
+
+/* Pastille numérotée premium en bas du cadre photo */
+.pillar-photo-badge {
+  position: absolute;
+  left: 18px; bottom: 18px;
+  z-index: 2;
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  background: $orange;
+  color: $white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: -.02em;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 30px rgba($orange, .45);
+  border: 3px solid rgba($white, .85);
+
+  &--green {
+    background: $green;
+    box-shadow: 0 12px 30px rgba($green, .45);
+  }
 }
 
 /* ── Text content ── */
@@ -388,16 +442,18 @@ $muted:  #6B7A8A;
   margin: 0 0 20px;
 }
 
-/* Blockquote */
+/* Blockquote — accent or, plus de présence */
 .pillar-quote {
-  font-family: 'Lato', sans-serif;
-  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   font-style: italic;
-  color: #5A6A78;
-  border-left: 4px solid $green;
-  padding: 2px 0 2px 18px;
+  color: $navy;
+  border-left: 4px solid $orange;
+  padding: 4px 0 4px 20px;
   margin: 0 0 24px;
-  line-height: 1.6;
+  line-height: 1.45;
+  letter-spacing: -.01em;
 
   &--green { border-left-color: $green; }
 }
@@ -440,33 +496,65 @@ $muted:  #6B7A8A;
   margin: 0 0 28px;
 }
 
-/* Checklist */
+/* Checklist — lignes-cartes premium */
 .pillar-checklist {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 
   li {
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    align-items: center;
+    gap: 14px;
     font-family: 'Lato', sans-serif;
     font-size: 1rem;
     line-height: 1.5;
     color: $text;
+    padding: 14px 18px;
+    background: $white;
+    border: 1px solid rgba($navy, .08);
+    border-left: 3px solid rgba($orange, .55);
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba($deep, .04);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 
-    mat-icon {
-      color: $orange;
-      font-size: 20px; width: 20px; height: 20px;
-      flex-shrink: 0;
-      margin-top: 2px;
+    &:hover {
+      transform: translateX(6px);
+      border-left-color: $orange;
+      box-shadow: 0 10px 28px rgba($deep, .09);
     }
   }
 
-  &--green li mat-icon { color: $green; }
+  .check-dot {
+    flex-shrink: 0;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: rgba($orange, .12);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 220ms ease;
+  }
+
+  li:hover .check-dot { background: rgba($orange, .22); }
+
+  li mat-icon {
+    color: $orange;
+    font-size: 18px; width: 18px; height: 18px;
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  &--green {
+    li {
+      border-left-color: rgba($green, .55);
+      &:hover { border-left-color: $green; }
+    }
+    .check-dot { background: rgba($green, .12); }
+    li:hover .check-dot { background: rgba($green, .22); }
+    li mat-icon { color: $green; }
+  }
 }
 
 /* ============================================================
@@ -502,9 +590,16 @@ $muted:  #6B7A8A;
   );
 }
 
+.cta-dots {
+  position: absolute; inset: 0; z-index: 1; opacity: .07;
+  background-image: radial-gradient($orange 2px, transparent 2px);
+  background-size: 30px 30px;
+  pointer-events: none;
+}
+
 .cta-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 760px;
   margin: 0 auto;
 }

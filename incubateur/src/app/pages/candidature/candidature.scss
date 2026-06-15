@@ -11,6 +11,14 @@
    (succès / alerte / erreur) conservés et calés sur la DA.
    ===================================================== */
 
+/* Charte « Envol Impact » — alignée sur accueil.scss */
+$deep:    #002235;
+$navy:    #003B5C;
+$orange:  #F39200;
+$green:   #84BD00;
+$light:   #F8FAFC;
+$white:   #FFFFFF;
+
 :host {
   display: block;
   background: var(--ei-ink);
@@ -23,7 +31,8 @@
   min-height: 100vh;
   overflow-x: clip;
   background:
-    radial-gradient(120% 60% at 86% 0%, rgba(254, 135, 1, 0.10), transparent 55%),
+    radial-gradient(120% 60% at 86% 0%, rgba($orange, 0.12), transparent 55%),
+    radial-gradient(90% 50% at 8% 100%, rgba($navy, 0.55), transparent 60%),
     var(--ei-ink);
 }
 
@@ -36,6 +45,97 @@
   opacity: 0.4;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+/* =====================================================
+   HERO · cinématique (photo + overlay + trame de points)
+   Aligné sur le « gold standard » accueil / partenaires.
+   ===================================================== */
+.cand-hero {
+  position: relative;
+  min-height: 64vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.cand-hero-bg { position: absolute; inset: 0; z-index: 0; }
+
+.cand-hero-bg-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transform: scale(1.05);
+  animation: cand-zoom 14s ease-in-out alternate infinite;
+}
+
+@keyframes cand-zoom {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1.12); }
+}
+
+.cand-hero-overlay {
+  position: absolute; inset: 0;
+  &--left   { background: linear-gradient(to right, rgba($navy, .95) 0%, rgba($navy, .80) 50%, rgba($deep, .60) 100%); }
+  &--bottom { background: linear-gradient(to top, $deep 0%, transparent 45%); }
+}
+
+.cand-hero-dots {
+  position: absolute; inset: 0; z-index: 1; opacity: .07;
+  background-image: radial-gradient($orange 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.cand-hero-content {
+  position: relative; z-index: 2;
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 150px clamp(24px, 6vw, 80px) 84px;
+
+  .section-badge { margin-bottom: 24px; }
+}
+
+.cand-hero-title {
+  font-family: 'Poppins', var(--ei-font-display), sans-serif;
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1;
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  text-transform: uppercase;
+  color: $white;
+  margin: 0 0 28px;
+
+  &--orange { color: $orange; }
+}
+
+.cand-hero-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  color: rgba($white, .85);
+  max-width: 600px;
+  border-left: 4px solid $orange;
+  padding-left: 24px;
+  line-height: 1.6;
+  margin: 0;
+  strong { color: $white; }
+}
+
+/* Badge de marque (pill) — repris d'accueil/partenaires */
+.section-badge {
+  display: inline-block;
+  background: rgba($orange, .20);
+  color: $orange;
+  font-family: 'Poppins', var(--ei-font-display), sans-serif;
+  font-weight: 700;
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 100px;
+}
+
+@media (max-width: 760px) {
+  .cand-hero { min-height: 56vh; }
+  .cand-hero-content { padding: 120px 24px 56px; }
 }
 
 /* ---- Section formulaire ---- */
@@ -89,8 +189,9 @@
 /* ---- Surface du formulaire : glassmorphism ---- */
 .candidature-form-wrapper {
   .modern-stepper {
-    /* Suppression du background craie, on utilisera ei-glass-card */
+    /* Surface verre sombre (ei-glass-card global) + arrondi marqué */
     padding: clamp(24px, 4vw, 48px);
+    border-radius: 22px !important;
 
     @media (max-width: 768px) {
       padding: 20px;
@@ -107,12 +208,14 @@
     &.mat-step-selected .mat-step-header {
       .mat-step-icon {
         background: var(--ei-gold-grad) !important;
-        color: #2a1a04 !important;
-        box-shadow: 0 6px 18px rgba(254, 135, 1, 0.32) !important;
+        color: #ffffff !important;
+        border-color: rgba(255, 255, 255, 0.55) !important;
+        box-shadow: 0 8px 22px rgba(243, 146, 0, 0.45) !important;
+        transform: scale(1.06) !important;
       }
       .mat-step-label {
         color: #fff !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
       }
     }
 
@@ -120,24 +223,32 @@
     .mat-step-header .mat-step-icon-state-done,
     .mat-step-header .mat-step-icon-selected {
       background: var(--ei-gold-grad);
-      color: #2a1a04 !important;
+      color: #ffffff !important;
+      border-color: rgba(255, 255, 255, 0.4) !important;
     }
 
     .mat-step-header {
       padding: 22px 0;
+      border-radius: 14px;
+      transition: background 220ms var(--ei-ease-soft);
+
+      &:hover { background: rgba(243, 146, 0, 0.06); }
 
       .mat-step-icon {
-        width: 42px;
-        height: 42px;
-        border-radius: var(--ei-r-8);
-        background: rgba(255, 255, 255, 0.1);
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
         color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: var(--ei-font-display);
-        font-weight: 600;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-family: 'Poppins', var(--ei-font-display), sans-serif;
+        font-weight: 900;
+        font-size: 1.02rem;
+        border: 2px solid rgba(255, 255, 255, 0.22);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+        transition: transform 220ms var(--ei-ease-launch), box-shadow 220ms var(--ei-ease-launch);
       }
       .mat-step-label {
         margin-left: 16px;
@@ -168,16 +279,17 @@
   animation: fadeInUp 0.5s var(--ei-ease-launch);
 
   h3 {
-    font-family: var(--ei-font-display);
-    color: var(--ei-on-light);
-    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
-    font-weight: 600;
+    font-family: 'Poppins', var(--ei-font-display), sans-serif;
+    color: $white;
+    font-size: clamp(1.45rem, 2.6vw, 2rem);
+    font-weight: 700;
     letter-spacing: -0.02em;
+    text-transform: uppercase;
     margin: 0 0 12px;
   }
 
   .step-description {
-    color: #4a5b69;
+    color: rgba($white, 0.72);
     font-size: 1rem;
     line-height: 1.6;
     margin: 0 0 32px;
@@ -195,7 +307,7 @@
 
   mat-icon {
     font-size: 20px;
-    color: #9a6a16;
+    color: $orange;
     flex: 0 0 auto;
   }
 }
@@ -252,14 +364,14 @@
 
   .prev-button {
     background: transparent !important;
-    color: #4a5b69 !important;
-    border: 1.5px solid rgba(26, 42, 56, 0.2) !important;
+    color: rgba(255, 255, 255, 0.78) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
     box-shadow: none !important;
 
     &:hover {
-      border-color: var(--ei-elan) !important;
-      color: var(--ei-elan) !important;
-      background: rgba(30, 91, 255, 0.06) !important;
+      border-color: $orange !important;
+      color: $orange !important;
+      background: rgba(243, 146, 0, 0.10) !important;
     }
   }
 }
@@ -380,6 +492,21 @@
   gap: 32px;
   margin-top: 40px;
 
+  .prev-button {
+    background: transparent !important;
+    color: rgba(255, 255, 255, 0.78) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
+    box-shadow: none !important;
+    border-radius: var(--ei-r-8) !important;
+    transition: border-color 160ms var(--ei-ease-soft), color 160ms var(--ei-ease-soft), background 160ms var(--ei-ease-soft) !important;
+
+    &:hover {
+      border-color: $orange !important;
+      color: $orange !important;
+      background: rgba(243, 146, 0, 0.10) !important;
+    }
+  }
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: stretch;
@@ -395,14 +522,14 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    background: rgba(30, 91, 255, 0.08);
-    border: 1px solid rgba(30, 91, 255, 0.16);
+    background: rgba($orange, 0.10);
+    border: 1px solid rgba($orange, 0.24);
     padding: 16px;
     border-radius: var(--ei-r-8);
     margin-bottom: 24px;
 
-    mat-icon { color: var(--ei-elan); font-size: 20px; }
-    p { color: var(--ei-on-light); margin: 0; font-size: 0.9rem; line-height: 1.45; text-align: left; }
+    mat-icon { color: $orange; font-size: 20px; }
+    p { color: rgba($white, 0.82); margin: 0; font-size: 0.9rem; line-height: 1.45; text-align: left; }
   }
 
   .submit-button {
@@ -527,6 +654,23 @@
    alerte → or, erreur → rouge. Surfaces teintées légères
    adaptées à la craie.
    ===================================================== */
+/* Les champs « motivation » et « objectifs » reçoivent un fond clair
+   selon l'état sémantique : on force un texte saisi sombre pour rester
+   lisible (AA) sur ces surfaces, malgré la carte verre sombre. */
+.field-default,
+.field-warning,
+.field-success,
+.field-error {
+  ::ng-deep textarea.mat-mdc-input-element,
+  ::ng-deep input.mat-mdc-input-element {
+    color: #1a2a38 !important;
+    caret-color: $orange !important;
+  }
+  ::ng-deep textarea.mat-mdc-input-element::placeholder {
+    color: #6a7b89 !important;
+  }
+}
+
 .field-default {
   .mat-mdc-form-field-outline { color: rgba(26, 42, 56, 0.22) !important; }
   .mat-mdc-text-field-wrapper { background-color: #fffdf7; transition: var(--transition); }

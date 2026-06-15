@@ -56,10 +56,64 @@
 .fin-head {
   position: relative;
   overflow: hidden;
-  padding: clamp(72px, 10vh, 128px) clamp(24px, 6vw, 96px) clamp(40px, 6vh, 72px);
+  padding: clamp(96px, 13vh, 168px) clamp(24px, 6vw, 96px) clamp(48px, 7vh, 88px);
   background:
     radial-gradient(120% 90% at 90% 6%, rgba(255, 179, 64, 0.10), transparent 55%),
     var(--ei-ink);
+}
+
+/* Photo cinématique de fond + zoom lent */
+.fin-head-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.fin-head-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.05);
+  animation: fin-head-zoom 18s ease-in-out alternate infinite;
+}
+
+@keyframes fin-head-zoom {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1.12); }
+}
+
+.fin-head-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(0, 34, 53, 0.93) 0%, rgba(0, 45, 69, 0.86) 52%, rgba(0, 34, 53, 0.96) 100%);
+}
+
+/* Trame de points orange (signature accueil) */
+.fin-head-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.06;
+  background-image: radial-gradient(var(--ei-gold-1) 2px, transparent 2px);
+  background-size: 30px 30px;
+  pointer-events: none;
+}
+
+/* Badge éditorial sous le bouton retour */
+.fin-head-badge {
+  display: inline-block;
+  margin-bottom: clamp(16px, 2vh, 22px);
+  padding: 6px 18px;
+  border-radius: 100px;
+  background: rgba(254, 135, 1, 0.16);
+  color: var(--ei-gold-2);
+  font-family: var(--ei-font-display);
+  font-weight: 600;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .fin-head-halo {
@@ -113,9 +167,10 @@
   margin: 0;
   font-family: var(--ei-font-display);
   font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1;
-  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  font-size: clamp(2.4rem, 6.4vw, 5rem);
+  text-transform: uppercase;
   color: var(--ei-on-dark);
   max-width: 18ch;
 
@@ -155,15 +210,44 @@
 }
 
 .fin-figure {
-  padding: clamp(20px, 2.4vw, 30px) 0;
-  border-top: 1px solid rgba(237, 230, 216, 0.12);
+  position: relative;
+  padding: clamp(24px, 2.8vw, 34px);
+  background: var(--ei-slate);
+  border: 1px solid rgba(237, 230, 216, 0.10);
+  border-radius: var(--ei-r-16);
+  overflow: hidden;
+  transition: transform 240ms var(--ei-ease-launch),
+              border-color 240ms var(--ei-ease-soft),
+              box-shadow 240ms var(--ei-ease-launch);
+
+  /* filet orange en tête de carte */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--ei-gold-grad);
+    opacity: 0.85;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 179, 64, 0.35);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
+  }
 
   .fin-figure-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(254, 135, 1, 0.14);
     font-size: 1.5rem;
-    width: 1.5rem;
-    height: 1.5rem;
     color: var(--ei-gold-2);
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
   .fin-figure-num {
     display: block;
@@ -637,9 +721,16 @@
   position: relative;
   padding: clamp(26px, 3vw, 38px);
   background: var(--ei-slate);
-  transition: background 200ms var(--ei-ease-soft);
+  transition: background 220ms var(--ei-ease-soft),
+              transform 220ms var(--ei-ease-launch),
+              box-shadow 220ms var(--ei-ease-launch);
 
-  &:hover { background: #16314a; }
+  &:hover {
+    background: #16314a;
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30);
+    z-index: 1;
+  }
 
   .opportunity-num {
     position: absolute;

@@ -21,15 +21,29 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
 
   private routerSubscription: Subscription;
   private revealObserver?: IntersectionObserver;
+  private countObserver?: IntersectionObserver;
   private domObserver?: MutationObserver;
   private revealFrame?: number;
   private revealTimer?: number;
   private reducedMotion = false;
+  private parallaxEls: HTMLElement[] = [];
 
   private onScroll = () => {
     const d = document.documentElement;
     const progress = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
     this.scrollProgress = isNaN(progress) ? 0 : progress;
+
+    // Parallaxe douce des couches de fond (calques marqués [data-parallax])
+    if (!this.reducedMotion && this.parallaxEls.length) {
+      const vh = window.innerHeight;
+      for (const el of this.parallaxEls) {
+        const rect = el.getBoundingClientRect();
+        const speed = parseFloat(el.dataset['parallax'] || '0.15');
+        const offset = ((rect.top + rect.height / 2) - vh / 2) * -speed;
+        el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(1.14)`;
+      }
+    }
+
     this.cdr.detectChanges();
   };
 
@@ -46,6 +60,7 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     if (typeof window === 'undefined') return;
+    this.reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
     this.scheduleRevealRefresh();
     window.addEventListener('scroll', this.onScroll, { passive: true });
 
@@ -74,6 +89,7 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy() {
     this.routerSubscription.unsubscribe();
     this.revealObserver?.disconnect();
+    this.countObserver?.disconnect();
     this.domObserver?.disconnect();
 
     if (typeof window !== 'undefined') {
@@ -142,8 +158,69 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
       }
     });
 
+    // Calques de parallaxe
+    this.parallaxEls = Array.from(root.querySelectorAll<HTMLElement>('[data-parallax]'));
+
+    // Compteurs animés (count-up) — éléments [data-count]
+    const countNodes = Array.from(root.querySelectorAll<HTMLElement>('[data-count]'));
+    if (countNodes.length) {
+      if (canObserve) {
+        if (!this.countObserver) {
+          this.countObserver = new IntersectionObserver(
+            entries => {
+              entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                this.animateCount(entry.target as HTMLElement);
+                this.countObserver?.unobserve(entry.target);
+              });
+            },
+            { threshold: 0.4 }
+          );
+        }
+        countNodes.forEach(el => {
+          if (!el.classList.contains('count-ready')) {
+            el.classList.add('count-ready');
+            this.countObserver?.observe(el);
+          }
+        });
+      } else {
+        countNodes.forEach(el => (el.textContent = this.formatCount(el)));
+      }
+    }
+
     this.setupMagneticButtons(root);
     this.setupGlassCards(root);
+  }
+
+  private formatCount(el: HTMLElement, value?: number): string {
+    const target = parseFloat(el.dataset['count'] || '0');
+    const decimals = parseInt(el.dataset['countDecimals'] || '0', 10);
+    const suffix = el.dataset['countSuffix'] || '';
+    const prefix = el.dataset['countPrefix'] || '';
+    const v = value ?? target;
+    const num = v.toLocaleString('fr-FR', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    });
+    return `${prefix}${num}${suffix}`;
+  }
+
+  private animateCount(el: HTMLElement): void {
+    const target = parseFloat(el.dataset['count'] || '0');
+    const duration = parseInt(el.dataset['countDuration'] || '1600', 10);
+    if (this.reducedMotion) {
+      el.textContent = this.formatCount(el);
+      return;
+    }
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+      el.textContent = this.formatCount(el, target * eased);
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = this.formatCount(el);
+    };
+    requestAnimationFrame(tick);
   }
 
   private setupMagneticButtons(root: HTMLElement): void {
