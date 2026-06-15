@@ -9,8 +9,10 @@
         aria-hidden="true"
         class="hero-bg-img"
       />
-      <div class="hero-overlay"></div>
+      <div class="hero-overlay hero-overlay--left"></div>
+      <div class="hero-overlay hero-overlay--bottom"></div>
     </div>
+    <div class="hero-dots" aria-hidden="true"></div>
 
     <div class="hero-content" data-reveal>
       <span class="section-badge section-badge--orange">Association F.A.T.E.</span>
@@ -47,6 +49,7 @@
           Envol Impact est né de la rencontre entre des entrepreneurs aguerris et une jeunesse créatrice trop souvent freinée. Nous réunissons accompagnement humain, formation concrète et financement solidaire dans un même parcours, pour que la viabilité d'un projet ne dépende plus de l'origine de celui qui le porte.
         </p>
         <blockquote class="manifeste-quote">
+          <mat-icon aria-hidden="true">format_quote</mat-icon>
           « Ici, on prend de la hauteur — ensemble. »
         </blockquote>
       </div>
@@ -95,6 +98,7 @@
         >
           <div class="team-card-avatar">
             <img [src]="member.photo" [alt]="member.name" class="team-photo" loading="lazy" />
+            <div class="team-card-avatar-overlay" aria-hidden="true"></div>
           </div>
           <div class="team-card-body">
             <h3 class="team-card-name">{{ member.name }}</h3>
@@ -109,6 +113,16 @@
 
   <!-- ============================================================ PARTENAIRES -->
   <section class="partenaires" id="partenaires">
+    <div class="partenaires-bg" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        alt=""
+        class="partenaires-bg-img"
+        loading="lazy"
+      />
+      <div class="partenaires-bg-overlay"></div>
+    </div>
+    <div class="partenaires-dots" aria-hidden="true"></div>
     <div class="partenaires-bg-shape" aria-hidden="true"></div>
     <div class="partenaires-inner">
 
@@ -144,6 +158,17 @@
 
   <!-- ============================================================ CTA -->
   <section class="cta-bottom">
+    <div class="cta-bg" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        alt=""
+        class="cta-bg-img"
+        loading="lazy"
+      />
+      <div class="cta-bg-overlay"></div>
+    </div>
+    <div class="cta-dots" aria-hidden="true"></div>
+
     <div class="cta-bottom-inner" data-reveal>
       <h2 class="cta-bottom-title">
         Devenez acteur<br>

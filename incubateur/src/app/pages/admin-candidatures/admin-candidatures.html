@@ -1,25 +1,29 @@
 <div class="admin-candidatures-container page-content-dashboard">
   <!-- En-tête avec statistiques -->
   <div class="candidatures-header">
-    <div class="header-title">
-      <h1>
-        <mat-icon>assignment_turned_in</mat-icon>
-        Gestion des Candidatures
-      </h1>
-      <p>Gérez et évaluez les candidatures d'entrepreneurs</p>
-    </div>
+    <div class="header-dots" aria-hidden="true"></div>
+    <div class="header-inner">
+      <div class="header-title">
+        <span class="section-badge">Back-office · Évaluation</span>
+        <h1>
+          <mat-icon>assignment_turned_in</mat-icon>
+          Gestion des <span class="header-title--orange">Candidatures</span>
+        </h1>
+        <p>Gérez et évaluez les candidatures d'entrepreneurs</p>
+      </div>
 
-    <div class="header-actions">
-      <!-- 
-      <button mat-raised-button color="accent" (click)="forceReload()" matTooltip="Recharger les données">
-        <mat-icon>refresh</mat-icon>
-        Recharger
-      </button>
-      -->
-      <button mat-raised-button color="primary" (click)="exporterCandidatures()">
-        <mat-icon>download</mat-icon>
-        Exporter
-      </button>
+      <div class="header-actions">
+        <!--
+        <button mat-raised-button color="accent" (click)="forceReload()" matTooltip="Recharger les données">
+          <mat-icon>refresh</mat-icon>
+          Recharger
+        </button>
+        -->
+        <button mat-raised-button color="primary" (click)="exporterCandidatures()">
+          <mat-icon>download</mat-icon>
+          Exporter
+        </button>
+      </div>
     </div>
   </div>
 

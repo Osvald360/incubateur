@@ -212,6 +212,41 @@ $white:   #FFFFFF;
 
 .mission-card-body { color: #6A8090; margin: 0; font-size: .95rem; }
 
+.mission-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 28px;
+  @media (max-width: 560px) { grid-template-columns: 1fr; }
+}
+
+.mission-pillar {
+  background: $light;
+  border: 1px solid rgba($navy, .08);
+  border-radius: 16px;
+  padding: 22px 24px;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba($orange, .30);
+    box-shadow: 0 12px 28px rgba($deep, .08);
+  }
+
+  p { color: #5A7180; font-size: .92rem; line-height: 1.6; margin: 0; }
+}
+
+.mission-pillar-label {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: $orange;
+  margin-bottom: 8px;
+}
+
 .mission-visual {
   position: relative; height: 700px;
   border-radius: 6rem 0 0 6rem; overflow: hidden;

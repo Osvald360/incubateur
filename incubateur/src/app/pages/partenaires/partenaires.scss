@@ -1,281 +1,300 @@
 /* =====================================================
    ENVOL IMPACT · Partenaires
-   Propagation de la DA « Décollage » (voir accueil.scss).
-   Nuit d'encre → bandeau craie → sommet. Tokens --ei-*.
+   Upgrade visuel — charte « Envol Impact » (cf. accueil.scss).
+   Poppins (titres, UPPERCASE) · Lato (corps).
+   #002235 · #003B5C · #F39200 · #84BD00
    ===================================================== */
+
+$deep:    #002235;
+$navy:    #003B5C;
+$orange:  #F39200;
+$green:   #84BD00;
+$light:   #F8FAFC;
+$white:   #FFFFFF;
 
 :host {
   display: block;
-  background: var(--ei-ink);
-  color: var(--ei-on-dark);
-  font-family: var(--ei-font-text);
+  background: $deep;
+  color: $white;
+  font-family: 'Lato', sans-serif;
 }
 
 .ei-partners {
   position: relative;
   overflow-x: clip;
+  font-size: 18px;
 }
 
-/* ---------- Primitives typographiques (mêmes que l'accueil) ---------- */
-.eyebrow {
-  margin: 0 0 var(--ei-s-16);
-  font-family: var(--ei-font-text);
-  font-size: clamp(0.7rem, 0.9vw, 0.8rem);
-  font-weight: 500;
-  letter-spacing: 0.14em;
+/* ---------- Primitives de marque ---------- */
+.section-badge {
+  display: inline-block;
+  background: rgba($orange, .20);
+  color: $orange;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: .75rem;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--ei-gold-2);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 24px;
 
-  &::before {
-    content: '';
-    width: 28px;
-    height: 1px;
-    background: var(--ei-gold-grad);
+  &--light {
+    background: rgba($orange, .14);
+    color: #B8761A;
   }
-  &.eyebrow--ink { color: #9a6a16; &::before { background: #c98a22; } }
 }
 
 .block-title {
   margin: 0;
-  font-family: var(--ei-font-display);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.02;
-  font-size: clamp(2rem, 4.4vw, 3.6rem);
-  color: var(--ei-on-dark);
-  max-width: 18ch;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  text-transform: uppercase;
+  color: $white;
 
-  .title-em { color: var(--ei-gold-2); }
-  &--ink { color: var(--ei-on-light); .title-em--ink { color: #b8761a; } }
+  &--orange { color: $orange; }
+  &--ink { color: $deep; }
 }
 
 .block-head {
-  margin-bottom: clamp(var(--ei-s-48), 6vw, var(--ei-s-96));
+  margin-bottom: clamp(48px, 6vw, 80px);
 }
 
-/* ---------- Bouton de marque DA ---------- */
-.ei-btn {
-  position: relative;
+/* ---------- Bouton de marque (cf. accueil .btn) ---------- */
+.btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 15px 26px;
-  border-radius: var(--ei-r-4);
-  font-family: var(--ei-font-text);
-  font-size: 0.98rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  border: 1px solid transparent;
-  transition: transform 160ms var(--ei-ease-launch),
-              box-shadow 160ms var(--ei-ease-launch),
-              background 160ms var(--ei-ease-soft),
-              color 160ms var(--ei-ease-soft);
-  will-change: transform;
+  border: none;
+  transition: all 300ms ease;
 
-  mat-icon {
+  &--pill { border-radius: 100px; }
+  &--lg {
+    padding: 16px 40px;
     font-size: 1.05rem;
-    width: 1.05rem;
-    height: 1.05rem;
-    transition: transform 160ms var(--ei-ease-launch);
+    letter-spacing: .04em;
+    text-transform: uppercase;
   }
 
-  &--gold {
-    background: var(--ei-gold-grad);
-    color: #2a1a04;
-    box-shadow: 0 6px 22px rgba(254, 135, 1, 0.28);
-    &:hover {
-      box-shadow: 0 14px 38px rgba(254, 135, 1, 0.42);
-      mat-icon { transform: translate(2px, -2px); }
-    }
+  &--orange {
+    background: $orange;
+    color: $white;
+    box-shadow: 0 10px 30px rgba($orange, .30);
+    &:hover { background: $white; color: $orange; transform: scale(1.04); }
+  }
+
+  mat-icon {
+    font-size: 1.15rem;
+    width: 1.15rem;
+    height: 1.15rem;
   }
 }
 
 /* =====================================================
-   HERO · l'écosystème
+   HERO · cinématique (photo + overlay + trame de points)
    ===================================================== */
-.hero {
+.ptr-hero {
   position: relative;
-  min-height: 78svh;
-  padding: clamp(110px, 14vh, 180px) clamp(24px, 6vw, 120px) clamp(56px, 8vh, 110px);
+  min-height: 82vh;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  background:
-    radial-gradient(120% 90% at 86% 10%, rgba(255, 179, 64, 0.10), transparent 55%),
-    var(--ei-ink);
 }
 
-.hero-grain {
+/* Lueur orange en bas du hero — accent « lumière » de la DA */
+.ptr-hero::after {
+  content: '';
   position: absolute;
-  inset: 0;
+  left: -10%;
+  bottom: -30%;
+  width: 70%;
+  height: 60%;
+  z-index: 1;
+  background: radial-gradient(closest-side, rgba($orange, .22), transparent 70%);
+  filter: blur(20px);
   pointer-events: none;
-  opacity: 0.5;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
 }
 
-.hero-halo {
-  position: absolute;
-  top: -16%;
-  right: -8%;
-  width: min(44vw, 580px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(255, 179, 64, 0.46) 0%, rgba(254, 135, 1, 0.16) 38%, transparent 68%);
-  filter: blur(18px);
+.ptr-hero-bg { position: absolute; inset: 0; z-index: 0; }
+
+.ptr-hero-bg-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transform: scale(1.05);
+  animation: ptr-zoom 14s ease-in-out alternate infinite;
 }
 
-.hero-traj-svg {
-  position: absolute;
-  inset: 0;
+@keyframes ptr-zoom {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1.12); }
+}
+
+.ptr-hero-overlay {
+  position: absolute; inset: 0;
+  &--left   { background: linear-gradient(to right, rgba($navy, .95) 0%, rgba($navy, .80) 50%, rgba($deep, .60) 100%); }
+  &--bottom { background: linear-gradient(to top, $deep 0%, transparent 45%); }
+}
+
+.ptr-hero-dots {
+  position: absolute; inset: 0; z-index: 1; opacity: .07;
+  background-image: radial-gradient($orange 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.ptr-hero-content {
+  position: relative; z-index: 2;
+  max-width: 1280px;
   width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-.hero-trajectory {
-  filter: drop-shadow(0 0 10px rgba(255, 179, 64, 0.45));
+  margin: 0 auto;
+  padding: 160px clamp(24px, 6vw, 120px) 90px;
 }
 
-.hero-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 62ch;
-}
-
-.hero-eyebrow {
-  margin: 0 0 clamp(20px, 3vh, 32px);
-  font-size: clamp(0.72rem, 1vw, 0.85rem);
-  font-weight: 500;
-  letter-spacing: 0.14em;
+.ptr-hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1;
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
   text-transform: uppercase;
-  color: var(--ei-gold-2);
+  color: $white;
+  margin: 0 0 32px;
+
+  &--orange { color: $orange; }
 }
 
-.hero-title {
+.ptr-hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: rgba($white, .85);
+  max-width: 620px;
+  border-left: 4px solid $orange;
+  padding-left: 24px;
+  line-height: 1.65;
   margin: 0;
-  font-family: var(--ei-font-display);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 0.98;
-  font-size: clamp(2.6rem, 7.6vw, 6rem);
-  color: var(--ei-on-dark);
-
-  .line { display: block; overflow: hidden; }
-  .line-inner { display: block; }
-  em {
-    font-style: normal;
-    background: var(--ei-gold-grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-}
-
-.hero-subtitle {
-  margin: clamp(24px, 3.5vh, 36px) 0 0;
-  max-width: 54ch;
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
-  line-height: 1.6;
-  color: var(--ei-on-dark-dim);
+  strong { color: $white; }
 }
 
 /* =====================================================
-   INSTITUTIONNELS · lignes éditoriales sur fond nuit
+   INSTITUTIONNELS · cartes verre sur fond nuit
    ===================================================== */
 .partners-block {
   position: relative;
   z-index: 1;
-  padding: clamp(var(--ei-s-96), 13vh, var(--ei-s-192)) clamp(24px, 6vw, 120px);
+  background: $deep;
+  padding: clamp(80px, 12vh, 140px) clamp(24px, 6vw, 80px);
+}
+
+.partners-block-inner {
+  max-width: 1180px;
+  margin: 0 auto;
 }
 
 .partners-rows {
   display: grid;
-  gap: 0;
+  gap: 24px;
 }
 
-.partner-row {
+.partner-card {
+  position: relative;
   display: grid;
-  grid-template-columns: clamp(48px, 6vw, 88px) clamp(56px, 7vw, 78px) 1fr;
-  gap: clamp(18px, 3vw, 44px);
+  grid-template-columns: clamp(48px, 6vw, 72px) clamp(56px, 7vw, 72px) 1fr;
+  gap: clamp(18px, 3vw, 40px);
   align-items: center;
-  padding: clamp(var(--ei-s-24), 3.4vw, var(--ei-s-48)) 0;
-  border-bottom: 1px solid rgba(237, 230, 216, 0.1);
+  padding: clamp(24px, 3vw, 36px);
+  background: rgba($white, .05);
+  border: 1px solid rgba($white, .10);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease, background 260ms ease;
 
-  &:first-child { border-top: 1px solid rgba(237, 230, 216, 0.1); }
+  /* Liseré dégradé révélé au survol — « trajectoire d'or » */
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, $orange, $green);
+    opacity: 0;
+    transition: opacity 260ms ease;
+  }
 
-  &:hover .partner-emblem {
-    border-color: var(--ei-gold-1);
-    color: var(--ei-gold-2);
-    box-shadow: 0 0 0 1px rgba(255, 179, 64, 0.3), 0 12px 30px rgba(254, 135, 1, 0.18);
-    background: linear-gradient(150deg, #1a3550, var(--ei-slate));
+  &:hover {
+    transform: translateY(-6px);
+    background: rgba($orange, .07);
+    border-color: rgba($orange, .40);
+    box-shadow: 0 22px 50px rgba($deep, .45);
+
+    &::before { opacity: 1; }
+
+    .partner-emblem {
+      background: $orange;
+      border-color: $white;
+      color: $white;
+      transform: rotate(-4deg) scale(1.05);
+    }
   }
 }
 
 .partner-index {
-  font-family: var(--ei-font-display);
-  font-weight: 600;
-  font-size: clamp(1rem, 1.4vw, 1.3rem);
-  letter-spacing: 0.04em;
-  background: var(--ei-gold-grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  letter-spacing: .04em;
+  color: $orange;
 }
 
 .partner-emblem {
-  width: clamp(56px, 7vw, 78px);
-  height: clamp(56px, 7vw, 78px);
-  border-radius: var(--ei-r-16);
+  width: clamp(56px, 7vw, 72px);
+  height: clamp(56px, 7vw, 72px);
+  border-radius: 16px;
   display: grid;
   place-items: center;
-  background: var(--ei-slate);
-  border: 1px solid rgba(237, 230, 216, 0.12);
-  color: var(--ei-haze);
-  transition: border-color 300ms var(--ei-ease-soft),
-              box-shadow 300ms var(--ei-ease-soft),
-              color 300ms var(--ei-ease-soft),
-              background 300ms var(--ei-ease-soft);
+  background: rgba($orange, .14);
+  border: 1px solid rgba($white, .12);
+  color: $orange;
+  transition: background 300ms ease, border-color 300ms ease, color 300ms ease, transform 300ms var(--ei-ease-launch, ease);
 
   mat-icon {
-    font-size: clamp(1.5rem, 2.4vw, 2rem);
-    width: clamp(1.5rem, 2.4vw, 2rem);
-    height: clamp(1.5rem, 2.4vw, 2rem);
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    width: clamp(1.5rem, 2.4vw, 1.9rem);
+    height: clamp(1.5rem, 2.4vw, 1.9rem);
   }
 }
 
 .partner-title {
   margin: 0 0 8px;
-  font-family: var(--ei-font-display);
-  font-weight: 600;
-  font-size: clamp(1.2rem, 2vw, 1.7rem);
-  letter-spacing: -0.01em;
-  color: var(--ei-on-dark);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  letter-spacing: -.01em;
+  color: $white;
 }
+
 .partner-text {
   margin: 0;
   max-width: 60ch;
-  font-size: clamp(0.96rem, 1.2vw, 1.08rem);
+  font-size: clamp(.96rem, 1.2vw, 1.05rem);
   line-height: 1.62;
-  color: var(--ei-on-dark-dim);
+  color: rgba($white, .70);
 }
 
 /* =====================================================
-   FINANCIERS · bandeau craie (full-bleed clair)
+   FINANCIERS · bandeau clair, cartes blanches + ombre
    ===================================================== */
 .partners-light {
   position: relative;
   z-index: 1;
-  background: var(--ei-chalk);
-  color: var(--ei-on-light);
-  clip-path: polygon(0 4vw, 100% 0, 100% 100%, 0 100%);
-  margin-top: -2vw;
-  padding: clamp(var(--ei-s-128), 16vh, calc(var(--ei-s-192) + 40px)) 0 clamp(var(--ei-s-96), 12vh, var(--ei-s-128));
+  background: $light;
+  color: $deep;
+  padding: clamp(90px, 13vh, 150px) 0 clamp(80px, 11vh, 130px);
 }
 
 .partners-light-inner {
@@ -286,148 +305,186 @@
 
 .finance-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-  gap: 1px;
-  background: rgba(26, 42, 56, 0.12);
-  border: 1px solid rgba(26, 42, 56, 0.12);
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 24px;
 }
 
 .finance-cell {
   position: relative;
-  background: var(--ei-chalk);
-  padding: clamp(28px, 3.4vw, 44px);
-  transition: background 200ms var(--ei-ease-soft);
+  background: $white;
+  border: 1px solid rgba($navy, .08);
+  border-radius: 20px;
+  padding: clamp(28px, 3.4vw, 40px);
+  box-shadow: 0 8px 24px rgba($deep, .06);
+  overflow: hidden;
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
 
-  &:hover { background: #fffdf7; }
+  /* Filet supérieur dégradé révélé au survol */
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $orange, $green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 320ms var(--ei-ease-launch, ease);
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: rgba($orange, .35);
+    box-shadow: 0 20px 44px rgba($deep, .12);
+
+    &::before { transform: scaleX(1); }
+
+    .finance-icon-wrap { background: rgba($orange, .18); }
+  }
 
   .finance-num {
-    font-family: var(--ei-font-display);
-    font-weight: 600;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    color: #b8761a;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: .85rem;
+    letter-spacing: .1em;
+    color: rgba($navy, .35);
   }
+
   .finance-head {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin: 18px 0 14px;
+    gap: 14px;
+    margin: 16px 0 14px;
   }
+
+  .finance-icon-wrap {
+    width: 48px; height: 48px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: rgba($orange, .10);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 280ms ease;
+  }
+
   .finance-icon {
-    font-size: 1.7rem;
-    width: 1.7rem;
-    height: 1.7rem;
-    color: #9a6a16;
+    font-size: 1.6rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    color: $orange;
   }
+
   .finance-title {
     margin: 0;
-    font-family: var(--ei-font-display);
-    font-weight: 600;
-    font-size: clamp(1.2rem, 1.7vw, 1.5rem);
-    letter-spacing: -0.01em;
-    color: var(--ei-on-light);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+    letter-spacing: -.01em;
+    color: $navy;
   }
+
   .finance-text {
     margin: 0;
-    font-size: 0.96rem;
-    line-height: 1.6;
-    color: #3a4c5a;
+    font-size: .98rem;
+    line-height: 1.62;
+    color: #4A6B80;
   }
 }
 
 /* =====================================================
-   SUMMIT · CTA devenir partenaire
+   SUMMIT · CTA cinématique
    ===================================================== */
 .summit {
   position: relative;
   overflow: hidden;
   text-align: center;
-  padding: clamp(var(--ei-s-128), 18vh, calc(var(--ei-s-192) + 60px)) clamp(24px, 6vw, 80px);
-  background:
-    radial-gradient(120% 120% at 50% 120%, rgba(255, 179, 64, 0.16), transparent 60%),
-    linear-gradient(180deg, var(--ei-ink) 0%, #0d2236 100%);
+  background: $deep;
+  padding: clamp(110px, 16vh, 180px) clamp(24px, 6vw, 80px);
 }
 
-.summit-halo {
-  position: absolute;
-  left: 50%;
-  top: -10%;
-  transform: translateX(-50%);
-  width: min(70vw, 760px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(255, 179, 64, 0.28) 0%, transparent 62%);
-  filter: blur(24px);
+.summit-bg { position: absolute; inset: 0; z-index: 0; }
+
+.summit-bg-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 30%;
+  display: block;
 }
 
-.summit-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
-.summit .eyebrow { justify-content: center; }
+.summit-bg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba($deep, .92) 0%, rgba($navy, .82) 50%, rgba($deep, .94) 100%);
+}
+
+.summit-dots {
+  position: absolute; inset: 0; z-index: 1; opacity: .07;
+  background-image: radial-gradient($orange 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.summit-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+}
 
 .summit-title {
-  margin: 18px 0 0;
-  font-family: var(--ei-font-display);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.02;
-  font-size: clamp(2.2rem, 6vw, 4.4rem);
-  background: var(--ei-gold-grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  margin: 0 0 24px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1;
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
+  text-transform: uppercase;
+  color: $white;
+
+  &--orange { color: $orange; }
 }
 
 .summit-quote {
-  margin: clamp(20px, 3vh, 30px) auto 0;
-  max-width: 48ch;
+  margin: 0 auto;
+  max-width: 52ch;
   font-size: clamp(1rem, 1.4vw, 1.18rem);
-  line-height: 1.6;
-  color: var(--ei-on-dark-dim);
+  line-height: 1.65;
+  color: rgba($white, .75);
 }
 
 .summit-actions {
-  margin-top: clamp(32px, 4vh, 44px);
+  margin-top: clamp(32px, 4vh, 48px);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--ei-s-16);
+  gap: 16px;
 }
 
 /* =====================================================
-   RESPONSIVE — la mobile a sa propre composition
+   RESPONSIVE
    ===================================================== */
 @media (max-width: 760px) {
-  .hero { align-items: flex-end; min-height: 70svh; }
-  .hero-title { font-size: clamp(2.4rem, 12vw, 4rem); }
+  .ptr-hero { min-height: 70vh; }
+  .ptr-hero-content { padding: 130px 24px 60px; }
 
-  .partner-row {
+  .partner-card {
     grid-template-columns: clamp(40px, 12vw, 56px) 1fr;
     grid-template-areas:
       "idx emblem"
       "body body";
     gap: 14px 16px;
-    align-items: center;
   }
-  .partner-index { grid-area: idx; align-self: center; }
+  .partner-index  { grid-area: idx; align-self: center; }
   .partner-emblem { grid-area: emblem; justify-self: start; }
-  .partner-body  { grid-area: body; }
-
-  .partners-light { clip-path: polygon(0 3vw, 100% 0, 100% 100%, 0 100%); }
+  .partner-body   { grid-area: body; }
 }
 
 @media (max-width: 560px) {
   .summit-actions { width: 100%; }
-  .ei-btn { flex: 1 1 auto; justify-content: center; }
+  .btn { flex: 1 1 auto; justify-content: center; }
 }
 
 /* =====================================================
    ACCESSIBILITÉ — mouvement réduit
    ===================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .hero-trajectory { stroke-dashoffset: 0 !important; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
 }
-
