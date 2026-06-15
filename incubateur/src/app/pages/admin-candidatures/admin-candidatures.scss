@@ -1,20 +1,33 @@
 /* =====================================================
-   ADMIN · CANDIDATURES — charte « Envol Impact ».
-   Bandeau d'en-tête dégradé deep→navy + trame de points
-   or · cartes blanches premium · tableau dense lisible ·
-   pastilles de statut signal. Poppins (titres) · Lato.
+   ADMIN · CANDIDATURES — DA « Noir & Doré ».
+   Bandeau d'en-tête noir d'encre + trame de points or ·
+   surfaces noires premium · tableau dense lisible ·
+   pastilles de statut sémantiques. Titres serif Gambetta ·
+   corps Poppins / Lato. Lisibilité PRO d'abord.
    ===================================================== */
 
-$deep:    #002235;
-$navy:    #003B5C;
-$orange:  #F39200;
-$green:   #84BD00;
-$light:   #F8FAFC;
-$white:   #FFFFFF;
+$deep:    #0B0A08;   // noir page
+$navy:    #14110A;   // noir surface (cartes / tableaux)
+$elevated:#1C1810;   // noir élevé (hover lignes)
+$orange:  #D4AF37;   // or solide
+$gold-1:  #EBCB7E;   // or — départ dégradé
+$gold-2:  #C8912E;   // or — arrivée dégradé
+$gold-light:#E8C77E; // or clair
+$gold-deep:#B8862F;  // or profond
+$green:   #C8912E;   // ancien accent « green » → or arrivée
+$light:   #0B0A08;   // ancien fond clair → noir page
+$white:   #FBF8F1;   // titres crème
 
-$ink:     #1E3A4C;   // texte principal sur clair
-$muted:   #5A6E7C;   // texte secondaire
-$red:     #D64545;   // refus
+$ink:     #F4EEE2;   // texte principal (crème)
+$muted:   #A89F8C;   // texte secondaire
+$red:     #E5685F;   // refus / erreur (statut sémantique)
+
+/* statuts sémantiques ajustés pour fond sombre */
+$status-success: #6FB98A;   // succès
+$status-warning: #E0B255;   // attente / en cours
+$status-error:   #E5685F;   // refus / erreur
+
+$gold-gradient: linear-gradient(120deg, #{$gold-1} 0%, #{$gold-2} 100%);
 
 .admin-candidatures-container {
   padding: 0 0 var(--ei-s-48);
@@ -29,14 +42,17 @@ $red:     #D64545;   // refus
   overflow-x: hidden;
 }
 
-/* ── En-tête : bandeau dégradé deep→navy ───────────── */
+/* ── En-tête : bandeau noir d'encre + accents or ───── */
 .candidatures-header {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, $deep 0%, $navy 100%);
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(212, 175, 55, .10), transparent 60%),
+    linear-gradient(135deg, $deep 0%, $navy 100%);
   padding: var(--ei-s-48) var(--ei-s-32);
   margin-bottom: var(--ei-s-32);
-  border-bottom: 3px solid $orange;
+  border-bottom: 1px solid rgba(212, 175, 55, .35);
+  box-shadow: 0 1px 0 rgba(212, 175, 55, .10);
 }
 
 .header-dots {
@@ -62,8 +78,9 @@ $red:     #D64545;   // refus
 
 .section-badge {
   display: inline-block;
-  background: rgba($orange, .20);
-  color: $orange;
+  background: rgba($orange, .12);
+  color: $gold-light;
+  border: 1px solid rgba(212, 175, 55, .35);
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: .72rem;
@@ -80,12 +97,11 @@ $red:     #D64545;   // refus
     align-items: center;
     gap: var(--ei-s-12);
     margin: 0 0 var(--ei-s-8);
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
-    font-weight: 900;
-    letter-spacing: -.02em;
-    text-transform: uppercase;
-    line-height: 1.05;
+    font-family: 'Gambetta', Georgia, serif;
+    font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: -.01em;
+    line-height: 1.08;
     color: $white;
     /* autorise le retour à la ligne du titre sur très petit écran
        pour éviter tout débordement horizontal de la page */
@@ -101,7 +117,11 @@ $red:     #D64545;   // refus
       flex-shrink: 0;
     }
 
-    .header-title--orange { color: $orange; }
+    /* mot accent : or clair, italique */
+    .header-title--orange {
+      font-style: italic;
+      color: $gold-light;
+    }
   }
 
   p {
@@ -116,19 +136,19 @@ $red:     #D64545;   // refus
   gap: var(--ei-s-12);
 }
 
-/* Bouton « Exporter » accent marque sur le bandeau */
+/* Bouton « Exporter » : dégradé or + texte noir */
 ::ng-deep .candidatures-header .header-actions .mat-mdc-raised-button {
-  background: $orange !important;
-  color: $white !important;
+  background: $gold-gradient !important;
+  color: $deep !important;
   border-radius: 100px !important;
   font-family: 'Poppins', sans-serif !important;
   font-weight: 700 !important;
-  box-shadow: 0 8px 22px rgba($orange, .35) !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .45) !important;
   transition: transform 200ms ease, box-shadow 200ms ease;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba($orange, .45) !important;
+    box-shadow: 0 12px 28px rgba(212, 175, 55, .30) !important;
   }
 }
 
@@ -144,14 +164,14 @@ $red:     #D64545;   // refus
   padding-right: var(--ei-s-32);
 }
 
-/* ── Cartes Material : surface blanche premium ──────── */
+/* ── Cartes Material : surface noire premium ────────── */
 ::ng-deep .admin-candidatures-container {
   mat-card,
   .mat-mdc-card {
-    background: $white;
-    border: 1px solid rgba($navy, .08);
+    background: $navy;
+    border: 1px solid rgba(212, 175, 55, .16);
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba($deep, .06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .45);
     color: $ink;
   }
 }
@@ -169,8 +189,8 @@ $red:     #D64545;   // refus
 
     &:hover {
       transform: translateY(-4px);
-      border-color: rgba($orange, .45) !important;
-      box-shadow: 0 12px 30px rgba($deep, .12) !important;
+      border-color: rgba($orange, .55) !important;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .55) !important;
     }
 
     ::ng-deep mat-card-content { padding: var(--ei-s-24) !important; }
@@ -197,7 +217,7 @@ $red:     #D64545;   // refus
           font-size: 2.1rem;
           font-weight: 900;
           letter-spacing: -.02em;
-          color: $orange;
+          color: $gold-light;
           line-height: 1;
         }
 
@@ -224,7 +244,7 @@ $red:     #D64545;   // refus
       align-items: center;
       gap: var(--ei-s-12);
       font-family: 'Poppins', sans-serif;
-      color: $navy;
+      color: $white;
       font-size: 1.3rem;
       font-weight: 700;
       letter-spacing: -.01em;
@@ -249,14 +269,14 @@ $red:     #D64545;   // refus
         align-items: center;
         text-align: center;
         padding: var(--ei-s-24) var(--ei-s-16);
-        background: $light;
+        background: rgba(255, 255, 255, .03);
         border-radius: 14px;
-        border: 1px solid rgba($navy, .08);
+        border: 1px solid rgba(212, 175, 55, .16);
         transition: border-color 220ms ease, transform 220ms ease;
 
         &:hover {
           transform: translateY(-4px);
-          border-color: rgba($orange, .40);
+          border-color: rgba($orange, .50);
         }
 
         mat-icon {
@@ -272,7 +292,7 @@ $red:     #D64545;   // refus
           font-size: 1.6rem;
           font-weight: 900;
           letter-spacing: -.02em;
-          color: $navy;
+          color: $gold-light;
           margin-bottom: 4px;
         }
 
@@ -311,18 +331,18 @@ $red:     #D64545;   // refus
   }
 }
 
-/* Champs de formulaire Material sur surface claire */
+/* Champs de formulaire Material sur surface sombre */
 ::ng-deep .admin-candidatures-container {
   .mat-mdc-form-field {
     --mat-form-field-container-text-color: #{$ink};
     --mdc-filled-text-field-input-text-color: #{$ink};
     --mdc-filled-text-field-label-text-color: #{$muted};
     --mdc-filled-text-field-caret-color: #{$orange};
-    --mdc-filled-text-field-active-indicator-color: rgba(0, 59, 92, .28);
+    --mdc-filled-text-field-active-indicator-color: rgba(212, 175, 55, .28);
     --mdc-filled-text-field-focus-active-indicator-color: #{$orange};
-    --mdc-filled-text-field-focus-label-text-color: #{$orange};
-    --mdc-filled-text-field-container-color: #{$light};
-    --mdc-filled-text-field-hover-state-layer-color: rgba(0, 59, 92, .04);
+    --mdc-filled-text-field-focus-label-text-color: #{$gold-light};
+    --mdc-filled-text-field-container-color: rgba(255, 255, 255, .04);
+    --mdc-filled-text-field-hover-state-layer-color: rgba(212, 175, 55, .06);
   }
 
   .mat-mdc-select-value,
@@ -331,27 +351,29 @@ $red:     #D64545;   // refus
   .mat-mdc-form-field-icon-suffix mat-icon { color: $muted; }
   input::placeholder { color: $muted; }
 
-  /* bouton « Réinitialiser » secondaire navy */
+  /* bouton « Réinitialiser » : contour or + crème */
   .mat-mdc-outlined-button {
     border-radius: 100px !important;
-    color: $navy !important;
-    --mdc-outlined-button-outline-color: rgba(0, 59, 92, .3);
+    color: $ink !important;
+    --mdc-outlined-button-outline-color: rgba(212, 175, 55, .45);
     font-family: 'Poppins', sans-serif !important;
     font-weight: 700 !important;
+
+    mat-icon { color: $gold-light; }
   }
 }
 
-/* Panneau de sélection (overlay global) → blanc */
+/* Panneau de sélection (overlay global) → surface noire */
 ::ng-deep .cdk-overlay-pane .mat-mdc-select-panel {
-  background: $white;
-  border: 1px solid rgba($navy, .12);
+  background: $navy;
+  border: 1px solid rgba(212, 175, 55, .16);
 
   .mat-mdc-option {
     color: $ink;
-    &:hover:not(.mdc-list-item--disabled) { background: rgba($navy, .05); }
+    &:hover:not(.mdc-list-item--disabled) { background: $elevated; }
     &.mdc-list-item--selected {
       background: rgba($orange, .14);
-      .mdc-list-item__primary-text { color: $orange; }
+      .mdc-list-item__primary-text { color: $gold-light; }
     }
   }
 }
@@ -365,7 +387,7 @@ $red:     #D64545;   // refus
     overflow-x: auto;
     max-height: 800px;
     border-radius: 12px;
-    border: 1px solid rgba($navy, .10);
+    border: 1px solid rgba(212, 175, 55, .16);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: rgba($orange, .5) transparent;
@@ -388,7 +410,7 @@ $red:     #D64545;   // refus
       font-size: .74rem;
       letter-spacing: .06em;
       text-transform: uppercase;
-      color: $white;
+      color: $gold-light;
       border-bottom: 2px solid $orange;
       position: sticky;
       top: 0;
@@ -397,27 +419,27 @@ $red:     #D64545;   // refus
 
     ::ng-deep td.mat-mdc-cell {
       color: $ink;
-      border-bottom: 1px solid rgba($navy, .08);
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
       padding: var(--ei-s-12) var(--ei-s-8);
     }
 
-    ::ng-deep .mat-sort-header-arrow { color: $white; }
+    ::ng-deep .mat-sort-header-arrow { color: $gold-light; }
 
     .candidature-row {
       transition: background-color 160ms ease;
       cursor: pointer;
 
-      &:nth-child(even) { background: rgba($navy, .02); }
-      &:hover { background: rgba($orange, .08); }
+      &:nth-child(even) { background: rgba(255, 255, 255, .015); }
+      &:hover { background: $elevated; }
 
       &.row-en-attente ::ng-deep td.mat-mdc-cell:first-child {
-        box-shadow: inset 4px 0 0 $orange;
+        box-shadow: inset 4px 0 0 $status-warning;
       }
       &.row-accepte ::ng-deep td.mat-mdc-cell:first-child {
-        box-shadow: inset 4px 0 0 $green;
+        box-shadow: inset 4px 0 0 $status-success;
       }
       &.row-refuse ::ng-deep td.mat-mdc-cell:first-child {
-        box-shadow: inset 4px 0 0 $red;
+        box-shadow: inset 4px 0 0 $status-error;
       }
     }
   }
@@ -437,7 +459,7 @@ $red:     #D64545;   // refus
 
 .project-type-chip {
   background: rgba($orange, .14);
-  color: #B36900;
+  color: $gold-light;
   border-radius: 6px;
   font-size: .8rem;
   font-weight: 600;
@@ -457,20 +479,24 @@ $red:     #D64545;   // refus
   font-family: 'Poppins', sans-serif !important;
 
   &.statut-en_attente {
-    background: rgba($orange, .16) !important;
-    color: #B36900 !important;
+    background: rgba($status-warning, .16) !important;
+    color: $status-warning !important;
+    border: 1px solid rgba($status-warning, .35) !important;
   }
   &.statut-en_cours_evaluation {
-    background: rgba($navy, .12) !important;
-    color: $navy !important;
+    background: rgba($status-warning, .14) !important;
+    color: $status-warning !important;
+    border: 1px solid rgba($status-warning, .30) !important;
   }
   &.statut-accepte {
-    background: rgba($green, .18) !important;
-    color: #4F7000 !important;
+    background: rgba($status-success, .16) !important;
+    color: $status-success !important;
+    border: 1px solid rgba($status-success, .35) !important;
   }
   &.statut-refuse {
-    background: rgba($red, .15) !important;
-    color: #B02B2B !important;
+    background: rgba($status-error, .15) !important;
+    color: $status-error !important;
+    border: 1px solid rgba($status-error, .35) !important;
   }
 }
 
@@ -480,9 +506,9 @@ $red:     #D64545;   // refus
   padding: 4px 8px;
   font-size: .8rem;
 
-  &.score-success { background: rgba($green, .18); color: #4F7000; }
-  &.score-accent  { background: rgba($orange, .16); color: #B36900; }
-  &.score-warn    { background: rgba($red, .15); color: #B02B2B; }
+  &.score-success { background: rgba($status-success, .16); color: $status-success; }
+  &.score-accent  { background: rgba($status-warning, .16); color: $status-warning; }
+  &.score-warn    { background: rgba($status-error, .15); color: $status-error; }
 }
 
 .score-empty {
@@ -491,7 +517,7 @@ $red:     #D64545;   // refus
 }
 
 /* boutons d'icône (menu d'actions) */
-.candidatures-table ::ng-deep .mat-mdc-icon-button { color: $navy; }
+.candidatures-table ::ng-deep .mat-mdc-icon-button { color: $gold-light; }
 
 /* Menu d'actions (overlay global) */
 ::ng-deep .mat-mdc-menu-panel {
@@ -505,7 +531,14 @@ $red:     #D64545;   // refus
 .candidatures-table-card ::ng-deep .mat-mdc-paginator {
   background: transparent;
   color: $muted;
-  border-top: 1px solid rgba($navy, .08);
+  border-top: 1px solid rgba(255, 255, 255, .07);
+
+  .mat-mdc-paginator-range-label,
+  .mat-mdc-select-value-text,
+  .mat-mdc-select-min-line { color: $ink; }
+  .mat-mdc-icon-button { color: $gold-light; }
+  .mat-mdc-icon-button[disabled] { color: rgba($ink, .35); }
+  .mat-mdc-select-arrow { color: $muted; }
 }
 
 /* ── Message vide ───────────────────────────────────── */
@@ -518,7 +551,7 @@ $red:     #D64545;   // refus
     font-size: 4rem;
     width: 4rem;
     height: 4rem;
-    color: rgba($navy, .22);
+    color: rgba($orange, .30);
     margin-bottom: var(--ei-s-16);
   }
 
@@ -527,7 +560,7 @@ $red:     #D64545;   // refus
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
-    color: $navy;
+    color: $white;
   }
 
   p { margin: 0; font-size: 1rem; }
