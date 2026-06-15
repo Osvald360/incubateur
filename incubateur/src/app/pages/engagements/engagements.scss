@@ -1,17 +1,21 @@
 /* =====================================================
-   ENGAGEMENTS — Envol Impact · DA marque 2024
-   Navy #003B5C · Orange #F39200 · Vert #84BD00
-   Poppins 900 uppercase (titres) + Lato (corps)
+   ENGAGEMENTS — Envol Impact · DA NOIR & DORÉ
+   Noir #0B0A08 · Surface #14110A · Or #D4AF37 · Or profond #C8912E
+   Gambetta (grands titres) + Poppins/Lato
    ===================================================== */
 
-$deep:   #002235;
-$navy:   #003B5C;
-$orange: #F39200;
-$green:  #84BD00;
+$deep:   #0B0A08;
+$navy:   #14110A;
+$orange: #D4AF37;
+$green:  #C8912E;
 $white:  #FFFFFF;
-$light:  #F8FAFC;
-$text:   #1A2A38;
-$muted:  #6B7A8A;
+$light:  #14110A;
+$text:   #F4EEE2;
+$muted:  #A89F8C;
+
+/* Dégradé OR signature */
+$gold-grad: linear-gradient(120deg, #EBCB7E 0%, #C8912E 100%);
+$gold-light: #E8C77E;
 
 /* ── Scroll reveal ── */
 [data-reveal] {
@@ -26,13 +30,13 @@ $muted:  #6B7A8A;
   position: fixed;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: rgba($navy, .12);
+  background: rgba(212,175,55, .14);
   z-index: 2000;
   pointer-events: none;
 }
 .read-progress-fill {
   height: 100%;
-  background: $orange;
+  background: $gold-grad;
   transition: width 80ms linear;
 }
 
@@ -47,13 +51,13 @@ $muted:  #6B7A8A;
   border-radius: 100px;
   padding: 6px 18px;
   margin-bottom: 24px;
-  background: rgba($orange, .20);
-  color: $orange;
+  background: rgba(212,175,55, .14);
+  color: $gold-light;
 
   &--white {
-    background: rgba($white, .10);
-    color: rgba($white, .80);
-    border: 1px solid rgba($white, .20);
+    background: rgba(212,175,55, .14);
+    color: $gold-light;
+    border: 1px solid rgba(212,175,55, .30);
   }
 }
 
@@ -74,18 +78,18 @@ $muted:  #6B7A8A;
   transition: all 220ms ease;
 
   &--orange {
-    background: $orange;
-    color: $white;
-    box-shadow: 0 6px 24px rgba($orange, .30);
-    mat-icon { color: $white; }
-    &:hover { background: #D47F00; transform: translateY(-2px); box-shadow: 0 10px 32px rgba($orange, .40); }
+    background: $gold-grad;
+    color: #0B0A08;
+    box-shadow: 0 10px 30px rgba(212,175,55, .30);
+    mat-icon { color: #0B0A08; }
+    &:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 38px rgba(212,175,55, .42); }
   }
 
   &--ghost {
     background: transparent;
-    color: $white;
-    border: 1.5px solid rgba($white, .35);
-    &:hover { background: rgba($white, .10); border-color: $white; }
+    color: $text;
+    border: 1.5px solid rgba(212,175,55, .35);
+    &:hover { background: rgba(212,175,55, .10); border-color: $orange; color: $text; }
   }
 }
 
@@ -149,19 +153,23 @@ $muted:  #6B7A8A;
 }
 
 .hero-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Gambetta', Georgia, serif;
   font-size: clamp(3.5rem, 10vw, 7.5rem);
-  font-weight: 900;
-  letter-spacing: -.04em;
-  line-height: 1;
-  color: $white;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.02;
+  color: #FBF8F1;
   margin: 0 0 28px;
-  text-transform: uppercase;
+  text-transform: none;
   text-shadow: 0 20px 60px rgba($deep, .45);
 
   &--orange {
-    color: $orange;
-    text-shadow: 0 0 50px rgba($orange, .4);
+    font-style: italic;
+    background: $gold-grad;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
 }
 
@@ -186,10 +194,10 @@ $muted:  #6B7A8A;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: rgba($white, .09);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba($white, .16);
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212,175,55,.16);
   border-radius: 100px;
   padding: 10px 20px;
   font-family: 'Poppins', sans-serif;
@@ -197,22 +205,22 @@ $muted:  #6B7A8A;
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: $white;
+  color: $text;
   text-decoration: none;
   transition: all 200ms ease;
 
   &:hover {
-    background: rgba($orange, .22);
-    border-color: rgba($orange, .45);
-    color: $orange;
-    .eng-pill-num { color: $orange; }
+    background: rgba(212,175,55, .12);
+    border-color: rgba(212,175,55, .45);
+    color: $gold-light;
+    .eng-pill-num { color: $gold-light; }
   }
 
   &--green:hover {
-    background: rgba($green, .18);
-    border-color: rgba($green, .40);
-    color: $green;
-    .eng-pill-num { color: $green; }
+    background: rgba(200,145,46, .14);
+    border-color: rgba(200,145,46, .40);
+    color: $gold-light;
+    .eng-pill-num { color: $gold-light; }
   }
 }
 
@@ -266,14 +274,14 @@ $muted:  #6B7A8A;
   padding: 100px 48px;
   overflow: hidden;
 
-  &--white { background: $white; }
+  &--white { background: $deep; }
   &--gray  {
-    background: $light;
+    background: $navy;
     &::before {
       content: '';
       position: absolute; inset: 0;
       opacity: .5;
-      background-image: radial-gradient(rgba($navy, .06) 1.5px, transparent 1.5px);
+      background-image: radial-gradient(rgba(212,175,55, .07) 1.5px, transparent 1.5px);
       background-size: 26px 26px;
       pointer-events: none;
     }
@@ -325,9 +333,9 @@ $muted:  #6B7A8A;
   transform: rotate(-3deg) scale(1.04);
   pointer-events: none;
 
-  &--orange { background: rgba($orange, .07); }
-  &--navy   { background: rgba($navy,  .06); transform: rotate(3deg) scale(1.04); }
-  &--green  { background: rgba($green, .08); }
+  &--orange { background: rgba(212,175,55, .10); }
+  &--navy   { background: rgba(212,175,55, .08); transform: rotate(3deg) scale(1.04); }
+  &--green  { background: rgba(200,145,46, .10); }
 
   @media (max-width: 640px) { display: none; }
 }
@@ -372,19 +380,19 @@ $muted:  #6B7A8A;
   z-index: 2;
   width: 56px; height: 56px;
   border-radius: 16px;
-  background: $orange;
-  color: $white;
+  background: $gold-grad;
+  color: #0B0A08;
   font-family: 'Poppins', sans-serif;
   font-weight: 900;
   font-size: 1.4rem;
   letter-spacing: -.02em;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 12px 30px rgba($orange, .45);
-  border: 3px solid rgba($white, .85);
+  box-shadow: 0 12px 30px rgba(212,175,55, .45);
+  border: 3px solid rgba(11,10,8, .55);
 
   &--green {
-    background: $green;
-    box-shadow: 0 12px 30px rgba($green, .45);
+    background: $gold-grad;
+    box-shadow: 0 12px 30px rgba(200,145,46, .45);
   }
 }
 
@@ -427,18 +435,18 @@ $muted:  #6B7A8A;
   font-size: .72rem;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: $navy;
+  color: $gold-light;
 }
 
-/* Title */
+/* Title — grand header serif */
 .pillar-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
+  font-family: 'Gambetta', Georgia, serif;
+  font-weight: 700;
   font-size: clamp(2.2rem, 4vw, 3.2rem);
-  line-height: 1;
-  letter-spacing: -.03em;
-  text-transform: uppercase;
-  color: $navy;
+  line-height: 1.04;
+  letter-spacing: -.02em;
+  text-transform: none;
+  color: #FBF8F1;
   margin: 0 0 20px;
 }
 
@@ -448,7 +456,7 @@ $muted:  #6B7A8A;
   font-weight: 700;
   font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   font-style: italic;
-  color: $navy;
+  color: #FBF8F1;
   border-left: 4px solid $orange;
   padding: 4px 0 4px 20px;
   margin: 0 0 24px;
@@ -473,17 +481,17 @@ $muted:  #6B7A8A;
     font-weight: 700;
     letter-spacing: .12em;
     text-transform: uppercase;
-    color: $navy;
-    background: rgba($navy, .06);
-    border: 1px solid rgba($navy, .12);
+    color: $gold-light;
+    background: rgba(212,175,55, .14);
+    border: 1px solid rgba(212,175,55, .22);
     border-radius: 100px;
     padding: 5px 14px;
   }
 
   &--green li {
-    color: #3D6B00;
-    background: rgba($green, .10);
-    border-color: rgba($green, .22);
+    color: $gold-light;
+    background: rgba(200,145,46, .14);
+    border-color: rgba(200,145,46, .26);
   }
 }
 
@@ -492,7 +500,7 @@ $muted:  #6B7A8A;
   font-family: 'Lato', sans-serif;
   font-size: 1.05rem;
   line-height: 1.78;
-  color: #4A5E72;
+  color: $muted;
   margin: 0 0 28px;
 }
 
@@ -514,17 +522,19 @@ $muted:  #6B7A8A;
     line-height: 1.5;
     color: $text;
     padding: 14px 18px;
-    background: $white;
-    border: 1px solid rgba($navy, .08);
-    border-left: 3px solid rgba($orange, .55);
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(212,175,55,.16);
+    border-left: 3px solid rgba(212,175,55, .55);
     border-radius: 14px;
-    box-shadow: 0 4px 16px rgba($deep, .04);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 4px 16px rgba(0,0,0, .25);
     transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 
     &:hover {
       transform: translateX(6px);
       border-left-color: $orange;
-      box-shadow: 0 10px 28px rgba($deep, .09);
+      box-shadow: 0 10px 28px rgba(0,0,0, .40);
     }
   }
 
@@ -532,12 +542,12 @@ $muted:  #6B7A8A;
     flex-shrink: 0;
     width: 30px; height: 30px;
     border-radius: 50%;
-    background: rgba($orange, .12);
+    background: rgba(212,175,55, .14);
     display: flex; align-items: center; justify-content: center;
     transition: background 220ms ease;
   }
 
-  li:hover .check-dot { background: rgba($orange, .22); }
+  li:hover .check-dot { background: rgba(212,175,55, .24); }
 
   li mat-icon {
     color: $orange;
@@ -548,11 +558,11 @@ $muted:  #6B7A8A;
 
   &--green {
     li {
-      border-left-color: rgba($green, .55);
+      border-left-color: rgba(200,145,46, .55);
       &:hover { border-left-color: $green; }
     }
-    .check-dot { background: rgba($green, .12); }
-    li:hover .check-dot { background: rgba($green, .22); }
+    .check-dot { background: rgba(200,145,46, .14); }
+    li:hover .check-dot { background: rgba(200,145,46, .24); }
     li mat-icon { color: $green; }
   }
 }
@@ -605,15 +615,23 @@ $muted:  #6B7A8A;
 }
 
 .cta-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
+  font-family: 'Gambetta', Georgia, serif;
+  font-weight: 700;
   font-size: clamp(2rem, 4.5vw, 3.5rem);
   line-height: 1.1;
-  letter-spacing: -.03em;
-  color: $white;
+  letter-spacing: -.02em;
+  text-transform: none;
+  color: #FBF8F1;
   margin: 0 0 44px;
 
-  &--orange { color: $orange; }
+  &--orange {
+    font-style: italic;
+    background: $gold-grad;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .cta-actions {

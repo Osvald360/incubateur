@@ -1,18 +1,22 @@
 /* =====================================================
-   À PROPOS — Envol Impact · DA marque 2024
-   Deep #002235 · Navy #003B5C · Orange #F39200 · Vert #84BD00
-   Poppins (titres) + Lato (corps)
+   À PROPOS — Envol Impact · DA NOIR & DORÉ
+   Noir #0B0A08 · Surface #14110A · Or #D4AF37 · Or profond #C8912E
+   Gambetta (grands titres) + Poppins/Lato
    ===================================================== */
 
-$deep:    #002235;
-$navy:    #003B5C;
-$orange:  #F39200;
-$green:   #84BD00;
-$light:   #F8FAFC;
+$deep:    #0B0A08;
+$navy:    #14110A;
+$orange:  #D4AF37;
+$green:   #C8912E;
+$light:   #14110A;
 $white:   #FFFFFF;
-$cream:   #FAFAF8;
-$text:    #1A2A38;
-$muted:   #6B7A8A;
+$cream:   #14110A;
+$text:    #F4EEE2;
+$muted:   #A89F8C;
+
+/* Dégradé OR signature */
+$gold-grad: linear-gradient(120deg, #EBCB7E 0%, #C8912E 100%);
+$gold-light: #E8C77E;
 
 /* ---- Scroll reveal ---- */
 [data-reveal] {
@@ -24,7 +28,8 @@ $muted:   #6B7A8A;
 
 .apropos {
   font-family: 'Lato', sans-serif;
-  color: $deep;
+  color: $text;
+  background: $deep;
   overflow-x: hidden;
 }
 
@@ -37,19 +42,27 @@ $muted:   #6B7A8A;
 
 /* ---- Primitives partagées ---- */
 .section-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
+  font-family: 'Gambetta', Georgia, serif;
+  font-weight: 700;
   font-size: clamp(2.4rem, 7vw, 5.5rem);
-  line-height: 1;
-  letter-spacing: -.03em;
-  text-transform: uppercase;
+  line-height: 1.04;
+  letter-spacing: -.02em;
+  text-transform: none;
   margin: 0 0 24px;
   overflow-wrap: break-word;
-  &--dark   { color: $navy; }
-  &--light  { color: $white; }
-  &--accent { color: $orange; }
+  &--dark   { color: #FBF8F1; }
+  &--light  { color: #FBF8F1; }
+  &--accent {
+    font-style: italic;
+    background: $gold-grad;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
   &--gradient {
-    background: linear-gradient(90deg, $orange, #FFD166);
+    font-style: italic;
+    background: $gold-grad;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -67,12 +80,12 @@ $muted:   #6B7A8A;
   border-radius: 100px;
   padding: 6px 18px;
   margin-bottom: 22px;
-  background: rgba($orange, .20);
-  color: $orange;
+  background: rgba(212,175,55, .14);
+  color: $gold-light;
 
   &--orange {
-    color: $orange;
-    background: rgba($orange, .20);
+    color: $gold-light;
+    background: rgba(212,175,55, .14);
     border: none;
   }
 }
@@ -84,12 +97,12 @@ $muted:   #6B7A8A;
   font-weight: 700;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: $orange;
-  border: 1.5px solid rgba($orange, .30);
+  color: $gold-light;
+  border: 1.5px solid rgba(212,175,55, .30);
   border-radius: 100px;
   padding: 5px 14px;
   margin-bottom: 20px;
-  &--light { color: rgba($white, .85); border-color: rgba($white, .30); }
+  &--light { color: $gold-light; border-color: rgba(212,175,55, .30); }
 }
 
 .btn {
@@ -106,28 +119,26 @@ $muted:   #6B7A8A;
   &--lg    { padding: 16px 40px; font-size: 1.05rem; letter-spacing: .04em; text-transform: uppercase; min-height: 52px; }
 
   &--orange {
-    background: $orange;
-    color: $white;
+    background: $gold-grad;
+    color: #0B0A08;
     border: none;
-    box-shadow: 0 10px 30px rgba($orange, .30);
+    box-shadow: 0 10px 30px rgba(212,175,55, .30);
     &:hover {
-      background: $white;
-      color: $orange;
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 16px 38px rgba($orange, .42);
-      mat-icon { color: $orange; }
+      box-shadow: 0 16px 38px rgba(212,175,55, .42);
+      mat-icon { color: #0B0A08; }
     }
-    mat-icon { color: $white; transition: color 300ms ease; }
+    mat-icon { color: #0B0A08; transition: color 300ms ease; }
   }
 
   &--ghost-navy {
     background: transparent;
-    color: $white;
-    border: 2px solid rgba($white, .35);
+    color: $text;
+    border: 2px solid rgba(212,175,55, .35);
     backdrop-filter: blur(4px);
     &:hover {
-      background: rgba($white, .10);
-      border-color: $white;
+      background: rgba(212,175,55, .10);
+      border-color: $orange;
     }
   }
 }
@@ -183,23 +194,30 @@ $muted:   #6B7A8A;
 }
 
 .hero-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
+  font-family: 'Gambetta', Georgia, serif;
+  font-weight: 700;
   font-size: clamp(2.6rem, 10vw, 7.5rem);
-  line-height: 1;
-  letter-spacing: -.04em;
-  text-transform: uppercase;
-  color: $white;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  text-transform: none;
+  color: #FBF8F1;
   margin: 16px 0 24px;
   overflow-wrap: break-word;
-  &--orange { color: $orange; }
+  &--orange {
+    font-style: italic;
+    background: $gold-grad;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .hero-subtitle {
   font-family: 'Lato', sans-serif;
   font-size: clamp(1.05rem, 1.6vw, 1.3rem);
   line-height: 1.7;
-  color: rgba($white, .85);
+  color: rgba(244,238,226, .85);
   max-width: 56ch;
   margin: 0 0 36px;
   border-left: 4px solid $orange;
@@ -229,7 +247,7 @@ $muted:   #6B7A8A;
   font-size: clamp(1.1rem, 1.6vw, 1.4rem);
   font-weight: 700;
   line-height: 1.5;
-  color: $navy;
+  color: #FBF8F1;
   margin: 0 0 20px;
 }
 
@@ -237,7 +255,7 @@ $muted:   #6B7A8A;
   font-family: 'Lato', sans-serif;
   font-size: 1.05rem;
   line-height: 1.75;
-  color: #4A5A6A;
+  color: $muted;
   margin: 0 0 28px;
 }
 
@@ -250,13 +268,16 @@ $muted:   #6B7A8A;
   font-size: 1.2rem;
   font-weight: 700;
   font-style: italic;
-  color: $navy;
-  background: $white;
+  color: #FBF8F1;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(212,175,55,.16);
   border-left: 4px solid $orange;
   border-radius: 0 14px 14px 0;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   padding: 22px 26px;
   margin: 0;
-  box-shadow: 0 8px 30px rgba($navy, .08);
+  box-shadow: 0 8px 30px rgba(0,0,0,.35);
 
   mat-icon {
     color: $orange;
@@ -274,11 +295,13 @@ $muted:   #6B7A8A;
 
 .stat-card {
   position: relative;
-  background: $white;
+  background: rgba(255,255,255,.04);
   border-radius: 20px;
   padding: 32px 26px;
-  border: 1.5px solid rgba($navy, .08);
-  box-shadow: 0 6px 24px rgba($navy, .07);
+  border: 1px solid rgba(212,175,55,.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 6px 24px rgba(0,0,0,.30);
   overflow: hidden;
   transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
 
@@ -287,7 +310,7 @@ $muted:   #6B7A8A;
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 4px;
-    background: $orange;
+    background: $gold-grad;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 300ms ease;
@@ -295,27 +318,27 @@ $muted:   #6B7A8A;
 
   &:hover {
     transform: translateY(-6px);
-    box-shadow: 0 18px 44px rgba($navy, .15);
-    border-color: rgba($orange, .25);
+    box-shadow: 0 18px 44px rgba(0,0,0,.45);
+    border-color: rgba(212,175,55, .35);
     &::after { transform: scaleX(1); }
   }
 
   &--accent {
-    background: linear-gradient(150deg, $orange 0%, #E5740A 100%);
+    background: $gold-grad;
     border-color: $orange;
-    box-shadow: 0 10px 30px rgba($orange, .30);
-    .stat-num { color: $white; }
-    .stat-label { color: rgba($white, .90); }
-    &::after { background: $white; }
+    box-shadow: 0 10px 30px rgba(212,175,55, .30);
+    .stat-num { color: #0B0A08; }
+    .stat-label { color: rgba(11,10,8, .82); }
+    &::after { background: #0B0A08; }
   }
 
   &--green {
-    background: linear-gradient(150deg, $green 0%, #6EA200 100%);
+    background: $gold-grad;
     border-color: $green;
-    box-shadow: 0 10px 30px rgba($green, .28);
-    .stat-num { color: $white; }
-    .stat-label { color: rgba($white, .90); }
-    &::after { background: $white; }
+    box-shadow: 0 10px 30px rgba(200,145,46, .28);
+    .stat-num { color: #0B0A08; }
+    .stat-label { color: rgba(11,10,8, .82); }
+    &::after { background: #0B0A08; }
   }
 
   .stat-num {
@@ -323,7 +346,7 @@ $muted:   #6B7A8A;
     font-family: 'Poppins', sans-serif;
     font-weight: 900;
     font-size: clamp(1.7rem, 2.8vw, 2.3rem);
-    color: $navy;
+    color: #FBF8F1;
     line-height: 1;
     letter-spacing: -.02em;
     margin-bottom: 10px;
@@ -342,7 +365,7 @@ $muted:   #6B7A8A;
    ÉQUIPE
    ============================================================ */
 .team {
-  background: $white;
+  background: $deep;
   padding: 110px 48px;
 }
 
@@ -368,16 +391,18 @@ $muted:   #6B7A8A;
 }
 
 .team-card {
-  background: $cream;
+  background: rgba(255,255,255,.04);
   border-radius: 22px;
   padding: 32px 28px;
-  border: 1.5px solid rgba($navy, .07);
+  border: 1px solid rgba(212,175,55,.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
 
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 22px 56px rgba($navy, .16);
-    border-color: rgba($orange, .30);
+    box-shadow: 0 22px 56px rgba(0,0,0,.50);
+    border-color: rgba(212,175,55, .42);
   }
 }
 
@@ -414,7 +439,7 @@ $muted:   #6B7A8A;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
-  color: $navy;
+  color: #FBF8F1;
   margin: 0 0 4px;
 }
 
@@ -425,7 +450,7 @@ $muted:   #6B7A8A;
   font-weight: 700;
   letter-spacing: .10em;
   text-transform: uppercase;
-  color: $orange;
+  color: $gold-light;
   margin-bottom: 14px;
 }
 
@@ -433,7 +458,7 @@ $muted:   #6B7A8A;
   font-family: 'Lato', sans-serif;
   font-size: .92rem;
   line-height: 1.65;
-  color: #5A6A7A;
+  color: $muted;
   margin: 0;
 }
 
@@ -614,15 +639,22 @@ $muted:   #6B7A8A;
 }
 
 .cta-bottom-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
+  font-family: 'Gambetta', Georgia, serif;
+  font-weight: 700;
   font-size: clamp(2.4rem, 6vw, 4.5rem);
   line-height: 1.04;
-  letter-spacing: -.03em;
-  text-transform: uppercase;
-  color: $white;
+  letter-spacing: -.02em;
+  text-transform: none;
+  color: #FBF8F1;
   margin: 0 0 22px;
-  &--orange { color: $orange; }
+  &--orange {
+    font-style: italic;
+    background: $gold-grad;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .cta-bottom-lead {
