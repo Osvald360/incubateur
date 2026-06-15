@@ -467,6 +467,14 @@ $muted:   #5a6b79;
   .ei-auth__panel { padding: 24px 20px 48px; }
 }
 
+@media (max-width: 380px) {
+  .ei-auth__panel { padding: 20px 14px 40px; }
+  .ei-auth__form-shell { padding: 22px 18px; border-radius: 18px; }
+  .ei-auth__title { font-size: clamp(1.7rem, 8vw, 2rem); }
+  .field-control input { padding: 12px 42px 12px 14px; }
+  .terms-checkbox .terms-text { font-size: 0.85rem; }
+}
+
 /* =====================================================
    ACCESSIBILITÉ — mouvement réduit
    ===================================================== */

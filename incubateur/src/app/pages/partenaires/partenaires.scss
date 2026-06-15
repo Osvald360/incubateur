@@ -476,7 +476,17 @@ $white:   #FFFFFF;
 
 @media (max-width: 560px) {
   .summit-actions { width: 100%; }
-  .btn { flex: 1 1 auto; justify-content: center; }
+  .btn { flex: 1 1 auto; justify-content: center; min-height: 48px; }
+}
+
+@media (max-width: 380px) {
+  .ptr-hero-content { padding: 120px 18px 56px; }
+  .ptr-hero-subtitle { padding-left: 16px; }
+  .partners-block { padding: 64px 18px; }
+  .summit { padding: 80px 18px; }
+  .partner-card { padding: 20px; gap: 12px 14px; }
+  .partner-text { max-width: none; }
+  .btn--lg { padding: 14px 28px; font-size: 1rem; }
 }
 
 /* =====================================================

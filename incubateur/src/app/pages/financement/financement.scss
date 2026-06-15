@@ -887,6 +887,56 @@
 }
 
 /* =====================================================
+   RESPONSIVE — mobile compact : chiffres-clés et répartition
+   en 1 colonne, dépenses et chips empilés proprement.
+   ===================================================== */
+@media (max-width: 480px) {
+  /* chiffres-clés : 1 colonne pleine largeur (pas de minmax 220px) */
+  .fin-figures {
+    grid-template-columns: 1fr;
+  }
+
+  /* répartition par type : 1 colonne */
+  .breakdown-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* opportunités : 1 colonne */
+  .opportunities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* résumé financier : empilé, lisible */
+  .financing-summary {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* dépenses : info au-dessus, montant + statut en dessous */
+  .expense-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    .expense-details {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  /* bouton retour confort tactile */
+  .fin-back {
+    min-height: 44px;
+  }
+
+  /* CTA opportunités : pleine largeur tactile */
+  .opportunity-card button.mat-mdc-raised-button {
+    width: 100%;
+    min-height: 44px;
+  }
+}
+
+/* =====================================================
    ACCESSIBILITÉ — mouvement réduit
    ===================================================== */
 @media (prefers-reduced-motion: reduce) {

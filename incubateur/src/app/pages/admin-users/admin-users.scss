@@ -25,6 +25,9 @@ $red:     #D64545;   // statut négatif
   background: $light;
   color: $ink;
   font-family: 'Lato', sans-serif;
+  /* garde-fou : aucune section ne doit pousser la page ; le
+     défilement horizontal reste confiné au .table-container. */
+  overflow-x: hidden;
 }
 
 /* ── En-tête : bandeau dégradé deep→navy ───────────── */
@@ -85,6 +88,11 @@ $red:     #D64545;   // statut négatif
     text-transform: uppercase;
     line-height: 1.05;
     color: $white;
+    /* autorise le retour à la ligne du titre sur très petit écran
+       pour éviter tout débordement horizontal de la page */
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+    min-width: 0;
 
     mat-icon {
       font-size: 2.1rem;
