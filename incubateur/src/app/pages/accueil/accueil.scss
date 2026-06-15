@@ -5,6 +5,8 @@
    #002235 · #003B5C · #F39200 · #84BD00
    ===================================================== */
 
+@use 'sass:list';
+
 $deep:    #002235;
 $navy:    #003B5C;
 $orange:  #F39200;
@@ -27,6 +29,22 @@ $white:   #FFFFFF;
   text-decoration: none; cursor: pointer; border: none;
   transition: all 300ms ease;
   min-height: 44px;
+  position: relative;
+  overflow: hidden;
+
+  /* Balayage lumineux au survol (boutons pleins) */
+  &--orange::after,
+  &--green::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -120%;
+    width: 60%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba($white, .45), transparent);
+    transform: skewX(-22deg);
+    pointer-events: none;
+  }
+  &--orange:hover::after,
+  &--green:hover::after { animation: btn-shine 750ms var(--ei-ease-launch); }
 
   &--pill  { border-radius: 100px; }
   &--lg    { padding: 16px 40px; font-size: 1.05rem; letter-spacing: .04em; text-transform: uppercase; min-height: 52px; }
@@ -90,7 +108,7 @@ $white:   #FFFFFF;
     &:nth-child(#{$i}) {
       left: ($i * 6.5) * 1%;
       animation: confetti-fall 3s ease-in #{$i * 0.2}s infinite;
-      background: nth(($orange, $green, $navy, $white, #FFD166), ($i % 5) + 1);
+      background: list.nth(($orange, $green, $navy, $white, #FFD166), ($i % 5) + 1);
       border-radius: if($i % 3 == 0, 50%, 0);
     }
   }
@@ -144,7 +162,13 @@ $white:   #FFFFFF;
   text-transform: uppercase;
   overflow-wrap: break-word;
 
-  &--orange  { color: $orange; }
+  &--orange {
+    background: linear-gradient(100deg, $orange 0%, #FFD166 45%, $orange 90%);
+    background-size: 220% auto;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    animation: title-shimmer 7s linear infinite;
+  }
   &--outline { -webkit-text-stroke: 2px $white; color: transparent; }
 }
 
@@ -1167,4 +1191,18 @@ $white:   #FFFFFF;
 
 @media (prefers-reduced-motion: reduce) {
   .sector-marquee-track { animation: none; flex-wrap: wrap; justify-content: center; }
+}
+
+/* ── Effets « vivants » (DA respectée : orange→or) ── */
+@keyframes btn-shine {
+  from { left: -120%; }
+  to   { left: 140%; }
+}
+@keyframes title-shimmer {
+  to { background-position: 220% center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-title--orange { animation: none; }
+  .btn--orange:hover::after,
+  .btn--green:hover::after { animation: none; }
 }

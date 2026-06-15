@@ -27,6 +27,7 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
   private revealTimer?: number;
   private reducedMotion = false;
   private parallaxEls: HTMLElement[] = [];
+  private scrollFadeEls: HTMLElement[] = [];
 
   private onScroll = () => {
     const d = document.documentElement;
@@ -41,6 +42,17 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
         const speed = parseFloat(el.dataset['parallax'] || '0.15');
         const offset = ((rect.top + rect.height / 2) - vh / 2) * -speed;
         el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(1.14)`;
+      }
+    }
+
+    // Profondeur du hero : le contenu monte et s'estompe au scroll ([data-scroll-fade])
+    if (!this.reducedMotion && this.scrollFadeEls.length) {
+      const vh = window.innerHeight;
+      const sy = d.scrollTop;
+      const p = Math.min(sy / (vh * 0.85), 1);
+      for (const el of this.scrollFadeEls) {
+        el.style.opacity = `${(1 - p).toFixed(3)}`;
+        el.style.transform = `translate3d(0, ${(sy * 0.22).toFixed(1)}px, 0)`;
       }
     }
 
@@ -160,6 +172,7 @@ export class App implements OnInit, OnDestroy, AfterViewInit {
 
     // Calques de parallaxe
     this.parallaxEls = Array.from(root.querySelectorAll<HTMLElement>('[data-parallax]'));
+    this.scrollFadeEls = Array.from(root.querySelectorAll<HTMLElement>('[data-scroll-fade]'));
 
     // Compteurs animés (count-up) — éléments [data-count]
     const countNodes = Array.from(root.querySelectorAll<HTMLElement>('[data-count]'));

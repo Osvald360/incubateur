@@ -349,6 +349,20 @@ mat-icon,
   .main-content [data-parallax] { transform: none; }
 }
 
+/* Transition de page — le composant routé (frère du router-outlet) rejoue
+   l'animation à chaque navigation puisqu'il est recréé. CSS pur, zoneless-safe. */
+.main-content > router-outlet + * {
+  display: block;
+  animation: page-enter 560ms var(--ei-ease-launch) both;
+}
+@keyframes page-enter {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .main-content > router-outlet + * { animation: none; }
+}
+
 .main-content [data-magnetic] {
   transition: transform 180ms var(--ei-ease-launch);
 }
