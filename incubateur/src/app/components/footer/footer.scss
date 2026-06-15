@@ -1,15 +1,24 @@
 /* =====================================================
-   FOOTER — Envol Impact · DA marque 2024
-   Navy #002235 · Orange #F39200 · Poppins + Lato
+   FOOTER — Envol Impact · DA NOIR & DORÉ
+   Noir #0B0A08 · Or #D4AF37 · Poppins + Lato
    ===================================================== */
 
-$deep:   #002235;
-$navy:   #003B5C;
-$orange: #F39200;
-$green:  #84BD00;
-$white:  #FFFFFF;
-$muted:  rgba(#FFFFFF, .55);
-$border: rgba(#FFFFFF, .10);
+$page:      #0B0A08;  // noir page
+$deep:      #0B0A08;  // noir profond (fond footer)
+$surface:   #14110A;  // noir surface
+$elevated:  #1C1810;  // noir élevé
+
+$gold-grad: linear-gradient(120deg, #EBCB7E 0%, #C8912E 100%);
+$gold-lt:   #E8C77E;  // or clair
+$gold:      #D4AF37;  // or solide
+$gold-dp:   #B8862F;  // or profond
+
+$text:      #F4EEE2;  // texte principal
+$title:     #FBF8F1;  // titres
+$muted:     #A89F8C;  // secondaire
+
+$border:    rgba(212, 175, 55, .16);
+$border-lt: rgba(255, 255, 255, .07);
 
 .footer {
   background: $deep;
@@ -62,17 +71,19 @@ $border: rgba(#FFFFFF, .10);
       align-items: center;
       justify-content: center;
       width: 44px; height: 44px;
-      background: rgba($orange, .10);
+      background: rgba($gold, .10);
+      border: 1px solid $border;
       border-radius: 50%;
-      color: $orange;
+      color: $gold;
       text-decoration: none;
       transition: all 260ms ease;
 
       &:hover {
-        background: $orange;
-        color: $white;
+        background: $gold-grad;
+        border-color: transparent;
+        color: $page;
         transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba($orange, .35);
+        box-shadow: 0 6px 18px rgba($gold, .35);
       }
 
       mat-icon { font-size: 20px; width: 20px; height: 20px; }
@@ -88,7 +99,7 @@ $border: rgba(#FFFFFF, .10);
     font-weight: 700;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: $orange;
+    color: $gold;
     margin-bottom: 20px;
   }
 
@@ -104,7 +115,7 @@ $border: rgba(#FFFFFF, .10);
       font-size: .95rem;
       transition: color 220ms ease;
 
-      &:hover { color: $white; }
+      &:hover { color: $gold-lt; }
     }
   }
 
@@ -117,7 +128,7 @@ $border: rgba(#FFFFFF, .10);
       &:last-child { margin-bottom: 0; }
 
       mat-icon {
-        color: $orange;
+        color: $gold;
         font-size: 18px; width: 18px; height: 18px;
         margin-top: 2px;
         flex-shrink: 0;
@@ -128,7 +139,7 @@ $border: rgba(#FFFFFF, .10);
         font-size: .92rem;
         line-height: 1.5;
         text-decoration: none;
-        &:hover { color: $white; }
+        &:hover { color: $gold-lt; }
       }
     }
   }
@@ -153,7 +164,7 @@ $border: rgba(#FFFFFF, .10);
       font-family: 'Poppins', sans-serif;
       font-size: 1.2rem;
       font-weight: 700;
-      color: $white;
+      color: $title;
       margin-bottom: 6px;
     }
 
@@ -172,17 +183,17 @@ $border: rgba(#FFFFFF, .10);
         padding: 12px 20px;
         border: 1.5px solid $border;
         border-radius: 100px;
-        background: rgba($white, .05);
-        color: $white;
+        background: rgba($gold, .05);
+        color: $text;
         font-family: 'Lato', sans-serif;
         font-size: .92rem;
         outline: none;
         transition: all 220ms ease;
 
-        &::placeholder { color: rgba($white, .35); }
+        &::placeholder { color: $muted; }
         &:focus {
-          border-color: rgba($orange, .60);
-          background: rgba($orange, .06);
+          border-color: rgba($gold, .60);
+          background: rgba($gold, .08);
         }
       }
 
@@ -190,8 +201,8 @@ $border: rgba(#FFFFFF, .10);
         display: inline-flex !important;
         align-items: center;
         gap: 6px;
-        background: $orange !important;
-        color: $white !important;
+        background: $gold-grad !important;
+        color: $page !important;
         border: none !important;
         border-radius: 100px !important;
         padding: 12px 24px !important;
@@ -200,16 +211,16 @@ $border: rgba(#FFFFFF, .10);
         font-size: .82rem !important;
         letter-spacing: .04em !important;
         white-space: nowrap;
-        box-shadow: 0 6px 18px rgba($orange, .28) !important;
+        box-shadow: 0 6px 18px rgba($gold, .28) !important;
         transition: all 240ms ease !important;
 
         &:hover {
-          background: #D47F00 !important;
+          background: linear-gradient(120deg, #F0D38C 0%, #D4AF37 100%) !important;
           transform: translateY(-1px);
-          box-shadow: 0 10px 26px rgba($orange, .40) !important;
+          box-shadow: 0 10px 26px rgba($gold, .40) !important;
         }
 
-        mat-icon { font-size: 18px; width: 18px; height: 18px; color: $white !important; }
+        mat-icon { font-size: 18px; width: 18px; height: 18px; color: $page !important; }
 
         @media (max-width: 576px) { width: 100%; justify-content: center; }
       }
@@ -231,7 +242,7 @@ $border: rgba(#FFFFFF, .10);
   }
 
   .copyright p {
-    color: rgba($white, .35);
+    color: $muted;
     font-size: .85rem;
     margin: 0;
   }
@@ -243,11 +254,11 @@ $border: rgba(#FFFFFF, .10);
     @media (max-width: 576px) { flex-direction: column; gap: 8px; align-items: center; }
 
     a {
-      color: rgba($white, .35);
+      color: $muted;
       text-decoration: none;
       font-size: .85rem;
       transition: color 220ms ease;
-      &:hover { color: $orange; }
+      &:hover { color: $gold; }
     }
   }
 }

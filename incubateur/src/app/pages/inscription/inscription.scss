@@ -1,31 +1,37 @@
 /* =====================================================
    ENVOL IMPACT · INSCRIPTION
-   Split premium plein écran aligné sur connexion / register :
-   aside cinématique nuit d'encre (#002235) + panneau clair
-   (#F8FAFC) avec carte blanche et champs soignés.
-   Charte : Poppins (titres) · Lato (corps) · orange #F39200.
+   RE-SKIN NOIR & DORÉ — split premium plein écran :
+   aside cinématique nuit d'encre + trame OR, panneau
+   sombre, carte « verre sur noir », champs natifs sombres.
+   Charte : Gambetta (grand titre) · Poppins · Lato.
    ===================================================== */
 
-// Couleurs locales — alignées sur la DA Envol
-$deep:    #002235;
-$navy:    #003B5C;
-$orange:  #F39200;
-$orange-d:#E5740A;
-$green:   #84BD00;
-$light:   #F8FAFC;
-$white:   #FFFFFF;
-$muted:   #5a6b79;
+// Palette locale NOIR & DORÉ
+$ink:        #0B0A08; // noir page
+$surface:    #14110A; // noir surface
+$elevated:   #1C1810; // noir élevé
+$gold-1:     #EBCB7E; // or — départ dégradé
+$gold-light: #E8C77E; // or clair
+$gold-solid: #D4AF37; // or solide
+$gold-deep:  #B8862F; // or profond
+$cream:      #F4EEE2; // texte
+$cream-hi:   #FBF8F1; // titres
+$muted:      #A89F8C; // secondaire
+$succ:       #C8912E; // succès → or (ex-vert)
+$err:        #E5685F; // erreur
+$gold-grad:  linear-gradient(120deg, #EBCB7E 0%, #C8912E 100%);
+$font-serif: 'Gambetta', Georgia, serif;
 
 :host {
   display: block;
   font-family: 'Lato', sans-serif;
-  color: $deep;
+  color: $cream;
 }
 
 .inscription-container {
   min-height: 100vh;
-  background: $light;
-  color: $deep;
+  background: $ink;
+  color: $cream;
 }
 
 /* ---------- Grille split ---------- */
@@ -44,8 +50,8 @@ $muted:   #5a6b79;
   display: flex;
   align-items: flex-end;
   padding: clamp(40px, 5vw, 76px);
-  background: $deep;
-  color: $white;
+  background: $ink;
+  color: $cream-hi;
 }
 
 .aside-bg { position: absolute; inset: 0; z-index: 0; }
@@ -68,15 +74,15 @@ $muted:   #5a6b79;
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(155deg, rgba(0, 34, 53, 0.92) 0%, rgba(0, 59, 92, 0.80) 48%, rgba(0, 34, 53, 0.96) 100%);
+    linear-gradient(155deg, rgba(11, 10, 8, 0.92) 0%, rgba(20, 17, 10, 0.82) 48%, rgba(11, 10, 8, 0.97) 100%);
 }
 
 .aside-dots {
   position: absolute;
   inset: 0;
   z-index: 1;
-  opacity: 0.08;
-  background-image: radial-gradient($orange 2px, transparent 2px);
+  opacity: 0.10;
+  background-image: radial-gradient($gold-1 2px, transparent 2px);
   background-size: 28px 28px;
   pointer-events: none;
 }
@@ -100,23 +106,23 @@ $muted:   #5a6b79;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: clamp(1.4rem, 2.2vw, 1.9rem);
-  color: $white;
+  color: $cream-hi;
   display: inline-flex;
   align-items: baseline;
 
-  .brand-impact { color: $orange; margin-left: 0.2ch; }
+  .brand-impact { color: $gold-solid; margin-left: 0.2ch; }
 }
 
 .aside-quote {
   position: relative;
   margin: 0 0 28px;
   padding-left: 22px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
+  font-family: $font-serif;
+  font-weight: 600;
   font-style: italic;
   font-size: clamp(1.3rem, 2.4vw, 1.85rem);
   line-height: 1.35;
-  color: $white;
+  color: $cream-hi;
 
   &::before {
     content: '';
@@ -126,7 +132,7 @@ $muted:   #5a6b79;
     bottom: 6px;
     width: 4px;
     border-radius: 4px;
-    background: $orange;
+    background: $gold-grad;
   }
 }
 
@@ -144,7 +150,7 @@ $muted:   #5a6b79;
     gap: 12px;
     font-size: 0.96rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.82);
+    color: rgba(244, 238, 226, 0.82);
   }
 }
 
@@ -154,8 +160,8 @@ $muted:   #5a6b79;
   height: 9px;
   margin-top: 6px;
   border-radius: 50%;
-  background: $green;
-  box-shadow: 0 0 0 4px rgba(132, 189, 0, 0.18);
+  background: $gold-solid;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18);
 }
 
 .aside-meta {
@@ -163,11 +169,11 @@ $muted:   #5a6b79;
   font-size: 0.86rem;
   letter-spacing: 0.06em;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.6);
+  color: $muted;
 }
 
 /* =====================================================
-   PANNEAU DROIT · Formulaire clair
+   PANNEAU DROIT · Formulaire sombre
    ===================================================== */
 .ei-auth__panel {
   position: relative;
@@ -176,23 +182,26 @@ $muted:   #5a6b79;
   justify-content: center;
   padding: clamp(40px, 6vw, 96px) clamp(24px, 5vw, 80px);
   background:
-    radial-gradient(120% 80% at 100% 0%, rgba(243, 146, 0, 0.06), transparent 55%),
-    $light;
+    radial-gradient(120% 80% at 100% 0%, rgba(212, 175, 55, 0.08), transparent 55%),
+    $ink;
   min-height: 100vh;
   overflow: hidden;
 }
 
+/* Carte « verre sur noir » */
 .ei-auth__form-shell {
   position: relative;
   width: 100%;
   max-width: 540px;
   padding: clamp(28px, 4vw, 48px);
-  background: $white;
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 22px;
   box-shadow:
-    0 24px 60px rgba(0, 34, 53, 0.12),
-    0 4px 14px rgba(0, 34, 53, 0.06);
-  border: 1px solid rgba(0, 59, 92, 0.08);
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 4px 14px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   overflow: hidden;
   animation: shell-rise 620ms cubic-bezier(.22, 1, .36, 1) both;
 
@@ -203,7 +212,7 @@ $muted:   #5a6b79;
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, $orange, #FFD166);
+    background: $gold-grad;
     z-index: 2;
   }
 }
@@ -225,24 +234,35 @@ $muted:   #5a6b79;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: $orange;
+  color: $gold-light;
 
   &::before {
     content: '';
     width: 24px;
     height: 2px;
-    background: $orange;
+    background: $gold-grad;
   }
 }
 
+/* Grand titre serif, casse normale, mot accent OR italique */
 .ei-auth__title {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-family: $font-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1.1;
-  font-size: clamp(2rem, 3.5vw, 2.5rem);
-  color: $deep;
+  text-transform: none;
+  font-size: clamp(2.1rem, 3.6vw, 2.7rem);
+  color: $cream-hi;
+
+  em {
+    font-style: italic;
+    font-family: $font-serif;
+    background: $gold-grad;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 .ei-auth__lede {
@@ -272,7 +292,7 @@ $muted:   #5a6b79;
   font-size: 0.78rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: $navy;
+  color: $gold-light;
 }
 
 .field-control {
@@ -285,23 +305,24 @@ $muted:   #5a6b79;
     padding: 14px 46px 14px 16px;
     font-family: 'Lato', sans-serif;
     font-size: 1rem;
-    color: $deep;
-    background: $light;
-    border: 1.5px solid rgba(0, 34, 53, 0.12);
+    color: $cream;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid rgba(212, 175, 55, 0.18);
     border-radius: 12px;
     outline: none;
+    caret-color: $gold-solid;
     transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
 
-    &::placeholder { color: #9AB0BC; }
+    &::placeholder { color: rgba(168, 159, 140, 0.6); }
 
-    &:hover { border-color: rgba(0, 34, 53, 0.30); }
+    &:hover { border-color: rgba(212, 175, 55, 0.40); }
 
     &:focus {
-      border-color: $orange;
-      background: $white;
-      box-shadow: 0 0 0 4px rgba(243, 146, 0, 0.14);
+      border-color: $gold-solid;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.16);
 
-      & + .field-icon { color: $orange; }
+      & + .field-icon { color: $gold-light; }
     }
   }
 }
@@ -329,7 +350,7 @@ $muted:   #5a6b79;
     width: 20px;
     height: 20px;
     margin-top: 2px;
-    accent-color: $orange;
+    accent-color: $gold-solid;
     cursor: pointer;
   }
 
@@ -339,15 +360,15 @@ $muted:   #5a6b79;
     color: $muted;
 
     a {
-      color: $orange;
+      color: $gold-light;
       text-decoration: none;
       font-weight: 700;
-      &:hover { color: $orange-d; text-decoration: underline; }
+      &:hover { color: $gold-solid; text-decoration: underline; }
     }
   }
 }
 
-/* ---------- Bouton principal : orange pilule ---------- */
+/* ---------- Bouton principal : dégradé OR + texte NOIR ---------- */
 .form-actions {
   margin: 8px 0 0;
 
@@ -360,28 +381,34 @@ $muted:   #5a6b79;
     min-height: 54px;
     border: none;
     border-radius: 100px;
-    background: $orange;
-    color: $white;
+    background: $gold-grad;
+    color: $ink;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     cursor: pointer;
-    box-shadow: 0 6px 18px rgba(243, 146, 0, 0.28);
+    box-shadow: 0 6px 18px rgba(184, 134, 47, 0.32);
     transition: all 260ms ease;
 
     .material-icons { font-size: 1.2rem; }
 
     &:hover {
-      background: $deep;
+      box-shadow: 0 12px 30px rgba(184, 134, 47, 0.48);
       transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(0, 34, 53, 0.22);
     }
 
     &:focus-visible {
-      outline: 3px solid rgba(243, 146, 0, 0.4);
+      outline: 3px solid rgba(212, 175, 55, 0.45);
       outline-offset: 3px;
+    }
+
+    &:disabled {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(244, 238, 226, 0.30);
+      box-shadow: none;
+      cursor: not-allowed;
     }
   }
 }
@@ -391,7 +418,7 @@ $muted:   #5a6b79;
   text-align: center;
   margin-top: 32px;
   padding-top: 24px;
-  border-top: 1px solid rgba(0, 34, 53, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 
   .login-text {
     margin: 0;
@@ -403,10 +430,10 @@ $muted:   #5a6b79;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     margin-left: 4px;
-    color: $orange;
+    color: $gold-light;
     text-decoration: none;
 
-    &:hover { color: $orange-d; text-decoration: underline; }
+    &:hover { color: $gold-solid; text-decoration: underline; }
   }
 }
 
@@ -470,7 +497,7 @@ $muted:   #5a6b79;
 @media (max-width: 380px) {
   .ei-auth__panel { padding: 20px 14px 40px; }
   .ei-auth__form-shell { padding: 22px 18px; border-radius: 18px; }
-  .ei-auth__title { font-size: clamp(1.7rem, 8vw, 2rem); }
+  .ei-auth__title { font-size: clamp(1.8rem, 8vw, 2.1rem); }
   .field-control input { padding: 12px 42px 12px 14px; }
   .terms-checkbox .terms-text { font-size: 0.85rem; }
 }
@@ -495,9 +522,9 @@ $muted:   #5a6b79;
   margin: 4px 0 0;
   padding: 12px 16px;
   border-radius: 10px;
-  background: rgba(248, 113, 113, .12);
-  border: 1px solid rgba(248, 113, 113, .35);
-  color: #F87171;
+  background: rgba(229, 104, 95, .12);
+  border: 1px solid rgba(229, 104, 95, .35);
+  color: $err;
   font-size: .9rem;
   font-weight: 600;
 }

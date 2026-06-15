@@ -15,15 +15,15 @@
 :root {
   /* =====================================================
      Couleurs de marque — Envol Impact (dérivées du logo)
-     Navy #01306F = ossature · Orange #FE8701 = action
+     Noir #0B0A08 = ossature · Or #D4AF37 = action
      ===================================================== */
-  --navy:          #01306F;  /* couleur structurante : navbar, footer, titres */
-  --navy-dark:     #02245A;  /* hover / surfaces sombres */
-  --navy-subtle:   #EEF2F9;  /* fonds doux bleutés */
+  --navy:          #14110A;  /* surface sombre structurante : navbar, footer */
+  --navy-dark:     #0B0A08;  /* noir profond / surfaces */
+  --navy-subtle:   #1C1810;  /* surface élevée */
 
-  --orange:        #FE8701;  /* accent & action : CTA, liens actifs, hovers */
-  --orange-dark:   #E5740A;  /* hover CTA */
-  --orange-subtle: #FFF4E8;  /* fonds doux orangés */
+  --orange:        #D4AF37;  /* OR — accent & action : CTA, liens actifs, hovers */
+  --orange-dark:   #B8862F;  /* or profond — hover CTA */
+  --orange-subtle: rgba(212,175,55,.12);  /* voile or */
 
   /* Compat — anciens tokens "blue"/"gold" remappés sur la
      nouvelle marque pour que les composants legacy suivent.
@@ -32,16 +32,16 @@
   --blue-dark:     var(--navy-dark);
   --blue-subtle:   var(--navy-subtle);
   --gold:          var(--orange);
-  --gold-light:    #FFA133;
+  --gold-light:    #EBCB7E;
   --gold-subtle:   var(--orange-subtle);
 
   /* Neutres */
-  --text-primary:  #0F172A;
-  --text-body:     #475569;
-  --text-muted:    #94A3B8;
-  --bg-page:       #F8FAFC;
-  --bg-soft:       #F1F5F9;
-  --border:        #E2E8F0;
+  --text-primary:  #F4EEE2;
+  --text-body:     #A89F8C;
+  --text-muted:    #6F6A5E;
+  --bg-page:       #0B0A08;
+  --bg-soft:       #14110A;
+  --border:        rgba(212,175,55,.16);
   --white:         #FFFFFF;
 
   /* États */
@@ -71,17 +71,17 @@
      Contraste AA respecté sur chaque paire fond/texte.
      ===================================================== */
   /* Couleurs */
-  --ei-ink:        #002235;  /* fond page (bleu nuit profond) */
-  --ei-slate:      #002d45;  /* surface relevée sur sombre (bleu marine sombre) */
-  --ei-chalk:      #F8FAFC;  /* craie chaude — sections lecture */
-  --ei-gold-1:     #FE8701;  /* orange marque — départ du dégradé */
-  --ei-gold-2:     #FFB340;  /* orange clair — arrivée du dégradé / lumière */
-  --ei-elan:       #01306F;  /* bleu élan — CTA secondaire, focus */
+  --ei-ink:        #0B0A08;  /* noir profond — fond page */
+  --ei-slate:      #14110A;  /* surface relevée sur noir */
+  --ei-chalk:      #14110A;  /* ex-sections claires → sombres */
+  --ei-gold-1:     #C8912E;  /* or — départ du dégradé */
+  --ei-gold-2:     #EBCB7E;  /* or clair — arrivée du dégradé / lumière */
+  --ei-elan:       #B8862F;  /* or profond — focus, CTA secondaire */
   --ei-on-dark:    #FFFFFF;  /* texte sur fond sombre (blanc) */
-  --ei-on-dark-dim:#94A3B8;  /* texte secondaire sur sombre (gris bleuté) */
-  --ei-on-light:   #01306F;  /* encre — texte sur fond clair (navy) */
-  --ei-haze:       #8A9AA8;  /* brume — légendes, méta */
-  --ei-sprout:     #3FA88A;  /* vert pousse — succès */
+  --ei-on-dark-dim:#A89F8C;  /* texte secondaire sur sombre (gris chaud) */
+  --ei-on-light:   #F4EEE2;  /* crème — texte principal */
+  --ei-haze:       #A89F8C;  /* brume — légendes, méta */
+  --ei-sprout:     #6FB98A;  /* vert pousse — succès (statut) */
 
   --ei-gold-grad:  linear-gradient(120deg, var(--ei-gold-1) 0%, var(--ei-gold-2) 100%);
 
@@ -207,44 +207,44 @@ a:not([class]):hover { color: #C9A24B; }
 /* Primary — orange (couleur d'action "Impact", DA navy & orange) */
 .mat-mdc-raised-button.mat-primary,
 .mat-mdc-unelevated-button.mat-primary {
-  background: linear-gradient(120deg, var(--orange) 0%, #FFB340 100%) !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 8px 22px rgba(254,135,1,.26) !important;
+  background: linear-gradient(120deg, #EBCB7E 0%, #C8912E 100%) !important;
+  color: #0B0A08 !important;
+  box-shadow: 0 8px 22px rgba(212,175,55,.26) !important;
 }
 .mat-mdc-raised-button.mat-primary:hover,
 .mat-mdc-unelevated-button.mat-primary:hover {
   filter: brightness(1.05) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 12px 28px rgba(254,135,1,.34) !important;
+  box-shadow: 0 12px 28px rgba(212,175,55,.34) !important;
 }
 .mat-mdc-raised-button.mat-primary mat-icon,
-.mat-mdc-unelevated-button.mat-primary mat-icon { color: #FFFFFF !important; }
+.mat-mdc-unelevated-button.mat-primary mat-icon { color: #0B0A08 !important; }
 
 /* Primary outline / text — orange */
 .mat-mdc-outlined-button.mat-primary {
   background: transparent !important;
   color: var(--orange) !important;
-  border: 1.5px solid rgba(254,135,1,.55) !important;
+  border: 1.5px solid rgba(212,175,55,.55) !important;
 }
 .mat-mdc-outlined-button.mat-primary:hover {
-  background: rgba(254,135,1,.10) !important;
+  background: rgba(212,175,55,.10) !important;
   border-color: var(--orange-dark) !important;
 }
 .mat-mdc-button.mat-primary {
   color: var(--orange) !important;
 }
 .mat-mdc-button.mat-primary:hover {
-  background: rgba(254,135,1,.10) !important;
+  background: rgba(212,175,55,.10) !important;
 }
 
 /* Stroked / outlined par défaut (sans couleur) — neutre orange sur sombre */
 .mat-mdc-outlined-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
   background: transparent !important;
   color: var(--orange) !important;
-  border-color: rgba(254,135,1,.40) !important;
+  border-color: rgba(212,175,55,.40) !important;
 }
 .mat-mdc-outlined-button:not(.mat-primary):not(.mat-accent):not(.mat-warn):hover {
-  background: rgba(254,135,1,.10) !important;
+  background: rgba(212,175,55,.10) !important;
   border-color: var(--orange-dark) !important;
 }
 .mat-mdc-outlined-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) mat-icon {
@@ -256,13 +256,13 @@ a:not([class]):hover { color: #C9A24B; }
 .mat-mdc-unelevated-button.mat-accent {
   background: var(--navy-dark) !important;
   color: #FFFFFF !important;
-  border: 1px solid rgba(254,135,1,.30) !important;
+  border: 1px solid rgba(212,175,55,.30) !important;
   box-shadow: 0 2px 10px rgba(0,0,0,.35) !important;
 }
 .mat-mdc-raised-button.mat-accent:hover,
 .mat-mdc-unelevated-button.mat-accent:hover {
   background: var(--navy) !important;
-  border-color: rgba(254,135,1,.55) !important;
+  border-color: rgba(212,175,55,.55) !important;
   transform: translateY(-2px) !important;
 }
 .mat-mdc-raised-button.mat-accent mat-icon,
@@ -384,11 +384,11 @@ mat-icon,
   background: var(--ei-ink);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(254, 135, 1, 0.3); /* Orange transluscide */
+  background: rgba(212,175,55, 0.3); /* Orange transluscide */
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(254, 135, 1, 0.7);
+  background: rgba(212,175,55, 0.7);
 }
 
 /* Orbes globaux (à placer derrière tout) */
@@ -417,7 +417,7 @@ mat-icon,
 .ei-orb-2 {
   width: 500px;
   height: 500px;
-  background: #3B82F6; /* Un bleu très doux pour contraster avec l'or */
+  background: #C8912E; /* Un bleu très doux pour contraster avec l'or */
   bottom: -20%;
   right: -5%;
   animation-duration: 25s;
@@ -445,7 +445,7 @@ mat-icon,
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(254, 135, 1, 0.08) 0%, transparent 60%);
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212,175,55, 0.08) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 300ms;
   pointer-events: none;
@@ -455,7 +455,7 @@ mat-icon,
 .ei-glass-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  border-color: rgba(254, 135, 1, 0.2); /* Highlight orange discret */
+  border-color: rgba(212,175,55, 0.2); /* Highlight orange discret */
 }
 .ei-glass-card:hover::before {
   opacity: 1;
@@ -525,7 +525,7 @@ mat-icon,
 .read-progress-fill {
   height: 100%;
   background: linear-gradient(to right, var(--ei-gold-2), var(--ei-gold-1));
-  box-shadow: 0 0 10px rgba(254, 135, 1, 0.5);
+  box-shadow: 0 0 10px rgba(212,175,55, 0.5);
   transition: width 100ms ease-out;
 }
 
@@ -605,9 +605,9 @@ mat-icon,
 /* Panneau — largeur auto calée sur le contenu */
 .nav-submenu .mat-mdc-menu-panel,
 .cdk-overlay-container .nav-submenu .mat-mdc-menu-panel {
-  background: #003B5C !important;
+  background: #14110A !important;
   border: 1px solid rgba(255,255,255,.12) !important;
-  border-top: 3px solid #F39200 !important;
+  border-top: 3px solid #D4AF37 !important;
   border-radius: 0 0 12px 12px !important;
   box-shadow:
     0 12px 36px rgba(0,0,0,.40),
@@ -621,7 +621,7 @@ mat-icon,
 
 .nav-submenu .mat-mdc-menu-content {
   padding: 4px 0 8px !important;
-  background: #003B5C !important;
+  background: #14110A !important;
 }
 
 /* Items */
@@ -638,7 +638,7 @@ mat-icon,
   transition: all 160ms ease !important;
 
   mat-icon {
-    color: #F39200 !important;
+    color: #D4AF37 !important;
     font-size: 1rem !important;
     width: 1rem !important;
     height: 1rem !important;
@@ -655,8 +655,8 @@ mat-icon,
 
   &:hover,
   &:focus {
-    background: rgba(243,146,0,.10) !important;
-    border-left-color: #F39200 !important;
+    background: rgba(212,175,55,.10) !important;
+    border-left-color: #D4AF37 !important;
 
     .mat-mdc-menu-item-text,
     span { color: #fff !important; }
@@ -665,9 +665,9 @@ mat-icon,
 }
 
 .nav-submenu .mat-mdc-menu-item.active-sub {
-  background: rgba(243,146,0,.14) !important;
-  border-left-color: #F39200 !important;
-  span, .mat-mdc-menu-item-text { color: #F39200 !important; font-weight: 700 !important; }
+  background: rgba(212,175,55,.14) !important;
+  border-left-color: #D4AF37 !important;
+  span, .mat-mdc-menu-item-text { color: #D4AF37 !important; font-weight: 700 !important; }
   mat-icon { opacity: 1; }
 }
 
@@ -680,80 +680,80 @@ body.page-light {
 
   mat-toolbar {
     background: rgba(255, 255, 255, .97) !important;
-    color: #003B5C !important;
-    border-bottom: 1px solid rgba(0, 59, 92, .12) !important;
-    box-shadow: 0 2px 16px rgba(0, 59, 92, .07) !important;
+    color: #14110A !important;
+    border-bottom: 1px solid rgba(212,175,55, .12) !important;
+    box-shadow: 0 2px 16px rgba(212,175,55, .07) !important;
   }
 
   /* Marque */
-  .brand-envol  { color: #003B5C !important; }
-  .brand-impact { color: #F39200 !important; }
+  .brand-envol  { color: #14110A !important; }
+  .brand-impact { color: #D4AF37 !important; }
 
   /* Liens nav desktop */
   .nav-links .mat-mdc-button {
-    color: #003B5C !important;
+    color: #14110A !important;
     &:hover {
-      background: rgba(0, 59, 92, .06) !important;
-      color: #003B5C !important;
+      background: rgba(212,175,55, .06) !important;
+      color: #14110A !important;
     }
     &.active {
-      color: #F39200 !important;
-      background: rgba(243, 146, 0, .08) !important;
+      color: #D4AF37 !important;
+      background: rgba(212,175,55, .08) !important;
     }
   }
 
   /* Triggers dropdown */
   .nav-dropdown-trigger {
-    color: #003B5C !important;
-    .dropdown-arrow { color: #003B5C !important; opacity: .5; }
+    color: #14110A !important;
+    .dropdown-arrow { color: #14110A !important; opacity: .5; }
   }
 
   /* Bouton connexion */
   .login-btn {
-    color: #003B5C !important;
-    border-color: rgba(0, 59, 92, .22) !important;
+    color: #14110A !important;
+    border-color: rgba(212,175,55, .22) !important;
     &:hover {
-      border-color: #003B5C !important;
-      background: rgba(0, 59, 92, .05) !important;
-      color: #003B5C !important;
+      border-color: #14110A !important;
+      background: rgba(212,175,55, .05) !important;
+      color: #14110A !important;
     }
   }
 
   /* CTA inscription — pill orange marque */
   .inscription-btn {
-    background: #F39200 !important;
+    background: #D4AF37 !important;
     color: #fff !important;
     border: none !important;
     border-radius: 100px !important;
-    box-shadow: 0 4px 14px rgba(243, 146, 0, .28) !important;
+    box-shadow: 0 4px 14px rgba(212,175,55, .28) !important;
     &:hover {
       background: #D47F00 !important;
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(243, 146, 0, .38) !important;
+      box-shadow: 0 8px 22px rgba(212,175,55, .38) !important;
       filter: none;
     }
   }
 
   /* Avatar connecté */
   .user-avatar-navbar {
-    background: linear-gradient(120deg, #003B5C, #005A8A) !important;
-    border-color: rgba(0, 59, 92, .35) !important;
-    box-shadow: 0 2px 8px rgba(0, 59, 92, .20) !important;
+    background: linear-gradient(120deg, #14110A, #1C1810) !important;
+    border-color: rgba(212,175,55, .35) !important;
+    box-shadow: 0 2px 8px rgba(212,175,55, .20) !important;
     .avatar-initials-navbar { color: #fff !important; }
   }
 
   /* Mobile */
-  .mobile-nav .mat-mdc-icon-button { color: #003B5C !important; }
+  .mobile-nav .mat-mdc-icon-button { color: #14110A !important; }
   .user-avatar-mobile {
-    background: linear-gradient(120deg, #003B5C, #005A8A) !important;
-    border-color: rgba(0, 59, 92, .35) !important;
+    background: linear-gradient(120deg, #14110A, #1C1810) !important;
+    border-color: rgba(212,175,55, .35) !important;
     .avatar-initials-mobile { color: #fff !important; }
   }
 
   /* Bouton retour en haut */
   .scroll-to-top-btn {
-    background: linear-gradient(120deg, #F39200, #FFB340) !important;
-    box-shadow: 0 6px 20px rgba(243, 146, 0, .35) !important;
+    background: linear-gradient(120deg, #D4AF37, #EBCB7E) !important;
+    box-shadow: 0 6px 20px rgba(212,175,55, .35) !important;
     mat-icon { color: #fff !important; }
   }
 
@@ -761,26 +761,26 @@ body.page-light {
   .nav-submenu .mat-mdc-menu-panel,
   .cdk-overlay-container .nav-submenu .mat-mdc-menu-panel {
     background: #fff !important;
-    border: 1px solid rgba(0, 59, 92, .10) !important;
-    border-top: 3px solid #F39200 !important;
-    box-shadow: 0 12px 36px rgba(0,59,92,.15), 0 2px 8px rgba(0,59,92,.08) !important;
+    border: 1px solid rgba(212,175,55, .10) !important;
+    border-top: 3px solid #D4AF37 !important;
+    box-shadow: 0 12px 36px rgba(212,175,55,.15), 0 2px 8px rgba(212,175,55,.08) !important;
   }
   .nav-submenu .mat-mdc-menu-content { background: #fff !important; }
   .nav-submenu .mat-mdc-menu-item {
-    color: #003B5C !important;
+    color: #14110A !important;
     border-left-color: transparent !important;
-    mat-icon { color: #F39200 !important; opacity: .80; }
-    span, .mat-mdc-menu-item-text { color: #003B5C !important; }
+    mat-icon { color: #D4AF37 !important; opacity: .80; }
+    span, .mat-mdc-menu-item-text { color: #14110A !important; }
     &:hover {
-      background: rgba(243,146,0,.07) !important;
-      border-left-color: #F39200 !important;
-      span, .mat-mdc-menu-item-text { color: #003B5C !important; }
+      background: rgba(212,175,55,.07) !important;
+      border-left-color: #D4AF37 !important;
+      span, .mat-mdc-menu-item-text { color: #14110A !important; }
       mat-icon { opacity: 1; }
     }
   }
   .nav-submenu .mat-mdc-menu-item.active-sub {
-    background: rgba(243,146,0,.10) !important;
-    border-left-color: #F39200 !important;
-    span, .mat-mdc-menu-item-text { color: #F39200 !important; }
+    background: rgba(212,175,55,.10) !important;
+    border-left-color: #D4AF37 !important;
+    span, .mat-mdc-menu-item-text { color: #D4AF37 !important; }
   }
 }

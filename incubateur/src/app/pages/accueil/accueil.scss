@@ -1,24 +1,62 @@
 /* =====================================================
    ACCUEIL — Envol Impact
-   Adapté de la maquette Gemini (brand board 2024).
-   Poppins Bold (titres) · Lato (corps)
-   #002235 · #003B5C · #F39200 · #84BD00
+   DA NOIR & DORÉ — look luxe « fonds d'investissement ».
+   Gambetta serif (grands titres) · Poppins/Lato (reste)
+   Fond noir partout · accents or dégradé.
    ===================================================== */
 
 @use 'sass:list';
 
-$deep:    #002235;
-$navy:    #003B5C;
-$orange:  #F39200;
-$green:   #84BD00;
-$light:   #F8FAFC;
-$white:   #FFFFFF;
+// ── Palette noir & or ────────────────────────────────
+$deep:    #0B0A08;   // noir page
+$navy:    #14110A;   // noir surface (sections alternées)
+$orange:  #D4AF37;   // or solide
+$green:   #C8912E;   // ex-vert décoratif → or profond
+$light:   #14110A;   // ex-sections claires → sombres
+$white:   #FFFFFF;   // conservé pour les rares blancs purs
+
+// Tokens additionnels noir & or
+$noir-eleve:   #1C1810;             // hover / élévation
+$or-clair:     #E8C77E;
+$or-deep:      #B8862F;
+$txt:          #F4EEE2;             // texte principal (crème)
+$txt-titre:    #FBF8F1;             // titres
+$txt-meta:     #A89F8C;             // secondaire / méta
+$bord-or:      rgba(212,175,55,.16);
+$bord-clair:   rgba(255,255,255,.07);
+$or-grad:      linear-gradient(120deg, #EBCB7E 0%, #C8912E 100%);
+
+// Carte « verre sur noir »
+@mixin verre-noir {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(212,175,55,.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+// Grand titre serif
+@mixin titre-serif {
+  font-family: 'Gambetta', Georgia, serif;
+  text-transform: none;
+  font-weight: 800;
+}
+
+// Mot accent : or italique + dégradé clippé
+@mixin mot-accent-or {
+  font-style: italic;
+  background: linear-gradient(100deg, $or-clair 0%, #FBF8F1 45%, $or-clair 90%);
+  background-size: 220% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: title-shimmer 7s linear infinite;
+}
 
 // ── Base ─────────────────────────────────────────────
 .accueil {
   font-family: 'Lato', sans-serif;
   font-size: 18px;
-  color: $deep;
+  color: $txt;
+  background: $deep;
   overflow-x: hidden;
 }
 
@@ -50,48 +88,49 @@ $white:   #FFFFFF;
   &--lg    { padding: 16px 40px; font-size: 1.05rem; letter-spacing: .04em; text-transform: uppercase; min-height: 52px; }
 
   &--orange {
-    background: $orange; color: $white;
+    background: $or-grad; color: $deep;
     box-shadow: 0 10px 30px rgba($orange, .30);
-    &:hover { background: $white; color: $orange; transform: scale(1.04); }
+    &:hover { filter: brightness(1.08); transform: scale(1.04); }
   }
 
   &--ghost {
-    background: transparent; color: $white;
-    border: 2px solid rgba($white, .30);
+    background: transparent; color: $txt;
+    border: 2px solid rgba($orange, .45);
     backdrop-filter: blur(4px);
-    &:hover { background: rgba($white, .10); border-color: $white; }
+    &:hover { background: rgba($orange, .10); border-color: $orange; }
     mat-icon { font-size: 1rem; width: 1rem; height: 1rem; }
   }
 
   &--green {
-    background: $green; color: $white;
-    box-shadow: 0 10px 30px rgba($green, .30);
-    &:hover { background: #6EA200; color: $white; transform: scale(1.04); }
+    background: $or-grad; color: $deep;
+    box-shadow: 0 10px 30px rgba($orange, .30);
+    &:hover { filter: brightness(1.08); transform: scale(1.04); }
   }
 }
 
 // ── Titres de section ─────────────────────────────────
 .section-title {
-  font-family: 'Poppins', sans-serif;
+  @include titre-serif;
   font-size: clamp(2.4rem, 7vw, 5.5rem);
-  font-weight: 900; letter-spacing: -.03em;
-  line-height: 1; margin: 0 0 32px; text-transform: uppercase;
+  letter-spacing: -.02em;
+  line-height: 1.05; margin: 0 0 32px;
   overflow-wrap: break-word;
 
-  &--dark    { color: $deep; }
-  &--light   { color: $white; }
-  &--accent  { color: $navy; }
-  &--orange  { color: $orange; }
+  &--dark    { color: $txt-titre; }
+  &--light   { color: $txt-titre; }
+  &--accent  { color: $or-clair; }
+  &--orange  { @include mot-accent-or; }
 
   &--gradient {
-    background: linear-gradient(90deg, $orange, #FFD166);
+    background: $or-grad;
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 }
 
 .section-badge {
   display: inline-block;
-  background: rgba($orange, .20); color: $orange;
+  background: rgba($orange, .14); color: $or-clair;
+  border: 1px solid $bord-or;
   font-family: 'Poppins', sans-serif; font-weight: 700;
   font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
   padding: 6px 18px; border-radius: 100px; margin-bottom: 24px;
@@ -142,7 +181,7 @@ $white:   #FFFFFF;
 
 .hero-overlay {
   position: absolute; inset: 0;
-  &--left   { background: linear-gradient(to right, rgba($navy, .95) 0%, rgba($navy, .80) 50%, rgba($deep, .60) 100%); }
+  &--left   { background: linear-gradient(to right, rgba(11,10,8,.96) 0%, rgba(11,10,8,.86) 50%, rgba(11,10,8,.66) 100%); }
   &--bottom { background: linear-gradient(to top, $deep 0%, transparent 40%); }
 }
 
@@ -155,29 +194,22 @@ $white:   #FFFFFF;
 }
 
 .hero-title {
-  font-family: 'Poppins', sans-serif;
+  @include titre-serif;
   font-size: clamp(2.6rem, 10vw, 7.5rem);
-  font-weight: 900; letter-spacing: -.04em;
-  line-height: 1; color: $white; margin: 0 0 32px;
-  text-transform: uppercase;
+  letter-spacing: -.02em;
+  line-height: 1.04; color: $txt-titre; margin: 0 0 32px;
   overflow-wrap: break-word;
 
-  &--orange {
-    background: linear-gradient(100deg, $orange 0%, #FFD166 45%, $orange 90%);
-    background-size: 220% auto;
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-    animation: title-shimmer 7s linear infinite;
-  }
-  &--outline { -webkit-text-stroke: 2px $white; color: transparent; }
+  &--orange { @include mot-accent-or; }
+  &--outline { -webkit-text-stroke: 0; color: $txt; }
 }
 
 .hero-subtitle {
   font-size: clamp(1.1rem, 2vw, 1.4rem);
-  color: rgba($white, .85); max-width: 620px;
+  color: rgba($txt, .85); max-width: 620px;
   border-left: 4px solid $orange; padding-left: 24px;
   line-height: 1.65; margin: 0 0 40px;
-  strong { color: $white; }
+  strong { color: $txt-titre; }
   @media (max-width: 480px) { padding-left: 16px; }
 }
 
@@ -191,10 +223,10 @@ $white:   #FFFFFF;
     display: flex; align-items: center; gap: 8px;
     font-family: 'Poppins', sans-serif; font-weight: 700;
     font-size: .85rem; letter-spacing: .1em; text-transform: uppercase;
-    color: $white;
+    color: $txt;
   }
 }
-.bullet-icon { color: $green; font-size: 22px; width: 22px; height: 22px; }
+.bullet-icon { color: $orange; font-size: 22px; width: 22px; height: 22px; }
 
 .hero-scroll-cue {
   position: absolute;
@@ -202,7 +234,7 @@ $white:   #FFFFFF;
   transform: translateX(-50%);
   z-index: 1;
   display: flex; flex-direction: column; align-items: center; gap: 4px;
-  color: rgba($white, .65);
+  color: rgba($txt, .65);
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: .68rem;
@@ -221,7 +253,7 @@ $white:   #FFFFFF;
 }
 
 // ── MISSION ──────────────────────────────────────────
-.mission { background: $white; overflow: hidden; }
+.mission { background: $deep; overflow: hidden; }
 
 .mission-inner {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -237,23 +269,24 @@ $white:   #FFFFFF;
 .mission-lead {
   font-family: 'Poppins', sans-serif; font-weight: 700;
   font-size: clamp(1.1rem, 2vw, 1.5rem);
-  color: $navy; margin: 0 0 20px; line-height: 1.4;
+  color: $txt-titre; margin: 0 0 20px; line-height: 1.4;
 }
 
-.mission-body { color: #4A6B80; line-height: 1.75; font-size: 1rem; margin: 0 0 40px; }
+.mission-body { color: $txt-meta; line-height: 1.75; font-size: 1rem; margin: 0 0 40px; }
 
 .mission-card {
   display: flex; align-items: center; gap: 24px;
-  background: $white; padding: 28px;
+  @include verre-noir;
+  padding: 28px;
   border-radius: 1rem;
   border-left: 8px solid $orange;
-  box-shadow: 0 4px 24px rgba($deep, .08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, .35);
   @media (max-width: 420px) { gap: 16px; padding: 22px 20px; }
 }
 
 .mission-card-icon {
   width: 64px; height: 64px; flex-shrink: 0;
-  border-radius: 50%; background: rgba($orange, .10);
+  border-radius: 50%; background: rgba($orange, .12);
   display: flex; align-items: center; justify-content: center;
   mat-icon { color: $orange; font-size: 28px; width: 28px; height: 28px; }
 }
@@ -261,10 +294,10 @@ $white:   #FFFFFF;
 .mission-card-title {
   font-family: 'Poppins', sans-serif; font-weight: 700;
   font-size: 1.1rem; text-transform: uppercase;
-  letter-spacing: .06em; color: $navy; margin: 0 0 6px;
+  letter-spacing: .06em; color: $or-clair; margin: 0 0 6px;
 }
 
-.mission-card-body { color: #6A8090; margin: 0; font-size: .95rem; }
+.mission-card-body { color: $txt-meta; margin: 0; font-size: .95rem; }
 
 .mission-pillars {
   display: grid;
@@ -275,19 +308,19 @@ $white:   #FFFFFF;
 }
 
 .mission-pillar {
-  background: $light;
-  border: 1px solid rgba($navy, .08);
+  @include verre-noir;
   border-radius: 16px;
   padding: 22px 24px;
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba($orange, .30);
-    box-shadow: 0 12px 28px rgba($deep, .08);
+    background: $noir-eleve;
+    border-color: rgba($orange, .35);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .45);
   }
 
-  p { color: #5A7180; font-size: .92rem; line-height: 1.6; margin: 0; }
+  p { color: $txt-meta; font-size: .92rem; line-height: 1.6; margin: 0; }
 }
 
 .mission-pillar-label {
@@ -297,7 +330,7 @@ $white:   #FFFFFF;
   font-size: .72rem;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: $orange;
+  color: $or-clair;
   margin-bottom: 8px;
 }
 
@@ -355,10 +388,10 @@ $white:   #FFFFFF;
 .tontine-testimonial {
   position: absolute;
   bottom: 28px; left: 24px; right: 24px;
-  background: rgba(0, 20, 35, .70);
+  background: rgba(11, 10, 8, .72);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba($white, .12);
+  border: 1px solid $bord-or;
   border-left: 3px solid $orange;
   border-radius: 16px;
   padding: 22px 24px;
@@ -369,7 +402,7 @@ $white:   #FFFFFF;
   font-size: .95rem;
   font-style: italic;
   line-height: 1.6;
-  color: rgba($white, .92);
+  color: rgba($txt, .92);
   margin: 0 0 14px;
 }
 
@@ -383,21 +416,21 @@ $white:   #FFFFFF;
     font-family: 'Poppins', sans-serif;
     font-size: .85rem;
     font-weight: 700;
-    color: $white;
+    color: $txt-titre;
   }
 
   span {
     font-family: 'Lato', sans-serif;
     font-size: .78rem;
-    color: rgba($white, .55);
+    color: $txt-meta;
   }
 }
 
 .tontine-testimonial-avatar {
   width: 40px; height: 40px;
   border-radius: 50%;
-  background: $orange;
-  color: $white;
+  background: $or-grad;
+  color: $deep;
   font-family: 'Poppins', sans-serif;
   font-weight: 900;
   font-size: 1rem;
@@ -419,28 +452,28 @@ $white:   #FFFFFF;
 }
 
 .section-badge--navy {
-  color: $orange;
+  color: $or-clair;
   background: rgba($orange, .15);
+  border: 1px solid $bord-or;
   margin-bottom: 20px;
 }
 
 .tontine-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
+  @include titre-serif;
   font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-  line-height: 1.15;
-  letter-spacing: -.02em;
-  color: $white;
+  line-height: 1.18;
+  letter-spacing: -.01em;
+  color: $txt-titre;
   margin: 0 0 20px;
 
-  &--orange { color: $orange; }
+  &--orange { @include mot-accent-or; }
 }
 
 .tontine-desc {
   font-family: 'Lato', sans-serif;
   font-size: 1rem;
   line-height: 1.75;
-  color: rgba($white, .70);
+  color: $txt-meta;
   margin: 0 0 36px;
 }
 
@@ -459,16 +492,16 @@ $white:   #FFFFFF;
   align-items: flex-start;
   gap: 16px;
   padding: 18px 0;
-  border-bottom: 1px solid rgba($white, .10);
+  border-bottom: 1px solid $bord-or;
 
-  &:first-child { border-top: 1px solid rgba($white, .10); }
+  &:first-child { border-top: 1px solid $bord-or; }
 
   strong {
     display: block;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: .95rem;
-    color: $white;
+    color: $txt-titre;
     margin-bottom: 3px;
   }
 
@@ -476,7 +509,7 @@ $white:   #FFFFFF;
     font-family: 'Lato', sans-serif;
     font-size: .88rem;
     line-height: 1.6;
-    color: rgba($white, .56);
+    color: $txt-meta;
     margin: 0;
   }
 }
@@ -484,7 +517,7 @@ $white:   #FFFFFF;
 .tontine-feature-icon {
   width: 40px; height: 40px;
   border-radius: 10px;
-  background: rgba($orange, .10);
+  background: rgba($orange, .12);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   margin-top: 2px;
@@ -579,9 +612,9 @@ $white:   #FFFFFF;
   position: absolute; inset: 0;
   background: linear-gradient(
     160deg,
-    rgba($deep, .90) 0%,
-    rgba($navy, .80) 50%,
-    rgba($deep, .92) 100%
+    rgba(11,10,8,.92) 0%,
+    rgba(20,17,10,.84) 50%,
+    rgba(11,10,8,.95) 100%
   );
 }
 
@@ -594,16 +627,15 @@ $white:   #FFFFFF;
 .cta-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
 
 .cta-title {
-  font-family: 'Poppins', sans-serif;
+  @include titre-serif;
   font-size: clamp(2.4rem, 9vw, 7rem);
-  font-weight: 900; letter-spacing: -.04em;
-  line-height: 1; color: $white; margin: 0 0 24px;
-  text-transform: uppercase;
+  letter-spacing: -.02em;
+  line-height: 1.04; color: $txt-titre; margin: 0 0 24px;
   overflow-wrap: break-word;
-  &--orange { color: $orange; }
+  &--orange { @include mot-accent-or; }
 }
 
-.cta-lead { font-size: 1.1rem; color: rgba($white, .75); max-width: 560px; margin: 0 auto 48px; line-height: 1.7; }
+.cta-lead { font-size: 1.1rem; color: rgba($txt, .75); max-width: 560px; margin: 0 auto 48px; line-height: 1.7; }
 
 .email-form {
   display: flex; max-width: 600px; margin: 0 auto;
@@ -658,16 +690,14 @@ $white:   #FFFFFF;
 }
 
 .ambition-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
+  @include titre-serif;
   font-size: clamp(2rem, 4vw, 3rem);
-  color: $white;
-  letter-spacing: -.03em;
-  text-transform: uppercase;
+  color: $txt-titre;
+  letter-spacing: -.02em;
   line-height: 1.1;
   margin: 16px 0 12px;
 
-  span { color: $orange; }
+  span { @include mot-accent-or; }
 }
 
 .ambition-subtitle {
@@ -725,7 +755,7 @@ $white:   #FFFFFF;
 
 // ── DOMAINES ─────────────────────────────────────────
 .domaines {
-  background: $white;
+  background: $deep;
   padding: 100px 48px;
   text-align: center;
   @media (max-width: 768px) { padding: 72px 24px; }
@@ -749,15 +779,14 @@ $white:   #FFFFFF;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: $light;
-  border: 1.5px solid rgba($navy, .10);
+  @include verre-noir;
   border-radius: 100px;
   padding: 14px 24px;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: .82rem;
   letter-spacing: .04em;
-  color: $navy;
+  color: $txt;
   transition: all 200ms ease;
   cursor: default;
 
@@ -767,9 +796,9 @@ $white:   #FFFFFF;
   }
 
   &:hover {
-    background: rgba($orange, .07);
-    border-color: rgba($orange, .28);
-    color: $orange;
+    background: rgba($orange, .12);
+    border-color: rgba($orange, .35);
+    color: $or-clair;
     transform: translateY(-2px);
   }
 }
@@ -809,17 +838,15 @@ $white:   #FFFFFF;
 .parcours-header { text-align: center; margin-bottom: 64px; }
 
 .parcours-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
+  @include titre-serif;
   font-size: clamp(2.4rem, 6vw, 4.5rem);
-  letter-spacing: -.03em;
+  letter-spacing: -.02em;
   line-height: 1.05;
-  text-transform: uppercase;
-  color: $white;
+  color: $txt-titre;
   margin: 0 0 20px;
   overflow-wrap: break-word;
 
-  &--orange { color: $orange; }
+  &--orange { @include mot-accent-or; }
 }
 
 .parcours-subtitle {
@@ -1009,17 +1036,15 @@ $white:   #FFFFFF;
 }
 
 .unique-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
+  @include titre-serif;
   font-size: clamp(2.4rem, 6vw, 4.5rem);
-  letter-spacing: -.03em;
+  letter-spacing: -.02em;
   line-height: 1.05;
-  text-transform: uppercase;
-  color: $white;
+  color: $txt-titre;
   margin: 0 0 28px;
   overflow-wrap: break-word;
 
-  &--orange { color: $orange; }
+  &--orange { @include mot-accent-or; }
 }
 
 .unique-lead {
@@ -1156,9 +1181,9 @@ $white:   #FFFFFF;
   white-space: nowrap;
   padding: 13px 24px;
   border-radius: 100px;
-  background: rgba($white, .05);
-  border: 1px solid rgba($white, .10);
-  color: #CBD5E1;
+  background: rgba($white, .04);
+  border: 1px solid $bord-or;
+  color: $txt;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: .95rem;
@@ -1167,7 +1192,7 @@ $white:   #FFFFFF;
   mat-icon { color: $orange; font-size: 20px; width: 20px; height: 20px; }
 
   &:hover {
-    color: $white;
+    color: $or-clair;
     background: rgba($orange, .12);
     border-color: rgba($orange, .35);
   }
@@ -1202,7 +1227,13 @@ $white:   #FFFFFF;
   to { background-position: 220% center; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-title--orange { animation: none; }
+  .hero-title--orange,
+  .section-title--orange,
+  .tontine-title--orange,
+  .parcours-title--orange,
+  .unique-title--orange,
+  .cta-title--orange,
+  .ambition-title span { animation: none; }
   .btn--orange:hover::after,
   .btn--green:hover::after { animation: none; }
 }

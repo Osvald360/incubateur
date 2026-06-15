@@ -1,12 +1,23 @@
 /* =====================================================
-   NAVBAR — Envol Impact · DA marque 2024
-   Navy #003B5C · Orange #F39200 · Poppins + Lato
+   NAVBAR — Envol Impact · DA NOIR & DORÉ
+   Noir #0B0A08 · Or #D4AF37 · Poppins + Lato
    ===================================================== */
 
-$navy:    #003B5C;
-$navy-dk: #002235;
-$orange:  #F39200;
-$white:   #FFFFFF;
+$page:      #0B0A08;  // noir page
+$surface:   #14110A;  // noir surface
+$elevated:  #1C1810;  // noir élevé
+
+$gold-grad: linear-gradient(120deg, #EBCB7E 0%, #C8912E 100%);
+$gold-lt:   #E8C77E;  // or clair
+$gold:      #D4AF37;  // or solide
+$gold-dp:   #B8862F;  // or profond
+
+$text:      #F4EEE2;  // texte principal
+$title:     #FBF8F1;  // titres
+$muted:     #A89F8C;  // secondaire
+
+$bd-gold:   rgba(212, 175, 55, .16);
+$bd-light:  rgba(255, 255, 255, .07);
 
 mat-toolbar {
   position: fixed;
@@ -14,11 +25,11 @@ mat-toolbar {
   z-index: 1001;
   height: 110px;
   padding: 0;
-  background: rgba($navy, .96);
+  background: rgba($page, .96);
   backdrop-filter: saturate(140%) blur(12px);
-  color: $white;
-  border-bottom: 1px solid rgba($white, .10);
-  box-shadow: 0 2px 20px rgba($navy-dk, .28);
+  color: $text;
+  border-bottom: 1px solid $bd-gold;
+  box-shadow: 0 2px 20px rgba(#000000, .55);
 }
 
 /* ---- Conteneurs ---- */
@@ -57,8 +68,15 @@ mat-toolbar {
   display: inline-flex; align-items: baseline;
   text-transform: uppercase;
 }
-.brand-envol  { color: $white; }
-.brand-impact { color: $orange; margin-left: .3ch; }
+.brand-envol  { color: $title; }
+.brand-impact {
+  margin-left: .3ch;
+  background: $gold-grad;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: $gold;
+}
 
 /* ---- Liens de navigation ---- */
 .nav-links {
@@ -67,7 +85,7 @@ mat-toolbar {
 }
 
 .nav-links .mat-mdc-button {
-  color: rgba($white, .80) !important;
+  color: $text !important;
   background: transparent !important;
   border-radius: 6px !important;
   padding: 8px 12px !important;
@@ -82,13 +100,13 @@ mat-toolbar {
 }
 
 .nav-links .mat-mdc-button:hover {
-  background: rgba($white, .08) !important;
-  color: $white !important;
+  background: rgba($gold, .10) !important;
+  color: $gold-lt !important;
 }
 
 .nav-links .mat-mdc-button.active {
-  color: $orange !important;
-  background: rgba($orange, .12) !important;
+  color: $gold !important;
+  background: rgba($gold, .12) !important;
 }
 
 /* Trigger dropdown simple */
@@ -129,7 +147,7 @@ mat-toolbar {
   font-family: 'Poppins', sans-serif;
   font-size: .68rem; font-weight: 700;
   letter-spacing: .14em; text-transform: uppercase;
-  color: $orange; padding: 12px 18px 4px; margin: 0;
+  color: $gold; padding: 12px 18px 4px; margin: 0;
   pointer-events: none;
 }
 
@@ -139,11 +157,11 @@ mat-toolbar {
   display: flex; align-items: center; gap: 10px; flex-shrink: 0;
 }
 
-/* Connexion — outline pill blanc */
+/* Connexion — outline pill or */
 .login-btn {
   display: inline-flex !important; align-items: center; gap: 6px;
-  background: transparent !important; color: $white !important;
-  border: 1.5px solid rgba($white, .30) !important;
+  background: transparent !important; color: $text !important;
+  border: 1.5px solid rgba($gold, .35) !important;
   border-radius: 100px !important;
   padding: 7px 18px !important;
   font-family: 'Poppins', sans-serif !important;
@@ -153,17 +171,17 @@ mat-toolbar {
   text-decoration: none; transition: all 220ms ease !important;
 
   &:hover {
-    border-color: $white !important;
-    background: rgba($white, .10) !important;
-    color: $white !important;
+    border-color: $gold !important;
+    background: rgba($gold, .10) !important;
+    color: $gold-lt !important;
   }
-  &.active-auth { border-color: $orange !important; color: $orange !important; }
+  &.active-auth { border-color: $gold !important; color: $gold !important; }
 }
 
-/* Inscription — pill orange plein */
+/* Inscription — pill dégradé or, texte noir */
 .inscription-btn {
   display: inline-flex !important; align-items: center; gap: 6px;
-  background: $orange !important; color: $white !important;
+  background: $gold-grad !important; color: $page !important;
   border: none !important; border-radius: 100px !important;
   padding: 8px 20px !important;
   font-family: 'Poppins', sans-serif !important;
@@ -171,23 +189,23 @@ mat-toolbar {
   letter-spacing: .06em !important; text-transform: uppercase !important;
   min-height: 38px !important; white-space: nowrap;
   text-decoration: none !important;
-  box-shadow: 0 4px 14px rgba($orange, .28) !important;
+  box-shadow: 0 4px 14px rgba($gold, .28) !important;
   transition: all 220ms ease !important;
 
   &:hover {
-    background: #D47F00 !important;
+    background: linear-gradient(120deg, #F0D38C 0%, #D4AF37 100%) !important;
     transform: translateY(-1px);
-    box-shadow: 0 8px 22px rgba($orange, .40) !important;
+    box-shadow: 0 8px 22px rgba($gold, .40) !important;
     filter: none !important;
   }
-  mat-icon { color: $white !important; }
+  mat-icon { color: $page !important; }
 
   &.active-auth {
-    background: rgba($orange, .18) !important; color: $orange !important;
-    border: 1.5px solid rgba($orange, .50) !important; box-shadow: none !important;
+    background: rgba($gold, .18) !important; color: $gold !important;
+    border: 1.5px solid rgba($gold, .50) !important; box-shadow: none !important;
   }
   &.active-auth:hover { transform: none; }
-  &.active-auth mat-icon { color: $orange !important; }
+  &.active-auth mat-icon { color: $gold !important; }
 }
 
 /* ---- Menu utilisateur connecté ---- */
@@ -196,28 +214,28 @@ mat-toolbar {
 .user-avatar-navbar {
   width: 42px !important; height: 42px !important; min-width: 42px !important;
   padding: 0 !important; border-radius: 50% !important;
-  background: $orange !important;
-  border: 2px solid rgba($white, .40) !important;
-  box-shadow: 0 2px 8px rgba($orange, .28) !important;
+  background: $surface !important;
+  border: 2px solid rgba($gold, .50) !important;
+  box-shadow: 0 2px 8px rgba($gold, .28) !important;
   display: flex !important; align-items: center !important;
   justify-content: center !important; cursor: pointer;
   transition: all 220ms ease !important;
 
   &:hover {
     transform: scale(1.06);
-    box-shadow: 0 4px 14px rgba($orange, .40) !important;
+    box-shadow: 0 4px 14px rgba($gold, .40) !important;
   }
 
   .avatar-initials-navbar {
-    color: $white !important; font-size: 1rem !important;
+    color: $gold !important; font-size: 1rem !important;
     font-weight: 700 !important; text-transform: uppercase; line-height: 1;
   }
 }
 
-.welcome-text { color: rgba($white, .60); font-weight: 500; font-size: .9rem; }
+.welcome-text { color: $muted; font-weight: 500; font-size: .9rem; }
 
 .user-menu .mat-mdc-raised-button {
-  background: #DC2626 !important; color: $white !important;
+  background: #DC2626 !important; color: $title !important;
   border-radius: 100px !important; font-weight: 700 !important;
   min-height: 38px !important;
 }
@@ -228,9 +246,9 @@ mat-toolbar {
 
   .mat-mdc-menu-panel {
     border-radius: 12px !important;
-    background: $navy !important;
-    border: 1px solid rgba($white, .12) !important;
-    box-shadow: 0 16px 40px rgba($navy-dk, .55) !important;
+    background: $surface !important;
+    border: 1px solid $bd-gold !important;
+    box-shadow: 0 16px 40px rgba(#000000, .65) !important;
     min-width: 210px !important;
   }
 
@@ -239,11 +257,11 @@ mat-toolbar {
     font-family: 'Lato', sans-serif !important;
 
     mat-icon {
-      margin-right: 14px !important; color: $orange !important;
+      margin-right: 14px !important; color: $gold !important;
       font-size: 20px !important; width: 20px !important; height: 20px !important;
     }
-    span { color: $white !important; font-weight: 500 !important; }
-    &:hover { background: rgba($white, .08) !important; }
+    span { color: $text !important; font-weight: 500 !important; }
+    &:hover { background: rgba($gold, .10) !important; }
   }
 
   .mat-mdc-menu-item:last-child {
@@ -263,20 +281,20 @@ mat-toolbar {
 
 .user-avatar-mobile {
   width: 34px; height: 34px; border-radius: 50%;
-  background: $orange; border: 2px solid rgba($white, .40);
-  box-shadow: 0 2px 8px rgba($orange, .22);
+  background: $surface; border: 2px solid rgba($gold, .50);
+  box-shadow: 0 2px 8px rgba($gold, .22);
   display: flex; align-items: center; justify-content: center;
 
   .avatar-initials-mobile {
-    color: $white; font-size: .8rem; font-weight: 700;
+    color: $gold; font-size: .8rem; font-weight: 700;
     text-transform: uppercase; line-height: 1;
   }
 }
 
-.mobile-nav .mat-mdc-icon-button { color: $white !important; }
+.mobile-nav .mat-mdc-icon-button { color: $gold !important; }
 
 .mat-mdc-menu-item.active-mobile {
-  background: rgba($orange, .12) !important;
+  background: rgba($gold, .12) !important;
   font-weight: 700 !important;
 }
 
@@ -285,17 +303,17 @@ mat-toolbar {
   position: fixed; bottom: 30px; right: 30px; z-index: 1000;
   width: 52px !important; height: 52px !important;
   border-radius: 50% !important;
-  background: $orange !important; color: $white !important;
-  box-shadow: 0 6px 20px rgba($orange, .35) !important;
+  background: $gold-grad !important; color: $page !important;
+  box-shadow: 0 6px 20px rgba($gold, .35) !important;
   opacity: 0; transform: translateY(80px);
   transition: all 300ms ease !important;
 
   &.visible { opacity: 1; transform: translateY(0); }
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 26px rgba($orange, .45) !important;
+    box-shadow: 0 10px 26px rgba($gold, .45) !important;
   }
-  mat-icon { color: $white !important; }
+  mat-icon { color: $page !important; }
 }
 
 /* ---- Responsive ---- */

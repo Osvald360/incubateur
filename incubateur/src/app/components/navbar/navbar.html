@@ -6,7 +6,7 @@
     <div class="toolbar-content">
       <div class="main-nav-row">
         <!-- Logo -->
-        <a class="brand" routerLink="/" aria-label="Envol Impact — accueil">
+        <a class="brand" routerLink="/" aria-label="Envol Impact ï¿½ accueil">
           <img class="brand-logo-img" src="/brand/envol-impact-logo.png" alt="Envol Impact" height="82" />
         </a>
 
@@ -20,7 +20,7 @@
           </button>
           <mat-menu #fondsMenu="matMenu" class="nav-submenu">
             <a mat-menu-item routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active-sub">
-              <mat-icon>home</mat-icon><span>Présentation</span>
+              <mat-icon>home</mat-icon><span>Prï¿½sentation</span>
             </a>
             <a mat-menu-item routerLink="/apropos" routerLinkActive="active-sub">
               <mat-icon>groups</mat-icon><span>Qui sommes-nous ?</span>
@@ -44,10 +44,10 @@
               <mat-icon>groups</mat-icon><span>Participation</span>
             </a>
             <a mat-menu-item routerLink="/engagements" fragment="egalite" routerLinkActive="active-sub">
-              <mat-icon>balance</mat-icon><span>Égalité des chances</span>
+              <mat-icon>balance</mat-icon><span>ï¿½galitï¿½ des chances</span>
             </a>
             <a mat-menu-item routerLink="/engagements" fragment="responsabilite" routerLinkActive="active-sub">
-              <mat-icon>verified_user</mat-icon><span>Responsabilité</span>
+              <mat-icon>verified_user</mat-icon><span>Responsabilitï¿½</span>
             </a>
           </mat-menu>
 
@@ -58,18 +58,18 @@
 
         <!-- Section authentification -->
         <div class="auth-section">
-          <!-- Utilisateur non connecté -->
+          <!-- Utilisateur non connectï¿½ -->
           <div *ngIf="!isAuthenticated()" class="auth-buttons">
             <button mat-button routerLink="/connexion" routerLinkActive="active-auth" class="login-btn">
               <mat-icon>person</mat-icon>
               Connexion
             </button>
             <a class="inscription-btn" routerLink="/candidature">
-              Adhérer ou s'inscrire
+              Adhï¿½rer ou s'inscrire
             </a>
           </div>
           
-          <!-- Utilisateur connecté -->
+          <!-- Utilisateur connectï¿½ -->
           <div *ngIf="isAuthenticated()" class="user-menu">
             <button class="user-avatar-navbar" 
                     [matTooltip]="getCurrentUser()?.firstname + ' ' + getCurrentUser()?.lastname"
@@ -80,7 +80,7 @@
               </span>
             </button>
             
-            <!-- Menu déroulant utilisateur -->
+            <!-- Menu dï¿½roulant utilisateur -->
             <mat-menu #userMenuNavbar="matMenu" class="user-dropdown-menu-navbar">
               <button mat-menu-item routerLink="/dashboard">
                 <mat-icon>dashboard</mat-icon>
@@ -93,7 +93,7 @@
               <mat-divider></mat-divider>
               <button mat-menu-item (click)="logout()">
                 <mat-icon>logout</mat-icon>
-                <span>Déconnexion</span>
+                <span>Dï¿½connexion</span>
               </button>
             </mat-menu>
           </div>
@@ -101,7 +101,7 @@
       </div>
     </div>
 
-    <!-- Barre de recherche (uniquement si utilisateur non connecté) -->
+    <!-- Barre de recherche (uniquement si utilisateur non connectï¿½) -->
      <!--
     <div class="search-bar-container" *ngIf="!isAuthenticated()">
       <div class="search-bar-content">
@@ -128,17 +128,17 @@
  
   <!-- Mobile Navigation -->
   <div class="mobile-nav" *ngIf="isHandset$ | async">
-    <a class="brand" routerLink="/" aria-label="Envol Impact — accueil">
+    <a class="brand" routerLink="/" aria-label="Envol Impact ï¿½ accueil">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 40 40" fill="none">
           <defs>
             <linearGradient id="brandGoldM" x1="0" y1="40" x2="40" y2="0">
-              <stop offset="0" stop-color="#FE8701" />
-              <stop offset="1" stop-color="#FFB340" />
+              <stop offset="0" stop-color="#C8912E" />
+              <stop offset="1" stop-color="#EBCB7E" />
             </linearGradient>
           </defs>
           <path d="M4 33 C 14 31, 22 22, 31 9" stroke="url(#brandGoldM)" stroke-width="2.4" stroke-linecap="round" />
-          <circle cx="32" cy="8" r="3.4" fill="#FFB340" />
+          <circle cx="32" cy="8" r="3.4" fill="#E8C77E" />
         </svg>
       </span>
       <span class="brand-text">
@@ -146,7 +146,7 @@
       </span>
     </a>
 
-    <!-- Utilisateur connecté sur mobile -->
+    <!-- Utilisateur connectï¿½ sur mobile -->
     <div *ngIf="isAuthenticated()" class="mobile-user-info">
       <div class="user-avatar-mobile" 
            [matTooltip]="getCurrentUser()?.firstname + ' ' + getCurrentUser()?.lastname">
@@ -164,7 +164,7 @@
       <!-- Fonds d'investissement solidaire -->
       <p class="mobile-menu-label">Fonds d'investissement solidaire</p>
       <a mat-menu-item routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active-mobile">
-        <mat-icon>home</mat-icon><span>Présentation</span>
+        <mat-icon>home</mat-icon><span>Prï¿½sentation</span>
       </a>
       <a mat-menu-item routerLink="/apropos" routerLinkActive="active-mobile">
         <mat-icon>groups</mat-icon><span>Qui sommes-nous ?</span>
@@ -181,10 +181,10 @@
         <mat-icon>groups</mat-icon><span>Participation</span>
       </a>
       <a mat-menu-item routerLink="/engagements" fragment="egalite" routerLinkActive="active-mobile">
-        <mat-icon>balance</mat-icon><span>Égalité des chances</span>
+        <mat-icon>balance</mat-icon><span>ï¿½galitï¿½ des chances</span>
       </a>
       <a mat-menu-item routerLink="/engagements" fragment="responsabilite" routerLinkActive="active-mobile">
-        <mat-icon>verified_user</mat-icon><span>Responsabilité</span>
+        <mat-icon>verified_user</mat-icon><span>Responsabilitï¿½</span>
       </a>
 
       <mat-divider></mat-divider>
@@ -200,7 +200,7 @@
 
       <mat-divider></mat-divider>
 
-      <!-- Utilisateur non connecté -->
+      <!-- Utilisateur non connectï¿½ -->
       <div *ngIf="!isAuthenticated()">
         <button mat-menu-item routerLink="/connexion" routerLinkActive="active-mobile">
           <mat-icon>login</mat-icon>
@@ -208,15 +208,15 @@
         </button>
         <button mat-menu-item routerLink="/candidature" routerLinkActive="active-mobile">
           <mat-icon>person_add</mat-icon>
-          <span>Adhérer ou s'inscrire</span>
+          <span>Adhï¿½rer ou s'inscrire</span>
         </button>
       </div>
       
-      <!-- Utilisateur connecté -->
+      <!-- Utilisateur connectï¿½ -->
       <div *ngIf="isAuthenticated()">
         <button mat-menu-item (click)="logout()">
           <mat-icon>logout</mat-icon>
-          <span>Déconnexion</span>
+          <span>Dï¿½connexion</span>
         </button>
       </div>
     </mat-menu>
