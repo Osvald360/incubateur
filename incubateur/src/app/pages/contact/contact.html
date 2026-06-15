@@ -1,67 +1,34 @@
 <div class="ei-contact">
 
   <!-- ===================================================== -->
-  <!--  HERO · cinématique — échange / dialogue              -->
+  <!--  HERO · prise de contact                              -->
   <!-- ===================================================== -->
   <section class="hero" aria-label="Contact — Envol Impact">
-    <div class="hero-media" aria-hidden="true" data-parallax="0.12">
-      <img
-        src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
-        alt=""
-        class="hero-media-img"
-      />
-      <div class="hero-overlay hero-overlay--ink"></div>
-      <div class="hero-overlay hero-overlay--floor"></div>
-    </div>
-    <div class="hero-grid" aria-hidden="true"></div>
-
     <div class="hero-inner" data-reveal>
-      <span class="section-badge" data-reveal-child>
-        <span class="section-badge-dot"></span>
-        Parlons de votre projet
-      </span>
+      <p class="hero-eyebrow" data-reveal-child>Parlons de votre projet</p>
       <h1 class="hero-title" data-reveal-child>
-        <span class="line"><span class="line-inner">Une idée,</span></span>
-        <span class="line"><span class="line-inner">une question&nbsp;?</span></span>
-        <span class="line"><span class="line-inner"><em>Écrivons-nous.</em></span></span>
+        <span class="line"><span class="line-inner">Une idée, une</span></span>
+        <span class="line"><span class="line-inner">question&nbsp;? <em>Écrivons.</em></span></span>
       </h1>
       <p class="hero-subtitle" data-reveal-child>
-        Notre équipe est à votre écoute pour répondre à vos questions et vous
-        accompagner dans votre projet entrepreneurial.
+        Notre équipe est à votre écoute pour répondre à vos questions et vous accompagner
+        dans votre projet entrepreneurial.
       </p>
-      <div class="hero-jump" data-reveal-child>
-        <a href="#contact-form" class="hero-jump-link" data-magnetic>
-          <span>Démarrer la conversation</span>
-          <mat-icon>south</mat-icon>
-        </a>
-      </div>
     </div>
   </section>
 
   <!-- ===================================================== -->
-  <!--  CORPS · split formulaire (glass) + infos (glass)     -->
+  <!--  CORPS · formulaire (craie) + infos (nuit)            -->
   <!-- ===================================================== -->
   <section class="contact-main" data-reveal>
-    <div class="contact-bg" aria-hidden="true" data-parallax="0.1">
-      <img
-        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
-        alt=""
-        class="contact-bg-img"
-        loading="lazy"
-      />
-      <div class="contact-bg-overlay"></div>
-    </div>
-    <div class="contact-grid-lines" aria-hidden="true"></div>
-
     <div class="contact-grid">
 
-      <!-- ----- Formulaire, carte glass ----- -->
-      <div id="contact-form" class="form-panel ei-glass-card" data-reveal-child>
-        <span class="panel-index" aria-hidden="true">01</span>
+      <!-- ----- Formulaire, panneau blanc ----- -->
+      <div class="form-panel form-panel--white" data-reveal-child>
         <header class="panel-head">
           <p class="eyebrow">Écrivez-nous</p>
           <h2 class="panel-title">Envoyez-nous un message</h2>
-          <p class="panel-sub">Une réponse de notre équipe sous 24&nbsp;heures.</p>
+          <p class="panel-sub">Nous vous répondons sous 24&nbsp;h.</p>
         </header>
 
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
@@ -116,13 +83,13 @@
                   [disabled]="!contactForm.valid"
                   class="ei-btn ei-btn--gold submit-button"
                   data-magnetic>
-            <span class="submit-label">Envoyer le message</span>
+            Envoyer le message
             <mat-icon>send</mat-icon>
           </button>
         </form>
       </div>
 
-      <!-- ----- Colonne infos, glass sur nuit ----- -->
+      <!-- ----- Colonne infos, sur nuit ----- -->
       <aside class="info-panel" data-reveal-child>
 
         <div class="locations">
@@ -152,25 +119,22 @@
         </div>
 
         <div class="quick-contact">
-          <span class="panel-index panel-index--inline" aria-hidden="true">02</span>
           <h3 class="quick-title">Au plus vite</h3>
           <div class="quick-options">
-            <a href="tel:+33123456789" class="quick-item" data-magnetic>
+            <a href="tel:+33123456789" class="quick-item">
               <mat-icon>phone</mat-icon>
               <span class="quick-text">
                 <strong>Téléphone</strong>
                 <span>01 23 45 67 89</span>
               </span>
-              <mat-icon class="quick-arrow">north_east</mat-icon>
             </a>
 
-            <a href="mailto:contact@envolimpact.fr" class="quick-item" data-magnetic>
+            <a href="mailto:contact@envolimpact.fr" class="quick-item">
               <mat-icon>email</mat-icon>
               <span class="quick-text">
                 <strong>Email</strong>
                 <span>contact&#64;envolimpact.fr</span>
               </span>
-              <mat-icon class="quick-arrow">north_east</mat-icon>
             </a>
 
             <div class="quick-item quick-item--static">

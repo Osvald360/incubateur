@@ -1,113 +1,27 @@
 <div class="candidature-container page-content">
-  <!-- ============================================================ HERO -->
-  <header class="cand-hero" aria-label="Candidature">
-    <div class="cand-hero-bg" aria-hidden="true">
-      <img
-        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80"
-        alt=""
-        aria-hidden="true"
-        class="cand-hero-bg-img"
-        data-parallax
-      />
-      <div class="cand-hero-overlay cand-hero-overlay--left"></div>
-      <div class="cand-hero-overlay cand-hero-overlay--bottom"></div>
-    </div>
-    <div class="cand-hero-dots" aria-hidden="true"></div>
-
-    <div class="cand-hero-inner">
-      <div class="cand-hero-content" data-reveal>
-        <span class="cand-hero-kicker" data-reveal-child>
-          <span class="cand-hero-kicker__num">01</span>
-          <span class="cand-hero-kicker__sep" aria-hidden="true"></span>
-          <span class="cand-hero-kicker__label">Appel à candidatures · Promotion en cours</span>
-        </span>
-        <h1 class="cand-hero-title" data-reveal-child>
-          Déposez votre
-          <span class="cand-hero-title--orange">candidature</span>
-        </h1>
-        <p class="cand-hero-subtitle" data-reveal-child>
-          Rejoignez <strong>Envol&nbsp;Impact</strong> et transformez votre idée
-          en projet à impact social, porté par un fonds&nbsp;solidaire.
-        </p>
-      </div>
-
-      <ul class="cand-hero-stats" data-reveal aria-label="Le parcours en bref">
-        <li class="cand-hero-stat" data-reveal-child>
-          <span class="cand-hero-stat__num">2</span>
-          <span class="cand-hero-stat__label">étapes à compléter, puis validation</span>
-        </li>
-        <li class="cand-hero-stat" data-reveal-child>
-          <span class="cand-hero-stat__num">5<span class="cand-hero-stat__unit">j</span></span>
-          <span class="cand-hero-stat__label">délai de réponse de notre équipe</span>
-        </li>
-        <li class="cand-hero-stat" data-reveal-child>
-          <span class="cand-hero-stat__num">100<span class="cand-hero-stat__unit">%</span></span>
-          <span class="cand-hero-stat__label">de votre dossier reste confidentiel</span>
-        </li>
-      </ul>
-    </div>
-    <span class="cand-hero-scroll" aria-hidden="true">
-      <span class="cand-hero-scroll__label">Commencer</span>
-      <span class="cand-hero-scroll__line"></span>
-    </span>
-  </header>
-
   <!-- Form Section -->
   <div class="form-section">
+    
+    <!-- Trajectoire d'or : propulsion -->
+    <svg class="hero-traj-svg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;">
+      <defs>
+        <linearGradient id="goldCandidature" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#FE8701" stop-opacity="0.2" />
+          <stop offset="60%" stop-color="#FE8701" />
+          <stop offset="100%" stop-color="#FFB340" />
+        </linearGradient>
+      </defs>
+      <path class="hero-trajectory trajectory-path"
+            d="M -40 550 C 300 450, 450 350, 700 200 S 1100 100, 1500 -50"
+            fill="none" stroke="url(#goldCandidature)" stroke-width="3" stroke-linecap="round" style="filter: drop-shadow(0 0 12px rgba(254, 135, 1, 0.5));" />
+    </svg>
 
     <div class="container" style="position: relative; z-index: 1;">
-      <div class="cand-layout">
-
-        <!-- ===================== Aside éditorial : pourquoi candidater -->
-        <aside class="cand-aside" data-reveal aria-label="Pourquoi candidater">
-          <div class="cand-aside__inner">
-            <span class="cand-aside__eyebrow" data-reveal-child>Pourquoi candidater</span>
-            <h2 class="cand-aside__title" data-reveal-child>
-              Un accompagnement,<br>pas un simple financement.
-            </h2>
-
-            <ul class="cand-aside__list">
-              <li class="cand-aside__item" data-reveal-child>
-                <span class="cand-aside__num" aria-hidden="true">01</span>
-                <div class="cand-aside__copy">
-                  <h3>Un capital patient</h3>
-                  <p>Un fonds solidaire qui investit dans la durée, pas dans la sortie rapide.</p>
-                </div>
-              </li>
-              <li class="cand-aside__item" data-reveal-child>
-                <span class="cand-aside__num" aria-hidden="true">02</span>
-                <div class="cand-aside__copy">
-                  <h3>Un mentorat de terrain</h3>
-                  <p>Des entrepreneurs et experts à vos côtés pour structurer votre impact.</p>
-                </div>
-              </li>
-              <li class="cand-aside__item" data-reveal-child>
-                <span class="cand-aside__num" aria-hidden="true">03</span>
-                <div class="cand-aside__copy">
-                  <h3>Un réseau qui ouvre des portes</h3>
-                  <p>Une communauté de porteurs de projet et de partenaires engagés.</p>
-                </div>
-              </li>
-            </ul>
-
-            <figure class="cand-aside__visual" data-reveal-child>
-              <img
-                src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=80"
-                alt="Des entrepreneurs travaillant ensemble autour d'une table."
-                loading="lazy"
-                class="cand-aside__img"
-              />
-              <figcaption class="cand-aside__caption">La promotion accompagnée par Envol Impact.</figcaption>
-            </figure>
-          </div>
-        </aside>
-
-        <!-- ===================== Colonne formulaire (intacte) ----------- -->
-        <div class="candidature-form-wrapper" data-reveal>
-        <p class="cand-form-lead" data-reveal-child>
-          <span class="cand-form-lead__step">Votre dossier</span>
-          Comptez environ 10&nbsp;minutes. Vous pourrez relire chaque étape avant l'envoi.
-        </p>
+      <div class="page-header" data-reveal>
+        <h1 data-reveal-child>Candidature</h1>
+        <p data-reveal-child>Rejoignez Envol Impact et transformez votre idée en projet à impact social</p>
+      </div>
+      <div class="candidature-form-wrapper" data-reveal>
         <mat-stepper [linear]="true" #stepper orientation="vertical" class="modern-stepper ei-glass-card" data-reveal-child>
           <!-- Étape 1: Informations personnelles -->
           <mat-step [stepControl]="informationsPersonnellesForm">
@@ -394,7 +308,6 @@
             </div>
           </mat-step>
         </mat-stepper>
-        </div>
       </div>
     </div>
   </div>

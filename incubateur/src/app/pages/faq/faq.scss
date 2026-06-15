@@ -4,13 +4,6 @@
    Tokens : voir src/styles.scss (--ei-*).
    ===================================================== */
 
-$deep:   #002235;
-$navy:   #003B5C;
-$orange: #F39200;
-$green:  #84BD00;
-$light:  #F8FAFC;
-$white:  #FFFFFF;
-
 :host {
   display: block;
   background: var(--ei-ink);
@@ -119,63 +112,15 @@ $white:  #FFFFFF;
    ===================================================== */
 .faq-hero {
   position: relative;
-  min-height: 78vh;
-  display: flex;
-  align-items: center;
-  padding: clamp(120px, 16vh, 200px) clamp(24px, 6vw, 120px) clamp(72px, 10vh, 120px);
+  padding: clamp(96px, 14vh, 168px) clamp(24px, 6vw, 120px) clamp(56px, 8vh, 104px);
   overflow: hidden;
   background:
     radial-gradient(120% 90% at 88% 4%, rgba(255, 179, 64, 0.10), transparent 55%),
     var(--ei-ink);
-
-  /* Image cinématique de fond — horizon clair au lever du jour :
-     la « réponse » après la question, la sérénité de l'accompagnement.
-     Triple voile pour garder le texte AA et l'or lisibles. */
-  &::before {
-    content: '';
-    position: absolute; inset: 0;
-    z-index: 0;
-    background-image:
-      linear-gradient(180deg, rgba($deep, .55) 0%, rgba($deep, .80) 62%, var(--ei-ink) 100%),
-      linear-gradient(115deg, rgba($deep, .92) 0%, rgba($navy, .55) 46%, rgba($deep, .30) 100%),
-      url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=2000&q=80');
-    background-size: cover;
-    background-position: center 38%;
-    transform: scale(1.06);
-    animation: faq-hero-zoom 18s var(--ei-ease-soft) alternate infinite;
-  }
-
-  /* Trame de points orange */
-  &::after {
-    content: '';
-    position: absolute; inset: 0;
-    z-index: 0;
-    opacity: .06;
-    background-image: radial-gradient($orange 2px, transparent 2px);
-    background-size: 30px 30px;
-    pointer-events: none;
-  }
-}
-
-@keyframes faq-hero-zoom {
-  from { transform: scale(1.06); }
-  to   { transform: scale(1.13); }
-}
-
-/* Grain fin — casse la photo stock, donne un fini « tirage » premium */
-.faq-hero-grain {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.5;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 }
 
 .faq-hero-halo {
   position: absolute;
-  z-index: 1;
   top: -16%;
   right: -6%;
   width: min(42vw, 560px);
@@ -197,13 +142,6 @@ $white:  #FFFFFF;
 
 .hero-trajectory {
   filter: drop-shadow(0 0 10px rgba(255, 179, 64, 0.45));
-  stroke-dasharray: 2600;
-  stroke-dashoffset: 2600;
-  animation: faq-traj-draw 2400ms var(--ei-ease-launch) 260ms forwards;
-}
-
-@keyframes faq-traj-draw {
-  to { stroke-dashoffset: 0; }
 }
 
 .faq-hero-inner {
@@ -220,7 +158,6 @@ $white:  #FFFFFF;
   line-height: 0.98;
   font-size: clamp(2.6rem, 7.5vw, 6rem);
   color: var(--ei-on-dark);
-  text-shadow: 0 20px 60px rgba($deep, .5);
 
   em {
     font-style: normal;
@@ -228,7 +165,6 @@ $white:  #FFFFFF;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 50px rgba($orange, .35);
   }
 }
 
@@ -254,26 +190,20 @@ $white:  #FFFFFF;
   gap: 16px;
   padding: 18px 20px;
   border-radius: var(--ei-r-16);
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(237, 230, 216, 0.12);
-  box-shadow: 0 16px 40px rgba($deep, 0.35);
+  background: var(--ei-slate);
+  border: 1px solid rgba(237, 230, 216, 0.10);
   text-decoration: none;
   transition: border-color 200ms var(--ei-ease-soft),
               transform 200ms var(--ei-ease-launch),
-              box-shadow 200ms var(--ei-ease-launch),
-              background 200ms var(--ei-ease-soft);
+              box-shadow 200ms var(--ei-ease-launch);
   will-change: transform;
 
   &:hover {
-    border-color: rgba(243, 146, 0, 0.45);
-    background: rgba(243, 146, 0, 0.10);
-    transform: translateY(-6px);
-    box-shadow: 0 26px 60px rgba($deep, 0.5);
+    border-color: rgba(255, 179, 64, 0.34);
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
 
     .faq-quick-arrow { transform: translate(3px, -3px); color: var(--ei-gold-2); }
-    .faq-quick-icon { background: rgba(243, 146, 0, 0.26); }
   }
 }
 
@@ -384,47 +314,29 @@ $white:  #FFFFFF;
    On surcharge le Material panel : pas de carte SaaS,
    juste une ligne fine qui s'allume en or à l'ouverture. */
 .faq-accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: block;
 
   ::ng-deep .mat-expansion-panel {
-    background: rgba(255, 255, 255, 0.035) !important;
+    background: transparent;
     color: var(--ei-on-dark);
-    border: 1px solid rgba(237, 230, 216, 0.09);
-    border-radius: 16px !important;
+    border: 0;
+    border-bottom: 1px solid rgba(237, 230, 216, 0.10);
+    border-radius: 0 !important;
     box-shadow: none !important;
-    overflow: hidden;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    transition: background 220ms var(--ei-ease-soft),
-                border-color 220ms var(--ei-ease-soft),
-                transform 220ms var(--ei-ease-launch),
-                box-shadow 220ms var(--ei-ease-launch);
+    transition: background 220ms var(--ei-ease-soft);
   }
 
-  ::ng-deep .mat-expansion-panel:hover {
-    border-color: rgba(243, 146, 0, 0.30);
-    transform: translateY(-2px);
-    box-shadow: 0 14px 34px rgba($deep, 0.32);
+  ::ng-deep .mat-expansion-panel:last-of-type {
+    border-bottom: 1px solid rgba(237, 230, 216, 0.10);
   }
 
   ::ng-deep .mat-expansion-panel-header {
-    padding: clamp(18px, 2.4vh, 26px) clamp(14px, 1.6vw, 22px);
+    padding: clamp(18px, 2.4vh, 26px) clamp(8px, 1.4vw, 16px);
     height: auto;
     transition: background 220ms var(--ei-ease-soft);
 
     &:hover {
-      background: rgba(243, 146, 0, 0.06) !important;
-    }
-
-    /* focus clavier net sur fond verre sombre */
-    &.cdk-keyboard-focused,
-    &.cdk-program-focused,
-    &:focus-visible {
-      outline: none;
-      box-shadow: inset 0 0 0 2px var(--ei-gold-2);
-      background: rgba(243, 146, 0, 0.08) !important;
+      background: rgba(255, 179, 64, 0.05) !important;
     }
   }
 
@@ -441,18 +353,6 @@ $white:  #FFFFFF;
     color: var(--ei-on-dark);
   }
 
-  /* rail vertical : repère discret qui s'allume à l'ouverture */
-  .question-rail {
-    flex-shrink: 0;
-    width: 2px;
-    height: 1.1em;
-    margin-right: 16px;
-    border-radius: 2px;
-    background: rgba(237, 230, 216, 0.22);
-    transition: background 240ms var(--ei-ease-soft),
-                box-shadow 240ms var(--ei-ease-soft);
-  }
-
   .question-icon {
     flex-shrink: 0;
     margin-right: 14px;
@@ -462,17 +362,7 @@ $white:  #FFFFFF;
     color: var(--ei-gold-1);
   }
 
-  /* chevron Material : pastille cerclée, registre nuit/or */
-  ::ng-deep .mat-expansion-indicator {
-    display: grid;
-    place-items: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid rgba(237, 230, 216, 0.16);
-    transition: border-color 220ms var(--ei-ease-soft),
-                background 220ms var(--ei-ease-soft);
-  }
+  /* chevron Material teinté */
   ::ng-deep .mat-expansion-indicator::after {
     color: var(--ei-haze);
     transition: color 220ms var(--ei-ease-soft);
@@ -480,28 +370,17 @@ $white:  #FFFFFF;
 
   /* panneau ouvert : marqueur or à gauche + titre lumineux */
   ::ng-deep .mat-expansion-panel.mat-expanded {
-    background:
-      linear-gradient(90deg, rgba(243, 146, 0, 0.12), rgba(243, 146, 0, 0.02) 55%, transparent 75%) !important;
-    border-color: rgba(243, 146, 0, 0.42);
-    box-shadow: 0 18px 44px rgba($deep, 0.4), inset 3px 0 0 $orange;
+    background: linear-gradient(90deg, rgba(254, 135, 1, 0.07), transparent 60%);
 
     .mat-expansion-panel-header { background: transparent !important; }
     .mat-panel-title { color: var(--ei-gold-2); }
     .question-icon { color: var(--ei-gold-2); }
     .mat-expansion-indicator::after { color: var(--ei-gold-2); }
-    .question-rail {
-      background: var(--ei-gold-grad);
-      box-shadow: 0 0 12px rgba(254, 135, 1, 0.55);
-    }
-    .mat-expansion-indicator {
-      border-color: rgba(243, 146, 0, 0.5);
-      background: rgba(243, 146, 0, 0.10);
-    }
   }
 
   /* corps de réponse */
   ::ng-deep .mat-expansion-panel-body {
-    padding: 0 clamp(14px, 1.6vw, 22px) clamp(22px, 2.6vh, 28px) clamp(40px, 3vw, 50px);
+    padding: 0 clamp(8px, 1.4vw, 16px) clamp(20px, 2.6vh, 28px) clamp(38px, 3vw, 46px);
   }
 }
 
@@ -535,62 +414,24 @@ $white:  #FFFFFF;
 .resources-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
+  gap: 1px;
+  background: rgba(26, 42, 56, 0.12);
+  border: 1px solid rgba(26, 42, 56, 0.12);
 }
 
 .resource {
-  position: relative;
-  overflow: hidden;
-  background: $white;
+  background: var(--ei-chalk);
   padding: clamp(28px, 3.4vw, 44px);
-  border-radius: 20px;
-  border: 1px solid rgba(26, 42, 56, 0.08);
-  box-shadow: 0 10px 30px rgba($deep, 0.06);
-  transition: background 220ms var(--ei-ease-soft),
-              transform 220ms var(--ei-ease-launch),
-              box-shadow 220ms var(--ei-ease-launch),
-              border-color 220ms var(--ei-ease-soft);
+  transition: background 200ms var(--ei-ease-soft);
 
-  /* filet d'or qui se déploie au survol — signature système */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0 auto auto 0;
-    height: 3px;
-    width: 0;
-    background: var(--ei-gold-grad);
-    border-radius: 20px 0 3px 0;
-    transition: width 360ms var(--ei-ease-launch);
-  }
-
-  &:hover {
-    background: #fffdf7;
-    transform: translateY(-8px);
-    border-color: rgba(243, 146, 0, 0.35);
-    box-shadow: 0 26px 56px rgba($deep, 0.13);
-
-    &::before { width: 100%; }
-    .resource-icon {
-      background: rgba(243, 146, 0, 0.16);
-      transform: translateY(-2px);
-    }
-  }
+  &:hover { background: #fffdf7; }
 
   .resource-icon {
-    box-sizing: content-box;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    width: 1.9rem; height: 1.9rem;
     font-size: 1.9rem;
-    line-height: 1.9rem;
-    border-radius: 16px;
-    background: rgba(243, 146, 0, 0.10);
+    width: 1.9rem;
+    height: 1.9rem;
     color: #9a6a16;
-    margin-bottom: 20px;
-    transition: background 220ms var(--ei-ease-soft),
-                transform 220ms var(--ei-ease-launch);
+    margin-bottom: 18px;
   }
   .resource-title {
     margin: 0 0 10px;
@@ -724,10 +565,8 @@ $white:  #FFFFFF;
     font-size: 1.04rem;
     line-height: 1.35;
   }
-  /* l'icône question prend de la place inutile en mobile : on l'enlève.
-     Le rail reste : repère fin, tactilement neutre, lisible. */
+  /* l'icône question prend de la place inutile en mobile : on l'enlève */
   .faq-accordion .question-icon { display: none; }
-  .faq-accordion .question-rail { margin-right: 12px; height: 1.25em; }
 
   .faq-accordion ::ng-deep .mat-expansion-panel-body {
     padding: 0 4px 20px;
@@ -746,15 +585,6 @@ $white:  #FFFFFF;
 @media (max-width: 390px) {
   /* évite tout débordement du titre Clash Display sur petits mobiles */
   .faq-hero-title { font-size: clamp(2.2rem, 11vw, 2.8rem); }
-  .faq-cta-title  { font-size: clamp(2rem, 10vw, 2.6rem); }
-  .block-title    { font-size: clamp(1.7rem, 9vw, 2.2rem); }
-
-  /* boutons CTA empilés et tactiles */
-  .faq-cta-actions { flex-direction: column; width: 100%; }
-  .faq-cta-actions .ei-btn { width: 100%; justify-content: center; min-height: 48px; }
-
-  /* bouton ressource pleine largeur, tactile */
-  .resource-btn { width: 100%; min-height: 44px; }
 }
 
 /* =====================================================
@@ -763,10 +593,7 @@ $white:  #FFFFFF;
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
-    animation-delay: 0ms !important;
     transition-duration: 0.001ms !important;
   }
-  /* trajectoire d'or affichée d'emblée, sans tracé animé */
-  .hero-trajectory { stroke-dashoffset: 0 !important; }
 }
 

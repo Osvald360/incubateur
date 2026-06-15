@@ -1,179 +1,89 @@
 /* =====================================================
-   ADMIN · UTILISATEURS — charte « Envol Impact ».
-   Bandeau d'en-tête dégradé deep→navy + trame de points
-   or · cartes blanches premium · tableau dense lisible ·
-   rôles/statuts en pastilles signal. Poppins (titres) · Lato.
-   Cohérent avec admin-candidatures.
+   ADMIN · UTILISATEURS — back-office DA « Envol ».
+   Outil pro premium : chrome nuit d'encre, surfaces
+   ardoise, tableau dense lisible, rôles/statuts en
+   signaux sobres. Tokens : src/styles.scss (--ei-*).
    ===================================================== */
-
-$deep:    #002235;
-$navy:    #003B5C;
-$orange:  #F39200;
-$green:   #84BD00;
-$light:   #F8FAFC;
-$white:   #FFFFFF;
-
-$ink:     #1E3A4C;   // texte principal sur clair
-$muted:   #5A6E7C;   // texte secondaire
-$red:     #D64545;   // statut négatif
-
 .admin-users-container {
-  padding: 0 0 var(--ei-s-48);
+  padding: var(--ei-s-24);
   max-width: 1400px;
-  margin: 64px auto 0;
-  min-height: calc(100vh - 64px);
-  background: $light;
-  color: $ink;
-  font-family: 'Lato', sans-serif;
-  /* garde-fou : aucune section ne doit pousser la page ; le
-     défilement horizontal reste confiné au .table-container. */
-  overflow-x: hidden;
+  margin: 80px auto 0;
+  min-height: calc(100vh - 80px);
+  background:
+    radial-gradient(110% 60% at 100% 0%, rgba(255, 179, 64, 0.05), transparent 55%),
+    var(--ei-ink);
+  color: var(--ei-on-dark);
+  font-family: var(--ei-font-text);
 }
 
-/* ── En-tête : bandeau dégradé deep→navy ───────────── */
+/* En-tête */
 .users-header {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, $deep 0%, $navy 100%);
-  padding: var(--ei-s-48) var(--ei-s-32);
-  margin-bottom: var(--ei-s-32);
-  border-bottom: 3px solid $orange;
-}
-
-.header-dots {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: .08;
-  background-image: radial-gradient($orange 2px, transparent 2px);
-  background-size: 28px 28px;
-  pointer-events: none;
-}
-
-.header-inner {
-  position: relative;
-  z-index: 1;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: var(--ei-s-24);
-  max-width: 1400px;
-  margin: 0 auto;
-}
+  margin-bottom: var(--ei-s-24);
 
-.section-badge {
-  display: inline-block;
-  background: rgba($orange, .20);
-  color: $orange;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: .72rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  padding: 6px 18px;
-  border-radius: 100px;
-  margin-bottom: 18px;
-}
+  .header-title {
+    h1 {
+      display: flex;
+      align-items: center;
+      gap: var(--ei-s-12);
+      margin: 0 0 var(--ei-s-8);
+      font-family: var(--ei-font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ei-on-dark);
 
-.users-header .header-title {
-  h1 {
-    display: flex;
-    align-items: center;
-    gap: var(--ei-s-12);
-    margin: 0 0 var(--ei-s-8);
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
-    font-weight: 900;
-    letter-spacing: -.02em;
-    text-transform: uppercase;
-    line-height: 1.05;
-    color: $white;
-    /* autorise le retour à la ligne du titre sur très petit écran
-       pour éviter tout débordement horizontal de la page */
-    flex-wrap: wrap;
-    overflow-wrap: anywhere;
-    min-width: 0;
-
-    mat-icon {
-      font-size: 2.1rem;
-      width: 2.1rem;
-      height: 2.1rem;
-      color: $orange;
-      flex-shrink: 0;
+      mat-icon {
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+        color: var(--ei-gold-2);
+      }
     }
 
-    .header-title--orange { color: $orange; }
+    p {
+      margin: 0;
+      color: var(--ei-on-dark-dim);
+      font-size: 1.05rem;
+    }
   }
 
-  p {
-    margin: 0;
-    color: rgba($white, .72);
-    font-size: 1.05rem;
-  }
-}
-
-.users-header .header-actions {
-  display: flex;
-  gap: var(--ei-s-12);
-}
-
-/* Bouton « Exporter » accent marque sur le bandeau */
-::ng-deep .users-header .header-actions .mat-mdc-raised-button {
-  background: $orange !important;
-  color: $white !important;
-  border-radius: 100px !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-weight: 700 !important;
-  box-shadow: 0 8px 22px rgba($orange, .35) !important;
-  transition: transform 200ms ease, box-shadow 200ms ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba($orange, .45) !important;
+  .header-actions {
+    display: flex;
+    gap: var(--ei-s-12);
   }
 }
 
-/* ── Contenu sous le bandeau : conteneur centré ─────── */
-.stats-overview,
-.filters-card,
-.table-card {
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--ei-s-32);
-  padding-right: var(--ei-s-32);
-}
-
-/* ── Cartes Material : surface blanche premium ──────── */
+/* ---- Cartes Material : surface ardoise ---- */
 ::ng-deep .admin-users-container {
   mat-card,
   .mat-mdc-card {
-    background: $white;
-    border: 1px solid rgba($navy, .08);
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba($deep, .06);
-    color: $ink;
+    background: var(--ei-slate);
+    border: 1px solid rgba(237, 230, 216, 0.1);
+    border-radius: var(--ei-r-8);
+    box-shadow: none;
+    color: var(--ei-on-dark);
   }
 }
 
-/* ── Statistiques rapides ───────────────────────────── */
+/* Statistiques */
 .stats-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: var(--ei-s-16);
   margin-bottom: var(--ei-s-24);
 
   .stat-card {
-    transition: border-color 220ms ease, transform 220ms ease,
-                box-shadow 220ms ease;
+    transition: border-color 200ms var(--ei-ease-soft),
+                transform 200ms var(--ei-ease-launch);
 
     &:hover {
-      transform: translateY(-4px);
-      border-color: rgba($orange, .45) !important;
-      box-shadow: 0 12px 30px rgba($deep, .12) !important;
+      transform: translateY(-3px);
+      border-color: rgba(255, 179, 64, 0.32) !important;
     }
-
-    ::ng-deep mat-card-content { padding: var(--ei-s-24) !important; }
 
     .stat-content {
       display: flex;
@@ -184,7 +94,7 @@ $red:     #D64545;   // statut négatif
         font-size: 2.4rem;
         width: 2.4rem;
         height: 2.4rem;
-        color: $orange;
+        color: var(--ei-gold-2);
         flex-shrink: 0;
       }
 
@@ -193,45 +103,42 @@ $red:     #D64545;   // statut négatif
         flex-direction: column;
 
         .stat-number {
-          font-family: 'Poppins', sans-serif;
-          font-size: 2.1rem;
-          font-weight: 900;
-          letter-spacing: -.02em;
-          color: $orange;
+          font-family: var(--ei-font-display);
+          font-size: 2rem;
+          font-weight: 600;
+          letter-spacing: -0.02em;
+          color: var(--ei-on-dark);
           line-height: 1;
         }
 
         .stat-label {
-          font-size: .76rem;
-          letter-spacing: .06em;
+          font-size: 0.78rem;
+          letter-spacing: 0.05em;
           text-transform: uppercase;
-          color: $muted;
+          color: var(--ei-haze);
           margin-top: 6px;
-          font-weight: 600;
         }
       }
     }
   }
 }
 
-/* ── Filtres ────────────────────────────────────────── */
+/* Filtres */
 .filters-card {
   margin-bottom: var(--ei-s-24);
-
-  ::ng-deep mat-card-content { padding: var(--ei-s-24) !important; }
 
   h3 {
     display: flex;
     align-items: center;
     gap: var(--ei-s-8);
     margin: 0 0 var(--ei-s-16);
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    color: $navy;
+    font-family: var(--ei-font-display);
+    font-weight: 600;
+    color: var(--ei-on-dark);
     font-size: 1.15rem;
-    letter-spacing: -.01em;
+    letter-spacing: -0.01em;
 
-    mat-icon { color: $orange; }
+    mat-icon { color: var(--ei-gold-2); }
   }
 
   .filters-grid {
@@ -249,54 +156,8 @@ $red:     #D64545;   // statut négatif
   }
 }
 
-/* Champs de formulaire Material (appearance="outline") sur surface claire */
-::ng-deep .admin-users-container {
-  .mat-mdc-form-field {
-    --mat-form-field-container-text-color: #{$ink};
-    --mdc-outlined-text-field-input-text-color: #{$ink};
-    --mdc-outlined-text-field-label-text-color: #{$muted};
-    --mdc-outlined-text-field-caret-color: #{$orange};
-    --mdc-outlined-text-field-outline-color: rgba(0, 59, 92, .2);
-    --mdc-outlined-text-field-hover-outline-color: rgba(0, 59, 92, .34);
-    --mdc-outlined-text-field-focus-outline-color: #{$orange};
-    --mdc-outlined-text-field-focus-label-text-color: #{$orange};
-  }
-
-  .mat-mdc-select-value,
-  .mat-mdc-select-placeholder { color: $ink; }
-  .mat-mdc-select-arrow { color: $muted; }
-  .mat-mdc-form-field-icon-suffix mat-icon { color: $muted; }
-  input::placeholder { color: $muted; }
-
-  /* bouton « Réinitialiser » secondaire navy */
-  .mat-mdc-outlined-button {
-    border-radius: 100px !important;
-    color: $navy !important;
-    --mdc-outlined-button-outline-color: rgba(0, 59, 92, .3);
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 700 !important;
-  }
-}
-
-/* Panneau de sélection (overlay global) → blanc */
-::ng-deep .cdk-overlay-pane .mat-mdc-select-panel {
-  background: $white;
-  border: 1px solid rgba($navy, .12);
-
-  .mat-mdc-option {
-    color: $ink;
-    &:hover:not(.mdc-list-item--disabled) { background: rgba($navy, .05); }
-    &.mdc-list-item--selected {
-      background: rgba($orange, .14);
-      .mdc-list-item__primary-text { color: $orange; }
-    }
-  }
-}
-
-/* ── Tableau ────────────────────────────────────────── */
+/* Tableau */
 .table-card {
-  ::ng-deep mat-card-content { padding: var(--ei-s-16) !important; }
-
   .table-header {
     display: flex;
     justify-content: space-between;
@@ -308,27 +169,27 @@ $red:     #D64545;   // statut négatif
       align-items: center;
       gap: var(--ei-s-8);
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      letter-spacing: -.01em;
-      color: $navy;
+      font-family: var(--ei-font-display);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ei-on-dark);
 
-      mat-icon { color: $orange; }
+      mat-icon { color: var(--ei-gold-2); }
     }
   }
 
   .table-container {
     position: relative;
     overflow-x: auto;
-    border-radius: 12px;
-    border: 1px solid rgba($navy, .10);
+    border-radius: var(--ei-r-8);
+    border: 1px solid rgba(237, 230, 216, 0.08);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
-    scrollbar-color: rgba($orange, .5) transparent;
+    scrollbar-color: rgba(255, 179, 64, 0.4) transparent;
 
     &::-webkit-scrollbar { height: 8px; }
     &::-webkit-scrollbar-thumb {
-      background: rgba($orange, .5);
+      background: rgba(255, 179, 64, 0.4);
       border-radius: 999px;
     }
 
@@ -337,72 +198,62 @@ $red:     #D64545;   // statut négatif
       background: transparent;
 
       ::ng-deep th.mat-mdc-header-cell {
-        background: $navy;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-size: .74rem;
-        letter-spacing: .06em;
+        background: rgba(11, 27, 43, 0.85);
+        font-family: var(--ei-font-text);
+        font-weight: 600;
+        font-size: 0.78rem;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
-        color: $white;
-        border-bottom: 2px solid $orange;
+        color: var(--ei-on-dark-dim);
+        border-bottom: 1px solid rgba(255, 179, 64, 0.28);
         padding: var(--ei-s-16) var(--ei-s-12);
-        position: sticky;
-        top: 0;
-        z-index: 2;
       }
 
       ::ng-deep td.mat-mdc-cell {
         padding: var(--ei-s-16) var(--ei-s-12);
-        border-bottom: 1px solid rgba($navy, .08);
-        color: $ink;
+        border-bottom: 1px solid rgba(237, 230, 216, 0.07);
+        color: var(--ei-on-dark);
         vertical-align: middle;
       }
 
-      ::ng-deep .mat-sort-header-arrow { color: $white; }
+      ::ng-deep .mat-sort-header-arrow { color: var(--ei-gold-2); }
 
-      tr.mat-mdc-row {
-        transition: background-color 160ms ease;
-        &:nth-child(even) { background: rgba($navy, .02); }
-        &:hover { background: rgba($orange, .08); }
-      }
+      tr:hover { background: rgba(255, 179, 64, 0.06); }
 
       .email-link {
-        color: $orange;
+        color: #FFB340;
         text-decoration: none;
-        font-weight: 600;
         &:hover { text-decoration: underline; }
       }
 
       ::ng-deep .mat-mdc-chip {
-        font-family: 'Poppins', sans-serif;
-        font-size: .74rem;
-        font-weight: 700;
-        letter-spacing: .03em;
+        font-size: 0.82rem;
+        font-weight: 500;
       }
 
-      ::ng-deep .mat-mdc-icon-button { color: $navy; }
+      ::ng-deep .mat-mdc-icon-button { color: var(--ei-on-dark-dim); }
     }
   }
 
   .no-data {
     text-align: center;
-    padding: var(--ei-s-64) var(--ei-s-24);
-    color: $muted;
+    padding: var(--ei-s-48) var(--ei-s-24);
+    color: var(--ei-on-dark-dim);
 
     mat-icon {
       font-size: 4rem;
       width: 4rem;
       height: 4rem;
       margin-bottom: var(--ei-s-16);
-      color: rgba($navy, .22);
+      color: rgba(237, 230, 216, 0.22);
     }
 
     h3 {
       margin: 0 0 var(--ei-s-8);
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
+      font-family: var(--ei-font-display);
+      font-weight: 600;
       font-size: 1.4rem;
-      color: $navy;
+      color: var(--ei-on-dark);
     }
 
     p { margin: 0; font-size: 1rem; }
@@ -411,42 +262,73 @@ $red:     #D64545;   // statut négatif
 
 /* Pagination */
 .table-card ::ng-deep .mat-mdc-paginator {
-  border-top: 1px solid rgba($navy, .08);
+  border-top: 1px solid rgba(237, 230, 216, 0.08);
   background: transparent;
-  color: $muted;
+  color: var(--ei-on-dark-dim);
+  border-radius: 0 0 var(--ei-r-8) var(--ei-r-8);
+}
+
+/* ---- Champs de formulaire Material (appearance="outline")
+   sur surface sombre : réaccordés au chrome ardoise. ---- */
+::ng-deep .admin-users-container {
+  .mat-mdc-form-field {
+    --mat-form-field-container-text-color: var(--ei-on-dark);
+    --mdc-outlined-text-field-input-text-color: var(--ei-on-dark);
+    --mdc-outlined-text-field-label-text-color: var(--ei-haze);
+    --mdc-outlined-text-field-caret-color: var(--ei-gold-2);
+    --mdc-outlined-text-field-outline-color: rgba(237, 230, 216, 0.2);
+    --mdc-outlined-text-field-hover-outline-color: rgba(237, 230, 216, 0.34);
+    --mdc-outlined-text-field-focus-outline-color: var(--ei-gold-2);
+    --mdc-outlined-text-field-focus-label-text-color: var(--ei-gold-2);
+  }
+
+  .mat-mdc-select-value,
+  .mat-mdc-select-placeholder { color: var(--ei-on-dark); }
+  .mat-mdc-select-arrow { color: var(--ei-haze); }
+  .mat-mdc-form-field-icon-suffix mat-icon { color: var(--ei-haze); }
+  input::placeholder { color: var(--ei-haze); }
+}
+
+/* Panneau de sélection (overlay global) → ardoise */
+::ng-deep .cdk-overlay-pane .mat-mdc-select-panel {
+  background: var(--ei-slate);
+  border: 1px solid rgba(237, 230, 216, 0.14);
+
+  .mat-mdc-option {
+    color: var(--ei-on-dark);
+    &:hover:not(.mdc-list-item--disabled) { background: rgba(237, 230, 216, 0.06); }
+    &.mdc-list-item--selected {
+      background: rgba(255, 179, 64, 0.14);
+      .mdc-list-item__primary-text { color: var(--ei-gold-2); }
+    }
+  }
 }
 
 /* Menu d'actions ligne (overlay global) */
 ::ng-deep .mat-mdc-menu-panel .danger-item {
-  color: $red !important;
-  mat-icon { color: $red !important; }
+  color: #E0928D !important;
+  mat-icon { color: #C9514B !important; }
 }
 
-/* ── Chips rôle / statut : pastilles signal Envol ──────
+/* ---- Chips de rôle / statut : signaux sobres ----
    role/statut posés via [color] Material (primary/accent/warn).
-   Réaccordés sur la palette Envol, lisibles sur surface claire. */
+   On réaccorde sur la palette Envol, AA sur ardoise. */
 ::ng-deep .admin-users-container .mat-mdc-chip,
-::ng-deep .admin-users-container .mat-mdc-chip.mat-primary {
-  background: rgba($green, .18) !important;
-  color: #4F7000 !important;
-  border-radius: 100px !important;
-
-  mat-icon { color: #4F7000 !important; }
+::ng-deep .mat-mdc-chip.mat-primary {
+  background: rgba(30, 91, 255, 0.16) !important;
+  color: #FFB340 !important;
+  border-radius: var(--ei-r-4) !important;
 }
-::ng-deep .admin-users-container .mat-mdc-chip.mat-accent {
-  background: rgba($orange, .16) !important;
-  color: #B36900 !important;
-
-  mat-icon { color: #B36900 !important; }
+::ng-deep .mat-mdc-chip.mat-accent {
+  background: rgba(255, 179, 64, 0.18) !important;
+  color: var(--ei-gold-2) !important;
 }
-::ng-deep .admin-users-container .mat-mdc-chip.mat-warn {
-  background: rgba($red, .15) !important;
-  color: #B02B2B !important;
-
-  mat-icon { color: #B02B2B !important; }
+::ng-deep .mat-mdc-chip.mat-warn {
+  background: rgba(201, 81, 75, 0.18) !important;
+  color: #E0928D !important;
 }
 
-/* ── Responsive ─────────────────────────────────────── */
+/* Responsive */
 @media (max-width: 1200px) {
   .filters-grid {
     grid-template-columns: 1fr 1fr;
@@ -463,42 +345,34 @@ $red:     #D64545;   // statut négatif
   }
 }
 
-/* Indice de défilement horizontal — mobile uniquement. */
+/* Indice de defilement horizontal — mobile uniquement. */
 .scroll-hint {
   display: none;
   align-items: center;
   gap: 6px;
   margin: 0 0 var(--ei-s-8);
-  font-size: .78rem;
-  letter-spacing: .02em;
-  color: $muted;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--ei-haze);
 
   mat-icon {
     font-size: 18px;
     width: 18px;
     height: 18px;
-    color: $orange;
+    color: var(--ei-gold-2);
   }
 }
 
 @media (max-width: 768px) {
+  .admin-users-container { padding: var(--ei-s-16); }
+
   .users-header {
-    padding: var(--ei-s-32) var(--ei-s-16);
-  }
-  .header-inner {
     flex-direction: column;
     gap: var(--ei-s-16);
     align-items: stretch;
-  }
-  .users-header .header-title h1 { font-size: 1.6rem; }
-  .users-header .header-actions { justify-content: center; }
-  .users-header .header-actions button { width: 100%; justify-content: center; }
 
-  .stats-overview,
-  .filters-card,
-  .table-card {
-    padding-left: var(--ei-s-16);
-    padding-right: var(--ei-s-16);
+    .header-actions { justify-content: center; }
+    .header-actions button { width: 100%; justify-content: center; }
   }
 
   .stats-overview { grid-template-columns: 1fr; }
@@ -518,14 +392,14 @@ $red:     #D64545;   // statut négatif
   }
 
   .table-container {
-    font-size: .9rem;
+    font-size: 0.9rem;
     th, td { padding: var(--ei-s-12) var(--ei-s-8); }
   }
 }
 
 @media (max-width: 480px) {
-  /* colonnes secondaires masquées : email et date moins critiques
-     que nom / role / statut / actions sur très petit écran. */
+  /* colonnes secondaires masquees : email et date moins critiques
+     que nom / role / statut / actions sur tres petit ecran. */
   .users-table {
     .mat-column-email,
     .mat-column-dateCreation,
@@ -537,24 +411,17 @@ $red:     #D64545;   // statut négatif
 }
 
 @media (max-width: 390px) {
-  .users-header { padding: var(--ei-s-24) var(--ei-s-12); }
+  .admin-users-container { padding: var(--ei-s-12); }
   .users-header .header-title h1 { font-size: 1.4rem; }
-  .stats-overview,
-  .filters-card,
-  .table-card {
-    padding-left: var(--ei-s-12);
-    padding-right: var(--ei-s-12);
-  }
   .table-card .table-header h3 { font-size: 1rem; }
-  .table-card .users-table { min-width: 380px; }
 }
 
-/* Apparition douce des cartes (désactivée si l'utilisateur
-   réduit les animations) */
+/* Apparition douce des cartes (réservé, désactivé si
+   l'utilisateur réduit les animations) */
 .stat-card,
 .filters-card,
 .table-card {
-  animation: fadeInUp 0.5s var(--ei-ease-launch, ease) both;
+  animation: fadeInUp 0.5s var(--ei-ease-launch) both;
 }
 
 @keyframes fadeInUp {
@@ -567,3 +434,5 @@ $red:     #D64545;   // statut négatif
   .filters-card,
   .table-card { animation: none; }
 }
+
+

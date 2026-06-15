@@ -4,37 +4,22 @@
   <!--  EN-TÊTE · registre nuit                              -->
   <!-- ===================================================== -->
   <header class="fin-head">
-    <div class="fin-head-bg" aria-hidden="true" data-parallax="0.12">
-      <img
-        src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-        alt=""
-        aria-hidden="true"
-        class="fin-head-bg-img"
-        loading="lazy"
-      />
-      <div class="fin-head-overlay"></div>
-    </div>
-    <div class="fin-head-dots" aria-hidden="true"></div>
-    <div class="fin-head-grid" aria-hidden="true" data-parallax="0.06"></div>
     <div class="fin-head-halo" aria-hidden="true"></div>
-    <div class="fin-head-inner" data-reveal>
+    <div class="fin-head-inner">
       <button class="fin-back" type="button" (click)="goBackToDashboard()"
-              matTooltip="Retour au dashboard" aria-label="Retour au dashboard"
-              data-reveal-child>
+              matTooltip="Retour au dashboard" aria-label="Retour au dashboard">
         <mat-icon>arrow_back</mat-icon>
         <span>Dashboard</span>
       </button>
 
-      <span class="fin-head-badge" data-reveal-child>Tableau de bord financier</span>
-      <p class="eyebrow" data-reveal-child>Pilotage financier</p>
-      <h1 class="fin-title" data-reveal-child>
+      <p class="eyebrow">Pilotage financier</p>
+      <h1 class="fin-title">
         Suivre chaque euro qui
         <em>fait décoller</em> un projet.
       </h1>
-      <p class="fin-sub" data-reveal-child>
+      <p class="fin-sub">
         Vue d'ensemble des financements et des sources de fonds mobilisées
-        sur l'ensemble des projets accompagnés — l'épargne citoyenne mutualisée
-        mise au service des entrepreneurs des quartiers et des zones rurales.
+        sur l'ensemble des projets accompagnés.
       </p>
     </div>
   </header>
@@ -43,40 +28,29 @@
   <!--  CHIFFRES-CLÉS + répartition par type                 -->
   <!-- ===================================================== -->
   <section class="fin-overview" aria-label="Vue d'ensemble financière">
-    <div class="fin-overview-band" aria-hidden="true">
-      <img
-        src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80"
-        alt=""
-        aria-hidden="true"
-        class="fin-overview-band-img"
-        data-parallax="0.1"
-        loading="lazy"
-      />
-      <div class="fin-overview-band-veil"></div>
-    </div>
     <div class="fin-overview-inner">
 
-      <div class="fin-figures" data-reveal>
-        <div class="fin-figure ei-glass-card" data-reveal-child>
+      <div class="fin-figures">
+        <div class="fin-figure">
           <mat-icon class="fin-figure-icon">trending_up</mat-icon>
           <span class="fin-figure-num">{{ formatCurrency(fundingStats.obtainedAmount || 0) }}</span>
           <span class="fin-figure-label">Financements obtenus</span>
         </div>
-        <div class="fin-figure ei-glass-card" data-reveal-child>
+        <div class="fin-figure">
           <mat-icon class="fin-figure-icon">pending</mat-icon>
           <span class="fin-figure-num">{{ formatCurrency(fundingStats.pendingAmount || 0) }}</span>
           <span class="fin-figure-label">En cours d'obtention</span>
         </div>
-        <div class="fin-figure ei-glass-card" data-reveal-child>
+        <div class="fin-figure">
           <mat-icon class="fin-figure-icon">dataset</mat-icon>
           <span class="fin-figure-num">{{ fundingStats.totalSources || 0 }}</span>
           <span class="fin-figure-label">Sources de financement</span>
         </div>
       </div>
 
-      <div class="fin-breakdown" data-reveal>
-        <h2 class="fin-section-title" data-reveal-child>Répartition par type</h2>
-        <div class="breakdown-grid" data-reveal-child>
+      <div class="fin-breakdown">
+        <h2 class="fin-section-title">Répartition par type</h2>
+        <div class="breakdown-grid">
           <div class="breakdown-item">
             <span class="breakdown-icon"><mat-icon>redeem</mat-icon></span>
             <span class="breakdown-label">Subventions</span>
@@ -118,7 +92,7 @@
           </ng-template>
 
           <div class="tab-content">
-            <article *ngFor="let financing of projectFinancing" class="project-block" data-reveal>
+            <article *ngFor="let financing of projectFinancing" class="project-block">
               <div class="project-head">
                 <h3 class="project-name">{{ getProjectName(financing.projectId) }}</h3>
                 <button mat-button color="primary" (click)="navigateToProject(financing.projectId)">
@@ -295,29 +269,29 @@
               Des sources de financement à explorer pour vos projets.
             </p>
 
-            <div class="opportunities-grid" data-reveal>
-              <article class="opportunity-card" data-reveal-child>
+            <div class="opportunities-grid">
+              <article class="opportunity-card">
                 <span class="opportunity-num">01</span>
                 <mat-icon class="opportunity-icon">payments</mat-icon>
                 <h4>Subventions Bpifrance</h4>
                 <p>Aide à l'innovation pour les projets technologiques.</p>
-                <button mat-raised-button color="primary" data-magnetic>En savoir plus</button>
+                <button mat-raised-button color="primary">En savoir plus</button>
               </article>
 
-              <article class="opportunity-card" data-reveal-child>
+              <article class="opportunity-card">
                 <span class="opportunity-num">02</span>
                 <mat-icon class="opportunity-icon">trending_up</mat-icon>
                 <h4>French Tech Seed</h4>
                 <p>Financement pour les startups Deep Tech.</p>
-                <button mat-raised-button color="primary" data-magnetic>Candidater</button>
+                <button mat-raised-button color="primary">Candidater</button>
               </article>
 
-              <article class="opportunity-card" data-reveal-child>
+              <article class="opportunity-card">
                 <span class="opportunity-num">03</span>
                 <mat-icon class="opportunity-icon">language</mat-icon>
                 <h4>Aides régionales</h4>
                 <p>Dispositifs d'aide locaux pour l'entrepreneuriat.</p>
-                <button mat-raised-button color="primary" data-magnetic>Découvrir</button>
+                <button mat-raised-button color="primary">Découvrir</button>
               </article>
             </div>
           </div>

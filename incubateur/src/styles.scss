@@ -339,16 +339,6 @@ mat-icon,
   filter: blur(0);
 }
 
-/* Calques de parallaxe — surdimensionnés (scale) pour ne jamais laisser de bord */
-.main-content [data-parallax] {
-  will-change: transform;
-  transform: translate3d(0, 0, 0) scale(1.14);
-  backface-visibility: hidden;
-}
-@media (prefers-reduced-motion: reduce) {
-  .main-content [data-parallax] { transform: none; }
-}
-
 .main-content [data-magnetic] {
   transition: transform 180ms var(--ei-ease-launch);
 }

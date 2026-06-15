@@ -56,80 +56,10 @@
 .fin-head {
   position: relative;
   overflow: hidden;
-  padding: clamp(96px, 13vh, 168px) clamp(24px, 6vw, 96px) clamp(48px, 7vh, 88px);
+  padding: clamp(72px, 10vh, 128px) clamp(24px, 6vw, 96px) clamp(40px, 6vh, 72px);
   background:
     radial-gradient(120% 90% at 90% 6%, rgba(255, 179, 64, 0.10), transparent 55%),
     var(--ei-ink);
-}
-
-/* Photo cinématique de fond + zoom lent */
-.fin-head-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.fin-head-bg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.05);
-  animation: fin-head-zoom 18s ease-in-out alternate infinite;
-}
-
-@keyframes fin-head-zoom {
-  from { transform: scale(1.05); }
-  to   { transform: scale(1.12); }
-}
-
-.fin-head-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(160deg, rgba(0, 34, 53, 0.93) 0%, rgba(0, 45, 69, 0.86) 52%, rgba(0, 34, 53, 0.96) 100%);
-}
-
-/* Trame de points orange (signature accueil) */
-.fin-head-dots {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  opacity: 0.06;
-  background-image: radial-gradient(var(--ei-gold-1) 2px, transparent 2px);
-  background-size: 30px 30px;
-  pointer-events: none;
-}
-
-/* Réseau de lignes — registre « finance de confiance », discret derrière le titre */
-.fin-head-grid {
-  position: absolute;
-  inset: -10% -5% auto -5%;
-  height: 130%;
-  z-index: 1;
-  opacity: 0.4;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, rgba(255, 179, 64, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 179, 64, 0.05) 1px, transparent 1px);
-  background-size: 88px 88px;
-  -webkit-mask-image: radial-gradient(120% 80% at 80% 0%, #000 0%, transparent 70%);
-          mask-image: radial-gradient(120% 80% at 80% 0%, #000 0%, transparent 70%);
-}
-
-/* Badge éditorial sous le bouton retour */
-.fin-head-badge {
-  display: inline-block;
-  margin-bottom: clamp(16px, 2vh, 22px);
-  padding: 6px 18px;
-  border-radius: 100px;
-  background: rgba(254, 135, 1, 0.16);
-  color: var(--ei-gold-2);
-  font-family: var(--ei-font-display);
-  font-weight: 600;
-  font-size: 0.74rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 .fin-head-halo {
@@ -183,10 +113,9 @@
   margin: 0;
   font-family: var(--ei-font-display);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.02;
-  font-size: clamp(2.4rem, 6.4vw, 5rem);
-  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
   color: var(--ei-on-dark);
   max-width: 18ch;
 
@@ -211,40 +140,9 @@
    CHIFFRES-CLÉS + répartition
    ===================================================== */
 .fin-overview {
-  position: relative;
   padding: clamp(var(--ei-s-48), 7vh, var(--ei-s-96)) clamp(24px, 6vw, 96px);
-  isolation: isolate;
 }
-
-/* Bande d'impact — mains qui se rejoignent, lue en filigrane derrière les chiffres.
-   Reste de l'enrobage, ne porte aucune donnée. */
-.fin-overview-band {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-}
-.fin-overview-band-img {
-  position: absolute;
-  inset: -8% 0;
-  width: 100%;
-  height: 116%;
-  object-fit: cover;
-  object-position: center 35%;
-  opacity: 0.22;
-  filter: grayscale(0.2) contrast(1.05);
-  will-change: transform;
-}
-.fin-overview-band-veil {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(90% 70% at 50% 40%, transparent 0%, var(--ei-ink) 78%),
-    linear-gradient(var(--ei-ink) 0%, rgba(0, 34, 53, 0.72) 30%, rgba(0, 34, 53, 0.72) 70%, var(--ei-ink) 100%);
-}
-
 .fin-overview-inner {
-  position: relative;
   max-width: 1240px;
   margin: 0 auto;
 }
@@ -257,54 +155,15 @@
 }
 
 .fin-figure {
-  position: relative;
-  padding: clamp(24px, 2.8vw, 34px);
-  border-radius: var(--ei-r-16);
-  overflow: hidden;
-  transition: transform 240ms var(--ei-ease-launch),
-              border-color 240ms var(--ei-ease-soft),
-              box-shadow 240ms var(--ei-ease-launch);
-
-  /* surface non-glass de repli (si la classe .ei-glass-card sautait) */
-  background: var(--ei-slate);
-  border: 1px solid rgba(237, 230, 216, 0.10);
-
-  /* filet orange en tête de carte — au-dessus du voile glass */
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    z-index: 2;
-    background: var(--ei-gold-grad);
-    opacity: 0.9;
-  }
-
-  /* la carte est aussi .ei-glass-card : on garde son hover global,
-     on renforce juste l'élévation au survol */
-  &:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 179, 64, 0.35);
-    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.42);
-  }
-
-  /* le contenu passe au-dessus du calque ::before (spotlight) du glass */
-  .fin-figure-icon,
-  .fin-figure-num,
-  .fin-figure-label { position: relative; z-index: 2; }
+  padding: clamp(20px, 2.4vw, 30px) 0;
+  border-top: 1px solid rgba(237, 230, 216, 0.12);
 
   .fin-figure-icon {
-    display: grid;
-    place-items: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: rgba(254, 135, 1, 0.14);
     font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
     color: var(--ei-gold-2);
-    margin-bottom: 18px;
+    margin-bottom: 14px;
   }
   .fin-figure-num {
     display: block;
@@ -778,16 +637,9 @@
   position: relative;
   padding: clamp(26px, 3vw, 38px);
   background: var(--ei-slate);
-  transition: background 220ms var(--ei-ease-soft),
-              transform 220ms var(--ei-ease-launch),
-              box-shadow 220ms var(--ei-ease-launch);
+  transition: background 200ms var(--ei-ease-soft);
 
-  &:hover {
-    background: #16314a;
-    transform: translateY(-5px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30);
-    z-index: 1;
-  }
+  &:hover { background: #16314a; }
 
   .opportunity-num {
     position: absolute;
@@ -830,12 +682,10 @@
       box-shadow: 0 6px 22px rgba(254, 135, 1, 0.22) !important;
       font-family: var(--ei-font-text) !important;
       font-weight: 500 !important;
-      /* repos magnétique fluide (le JS data-magnetic écrit transform inline) */
-      transition: box-shadow 200ms var(--ei-ease-soft),
-                  transform 280ms var(--ei-ease-launch);
     }
     &.mat-mdc-raised-button:hover {
       box-shadow: 0 12px 32px rgba(254, 135, 1, 0.36) !important;
+      transform: translateY(-2px);
     }
   }
 }
@@ -942,63 +792,6 @@
       width: 44px;
       height: 44px;
     }
-  }
-}
-
-/* =====================================================
-   RESPONSIVE — mobile compact : chiffres-clés et répartition
-   en 1 colonne, dépenses et chips empilés proprement.
-   ===================================================== */
-@media (max-width: 768px) {
-  /* bande d'impact : plus discrète sur petit écran pour garder les chiffres lisibles */
-  .fin-overview-band-img { opacity: 0.14; }
-  /* réseau de lignes : densité réduite */
-  .fin-head-grid { background-size: 56px 56px; opacity: 0.3; }
-}
-
-@media (max-width: 480px) {
-  /* chiffres-clés : 1 colonne pleine largeur (pas de minmax 220px) */
-  .fin-figures {
-    grid-template-columns: 1fr;
-  }
-
-  /* répartition par type : 1 colonne */
-  .breakdown-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* opportunités : 1 colonne */
-  .opportunities-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* résumé financier : empilé, lisible */
-  .financing-summary {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  /* dépenses : info au-dessus, montant + statut en dessous */
-  .expense-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-
-    .expense-details {
-      width: 100%;
-      justify-content: space-between;
-    }
-  }
-
-  /* bouton retour confort tactile */
-  .fin-back {
-    min-height: 44px;
-  }
-
-  /* CTA opportunités : pleine largeur tactile */
-  .opportunity-card button.mat-mdc-raised-button {
-    width: 100%;
-    min-height: 44px;
   }
 }
 

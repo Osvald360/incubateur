@@ -7,9 +7,9 @@
 
   <!-- ============================================================ HERO -->
   <header class="eng-hero">
-    <div class="hero-bg" data-parallax="0.12">
+    <div class="hero-bg">
       <img
-        src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=2000&q=80"
+        src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=2000&q=80"
         alt=""
         aria-hidden="true"
         class="hero-bg-img"
@@ -17,21 +17,19 @@
       <div class="hero-overlay hero-overlay--left"></div>
       <div class="hero-overlay hero-overlay--bottom"></div>
     </div>
-    <div class="hero-grain" aria-hidden="true"></div>
-    <div class="hero-dots" aria-hidden="true"></div>
 
-    <div class="hero-content" data-reveal>
-      <span class="eng-badge" data-reveal-child>Ce qui nous guide</span>
-      <h1 class="hero-title" data-reveal-child>
+    <div class="hero-content">
+      <span class="eng-badge" data-reveal>Ce qui nous guide</span>
+      <h1 class="hero-title" data-reveal>
         Nos<br>
-        <span class="hero-title--gold">engagements</span>
+        <span class="hero-title--orange">engagements</span>
       </h1>
-      <p class="hero-lead" data-reveal-child>
+      <p class="hero-lead" data-reveal>
         Quatre engagements qu'on prend pour de vrai —
         pas des valeurs affichées sur un mur.
       </p>
 
-      <nav class="eng-nav" data-reveal-child aria-label="Engagements">
+      <nav class="eng-nav" data-reveal aria-label="Engagements">
         <a class="eng-pill" href="#transparence">
           <span class="eng-pill-num">01</span>
           Transparence
@@ -54,52 +52,57 @@
     <div class="hero-scroll" aria-hidden="true">
       <span class="scroll-line"></span>
     </div>
+
+    <!-- Séparation diagonale vers le blanc -->
+    <div class="hero-diagonal" aria-hidden="true">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1200 120H0V0l1200 120z" fill="#FFFFFF"/>
+      </svg>
+    </div>
   </header>
 
   <!-- ============================================================ 01 TRANSPARENCE -->
-  <section class="pillar" id="transparence">
-    <span class="pillar-ghost" aria-hidden="true">01</span>
+  <section class="pillar pillar--white" id="transparence">
     <div class="pillar-container">
       <div class="pillar-grid">
 
         <div class="pillar-photo-wrap" data-reveal>
-          <div class="pillar-photo-frame ei-glass-card">
+          <div class="pillar-photo-bg pillar-photo-bg--orange"></div>
+          <div class="pillar-photo-frame">
             <img
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80"
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
               alt="Transparence — comptes ouverts"
               loading="lazy"
             />
-            <div class="pillar-photo-shade" aria-hidden="true"></div>
-            <span class="pillar-photo-badge" aria-hidden="true">01</span>
           </div>
         </div>
 
-        <div class="pillar-text" data-reveal>
-          <div class="pillar-eyebrow" data-reveal-child>
+        <div class="pillar-text">
+          <div class="pillar-eyebrow" data-reveal>
             <span class="pillar-num">01.</span>
             <div class="pillar-dash"></div>
             <span class="pillar-label">Pacte de confiance</span>
           </div>
-          <h2 class="pillar-title" data-reveal-child>Transparence</h2>
-          <blockquote class="pillar-quote" data-reveal-child>
+          <h2 class="pillar-title" data-reveal>Transparence</h2>
+          <blockquote class="pillar-quote" data-reveal>
             « On montre tout. Vraiment. »
           </blockquote>
-          <ul class="pillar-tags" data-reveal-child>
+          <ul class="pillar-tags" data-reveal>
             <li>Comptes ouverts</li>
             <li>Critères publics</li>
             <li>Rapport annuel</li>
           </ul>
-          <p class="pillar-body" data-reveal-child>
+          <p class="pillar-body" data-reveal>
             On ne fait pas semblant. Chaque euro qu'on collecte, on explique où il va et pourquoi.
             Parce qu'on a tous été dans des systèmes où on ne comprenait rien aux règles — et
             personne ne prenait la peine d'expliquer. Ici, si t'as une question sur comment on
             fonctionne, t'as une réponse.
           </p>
-          <ul class="pillar-checklist" data-reveal-child>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Le rapport annuel est en ligne, pas dans un tiroir</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Les critères de sélection — tu peux les lire ce soir</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Chaque financement est tracé et expliqué</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Les résultats, les bons comme les mauvais, sont partagés</li>
+          <ul class="pillar-checklist" data-reveal>
+            <li><mat-icon>check_circle</mat-icon>Le rapport annuel est en ligne, pas dans un tiroir</li>
+            <li><mat-icon>check_circle</mat-icon>Les critères de sélection — tu peux les lire ce soir</li>
+            <li><mat-icon>check_circle</mat-icon>Chaque financement est tracé et expliqué</li>
+            <li><mat-icon>check_circle</mat-icon>Les résultats, les bons comme les mauvais, sont partagés</li>
           </ul>
         </div>
 
@@ -108,49 +111,47 @@
   </section>
 
   <!-- ============================================================ 02 PARTICIPATION -->
-  <section class="pillar pillar--slate" id="participation">
-    <span class="pillar-ghost pillar-ghost--right" aria-hidden="true">02</span>
+  <section class="pillar pillar--gray" id="participation">
     <div class="pillar-container">
       <div class="pillar-grid pillar-grid--reverse">
 
-        <div class="pillar-text" data-reveal>
-          <div class="pillar-eyebrow" data-reveal-child>
+        <div class="pillar-text">
+          <div class="pillar-eyebrow" data-reveal>
             <span class="pillar-num">02.</span>
             <div class="pillar-dash"></div>
             <span class="pillar-label">Engagement fondateur</span>
           </div>
-          <h2 class="pillar-title" data-reveal-child>Participation</h2>
-          <blockquote class="pillar-quote" data-reveal-child>
+          <h2 class="pillar-title" data-reveal>Participation</h2>
+          <blockquote class="pillar-quote" data-reveal>
             « Ta voix compte autant que ton argent. »
           </blockquote>
-          <ul class="pillar-tags" data-reveal-child>
+          <ul class="pillar-tags" data-reveal>
             <li>Droit de vote</li>
             <li>Comités ouverts</li>
             <li>Assemblée annuelle</li>
           </ul>
-          <p class="pillar-body" data-reveal-child>
+          <p class="pillar-body" data-reveal>
             Si tu mets la main à la poche, t'as le droit de regard. On ne veut pas des gens
             qui signent un chèque et disparaissent — on veut des gens qui participent, qui
             challengent nos décisions, qui mettent le doigt là où ça cloche. C'est comme ça
             qu'on construit quelque chose qui tient.
           </p>
-          <ul class="pillar-checklist" data-reveal-child>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Tu votes à l'Assemblée — une voix, c'est une voix</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Les délibérations du CA sont accessibles aux membres</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Tu peux rejoindre un comité si le cœur t'en dit</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Aucun changement des statuts sans te demander ton avis</li>
+          <ul class="pillar-checklist" data-reveal>
+            <li><mat-icon>check_circle</mat-icon>Tu votes à l'Assemblée — une voix, c'est une voix</li>
+            <li><mat-icon>check_circle</mat-icon>Les délibérations du CA sont accessibles aux membres</li>
+            <li><mat-icon>check_circle</mat-icon>Tu peux rejoindre un comité si le cœur t'en dit</li>
+            <li><mat-icon>check_circle</mat-icon>Aucun changement des statuts sans te demander ton avis</li>
           </ul>
         </div>
 
         <div class="pillar-photo-wrap" data-reveal>
-          <div class="pillar-photo-frame ei-glass-card">
+          <div class="pillar-photo-bg pillar-photo-bg--navy"></div>
+          <div class="pillar-photo-frame">
             <img
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80"
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
               alt="Participation — communauté Envol"
               loading="lazy"
             />
-            <div class="pillar-photo-shade" aria-hidden="true"></div>
-            <span class="pillar-photo-badge" aria-hidden="true">02</span>
           </div>
         </div>
 
@@ -159,49 +160,47 @@
   </section>
 
   <!-- ============================================================ 03 ÉGALITÉ -->
-  <section class="pillar" id="egalite">
-    <span class="pillar-ghost" aria-hidden="true">03</span>
+  <section class="pillar pillar--white" id="egalite">
     <div class="pillar-container">
       <div class="pillar-grid">
 
         <div class="pillar-photo-wrap" data-reveal>
-          <div class="pillar-photo-frame ei-glass-card">
+          <div class="pillar-photo-bg pillar-photo-bg--green"></div>
+          <div class="pillar-photo-frame">
             <img
-              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=80"
+              src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1200&q=80"
               alt="Égalité des chances — Envol Impact"
               loading="lazy"
             />
-            <div class="pillar-photo-shade" aria-hidden="true"></div>
-            <span class="pillar-photo-badge pillar-photo-badge--green" aria-hidden="true">03</span>
           </div>
         </div>
 
-        <div class="pillar-text" data-reveal>
-          <div class="pillar-eyebrow" data-reveal-child>
+        <div class="pillar-text">
+          <div class="pillar-eyebrow" data-reveal>
             <span class="pillar-num pillar-num--green">03.</span>
             <div class="pillar-dash pillar-dash--green"></div>
             <span class="pillar-label">Valeur humaine</span>
           </div>
-          <h2 class="pillar-title" data-reveal-child>Égalité des chances</h2>
-          <blockquote class="pillar-quote pillar-quote--green" data-reveal-child>
+          <h2 class="pillar-title" data-reveal>Égalité des chances</h2>
+          <blockquote class="pillar-quote pillar-quote--green" data-reveal>
             « Le talent n'a pas d'origine. »
           </blockquote>
-          <ul class="pillar-tags pillar-tags--green" data-reveal-child>
+          <ul class="pillar-tags pillar-tags--green" data-reveal>
             <li>Évaluation anonyme</li>
             <li>Comité paritaire</li>
-            <li>Zones rurales &amp; QPV</li>
+            <li>Zones rurales & QPV</li>
           </ul>
-          <p class="pillar-body" data-reveal-child>
+          <p class="pillar-body" data-reveal>
             Ton prénom, ton adresse, tes diplômes — ça ne pèse rien dans notre grille. Ce qui
             compte, c'est ton projet et l'impact que tu veux créer. On l'a vécu dans les deux
             sens : le talent rejeté à cause d'un nom, le potentiel ignoré faute de réseau.
             C'est exactement ce qu'on est là pour changer.
           </p>
-          <ul class="pillar-checklist pillar-checklist--green" data-reveal-child>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Premier tour anonymisé — on ne sait pas qui tu es</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Un comité paritaire qui ressemble au terrain</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Un accompagnement adapté à ta vraie situation</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Priorité aux quartiers populaires et zones rurales</li>
+          <ul class="pillar-checklist pillar-checklist--green" data-reveal>
+            <li><mat-icon>check_circle</mat-icon>Premier tour anonymisé — on ne sait pas qui tu es</li>
+            <li><mat-icon>check_circle</mat-icon>Un comité paritaire qui ressemble au terrain</li>
+            <li><mat-icon>check_circle</mat-icon>Un accompagnement adapté à ta vraie situation</li>
+            <li><mat-icon>check_circle</mat-icon>Priorité aux quartiers populaires et zones rurales</li>
           </ul>
         </div>
 
@@ -210,49 +209,47 @@
   </section>
 
   <!-- ============================================================ 04 RESPONSABILITÉ -->
-  <section class="pillar pillar--slate" id="responsabilite">
-    <span class="pillar-ghost pillar-ghost--right" aria-hidden="true">04</span>
+  <section class="pillar pillar--gray" id="responsabilite">
     <div class="pillar-container">
       <div class="pillar-grid pillar-grid--reverse">
 
-        <div class="pillar-text" data-reveal>
-          <div class="pillar-eyebrow" data-reveal-child>
+        <div class="pillar-text">
+          <div class="pillar-eyebrow" data-reveal>
             <span class="pillar-num">04.</span>
             <div class="pillar-dash"></div>
             <span class="pillar-label">Impact durable</span>
           </div>
-          <h2 class="pillar-title" data-reveal-child>Responsabilité</h2>
-          <blockquote class="pillar-quote" data-reveal-child>
+          <h2 class="pillar-title" data-reveal>Responsabilité</h2>
+          <blockquote class="pillar-quote" data-reveal>
             « On est sérieux parce que c'est votre argent. »
           </blockquote>
-          <ul class="pillar-tags" data-reveal-child>
+          <ul class="pillar-tags" data-reveal>
             <li>Audit indépendant</li>
             <li>Zéro conflit d'intérêts</li>
             <li>Suivi post-financement</li>
           </ul>
-          <p class="pillar-body" data-reveal-child>
+          <p class="pillar-body" data-reveal>
             On gère l'argent des autres. C'est pas anodin. Ça veut dire des comptes vérifiés
             par quelqu'un qu'on ne connaît pas, des décisions prises collectivement, et un
             suivi honnête de chaque projet qu'on a aidé à lancer. Si ça marche, on le dit.
             Si ça marche pas, on le dit aussi.
           </p>
-          <ul class="pillar-checklist" data-reveal-child>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Un commissaire aux comptes indépendant — pas quelqu'un qu'on connaît</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Le comité qui finance n'est pas celui qui gère</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>Une politique anti-conflits d'intérêts écrite et appliquée</li>
-            <li><span class="check-dot" aria-hidden="true"><mat-icon>check</mat-icon></span>On suit les projets financés après — pour de vrai</li>
+          <ul class="pillar-checklist" data-reveal>
+            <li><mat-icon>check_circle</mat-icon>Un commissaire aux comptes indépendant — pas quelqu'un qu'on connaît</li>
+            <li><mat-icon>check_circle</mat-icon>Le comité qui finance n'est pas celui qui gère</li>
+            <li><mat-icon>check_circle</mat-icon>Une politique anti-conflits d'intérêts écrite et appliquée</li>
+            <li><mat-icon>check_circle</mat-icon>On suit les projets financés après — pour de vrai</li>
           </ul>
         </div>
 
         <div class="pillar-photo-wrap" data-reveal>
-          <div class="pillar-photo-frame ei-glass-card">
+          <div class="pillar-photo-bg pillar-photo-bg--navy"></div>
+          <div class="pillar-photo-frame">
             <img
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80"
+              src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80"
               alt="Responsabilité — impact local Envol"
               loading="lazy"
             />
-            <div class="pillar-photo-shade" aria-hidden="true"></div>
-            <span class="pillar-photo-badge" aria-hidden="true">04</span>
           </div>
         </div>
 
@@ -264,23 +261,21 @@
   <section class="eng-cta">
     <div class="cta-bg" aria-hidden="true">
       <img
-        src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=2000&q=80"
+        src="https://images.unsplash.com/photo-1519671282429-b44660ead0a2?auto=format&fit=crop&w=2000&q=80"
         alt=""
         class="cta-bg-img"
         loading="lazy"
       />
       <div class="cta-bg-overlay"></div>
     </div>
-    <div class="cta-grain" aria-hidden="true"></div>
-    <div class="cta-dots" aria-hidden="true"></div>
-    <div class="cta-inner" data-reveal>
-      <span class="eng-badge eng-badge--white" data-reveal-child>Rejoignez le mouvement</span>
-      <h2 class="cta-title" data-reveal-child>
+    <div class="cta-inner">
+      <span class="eng-badge eng-badge--white" data-reveal>Rejoignez le mouvement</span>
+      <h2 class="cta-title" data-reveal>
         Si ces engagements te ressemblent,<br>
-        <span class="cta-title--gold">il y a une place pour toi.</span>
+        <span class="cta-title--orange">il y a une place pour toi.</span>
       </h2>
-      <div class="cta-actions" data-reveal-child>
-        <a routerLink="/candidature" class="eng-btn eng-btn--gold" data-magnetic>
+      <div class="cta-actions" data-reveal>
+        <a routerLink="/candidature" class="eng-btn eng-btn--orange">
           Lancer mon projet
           <mat-icon>north_east</mat-icon>
         </a>
