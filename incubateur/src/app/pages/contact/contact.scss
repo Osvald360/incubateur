@@ -1,16 +1,27 @@
 /* =====================================================
-   ENVOL IMPACT · Contact — DA marque 2024
-   Hero cinématique + corps split (glass card + infos glass)
-   Deep #002235 · Navy #003B5C · Orange #F39200 · Vert #84BD00
-   Poppins (titres) + Lato (corps)
+   ENVOL IMPACT · Contact — DA « NOIR & DORÉ »
+   Re-skin : noir d'encre + or. Structure/contenu/anim/
+   responsive/bindings INCHANGÉS — seuls couleurs + typo
+   des grands titres changent (serif Gambetta, casse normale).
    ===================================================== */
 
-$deep:    #002235;
-$navy:    #003B5C;
-$orange:  #F39200;
-$green:   #84BD00;
-$light:   #F8FAFC;
-$white:   #FFFFFF;
+/* Palette NOIR & DORÉ */
+$deep:    #0B0A08; /* noir page */
+$navy:    #14110A; /* noir surface */
+$orange:  #D4AF37; /* or solide */
+$green:   #C8912E; /* ex-vert décoratif → or profond */
+$light:   #14110A; /* ex-sections claires → sombres */
+$white:   #F4EEE2; /* texte crème */
+
+/* Jetons additionnels NOIR & DORÉ */
+$gold-grad:  linear-gradient(120deg, #EBCB7E 0%, #C8912E 100%);
+$gold-light: #E8C77E;
+$gold-solid: #D4AF37;
+$gold-deep:  #B8862F;
+$title:      #FBF8F1; /* titres */
+$ink-page:   #0B0A08;
+$cream:      #F4EEE2;
+$serif:      'Gambetta', Georgia, serif;
 
 :host {
   display: block;
@@ -47,8 +58,8 @@ $white:   #FFFFFF;
   border-radius: 100px;
   padding: 6px 18px;
   margin-bottom: 22px;
-  background: rgba($orange, .20);
-  color: $orange;
+  background: rgba(212, 175, 55, .14);
+  color: $gold-light;
 }
 
 .eyebrow {
@@ -125,21 +136,25 @@ $white:   #FFFFFF;
 
 .hero-title {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 900;
-  letter-spacing: -0.04em;
+  font-family: $serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   line-height: 1.05;
   font-size: clamp(2.1rem, 8vw, 5.2rem);
-  color: $white;
-  text-transform: uppercase;
+  color: $title;
+  text-transform: none;
   overflow-wrap: break-word;
 
   .line { display: block; overflow: hidden; }
   .line-inner { display: block; }
 
   em {
-    font-style: normal;
-    color: $orange;
+    font-style: italic;
+    background: $gold-grad;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: $gold-solid;
   }
 }
 
@@ -206,11 +221,11 @@ $white:   #FFFFFF;
 .form-panel {
   border-radius: 22px;
   padding: clamp(28px, 4vw, 48px);
-  border: 1px solid rgba($white, .12) !important;
-  background: rgba($white, .06) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 18px 50px rgba($deep, .45);
+  border: 1px solid rgba(212, 175, 55, .16) !important;
+  background: rgba(255, 255, 255, .04) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .55);
 }
 
 .panel-head {
@@ -219,19 +234,19 @@ $white:   #FFFFFF;
 
 .panel-title {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: $serif;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   line-height: 1.1;
   font-size: clamp(1.5rem, 3vw, 2.1rem);
-  color: $white;
-  text-transform: uppercase;
+  color: $title;
+  text-transform: none;
 }
 
 .panel-sub {
   margin: 8px 0 0;
   font-size: 0.98rem;
-  color: rgba($white, .65);
+  color: #A89F8C;
 }
 
 .contact-form {
@@ -267,34 +282,34 @@ $white:   #FFFFFF;
     letter-spacing: 0.05em;
     padding: 16px 32px;
     border-radius: 100px !important;
-    background: $orange !important;
-    color: $white !important;
+    background: $gold-grad !important;
+    color: $ink-page !important;
     border: none;
-    box-shadow: 0 10px 30px rgba($orange, 0.30) !important;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.30) !important;
     cursor: pointer;
     transition: all 300ms ease !important;
 
     mat-icon {
       margin-left: 4px;
-      color: $white;
+      color: $ink-page;
       transition: transform 200ms ease, color 300ms ease;
     }
 
     &:hover:not(:disabled) {
-      background: $white !important;
-      color: $orange !important;
+      filter: brightness(1.08);
+      color: $ink-page !important;
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 16px 38px rgba($orange, 0.42) !important;
+      box-shadow: 0 16px 38px rgba(212, 175, 55, 0.42) !important;
 
       mat-icon {
-        color: $orange;
+        color: $ink-page;
         transform: translate(3px, -3px);
       }
     }
 
     &:disabled {
-      background: rgba($white, 0.10) !important;
-      color: rgba($white, 0.40) !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      color: rgba(244, 238, 226, 0.40) !important;
       box-shadow: none !important;
       cursor: not-allowed;
     }
@@ -317,19 +332,19 @@ $white:   #FFFFFF;
 }
 
 .location {
-  background: rgba($white, .05);
-  border: 1px solid rgba($white, .10);
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(212, 175, 55, .16);
   border-radius: 18px;
   padding: 26px 28px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   transition: transform 260ms ease, border-color 260ms ease, background 260ms ease, box-shadow 260ms ease;
 
   &:hover {
     transform: translateY(-6px);
-    background: rgba($white, .08);
-    border-color: rgba($orange, .40);
-    box-shadow: 0 18px 44px rgba($deep, .45);
+    background: rgba(212, 175, 55, .07);
+    border-color: rgba(212, 175, 55, .40);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, .55);
   }
 }
 
@@ -379,12 +394,12 @@ $white:   #FFFFFF;
 
 /* ---- Contact rapide ---- */
 .quick-contact {
-  background: rgba($white, .05);
-  border: 1px solid rgba($white, .10);
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(212, 175, 55, .16);
   border-radius: 18px;
   padding: 26px 28px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .quick-title {
@@ -406,8 +421,8 @@ $white:   #FFFFFF;
   gap: 14px;
   padding: 14px 16px;
   border-radius: 12px;
-  background: rgba($white, .04);
-  border: 1px solid rgba($white, .08);
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(212, 175, 55, .16);
   text-decoration: none;
   transition: all 260ms ease;
 
@@ -418,9 +433,9 @@ $white:   #FFFFFF;
     line-height: 44px;
     text-align: center;
     border-radius: 12px;
-    background: rgba($orange, .14);
+    background: rgba(212, 175, 55, .14);
     font-size: 1.25rem;
-    color: $orange;
+    color: $gold-light;
     transition: background 260ms ease, color 260ms ease;
   }
 
@@ -442,14 +457,14 @@ $white:   #FFFFFF;
   }
 
   &:not(.quick-item--static):hover {
-    border-color: rgba($orange, .45);
-    background: rgba($orange, .08);
+    border-color: rgba(212, 175, 55, .45);
+    background: rgba(212, 175, 55, .08);
     transform: translateX(4px);
-    box-shadow: 0 10px 26px rgba($deep, .40);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .50);
 
     mat-icon {
-      background: $orange;
-      color: $white;
+      background: $gold-grad;
+      color: $ink-page;
     }
   }
 }

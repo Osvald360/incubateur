@@ -11,18 +11,29 @@
    (succès / alerte / erreur) conservés et calés sur la DA.
    ===================================================== */
 
-/* Charte « Envol Impact » — alignée sur accueil.scss */
-$deep:    #002235;
-$navy:    #003B5C;
-$orange:  #F39200;
-$green:   #84BD00;
-$light:   #F8FAFC;
-$white:   #FFFFFF;
+/* Palette NOIR & DORÉ */
+$deep:    #0B0A08; /* noir page */
+$navy:    #14110A; /* noir surface */
+$orange:  #D4AF37; /* or solide */
+$green:   #C8912E; /* ex-vert décoratif → or profond */
+$light:   #14110A; /* ex-sections claires → sombres */
+$white:   #F4EEE2; /* texte crème */
+
+/* Jetons additionnels NOIR & DORÉ */
+$gold-grad:  linear-gradient(120deg, #EBCB7E 0%, #C8912E 100%);
+$gold-light: #E8C77E;
+$gold-solid: #D4AF37;
+$gold-deep:  #B8862F;
+$title:      #FBF8F1; /* titres */
+$ink-page:   #0B0A08;
+$cream:      #F4EEE2;
+$serif:      'Gambetta', Georgia, serif;
+$err:        #E5685F; /* rouge erreur sur sombre */
 
 :host {
   display: block;
-  background: var(--ei-ink);
-  color: var(--ei-on-dark);
+  background: $deep;
+  color: $cream;
   font-family: var(--ei-font-text);
 }
 
@@ -31,9 +42,9 @@ $white:   #FFFFFF;
   min-height: 100vh;
   overflow-x: clip;
   background:
-    radial-gradient(120% 60% at 86% 0%, rgba($orange, 0.12), transparent 55%),
+    radial-gradient(120% 60% at 86% 0%, rgba(212, 175, 55, 0.12), transparent 55%),
     radial-gradient(90% 50% at 8% 100%, rgba($navy, 0.55), transparent 60%),
-    var(--ei-ink);
+    $deep;
 }
 
 /* Grain léger, cohérent avec le hero de l'accueil */
@@ -96,16 +107,23 @@ $white:   #FFFFFF;
 }
 
 .cand-hero-title {
-  font-family: 'Poppins', var(--ei-font-display), sans-serif;
-  font-weight: 900;
-  letter-spacing: -.04em;
-  line-height: 1;
+  font-family: $serif;
+  font-weight: 700;
+  letter-spacing: -.015em;
+  line-height: 1.04;
   font-size: clamp(2.8rem, 8vw, 6.5rem);
-  text-transform: uppercase;
-  color: $white;
+  text-transform: none;
+  color: $title;
   margin: 0 0 28px;
 
-  &--orange { color: $orange; }
+  &--orange {
+    font-style: italic;
+    background: $gold-grad;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: $gold-solid;
+  }
 }
 
 .cand-hero-subtitle {
@@ -122,8 +140,8 @@ $white:   #FFFFFF;
 /* Badge de marque (pill) — repris d'accueil/partenaires */
 .section-badge {
   display: inline-block;
-  background: rgba($orange, .20);
-  color: $orange;
+  background: rgba(212, 175, 55, .14);
+  color: $gold-light;
   font-family: 'Poppins', var(--ei-font-display), sans-serif;
   font-weight: 700;
   font-size: .75rem;
@@ -156,8 +174,8 @@ $white:   #FFFFFF;
     max-width: 60ch;
 
     h1 {
-      font-family: var(--ei-font-display);
-      color: var(--ei-on-dark);
+      font-family: $serif;
+      color: $title;
       font-size: clamp(2.6rem, 6.5vw, 5rem);
       font-weight: 700;
       letter-spacing: -0.025em;
@@ -171,13 +189,13 @@ $white:   #FFFFFF;
         width: clamp(56px, 7vw, 96px);
         height: 3px;
         margin-top: clamp(16px, 2vh, 22px);
-        background: var(--ei-gold-grad);
+        background: $gold-grad;
         border-radius: 2px;
       }
     }
 
     p {
-      color: var(--ei-on-dark-dim);
+      color: #A89F8C;
       font-size: clamp(1rem, 1.4vw, 1.2rem);
       line-height: 1.6;
       max-width: 54ch;
@@ -207,14 +225,14 @@ $white:   #FFFFFF;
   .mat-step {
     &.mat-step-selected .mat-step-header {
       .mat-step-icon {
-        background: var(--ei-gold-grad) !important;
-        color: #ffffff !important;
+        background: $gold-grad !important;
+        color: $ink-page !important;
         border-color: rgba(255, 255, 255, 0.55) !important;
-        box-shadow: 0 8px 22px rgba(243, 146, 0, 0.45) !important;
+        box-shadow: 0 8px 22px rgba(212, 175, 55, 0.45) !important;
         transform: scale(1.06) !important;
       }
       .mat-step-label {
-        color: #fff !important;
+        color: $title !important;
         font-weight: 700 !important;
       }
     }
@@ -222,8 +240,8 @@ $white:   #FFFFFF;
     /* étape déjà validée */
     .mat-step-header .mat-step-icon-state-done,
     .mat-step-header .mat-step-icon-selected {
-      background: var(--ei-gold-grad);
-      color: #ffffff !important;
+      background: $gold-grad;
+      color: $ink-page !important;
       border-color: rgba(255, 255, 255, 0.4) !important;
     }
 
@@ -232,14 +250,14 @@ $white:   #FFFFFF;
       border-radius: 14px;
       transition: background 220ms var(--ei-ease-soft);
 
-      &:hover { background: rgba(243, 146, 0, 0.06); }
+      &:hover { background: rgba(212, 175, 55, 0.06); }
 
       .mat-step-icon {
         width: 46px;
         height: 46px;
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.08);
-        color: #fff;
+        color: $cream;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -279,12 +297,12 @@ $white:   #FFFFFF;
   animation: fadeInUp 0.5s var(--ei-ease-launch);
 
   h3 {
-    font-family: 'Poppins', var(--ei-font-display), sans-serif;
-    color: $white;
+    font-family: $serif;
+    color: $title;
     font-size: clamp(1.45rem, 2.6vw, 2rem);
     font-weight: 700;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
+    letter-spacing: -0.015em;
+    text-transform: none;
     margin: 0 0 12px;
   }
 
@@ -347,31 +365,31 @@ $white:   #FFFFFF;
   }
 
   .next-button {
-    background: var(--ei-gold-grad) !important;
-    color: #ffffff !important;
-    box-shadow: 0 6px 22px rgba(254, 135, 1, 0.3) !important;
+    background: $gold-grad !important;
+    color: $ink-page !important;
+    box-shadow: 0 6px 22px rgba(212, 175, 55, 0.3) !important;
 
     &:hover:not(:disabled) {
       transform: translateY(-2px) !important;
-      box-shadow: 0 12px 34px rgba(254, 135, 1, 0.44) !important;
+      box-shadow: 0 12px 34px rgba(212, 175, 55, 0.44) !important;
     }
     &:disabled {
-      background: rgba(26, 42, 56, 0.12) !important;
-      color: var(--ei-haze) !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      color: rgba(244, 238, 226, 0.40) !important;
       box-shadow: none !important;
     }
   }
 
   .prev-button {
     background: transparent !important;
-    color: rgba(255, 255, 255, 0.78) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
+    color: $cream !important;
+    border: 1.5px solid rgba(212, 175, 55, 0.28) !important;
     box-shadow: none !important;
 
     &:hover {
-      border-color: $orange !important;
-      color: $orange !important;
-      background: rgba(243, 146, 0, 0.10) !important;
+      border-color: $gold-solid !important;
+      color: $gold-light !important;
+      background: rgba(212, 175, 55, 0.10) !important;
     }
   }
 }
@@ -385,31 +403,33 @@ $white:   #FFFFFF;
   }
 
   .recap-card {
-    border: 1px solid rgba(26, 42, 56, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.16);
     border-radius: var(--ei-r-16);
     overflow: hidden;
-    background: #fffdf7;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     transition: border-color 200ms var(--ei-ease-soft),
                 box-shadow 200ms var(--ei-ease-soft),
                 transform 200ms var(--ei-ease-launch);
 
     &:hover {
-      border-color: rgba(254, 135, 1, 0.5);
-      box-shadow: 0 16px 40px rgba(8, 18, 30, 0.12);
+      border-color: rgba(212, 175, 55, 0.45);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
       transform: translateY(-3px);
     }
 
     ::ng-deep {
       .mat-mdc-card-header {
-        background: rgba(254, 135, 1, 0.08);
+        background: rgba(212, 175, 55, 0.08);
         padding: 24px;
 
         .mat-mdc-card-avatar {
           width: 48px;
           height: 48px;
           border-radius: var(--ei-r-8);
-          background: var(--ei-gold-grad);
-          color: #ffffff;
+          background: $gold-grad;
+          color: $ink-page;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -417,15 +437,15 @@ $white:   #FFFFFF;
           mat-icon { font-size: 24px; }
         }
         .mat-mdc-card-title {
-          color: var(--ei-on-light);
+          color: $title;
           font-family: var(--ei-font-display);
           font-weight: 600;
           margin-bottom: 4px;
         }
-        .mat-mdc-card-subtitle { color: #5a6b79; }
+        .mat-mdc-card-subtitle { color: #A89F8C; }
       }
       .mat-mdc-card-content { padding: 24px; }
-      .mat-mdc-card-actions { padding: 16px 24px; background: rgba(26, 42, 56, 0.04); }
+      .mat-mdc-card-actions { padding: 16px 24px; background: rgba(255, 255, 255, 0.03); }
     }
   }
 }
@@ -439,12 +459,12 @@ $white:   #FFFFFF;
     justify-content: space-between;
     align-items: flex-start;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(26, 42, 56, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.14);
 
     &:last-child { border-bottom: none; }
 
-    strong { color: var(--ei-on-light); font-weight: 600; min-width: 120px; }
-    span { color: #4a5b69; text-align: right; flex: 1; margin-left: 16px; overflow-wrap: anywhere; }
+    strong { color: $title; font-weight: 600; min-width: 120px; }
+    span { color: $cream; text-align: right; flex: 1; margin-left: 16px; overflow-wrap: anywhere; }
 
     @media (max-width: 560px) {
       flex-direction: column;
@@ -464,21 +484,21 @@ $white:   #FFFFFF;
     display: flex;
     align-items: center;
     gap: 8px;
-    color: var(--ei-on-light);
+    color: $title;
     font-family: var(--ei-font-display);
     font-weight: 600;
     margin-bottom: 12px;
 
-    mat-icon { color: #9a6a16; font-size: 20px; }
+    mat-icon { color: $gold-light; font-size: 20px; }
   }
 
   .motivation-text {
-    color: #3a4c5a;
+    color: $cream;
     line-height: 1.6;
     padding: 16px;
-    background: rgba(254, 135, 1, 0.07);
+    background: rgba(212, 175, 55, 0.07);
     border-radius: var(--ei-r-8);
-    border-left: 3px solid var(--ei-gold-1);
+    border-left: 3px solid $gold-solid;
     max-height: 120px;
     overflow-y: auto;
   }
@@ -494,16 +514,16 @@ $white:   #FFFFFF;
 
   .prev-button {
     background: transparent !important;
-    color: rgba(255, 255, 255, 0.78) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
+    color: $cream !important;
+    border: 1.5px solid rgba(212, 175, 55, 0.28) !important;
     box-shadow: none !important;
     border-radius: var(--ei-r-8) !important;
     transition: border-color 160ms var(--ei-ease-soft), color 160ms var(--ei-ease-soft), background 160ms var(--ei-ease-soft) !important;
 
     &:hover {
-      border-color: $orange !important;
-      color: $orange !important;
-      background: rgba(243, 146, 0, 0.10) !important;
+      border-color: $gold-solid !important;
+      color: $gold-light !important;
+      background: rgba(212, 175, 55, 0.10) !important;
     }
   }
 
@@ -522,19 +542,19 @@ $white:   #FFFFFF;
     display: flex;
     align-items: center;
     gap: 12px;
-    background: rgba($orange, 0.10);
-    border: 1px solid rgba($orange, 0.24);
+    background: rgba(212, 175, 55, 0.10);
+    border: 1px solid rgba(212, 175, 55, 0.24);
     padding: 16px;
     border-radius: var(--ei-r-8);
     margin-bottom: 24px;
 
-    mat-icon { color: $orange; font-size: 20px; }
-    p { color: rgba($white, 0.82); margin: 0; font-size: 0.9rem; line-height: 1.45; text-align: left; }
+    mat-icon { color: $gold-light; font-size: 20px; }
+    p { color: rgba($cream, 0.82); margin: 0; font-size: 0.9rem; line-height: 1.45; text-align: left; }
   }
 
   .submit-button {
-    background: var(--ei-gold-grad) !important;
-    color: #ffffff !important;
+    background: $gold-grad !important;
+    color: $ink-page !important;
     font-family: var(--ei-font-text) !important;
     font-size: 1.05rem !important;
     font-weight: 600 !important;
@@ -542,20 +562,20 @@ $white:   #FFFFFF;
     padding: 16px 48px !important;
     border-radius: var(--ei-r-4) !important;
     border: none !important;
-    box-shadow: 0 8px 26px rgba(254, 135, 1, 0.36) !important;
+    box-shadow: 0 8px 26px rgba(212, 175, 55, 0.36) !important;
     transition: transform 160ms var(--ei-ease-launch),
                 box-shadow 160ms var(--ei-ease-launch) !important;
 
     &:hover:not(:disabled) {
       transform: translateY(-2px) !important;
-      box-shadow: 0 14px 38px rgba(254, 135, 1, 0.48) !important;
+      box-shadow: 0 14px 38px rgba(212, 175, 55, 0.48) !important;
     }
 
     &:disabled {
       opacity: 1 !important;
       cursor: not-allowed !important;
-      background: rgba(26, 42, 56, 0.12) !important;
-      color: var(--ei-haze) !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      color: rgba(244, 238, 226, 0.40) !important;
       transform: none !important;
       box-shadow: none !important;
     }
@@ -654,58 +674,59 @@ $white:   #FFFFFF;
    alerte → or, erreur → rouge. Surfaces teintées légères
    adaptées à la craie.
    ===================================================== */
-/* Les champs « motivation » et « objectifs » reçoivent un fond clair
-   selon l'état sémantique : on force un texte saisi sombre pour rester
-   lisible (AA) sur ces surfaces, malgré la carte verre sombre. */
+/* NOIR & DORÉ : les champs « motivation » et « objectifs » restent en
+   style sombre (carte verre) avec texte saisi crème pour la lisibilité,
+   l'état sémantique étant porté par l'outline + les surfaces teintées
+   sombres (or = alerte, vert = succès, rouge = erreur). */
 .field-default,
 .field-warning,
 .field-success,
 .field-error {
   ::ng-deep textarea.mat-mdc-input-element,
   ::ng-deep input.mat-mdc-input-element {
-    color: #1a2a38 !important;
-    caret-color: $orange !important;
+    color: $cream !important;
+    caret-color: $gold-solid !important;
   }
   ::ng-deep textarea.mat-mdc-input-element::placeholder {
-    color: #6a7b89 !important;
+    color: #A89F8C !important;
   }
 }
 
 .field-default {
-  .mat-mdc-form-field-outline { color: rgba(26, 42, 56, 0.22) !important; }
-  .mat-mdc-text-field-wrapper { background-color: #fffdf7; transition: var(--transition); }
-  .mat-mdc-form-field-label { color: #5a6b79 !important; }
+  .mat-mdc-form-field-outline { color: rgba(212, 175, 55, 0.18) !important; }
+  .mat-mdc-text-field-wrapper { background-color: rgba(255, 255, 255, 0.04); transition: var(--transition); }
+  .mat-mdc-form-field-label { color: #A89F8C !important; }
 }
 
 .field-warning {
-  .mat-mdc-form-field-outline { color: var(--ei-gold-1) !important; border-width: 2px !important; }
+  .mat-mdc-form-field-outline { color: $gold-solid !important; border-width: 2px !important; }
   .mat-mdc-text-field-wrapper {
-    background-color: #fdf3df;
-    box-shadow: 0 0 0 3px rgba(254, 135, 1, 0.12);
+    background-color: rgba(212, 175, 55, 0.10);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.16);
     transition: var(--transition);
   }
   .mat-mdc-form-field-label,
   .mat-mdc-form-field-icon-suffix,
-  .mat-mdc-form-field-hint-wrapper { color: var(--orange-dark) !important; font-weight: 500 !important; }
+  .mat-mdc-form-field-hint-wrapper { color: $gold-light !important; font-weight: 500 !important; }
 }
 
 .field-success {
   .mat-mdc-form-field-outline { color: var(--ei-sprout) !important; border-width: 2px !important; }
   .mat-mdc-text-field-wrapper {
-    background-color: #e6f4ee;
-    box-shadow: 0 0 0 3px rgba(63, 168, 138, 0.12);
+    background-color: rgba(63, 168, 138, 0.16);
+    box-shadow: 0 0 0 3px rgba(63, 168, 138, 0.14);
     transition: var(--transition);
   }
   .mat-mdc-form-field-label,
   .mat-mdc-form-field-icon-suffix,
-  .mat-mdc-form-field-hint-wrapper { color: #2c7a63 !important; font-weight: 600 !important; }
+  .mat-mdc-form-field-hint-wrapper { color: #6FD3B4 !important; font-weight: 600 !important; }
 
   &::after {
     content: '✓';
     position: absolute;
     top: 10px;
     right: 50px;
-    color: var(--ei-sprout);
+    color: #6FD3B4;
     font-size: 20px;
     font-weight: bold;
     animation: successPulse 1s var(--ei-ease-launch);
@@ -713,22 +734,22 @@ $white:   #FFFFFF;
 }
 
 .field-error {
-  .mat-mdc-form-field-outline { color: var(--danger) !important; border-width: 2px !important; }
+  .mat-mdc-form-field-outline { color: $err !important; border-width: 2px !important; }
   .mat-mdc-text-field-wrapper {
-    background-color: #fae3e3;
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+    background-color: rgba(229, 104, 95, 0.14);
+    box-shadow: 0 0 0 3px rgba(229, 104, 95, 0.12);
     transition: var(--transition);
   }
   .mat-mdc-form-field-label,
   .mat-mdc-form-field-icon-suffix,
-  .mat-mdc-form-field-hint-wrapper { color: var(--danger) !important; font-weight: 500 !important; }
+  .mat-mdc-form-field-hint-wrapper { color: $err !important; font-weight: 500 !important; }
 
   &::after {
     content: '⚠';
     position: absolute;
     top: 10px;
     right: 50px;
-    color: var(--danger);
+    color: $err;
     font-size: 20px;
     animation: errorShake 0.5s var(--ei-ease-soft);
   }
@@ -755,10 +776,10 @@ $white:   #FFFFFF;
   border-radius: var(--ei-r-4);
   transition: var(--transition);
 }
-.field-success .mat-mdc-form-field-hint-wrapper { background-color: rgba(63, 168, 138, 0.1); border: 1px solid rgba(63, 168, 138, 0.22); }
-.field-warning .mat-mdc-form-field-hint-wrapper { background-color: rgba(254, 135, 1, 0.1); border: 1px solid rgba(254, 135, 1, 0.24); }
-.field-error   .mat-mdc-form-field-hint-wrapper { background-color: rgba(220, 38, 38, 0.1);  border: 1px solid rgba(220, 38, 38, 0.2); }
-.field-default .mat-mdc-form-field-hint-wrapper { background-color: rgba(26, 42, 56, 0.05); border: 1px solid rgba(26, 42, 56, 0.1); }
+.field-success .mat-mdc-form-field-hint-wrapper { background-color: rgba(63, 168, 138, 0.12); border: 1px solid rgba(63, 168, 138, 0.24); }
+.field-warning .mat-mdc-form-field-hint-wrapper { background-color: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.26); }
+.field-error   .mat-mdc-form-field-hint-wrapper { background-color: rgba(229, 104, 95, 0.12);  border: 1px solid rgba(229, 104, 95, 0.24); }
+.field-default .mat-mdc-form-field-hint-wrapper { background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.14); }
 
 /* =====================================================
    BARRES DE PROGRESSION DES CARACTÈRES
@@ -777,12 +798,12 @@ $white:   #FFFFFF;
   border-radius: var(--ei-r-4);
   overflow: hidden;
   position: relative;
-  background-color: rgba(26, 42, 56, 0.1);
+  background-color: rgba(255, 255, 255, 0.08);
   transition: var(--transition);
 
-  &.field-success { background-color: rgba(63, 168, 138, 0.2); }
-  &.field-warning { background-color: rgba(254, 135, 1, 0.2); }
-  &.field-error   { background-color: rgba(220, 38, 38, 0.2); }
+  &.field-success { background-color: rgba(63, 168, 138, 0.22); }
+  &.field-warning { background-color: rgba(212, 175, 55, 0.22); }
+  &.field-error   { background-color: rgba(229, 104, 95, 0.22); }
 }
 
 .progress-fill {
@@ -790,10 +811,10 @@ $white:   #FFFFFF;
   border-radius: var(--ei-r-4);
   transition: width 0.4s var(--ei-ease-launch), background-color 0.3s var(--ei-ease-soft);
 
-  &.field-default { background: var(--ei-haze); }
-  &.field-warning { background: var(--ei-gold-grad); }
-  &.field-success { background: var(--ei-sprout); }
-  &.field-error   { background: var(--danger); }
+  &.field-default { background: rgba(244, 238, 226, 0.45); }
+  &.field-warning { background: $gold-grad; }
+  &.field-success { background: #3FA88A; }
+  &.field-error   { background: $err; }
 }
 
 .progress-label {
@@ -803,10 +824,10 @@ $white:   #FFFFFF;
   text-align: right;
   transition: color 0.3s var(--ei-ease-soft);
 
-  &.field-default { color: #6a7b89; }
-  &.field-warning { color: var(--orange-dark); font-weight: 600; }
-  &.field-success { color: #2c7a63; font-weight: 600; }
-  &.field-error   { color: var(--danger);  font-weight: 600; }
+  &.field-default { color: #A89F8C; }
+  &.field-warning { color: $gold-light; font-weight: 600; }
+  &.field-success { color: #6FD3B4; font-weight: 600; }
+  &.field-error   { color: $err;  font-weight: 600; }
 }
 
 @media (max-width: 768px) {
