@@ -1,27 +1,483 @@
 /* =====================================================
    ENVOL IMPACT · INSCRIPTION
-   Stub aligné sur la DA « Envol » (tokens --ei-* de
-   styles.scss). Variables locales repointées sur la marque
-   pour rester cohérent avec connexion / register le jour où
-   ce gabarit recevra un contenu.
+   Split premium plein écran aligné sur connexion / register :
+   aside cinématique nuit d'encre (#002235) + panneau clair
+   (#F8FAFC) avec carte blanche et champs soignés.
+   Charte : Poppins (titres) · Lato (corps) · orange #F39200.
    ===================================================== */
 
-// Couleurs locales — alignées sur la DA Envol (or / nuit d'encre / craie)
-$ei-gold-1:   #FE8701;
-$ei-gold-2:   #FFB340;
-$ei-ink:      #0B1B2B;
-$ei-chalk:    #F7F4ED;
-$ei-on-light: #1A2A38;
-$ei-elan:     #1E5BFF;
-$ei-sprout:   #3FA88A;
-$ei-danger:   #DC2626;
-$ei-border:   rgba(26, 42, 56, 0.12);
+// Couleurs locales — alignées sur la DA Envol
+$deep:    #002235;
+$navy:    #003B5C;
+$orange:  #F39200;
+$orange-d:#E5740A;
+$green:   #84BD00;
+$light:   #F8FAFC;
+$white:   #FFFFFF;
+$muted:   #5a6b79;
 
-// Conteneur de page — base craie, typo de marque
-.inscription-container {
-  min-height: 100vh;
-  background: var(--ei-chalk);
-  color: var(--ei-on-light);
-  font-family: var(--ei-font-text);
+:host {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  color: $deep;
 }
 
+.inscription-container {
+  min-height: 100vh;
+  background: $light;
+  color: $deep;
+}
+
+/* ---------- Grille split ---------- */
+.ei-auth {
+  display: grid;
+  grid-template-columns: clamp(360px, 42vw, 560px) 1fr;
+  min-height: 100vh;
+}
+
+/* =====================================================
+   PANNEAU GAUCHE · cinématique nuit d'encre + envol
+   ===================================================== */
+.ei-auth__aside {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(40px, 5vw, 76px);
+  background: $deep;
+  color: $white;
+}
+
+.aside-bg { position: absolute; inset: 0; z-index: 0; }
+
+.aside-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.05);
+  animation: aside-zoom 16s ease-in-out alternate infinite;
+}
+
+@keyframes aside-zoom {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1.13); }
+}
+
+.aside-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(155deg, rgba(0, 34, 53, 0.92) 0%, rgba(0, 59, 92, 0.80) 48%, rgba(0, 34, 53, 0.96) 100%);
+}
+
+.aside-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.08;
+  background-image: radial-gradient($orange 2px, transparent 2px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+.aside-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 38ch;
+  animation: aside-rise 720ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes aside-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.aside-brand {
+  margin: 0 0 28px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  color: $white;
+  display: inline-flex;
+  align-items: baseline;
+
+  .brand-impact { color: $orange; margin-left: 0.2ch; }
+}
+
+.aside-quote {
+  position: relative;
+  margin: 0 0 28px;
+  padding-left: 22px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+  line-height: 1.35;
+  color: $white;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 4px;
+    border-radius: 4px;
+    background: $orange;
+  }
+}
+
+.aside-points {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.96rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.82);
+  }
+}
+
+.aside-point-dot {
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: $green;
+  box-shadow: 0 0 0 4px rgba(132, 189, 0, 0.18);
+}
+
+.aside-meta {
+  margin: 0;
+  font-size: 0.86rem;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* =====================================================
+   PANNEAU DROIT · Formulaire clair
+   ===================================================== */
+.ei-auth__panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(40px, 6vw, 96px) clamp(24px, 5vw, 80px);
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgba(243, 146, 0, 0.06), transparent 55%),
+    $light;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.ei-auth__form-shell {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  padding: clamp(28px, 4vw, 48px);
+  background: $white;
+  border-radius: 22px;
+  box-shadow:
+    0 24px 60px rgba(0, 34, 53, 0.12),
+    0 4px 14px rgba(0, 34, 53, 0.06);
+  border: 1px solid rgba(0, 59, 92, 0.08);
+  overflow: hidden;
+  animation: shell-rise 620ms cubic-bezier(.22, 1, .36, 1) both;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $orange, #FFD166);
+    z-index: 2;
+  }
+}
+
+@keyframes shell-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ei-auth__head { margin-bottom: 32px; }
+
+.ei-auth__eyebrow {
+  margin: 0 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $orange;
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: $orange;
+  }
+}
+
+.ei-auth__title {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  color: $deep;
+}
+
+.ei-auth__lede {
+  margin: 10px 0 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: $muted;
+}
+
+/* ---------- Champs (HTML natifs stylés) ---------- */
+.ei-form {
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 22px;
+    margin-bottom: 8px;
+
+    .full-width { grid-column: 1 / -1; }
+  }
+}
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+
+.field-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $navy;
+}
+
+.field-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    padding: 14px 46px 14px 16px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: $deep;
+    background: $light;
+    border: 1.5px solid rgba(0, 34, 53, 0.12);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+
+    &::placeholder { color: #9AB0BC; }
+
+    &:hover { border-color: rgba(0, 34, 53, 0.30); }
+
+    &:focus {
+      border-color: $orange;
+      background: $white;
+      box-shadow: 0 0 0 4px rgba(243, 146, 0, 0.14);
+
+      & + .field-icon { color: $orange; }
+    }
+  }
+}
+
+.field-icon {
+  position: absolute;
+  right: 14px;
+  font-size: 1.25rem;
+  color: $muted;
+  pointer-events: none;
+  transition: color 180ms ease;
+}
+
+/* ---------- Conditions générales ---------- */
+.terms-section { margin: 22px 0 26px; }
+
+.terms-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: $orange;
+    cursor: pointer;
+  }
+
+  .terms-text {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: $muted;
+
+    a {
+      color: $orange;
+      text-decoration: none;
+      font-weight: 700;
+      &:hover { color: $orange-d; text-decoration: underline; }
+    }
+  }
+}
+
+/* ---------- Bouton principal : orange pilule ---------- */
+.form-actions {
+  margin: 8px 0 0;
+
+  .ei-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 54px;
+    border: none;
+    border-radius: 100px;
+    background: $orange;
+    color: $white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(243, 146, 0, 0.28);
+    transition: all 260ms ease;
+
+    .material-icons { font-size: 1.2rem; }
+
+    &:hover {
+      background: $deep;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0, 34, 53, 0.22);
+    }
+
+    &:focus-visible {
+      outline: 3px solid rgba(243, 146, 0, 0.4);
+      outline-offset: 3px;
+    }
+  }
+}
+
+/* ---------- Lien redirection bas ---------- */
+.login-section {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 34, 53, 0.08);
+
+  .login-text {
+    margin: 0;
+    color: $muted;
+    font-size: 0.95rem;
+  }
+
+  .login-link {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin-left: 4px;
+    color: $orange;
+    text-decoration: none;
+
+    &:hover { color: $orange-d; text-decoration: underline; }
+  }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 880px) {
+  .ei-auth {
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+  }
+
+  .ei-auth__aside {
+    min-height: 0;
+    align-items: flex-end;
+    padding: clamp(28px, 7vw, 44px);
+  }
+
+  .aside-inner { max-width: none; }
+
+  .aside-brand {
+    margin-bottom: 14px;
+    font-size: clamp(1.25rem, 5vw, 1.6rem);
+  }
+
+  .aside-quote {
+    margin-bottom: 18px;
+    font-size: clamp(1.05rem, 3.6vw, 1.35rem);
+    line-height: 1.3;
+  }
+
+  .aside-points { margin-bottom: 0; }
+  .aside-meta { display: none; }
+
+  .ei-auth__panel {
+    min-height: auto;
+    padding: clamp(32px, 8vw, 56px) clamp(20px, 7vw, 40px) clamp(56px, 12vw, 80px);
+  }
+
+  .ei-auth__form-shell {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .ei-form .form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    .full-width { grid-column: 1; }
+  }
+}
+
+@media (max-width: 480px) {
+  .ei-auth__aside { padding: 24px 20px 20px; }
+  .aside-quote { display: none; }
+  .aside-points li { font-size: 0.9rem; }
+  .ei-auth__panel { padding: 24px 20px 48px; }
+}
+
+/* =====================================================
+   ACCESSIBILITÉ — mouvement réduit
+   ===================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .aside-bg-img,
+  .aside-inner,
+  .ei-auth__form-shell {
+    animation: none;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -167,6 +167,30 @@ $white:   #FFFFFF;
 }
 .bullet-icon { color: $green; font-size: 22px; width: 22px; height: 22px; }
 
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 28px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  color: rgba($white, .65);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  animation: scroll-cue-bob 2s ease-in-out infinite;
+
+  mat-icon { font-size: 26px; width: 26px; height: 26px; color: $orange; }
+
+  @media (max-width: 768px) { display: none; }
+}
+
+@keyframes scroll-cue-bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: .65; }
+  50%      { transform: translateX(-50%) translateY(8px); opacity: 1; }
+}
+
 // ── MISSION ──────────────────────────────────────────
 .mission { background: $white; overflow: hidden; }
 
@@ -649,7 +673,10 @@ $white:   #FFFFFF;
   color: $orange;
   letter-spacing: -.03em;
   line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
+
+.ambition-suffix { color: $orange; }
 
 .ambition-label {
   font-family: 'Lato', sans-serif;

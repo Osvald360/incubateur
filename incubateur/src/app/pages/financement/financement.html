@@ -4,6 +4,17 @@
   <!--  EN-TÊTE · registre nuit                              -->
   <!-- ===================================================== -->
   <header class="fin-head">
+    <div class="fin-head-bg" aria-hidden="true">
+      <img
+        src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        alt=""
+        aria-hidden="true"
+        class="fin-head-bg-img"
+        loading="lazy"
+      />
+      <div class="fin-head-overlay"></div>
+    </div>
+    <div class="fin-head-dots" aria-hidden="true"></div>
     <div class="fin-head-halo" aria-hidden="true"></div>
     <div class="fin-head-inner">
       <button class="fin-back" type="button" (click)="goBackToDashboard()"
@@ -12,6 +23,7 @@
         <span>Dashboard</span>
       </button>
 
+      <span class="fin-head-badge">Tableau de bord financier</span>
       <p class="eyebrow">Pilotage financier</p>
       <h1 class="fin-title">
         Suivre chaque euro qui

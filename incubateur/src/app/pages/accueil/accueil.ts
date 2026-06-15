@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,10 +12,15 @@ import { NotificationService } from '../../services/notification.service';
   templateUrl: './accueil.html',
   styleUrls: ['./accueil.scss']
 })
-export class AccueilComponent implements OnInit {
+export class AccueilComponent implements OnInit, AfterViewInit, OnDestroy {
   showCelebration = false;
   emailValue = '';
   emailSent = false;
+
+  @ViewChild('ambitionGrid') ambitionGrid?: ElementRef<HTMLElement>;
+  displayValues: string[] = [];
+  private countObserver?: IntersectionObserver;
+  private countStarted = false;
 
   constructor(
     private router: Router,
@@ -24,6 +29,7 @@ export class AccueilComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.displayValues = this.ambitionStats.map(() => '0');
     this.route.queryParams.subscribe(params => {
       if (params['candidature'] === 'success') {
         setTimeout(() => {
@@ -32,6 +38,54 @@ export class AccueilComponent implements OnInit {
         }, 500);
       }
     });
+  }
+
+  ngAfterViewInit() {
+    if (typeof window === 'undefined' || !this.ambitionGrid) return;
+
+    const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) {
+      this.displayValues = this.ambitionStats.map(s => this.format(s.target));
+      return;
+    }
+
+    this.countObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.countStarted) {
+            this.countStarted = true;
+            this.animateCounts();
+            this.countObserver?.disconnect();
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+    this.countObserver.observe(this.ambitionGrid.nativeElement);
+  }
+
+  ngOnDestroy() {
+    this.countObserver?.disconnect();
+  }
+
+  private format(value: number): string {
+    return Math.round(value).toLocaleString('fr-FR');
+  }
+
+  private animateCounts() {
+    const duration = 1600;
+    const start = performance.now();
+    const step = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+      this.displayValues = this.ambitionStats.map(s => this.format(s.target * eased));
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        this.displayValues = this.ambitionStats.map(s => this.format(s.target));
+      }
+    };
+    requestAnimationFrame(step);
   }
 
   private showSuccessMessage() {
@@ -69,10 +123,10 @@ export class AccueilComponent implements OnInit {
   ];
 
   ambitionStats = [
-    { num: '2 500', label: 'sociétaires engagés' },
-    { num: '100+', label: 'projets financés' },
-    { num: '300', label: 'entrepreneurs accompagnés' },
-    { num: '7', label: 'secteurs couverts' },
+    { target: 2500, suffix: '', label: 'sociétaires engagés' },
+    { target: 100, suffix: '+', label: 'projets financés' },
+    { target: 300, suffix: '', label: 'entrepreneurs accompagnés' },
+    { target: 7, suffix: '', label: 'secteurs couverts' },
   ];
 
   domaines = [

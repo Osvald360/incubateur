@@ -32,10 +32,10 @@
       </p>
 
       <div class="hero-actions">
-        <a routerLink="/candidature" class="btn btn--orange btn--pill btn--lg">
+        <a routerLink="/candidature" class="btn btn--orange btn--pill btn--lg" data-magnetic>
           Déposer mon projet
         </a>
-        <a routerLink="/register" class="btn btn--ghost btn--pill btn--lg">
+        <a routerLink="/register" class="btn btn--ghost btn--pill btn--lg" data-magnetic>
           Devenir sociétaire
           <mat-icon>arrow_forward</mat-icon>
         </a>
@@ -56,13 +56,18 @@
         </li>
       </ul>
     </div>
+
+    <div class="hero-scroll-cue" aria-hidden="true">
+      <span>Découvrir</span>
+      <mat-icon>expand_more</mat-icon>
+    </div>
   </header>
 
   <!-- ============================================================ POURQUOI -->
-  <section class="mission" id="mission">
+  <section class="mission" id="mission" data-reveal>
     <div class="mission-inner">
 
-      <div class="mission-text">
+      <div class="mission-text" data-reveal-child>
         <span class="section-badge">Pourquoi nous existons</span>
         <h2 class="section-title section-title--dark">
           Le problème<br>
@@ -111,7 +116,7 @@
         </div>
       </div>
 
-      <div class="mission-visual">
+      <div class="mission-visual" data-reveal-child>
         <img
           src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80"
           alt="L'équipe Envol Impact"
@@ -124,11 +129,11 @@
   </section>
 
   <!-- ============================================================ NOTRE RÉPONSE -->
-  <section class="tontine" id="tontine">
+  <section class="tontine" id="tontine" data-reveal>
     <div class="tontine-split">
 
       <!-- Photo + témoignage -->
-      <div class="tontine-photo-side">
+      <div class="tontine-photo-side" data-reveal-child>
         <img
           src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
           alt="Entrepreneurs réunis autour d'un projet"
@@ -150,7 +155,7 @@
       </div>
 
       <!-- Contenu -->
-      <div class="tontine-content-side">
+      <div class="tontine-content-side" data-reveal-child>
         <span class="section-badge section-badge--navy">Notre modèle</span>
 
         <h2 class="tontine-title">
@@ -175,7 +180,7 @@
           </li>
         </ul>
 
-        <a routerLink="/candidature" class="btn btn--orange btn--pill btn--lg">
+        <a routerLink="/candidature" class="btn btn--orange btn--pill btn--lg" data-magnetic>
           Déposer ma candidature
           <mat-icon>arrow_forward</mat-icon>
         </a>
@@ -185,7 +190,7 @@
   </section>
 
   <!-- ============================================================ COMMENT ÇA MARCHE -->
-  <section class="parcours" id="parcours">
+  <section class="parcours" id="parcours" data-reveal>
     <div class="parcours-bg" aria-hidden="true">
       <img
         src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
@@ -198,7 +203,7 @@
     <div class="parcours-dots" aria-hidden="true"></div>
 
     <div class="parcours-inner">
-      <div class="parcours-header">
+      <div class="parcours-header" data-reveal-child>
         <span class="section-badge">Comment ça marche</span>
         <h2 class="parcours-title">
           De l'épargne
@@ -211,7 +216,7 @@
       </div>
 
       <ol class="parcours-flow">
-        <li class="parcours-step" *ngFor="let step of parcours; let i = index; let last = last">
+        <li class="parcours-step" *ngFor="let step of parcours; let i = index; let last = last" data-reveal-child>
           <div class="parcours-node">
             <div class="parcours-photo">
               <img [src]="step.img" [alt]="step.title" loading="lazy" />
@@ -235,9 +240,9 @@
   </section>
 
   <!-- ============================================================ AMBITION -->
-  <section class="ambition" id="ambition">
+  <section class="ambition" id="ambition" data-reveal>
     <div class="ambition-inner">
-      <div class="ambition-header">
+      <div class="ambition-header" data-reveal-child>
         <span class="section-badge ambition-badge">Notre objectif</span>
         <h2 class="ambition-title">
           Une ambition à la hauteur<br>
@@ -247,9 +252,9 @@
           Des chiffres qui guident nos actions dès aujourd'hui.
         </p>
       </div>
-      <div class="ambition-grid">
-        <div class="ambition-stat" *ngFor="let stat of ambitionStats">
-          <span class="ambition-num">{{ stat.num }}</span>
+      <div class="ambition-grid" #ambitionGrid>
+        <div class="ambition-stat" *ngFor="let stat of ambitionStats; let i = index" data-reveal-child>
+          <span class="ambition-num">{{ displayValues[i] }}<span class="ambition-suffix">{{ stat.suffix }}</span></span>
           <span class="ambition-label">{{ stat.label }}</span>
         </div>
       </div>
@@ -257,15 +262,15 @@
   </section>
 
   <!-- ============================================================ DOMAINES -->
-  <section class="domaines" id="domaines">
+  <section class="domaines" id="domaines" data-reveal>
     <div class="domaines-inner">
-      <span class="section-badge">Secteurs soutenus</span>
-      <h2 class="section-title section-title--dark domaines-title">
+      <span class="section-badge" data-reveal-child>Secteurs soutenus</span>
+      <h2 class="section-title section-title--dark domaines-title" data-reveal-child>
         7 secteurs<br>
         <span class="section-title--orange">en focus</span>
       </h2>
       <div class="domaines-grid">
-        <div class="domaine-pill" *ngFor="let d of domaines">
+        <div class="domaine-pill" *ngFor="let d of domaines" data-reveal-child>
           <mat-icon>{{ d.icon }}</mat-icon>
           {{ d.label }}
         </div>
@@ -274,7 +279,7 @@
   </section>
 
   <!-- ============================================================ UN MODÈLE UNIQUE -->
-  <section class="unique" id="unique">
+  <section class="unique" id="unique" data-reveal>
     <div class="unique-bg" aria-hidden="true">
       <img
         src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
@@ -286,18 +291,18 @@
     </div>
     <div class="unique-dots" aria-hidden="true"></div>
     <div class="unique-inner">
-      <span class="section-badge unique-badge">Ce qui nous rend unique</span>
-      <h2 class="unique-title">
+      <span class="section-badge unique-badge" data-reveal-child>Ce qui nous rend unique</span>
+      <h2 class="unique-title" data-reveal-child>
         Bien plus qu'un<br>
         <span class="unique-title--orange">incubateur.</span>
       </h2>
-      <p class="unique-lead">
+      <p class="unique-lead" data-reveal-child>
         Envol Impact est un <strong>modèle d'investissement citoyen</strong>, où chaque
         personne peut transformer son épargne en levier de développement économique local.
       </p>
 
       <div class="unique-points">
-        <div class="unique-point" *ngFor="let p of differenciation">
+        <div class="unique-point" *ngFor="let p of differenciation" data-reveal-child>
           <div class="unique-point-icon">
             <mat-icon>{{ p.icon }}</mat-icon>
           </div>
@@ -308,7 +313,7 @@
   </section>
 
   <!-- ============================================================ CTA -->
-  <section class="cta-contact" id="contact">
+  <section class="cta-contact" id="contact" data-reveal>
     <div class="cta-bg" aria-hidden="true">
       <img
         src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
@@ -321,21 +326,21 @@
     <div class="cta-dots" aria-hidden="true"></div>
 
     <div class="cta-inner">
-      <h2 class="cta-title">
+      <h2 class="cta-title" data-reveal-child>
         Une nouvelle<br>
         <span class="cta-title--orange">façon d'investir.</span>
       </h2>
-      <p class="cta-lead">
+      <p class="cta-lead" data-reveal-child>
         Votre épargne peut devenir un moteur d'impact social et de création
         d'emplois dans les territoires qui en ont le plus besoin.
       </p>
 
-      <div class="cta-actions-btns">
-        <a routerLink="/register" class="btn btn--green btn--pill btn--lg">
+      <div class="cta-actions-btns" data-reveal-child>
+        <a routerLink="/register" class="btn btn--green btn--pill btn--lg" data-magnetic>
           Je deviens sociétaire
           <mat-icon>north_east</mat-icon>
         </a>
-        <a routerLink="/candidature" class="btn btn--ghost btn--pill btn--lg">
+        <a routerLink="/candidature" class="btn btn--ghost btn--pill btn--lg" data-magnetic>
           Je dépose mon projet
         </a>
       </div>
