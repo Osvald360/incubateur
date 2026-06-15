@@ -1,0 +1,163 @@
+/* =====================================================
+   ENVOL IMPACT · Pages légales (CGU + Confidentialité)
+   DA claire : fond #F8FAFC, colonne lisible, titres navy
+   Poppins, accents orange, corps Lato.
+   ===================================================== */
+
+:host {
+  display: block;
+  background: var(--bg-page, #F8FAFC);
+  color: var(--text-body, #475569);
+  font-family: 'Lato', sans-serif;
+}
+
+.legal {
+  min-height: 100vh;
+  padding: clamp(56px, 9vw, 120px) clamp(20px, 6vw, 48px) clamp(64px, 10vw, 128px);
+  display: flex;
+  justify-content: center;
+}
+
+.legal-doc {
+  width: 100%;
+  max-width: 760px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 59, 92, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 34, 53, 0.05);
+  padding: clamp(28px, 5vw, 64px);
+}
+
+/* ---------- En-tête ---------- */
+.legal-head {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(0, 34, 53, 0.08);
+}
+
+.legal-eyebrow {
+  margin: 0 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange, #FE8701);
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: var(--orange, #FE8701);
+  }
+}
+
+.legal-title {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  color: #002235;
+}
+
+.legal-meta {
+  margin: 12px 0 0;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #94A3B8);
+}
+
+/* ---------- Corps ---------- */
+.legal-intro {
+  margin: 0 0 32px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #5a6b79;
+
+  strong { color: #002235; }
+}
+
+.legal-section {
+  margin-bottom: 28px;
+
+  h2 {
+    margin: 0 0 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    color: #01306F;
+  }
+
+  p {
+    margin: 0 0 12px;
+    line-height: 1.7;
+    color: #475569;
+  }
+
+  ul {
+    margin: 0 0 12px;
+    padding-left: 22px;
+
+    li {
+      margin-bottom: 6px;
+      line-height: 1.65;
+      color: #475569;
+    }
+  }
+
+  em {
+    color: var(--text-muted, #94A3B8);
+    font-style: italic;
+  }
+
+  a {
+    color: var(--orange, #FE8701);
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--orange-dark, #E5740A);
+      text-decoration: underline;
+    }
+  }
+}
+
+.legal-disclaimer {
+  margin: 36px 0 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--orange, #FE8701);
+  background: var(--orange-subtle, #FFF4E8);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #5a6b79;
+}
+
+/* ---------- Pied ---------- */
+.legal-foot {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 34, 53, 0.08);
+}
+
+.legal-back {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--orange, #FE8701);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--orange-dark, #E5740A);
+  }
+}
+
+@media (max-width: 520px) {
+  .legal-doc { border-radius: 12px; }
+}

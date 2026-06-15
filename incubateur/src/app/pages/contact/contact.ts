@@ -7,8 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -22,6 +24,7 @@ import { NotificationService } from '../../services/notification.service';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     RouterModule
   ],
   templateUrl: './contact.html',
@@ -29,6 +32,7 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class ContactComponent {
   contactForm: FormGroup;
+  isSubmitting = false;
 
   contactInfo = [
     {
@@ -61,7 +65,11 @@ export class ContactComponent {
     { value: 'autre', label: 'Autre demande' }
   ];
 
-  constructor(private fb: FormBuilder, private notify: NotificationService) {
+  constructor(
+    private fb: FormBuilder,
+    private notify: NotificationService,
+    private contactService: ContactService
+  ) {
     this.contactForm = this.fb.group({
       nom: ['', [Validators.required, Validators.minLength(2)]],
       prenom: ['', [Validators.required, Validators.minLength(2)]],
@@ -73,13 +81,41 @@ export class ContactComponent {
   }
 
   onSubmit() {
-    if (this.contactForm.valid) {
-      // TODO: brancher l'envoi réel du formulaire au backend
-      this.notify.showSuccess('Message envoyé', 'Merci ! Nous vous répondrons sous 24 h.');
-      this.contactForm.reset();
-    } else {
+    if (!this.contactForm.valid) {
+      this.contactForm.markAllAsTouched();
       this.notify.showWarning('Formulaire incomplet', 'Veuillez remplir les champs obligatoires.');
+      return;
     }
+
+    if (this.isSubmitting) {
+      return;
+    }
+
+    this.isSubmitting = true;
+
+    this.contactService.sendMessage(this.contactForm.value).subscribe({
+      next: (res) => {
+        this.isSubmitting = false;
+        this.notify.showSuccess(
+          'Message envoyé',
+          res?.message || 'Merci ! Nous vous répondrons sous 24 h.'
+        );
+        this.contactForm.reset();
+      },
+      error: (error) => {
+        this.isSubmitting = false;
+        if (error.status === 0) {
+          this.notify.showError('Serveur injoignable', 'Impossible de contacter le serveur. Réessayez plus tard.');
+        } else if (error.status === 429) {
+          this.notify.showWarning('Trop de tentatives', 'Vous avez déjà envoyé un message récemment. Patientez un instant.');
+        } else {
+          this.notify.showError(
+            'Envoi impossible',
+            error.error?.message || error.message || 'Une erreur est survenue. Réessayez.'
+          );
+        }
+      }
+    });
   }
 
   getFieldError(fieldName: string): string {

@@ -24,6 +24,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/register/register').then(m => m.RegisterComponent)
   },
   {
+    path: 'mot-de-passe-oublie',
+    loadComponent: () => import('./pages/mot-de-passe-oublie/mot-de-passe-oublie').then(m => m.MotDePasseOublieComponent)
+  },
+  {
     path: 'apropos',
     loadComponent: () => import('./pages/apropos/apropos').then(m => m.AproposComponent)
   },
@@ -38,6 +42,14 @@ export const routes: Routes = [
   {
     path: 'contact',
     loadComponent: () => import('./pages/contact/contact').then(m => m.ContactComponent)
+  },
+  {
+    path: 'cgu',
+    loadComponent: () => import('./pages/cgu/cgu').then(m => m.CguComponent)
+  },
+  {
+    path: 'confidentialite',
+    loadComponent: () => import('./pages/confidentialite/confidentialite').then(m => m.ConfidentialiteComponent)
   },
   {
     path: 'dashboard',

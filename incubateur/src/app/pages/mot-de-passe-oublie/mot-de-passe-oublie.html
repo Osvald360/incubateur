@@ -1,0 +1,95 @@
+<div class="ei-auth">
+
+  <!-- ===================================================== -->
+  <!--  PANNEAU GAUCHE · nuit d'encre                        -->
+  <!-- ===================================================== -->
+  <aside class="ei-auth__aside" aria-hidden="true">
+    <div class="aside-inner">
+      <p class="aside-brand"><span class="brand-envol">Envol</span><span class="brand-impact">Impact</span></p>
+      <p class="aside-quote">« Une trajectoire ne s'arrête pas à un mot de passe oublié. »</p>
+      <p class="aside-meta">L'incubateur solidaire de l'association F.A.T.E.</p>
+    </div>
+  </aside>
+
+  <!-- ===================================================== -->
+  <!--  PANNEAU DROIT · formulaire                           -->
+  <!-- ===================================================== -->
+  <main class="ei-auth__panel page-content">
+    <div class="ei-auth__form-shell ei-glass-card">
+
+      <!-- ----- Étape 1 : saisie de l'email ----- -->
+      <ng-container *ngIf="!sent; else confirmation">
+        <header class="ei-auth__head">
+          <p class="ei-auth__eyebrow">Réinitialisation</p>
+          <h1 class="ei-auth__title">Mot de passe oublié&nbsp;?</h1>
+          <p class="ei-auth__lede">
+            Indiquez l'adresse email de votre compte. Nous vous envoyons un lien
+            pour choisir un nouveau mot de passe.
+          </p>
+        </header>
+
+        <form [formGroup]="resetForm" (ngSubmit)="onSubmit()" class="reset-form ei-form ei-validate-live">
+          <div class="form-grid">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" autocomplete="email" required>
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error *ngIf="resetForm.get('email')?.hasError('required')">
+                L'email est requis
+              </mat-error>
+              <mat-error *ngIf="resetForm.get('email')?.hasError('email')">
+                Format d'email invalide
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-actions">
+            <button mat-flat-button color="primary" type="submit"
+                    [disabled]="!resetForm.valid || isSubmitting"
+                    class="ei-submit">
+              <ng-container *ngIf="!isSubmitting; else sending">
+                <mat-icon>send</mat-icon>
+                Envoyer le lien
+              </ng-container>
+              <ng-template #sending>
+                <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+                <span class="submit-sending">Envoi en cours…</span>
+              </ng-template>
+            </button>
+          </div>
+
+          <div class="login-section">
+            <p class="login-text">
+              Vous vous en souvenez&nbsp;?
+              <a routerLink="/connexion">Retour à la connexion</a>
+            </p>
+          </div>
+        </form>
+      </ng-container>
+
+      <!-- ----- Étape 2 : confirmation d'envoi ----- -->
+      <ng-template #confirmation>
+        <div class="reset-confirm">
+          <span class="reset-confirm__icon"><mat-icon>mark_email_read</mat-icon></span>
+          <h1 class="ei-auth__title">Vérifiez vos emails</h1>
+          <p class="ei-auth__lede">
+            Si un compte est associé à <strong>{{ sentEmail }}</strong>, vous recevrez
+            un lien de réinitialisation dans quelques minutes. Pensez à vérifier vos spams.
+          </p>
+
+          <div class="reset-confirm__actions">
+            <a routerLink="/connexion" class="ei-submit ei-submit--link">
+              <mat-icon>arrow_back</mat-icon>
+              Retour à la connexion
+            </a>
+            <button mat-button color="accent" type="button" (click)="resend()">
+              Renvoyer le lien
+            </button>
+          </div>
+        </div>
+      </ng-template>
+
+    </div>
+  </main>
+
+</div>

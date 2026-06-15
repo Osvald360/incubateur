@@ -760,3 +760,39 @@ body.page-light {
     span, .mat-mdc-menu-item-text { color: #F39200 !important; }
   }
 }
+
+/* =====================================================
+   VALIDATION LIVE — feedback temps réel sur les formulaires
+   Opt-in via la classe .ei-validate-live posée sur un <form>.
+   Réutilise la grammaire de couleurs DA : vert succès quand le
+   champ devient valide, rouge quand il est en erreur après
+   interaction. Le focus orange (signature) reste prioritaire :
+   les états ne s'affichent que sur un champ NON focalisé.
+   ===================================================== */
+.ei-validate-live {
+  /* Champ valide et modifié → vert succès */
+  .mat-mdc-form-field:has(.ng-dirty.ng-valid) .mdc-text-field--outlined:not(.mdc-text-field--focused) {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: var(--success, #16A34A) !important;
+      border-width: 2px !important;
+    }
+  }
+  .mat-mdc-form-field:has(.ng-dirty.ng-valid) .mdc-text-field--outlined:not(.mdc-text-field--focused) .mdc-floating-label {
+    color: var(--success, #16A34A) !important;
+  }
+
+  /* Champ en erreur après interaction → rouge danger */
+  .mat-mdc-form-field:has(.ng-touched.ng-invalid) .mdc-text-field--outlined:not(.mdc-text-field--focused) {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: var(--danger, #DC2626) !important;
+      border-width: 2px !important;
+    }
+  }
+  .mat-mdc-form-field:has(.ng-touched.ng-invalid) .mdc-text-field--outlined:not(.mdc-text-field--focused) .mdc-floating-label {
+    color: var(--danger, #DC2626) !important;
+  }
+}

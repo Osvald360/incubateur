@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { RegisterService } from '../../services/register.service';
 import { NotificationService } from '../../services/notification.service';
 import { debounceTime, switchMap } from 'rxjs/operators';
@@ -25,7 +25,8 @@ import { debounceTime, switchMap } from 'rxjs/operators';
     MatIconModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    RouterLink
   ],
   templateUrl: './register.html',
   styleUrls: ['./register.scss']

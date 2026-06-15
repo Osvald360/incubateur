@@ -31,7 +31,7 @@
           <p class="panel-sub">Nous vous répondons sous 24&nbsp;h.</p>
         </header>
 
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form ei-validate-live">
           <div class="form-row">
             <mat-form-field appearance="outline" class="form-field">
               <mat-label>Prénom</mat-label>
@@ -80,11 +80,17 @@
           </mat-form-field>
 
           <button type="submit"
-                  [disabled]="!contactForm.valid"
+                  [disabled]="!contactForm.valid || isSubmitting"
                   class="ei-btn ei-btn--gold submit-button"
                   data-magnetic>
-            Envoyer le message
-            <mat-icon>send</mat-icon>
+            <ng-container *ngIf="!isSubmitting; else sending">
+              Envoyer le message
+              <mat-icon>send</mat-icon>
+            </ng-container>
+            <ng-template #sending>
+              <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+              <span class="submit-sending">Envoi en cours…</span>
+            </ng-template>
           </button>
         </form>
       </div>

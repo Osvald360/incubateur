@@ -22,7 +22,7 @@
         <p class="ei-auth__lede">Reprenez votre trajectoire là où vous l'avez laissée.</p>
       </header>
 
-      <form [formGroup]="connexionForm" (ngSubmit)="onSubmit()" class="connexion-form ei-form">
+      <form [formGroup]="connexionForm" (ngSubmit)="onSubmit()" class="connexion-form ei-form ei-validate-live">
         <div class="form-grid">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Email</mat-label>
@@ -55,7 +55,7 @@
           <mat-checkbox formControlName="rememberMe" class="remember-checkbox">
             Se souvenir de moi
           </mat-checkbox>
-          <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+          <a routerLink="/mot-de-passe-oublie" class="forgot-password">Mot de passe oublié ?</a>
         </div>
 
         <div class="form-actions">
