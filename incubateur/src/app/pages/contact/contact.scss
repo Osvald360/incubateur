@@ -87,6 +87,9 @@ $white:   #FFFFFF;
   @media (max-width: 768px) {
     padding: 120px 24px 60px;
   }
+  @media (max-width: 380px) {
+    padding: 104px 18px 48px;
+  }
 }
 
 .hero-bg {
@@ -126,9 +129,10 @@ $white:   #FFFFFF;
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1.05;
-  font-size: clamp(2.5rem, 8vw, 5.2rem);
+  font-size: clamp(2.1rem, 8vw, 5.2rem);
   color: $white;
   text-transform: uppercase;
+  overflow-wrap: break-word;
 
   .line { display: block; overflow: hidden; }
   .line-inner { display: block; }
@@ -147,6 +151,7 @@ $white:   #FFFFFF;
   color: rgba($white, 0.85);
   border-left: 4px solid $orange;
   padding-left: 24px;
+  @media (max-width: 480px) { padding-left: 16px; }
 }
 
 /* =====================================================
@@ -159,6 +164,7 @@ $white:   #FFFFFF;
   overflow: hidden;
 
   @media (max-width: 900px) { padding: 72px 24px 90px; }
+  @media (max-width: 380px) { padding: 56px 16px 72px; }
 }
 
 .contact-bg { position: absolute; inset: 0; z-index: 0; }
@@ -446,4 +452,13 @@ $white:   #FFFFFF;
       color: $white;
     }
   }
+}
+
+/* =====================================================
+   FINITIONS RESPONSIVE — petit mobile
+   ===================================================== */
+@media (max-width: 380px) {
+  .location, .quick-contact { padding: 22px 18px; }
+  .quick-item { padding: 12px 12px; gap: 12px; }
+  .quick-item mat-icon { width: 40px; height: 40px; line-height: 40px; }
 }

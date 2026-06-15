@@ -22,13 +22,14 @@ $white:   #FFFFFF;
 
 // ── Boutons ──────────────────────────────────────────
 .btn {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   font-family: 'Poppins', sans-serif; font-weight: 700;
   text-decoration: none; cursor: pointer; border: none;
   transition: all 300ms ease;
+  min-height: 44px;
 
   &--pill  { border-radius: 100px; }
-  &--lg    { padding: 16px 40px; font-size: 1.05rem; letter-spacing: .04em; text-transform: uppercase; }
+  &--lg    { padding: 16px 40px; font-size: 1.05rem; letter-spacing: .04em; text-transform: uppercase; min-height: 52px; }
 
   &--orange {
     background: $orange; color: $white;
@@ -54,9 +55,10 @@ $white:   #FFFFFF;
 // ── Titres de section ─────────────────────────────────
 .section-title {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
   font-weight: 900; letter-spacing: -.03em;
   line-height: 1; margin: 0 0 32px; text-transform: uppercase;
+  overflow-wrap: break-word;
 
   &--dark    { color: $deep; }
   &--light   { color: $white; }
@@ -131,14 +133,16 @@ $white:   #FFFFFF;
   max-width: 1280px; margin: 0 auto;
   padding: 140px 48px 80px; width: 100%;
   @media (max-width: 768px) { padding: 120px 24px 60px; }
+  @media (max-width: 380px) { padding: 104px 18px 48px; }
 }
 
 .hero-title {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(3.5rem, 10vw, 7.5rem);
+  font-size: clamp(2.6rem, 10vw, 7.5rem);
   font-weight: 900; letter-spacing: -.04em;
   line-height: 1; color: $white; margin: 0 0 32px;
   text-transform: uppercase;
+  overflow-wrap: break-word;
 
   &--orange  { color: $orange; }
   &--outline { -webkit-text-stroke: 2px $white; color: transparent; }
@@ -150,6 +154,7 @@ $white:   #FFFFFF;
   border-left: 4px solid $orange; padding-left: 24px;
   line-height: 1.65; margin: 0 0 40px;
   strong { color: $white; }
+  @media (max-width: 480px) { padding-left: 16px; }
 }
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 48px; }
@@ -219,6 +224,7 @@ $white:   #FFFFFF;
   border-radius: 1rem;
   border-left: 8px solid $orange;
   box-shadow: 0 4px 24px rgba($deep, .08);
+  @media (max-width: 420px) { gap: 16px; padding: 22px 20px; }
 }
 
 .mission-card-icon {
@@ -531,6 +537,8 @@ $white:   #FFFFFF;
 .cta-contact {
   position: relative; overflow: hidden;
   background: $deep; padding: 120px 24px; text-align: center;
+  @media (max-width: 768px) { padding: 80px 20px; }
+  @media (max-width: 380px) { padding: 64px 18px; }
 }
 
 .cta-bg {
@@ -563,10 +571,11 @@ $white:   #FFFFFF;
 
 .cta-title {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(3rem, 9vw, 7rem);
+  font-size: clamp(2.4rem, 9vw, 7rem);
   font-weight: 900; letter-spacing: -.04em;
   line-height: 1; color: $white; margin: 0 0 24px;
   text-transform: uppercase;
+  overflow-wrap: break-word;
   &--orange { color: $orange; }
 }
 
@@ -648,7 +657,8 @@ $white:   #FFFFFF;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 480px) { grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 480px) { grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 360px) { grid-template-columns: 1fr; }
 }
 
 .ambition-stat {
@@ -658,6 +668,9 @@ $white:   #FFFFFF;
   border: 1px solid rgba($white, .08);
   border-radius: 20px;
   transition: all 220ms ease;
+  min-width: 0;
+
+  @media (max-width: 480px) { padding: 28px 14px; }
 
   &:hover {
     background: rgba($orange, .08);
@@ -780,6 +793,7 @@ $white:   #FFFFFF;
   text-transform: uppercase;
   color: $white;
   margin: 0 0 20px;
+  overflow-wrap: break-word;
 
   &--orange { color: $orange; }
 }
@@ -979,6 +993,7 @@ $white:   #FFFFFF;
   text-transform: uppercase;
   color: $white;
   margin: 0 0 28px;
+  overflow-wrap: break-word;
 
   &--orange { color: $orange; }
 }
@@ -1079,7 +1094,8 @@ $white:   #FFFFFF;
 
 // ── Responsive mobile ─────────────────────────────────
 @media (max-width: 640px) {
-  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
   .btn--lg { padding: 14px 28px; font-size: .95rem; }
   .tontine-grid { gap: 16px; }
   .statuts-badge { right: 16px; bottom: 16px; max-width: calc(100% - 32px); }
@@ -1094,8 +1110,10 @@ $white:   #FFFFFF;
   background: $deep;
   padding: 30px 0;
   overflow: hidden;
+  max-width: 100%;
   border-top: 1px solid rgba($white, .06);
   border-bottom: 1px solid rgba($white, .06);
+  @media (max-width: 480px) { padding: 22px 0; }
 }
 
 .sector-marquee-track {
@@ -1137,6 +1155,7 @@ $white:   #FFFFFF;
   width: 140px;
   z-index: 2;
   pointer-events: none;
+  @media (max-width: 480px) { width: 48px; }
 }
 .sector-marquee-fade--left  { left: 0;  background: linear-gradient(90deg, $deep, transparent); }
 .sector-marquee-fade--right { right: 0; background: linear-gradient(270deg, $deep, transparent); }
