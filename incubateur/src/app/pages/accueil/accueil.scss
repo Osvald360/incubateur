@@ -1087,3 +1087,65 @@ $white:   #FFFFFF;
   .email-input { text-align: center; }
   .email-submit { border-radius: .75rem; }
 }
+
+/* ============================================================ MARQUEE SECTEURS */
+.sector-marquee {
+  position: relative;
+  background: $deep;
+  padding: 30px 0;
+  overflow: hidden;
+  border-top: 1px solid rgba($white, .06);
+  border-bottom: 1px solid rgba($white, .06);
+}
+
+.sector-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: max-content;
+  animation: sector-scroll 42s linear infinite;
+}
+.sector-marquee:hover .sector-marquee-track { animation-play-state: paused; }
+
+.sector-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  padding: 13px 24px;
+  border-radius: 100px;
+  background: rgba($white, .05);
+  border: 1px solid rgba($white, .10);
+  color: #CBD5E1;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: .95rem;
+  transition: border-color .3s ease, color .3s ease, background .3s ease;
+
+  mat-icon { color: $orange; font-size: 20px; width: 20px; height: 20px; }
+
+  &:hover {
+    color: $white;
+    background: rgba($orange, .12);
+    border-color: rgba($orange, .35);
+  }
+}
+
+.sector-marquee-fade {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 140px;
+  z-index: 2;
+  pointer-events: none;
+}
+.sector-marquee-fade--left  { left: 0;  background: linear-gradient(90deg, $deep, transparent); }
+.sector-marquee-fade--right { right: 0; background: linear-gradient(270deg, $deep, transparent); }
+
+@keyframes sector-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sector-marquee-track { animation: none; flex-wrap: wrap; justify-content: center; }
+}

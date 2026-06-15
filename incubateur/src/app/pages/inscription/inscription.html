@@ -38,12 +38,12 @@
           <p class="ei-auth__lede">Créez votre espace et lancez votre trajectoire avec Envol Impact.</p>
         </header>
 
-        <form class="inscription-form ei-form" novalidate>
+        <form class="inscription-form ei-form" novalidate (ngSubmit)="onSubmit()">
           <div class="form-grid">
             <div class="field">
               <label class="field-label" for="ins-firstname">Prénom</label>
               <div class="field-control">
-                <input id="ins-firstname" type="text" name="firstname" autocomplete="given-name" placeholder="Votre prénom">
+                <input id="ins-firstname" type="text" name="firstname" [(ngModel)]="firstname" autocomplete="given-name" placeholder="Votre prénom">
                 <span class="field-icon material-icons" aria-hidden="true">person</span>
               </div>
             </div>
@@ -51,7 +51,7 @@
             <div class="field">
               <label class="field-label" for="ins-lastname">Nom</label>
               <div class="field-control">
-                <input id="ins-lastname" type="text" name="lastname" autocomplete="family-name" placeholder="Votre nom">
+                <input id="ins-lastname" type="text" name="lastname" [(ngModel)]="lastname" autocomplete="family-name" placeholder="Votre nom">
                 <span class="field-icon material-icons" aria-hidden="true">person</span>
               </div>
             </div>
@@ -59,7 +59,7 @@
             <div class="field full-width">
               <label class="field-label" for="ins-email">Email</label>
               <div class="field-control">
-                <input id="ins-email" type="email" name="email" autocomplete="email" placeholder="vous@exemple.fr">
+                <input id="ins-email" type="email" name="email" [(ngModel)]="email" autocomplete="email" placeholder="vous@exemple.fr">
                 <span class="field-icon material-icons" aria-hidden="true">email</span>
               </div>
             </div>
@@ -67,7 +67,7 @@
             <div class="field full-width">
               <label class="field-label" for="ins-password">Mot de passe</label>
               <div class="field-control">
-                <input id="ins-password" type="password" name="password" autocomplete="new-password" placeholder="Au moins 8 caractères">
+                <input id="ins-password" type="password" name="password" [(ngModel)]="password" autocomplete="new-password" placeholder="Au moins 8 caractères">
                 <span class="field-icon material-icons" aria-hidden="true">lock</span>
               </div>
             </div>
@@ -75,7 +75,7 @@
 
           <div class="terms-section">
             <label class="terms-checkbox" for="ins-terms">
-              <input id="ins-terms" type="checkbox" name="acceptTerms">
+              <input id="ins-terms" type="checkbox" name="acceptTerms" [(ngModel)]="acceptTerms">
               <span class="terms-text">
                 J'accepte les <a href="#" target="_blank" rel="noopener">conditions générales d'utilisation</a>
                 et la <a href="#" target="_blank" rel="noopener">politique de confidentialité</a>.
@@ -83,10 +83,12 @@
             </label>
           </div>
 
+          <p class="inscription-error" *ngIf="errorMessage" role="alert">{{ errorMessage }}</p>
+
           <div class="form-actions">
-            <button type="submit" class="ei-submit">
+            <button type="submit" class="ei-submit" [disabled]="loading">
               <span class="material-icons" aria-hidden="true">rocket_launch</span>
-              Créer mon compte
+              {{ loading ? 'Création…' : 'Créer mon compte' }}
             </button>
           </div>
 
