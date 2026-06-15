@@ -628,11 +628,22 @@ $muted:  #6B7A8A;
    ============================================================ */
 @media (max-width: 640px) {
   .eng-nav    { gap: 8px; }
-  .eng-pill   { padding: 8px 14px; font-size: .70rem; }
+  .eng-pill   { padding: 10px 14px; font-size: .70rem; min-height: 44px; }
   .pillar-title { font-size: clamp(1.9rem, 8vw, 2.4rem); }
   .cta-title  { font-size: clamp(1.8rem, 7vw, 2.4rem); }
   .cta-actions { flex-direction: column; align-items: center; }
   .eng-btn    { width: 100%; justify-content: center; }
+
+  /* checklist : on désactive le décalage hover pour éviter tout débordement tactile */
+  .pillar-checklist li:hover { transform: none; }
+}
+
+@media (max-width: 380px) {
+  .hero-content { padding: 110px 18px 90px; }
+  .pillar      { padding: 64px 18px; }
+  .eng-cta     { padding: 72px 18px; }
+  .pillar-checklist li { padding: 12px 14px; gap: 10px; }
+  .pillar-quote { padding-left: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

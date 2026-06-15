@@ -439,6 +439,13 @@
   }
 }
 
+@media (max-width: 380px) {
+  .ei-auth__panel { padding: 20px 14px 40px; }
+  .ei-auth__form-shell { padding: 22px 18px; border-radius: 18px; }
+  .ei-auth__title { font-size: clamp(1.7rem, 8vw, 2rem); }
+  .terms-section .terms-checkbox { font-size: 0.85rem; }
+}
+
 /* ---------- Entrée soignée de la carte ---------- */
 @keyframes ei-shell-rise {
   from { opacity: 0; transform: translateY(22px); }

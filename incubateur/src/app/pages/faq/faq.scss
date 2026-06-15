@@ -662,6 +662,15 @@ $white:  #FFFFFF;
 @media (max-width: 390px) {
   /* évite tout débordement du titre Clash Display sur petits mobiles */
   .faq-hero-title { font-size: clamp(2.2rem, 11vw, 2.8rem); }
+  .faq-cta-title  { font-size: clamp(2rem, 10vw, 2.6rem); }
+  .block-title    { font-size: clamp(1.7rem, 9vw, 2.2rem); }
+
+  /* boutons CTA empilés et tactiles */
+  .faq-cta-actions { flex-direction: column; width: 100%; }
+  .faq-cta-actions .ei-btn { width: 100%; justify-content: center; min-height: 48px; }
+
+  /* bouton ressource pleine largeur, tactile */
+  .resource-btn { width: 100%; min-height: 44px; }
 }
 
 /* =====================================================

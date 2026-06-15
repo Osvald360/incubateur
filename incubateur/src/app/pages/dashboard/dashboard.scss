@@ -16,6 +16,10 @@
    et de la navbar fixe (64px). */
 .dashboard-main {
   flex: 1;
+  /* min-width:0 : autorise la colonne flex à rétrécir sous la
+     largeur intrinsèque de ses enfants (tableaux des sous-
+     composants) au lieu de pousser la page → pas d'overflow. */
+  min-width: 0;
   margin-left: 250px;
   margin-top: 64px;
   background:
@@ -29,9 +33,20 @@
 .dashboard-main-grid {
   display: grid;
   grid-template-columns: 1fr;
+  /* minmax(0,1fr) implicite via min-width:0 sur les items : évite
+     qu'un sous-composant large déborde de la colonne de grille. */
   gap: var(--ei-s-32);
   padding: var(--ei-s-32);
   max-width: 1200px;
+  /* sécurité anti-débordement horizontal de la page */
+  overflow-x: hidden;
+}
+
+/* Chaque section déléguée peut contenir des tableaux : on les
+   contraint à la largeur de la colonne (pas de poussée de page). */
+.dashboard-main-grid > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* Menu déroulant utilisateur (panelClass global, ::ng-deep).
