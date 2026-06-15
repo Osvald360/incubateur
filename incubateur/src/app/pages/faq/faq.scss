@@ -128,18 +128,21 @@ $white:  #FFFFFF;
     radial-gradient(120% 90% at 88% 4%, rgba(255, 179, 64, 0.10), transparent 55%),
     var(--ei-ink);
 
-  /* Image cinématique de fond (signature accueil) */
+  /* Image cinématique de fond — horizon clair au lever du jour :
+     la « réponse » après la question, la sérénité de l'accompagnement.
+     Triple voile pour garder le texte AA et l'or lisibles. */
   &::before {
     content: '';
     position: absolute; inset: 0;
     z-index: 0;
     background-image:
-      linear-gradient(150deg, rgba($deep, .94) 0%, rgba($navy, .86) 50%, rgba($deep, .96) 100%),
-      url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+      linear-gradient(180deg, rgba($deep, .55) 0%, rgba($deep, .80) 62%, var(--ei-ink) 100%),
+      linear-gradient(115deg, rgba($deep, .92) 0%, rgba($navy, .55) 46%, rgba($deep, .30) 100%),
+      url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=2000&q=80');
     background-size: cover;
-    background-position: center;
-    transform: scale(1.05);
-    animation: faq-hero-zoom 16s ease-in-out alternate infinite;
+    background-position: center 38%;
+    transform: scale(1.06);
+    animation: faq-hero-zoom 18s var(--ei-ease-soft) alternate infinite;
   }
 
   /* Trame de points orange */
@@ -155,8 +158,19 @@ $white:  #FFFFFF;
 }
 
 @keyframes faq-hero-zoom {
-  from { transform: scale(1.05); }
-  to   { transform: scale(1.12); }
+  from { transform: scale(1.06); }
+  to   { transform: scale(1.13); }
+}
+
+/* Grain fin — casse la photo stock, donne un fini « tirage » premium */
+.faq-hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 }
 
 .faq-hero-halo {
@@ -183,6 +197,13 @@ $white:  #FFFFFF;
 
 .hero-trajectory {
   filter: drop-shadow(0 0 10px rgba(255, 179, 64, 0.45));
+  stroke-dasharray: 2600;
+  stroke-dashoffset: 2600;
+  animation: faq-traj-draw 2400ms var(--ei-ease-launch) 260ms forwards;
+}
+
+@keyframes faq-traj-draw {
+  to { stroke-dashoffset: 0; }
 }
 
 .faq-hero-inner {
@@ -396,6 +417,15 @@ $white:  #FFFFFF;
     &:hover {
       background: rgba(243, 146, 0, 0.06) !important;
     }
+
+    /* focus clavier net sur fond verre sombre */
+    &.cdk-keyboard-focused,
+    &.cdk-program-focused,
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px var(--ei-gold-2);
+      background: rgba(243, 146, 0, 0.08) !important;
+    }
   }
 
   /* libellé de question */
@@ -411,6 +441,18 @@ $white:  #FFFFFF;
     color: var(--ei-on-dark);
   }
 
+  /* rail vertical : repère discret qui s'allume à l'ouverture */
+  .question-rail {
+    flex-shrink: 0;
+    width: 2px;
+    height: 1.1em;
+    margin-right: 16px;
+    border-radius: 2px;
+    background: rgba(237, 230, 216, 0.22);
+    transition: background 240ms var(--ei-ease-soft),
+                box-shadow 240ms var(--ei-ease-soft);
+  }
+
   .question-icon {
     flex-shrink: 0;
     margin-right: 14px;
@@ -420,7 +462,17 @@ $white:  #FFFFFF;
     color: var(--ei-gold-1);
   }
 
-  /* chevron Material teinté */
+  /* chevron Material : pastille cerclée, registre nuit/or */
+  ::ng-deep .mat-expansion-indicator {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(237, 230, 216, 0.16);
+    transition: border-color 220ms var(--ei-ease-soft),
+                background 220ms var(--ei-ease-soft);
+  }
   ::ng-deep .mat-expansion-indicator::after {
     color: var(--ei-haze);
     transition: color 220ms var(--ei-ease-soft);
@@ -437,6 +489,14 @@ $white:  #FFFFFF;
     .mat-panel-title { color: var(--ei-gold-2); }
     .question-icon { color: var(--ei-gold-2); }
     .mat-expansion-indicator::after { color: var(--ei-gold-2); }
+    .question-rail {
+      background: var(--ei-gold-grad);
+      box-shadow: 0 0 12px rgba(254, 135, 1, 0.55);
+    }
+    .mat-expansion-indicator {
+      border-color: rgba(243, 146, 0, 0.5);
+      background: rgba(243, 146, 0, 0.10);
+    }
   }
 
   /* corps de réponse */
@@ -479,6 +539,8 @@ $white:  #FFFFFF;
 }
 
 .resource {
+  position: relative;
+  overflow: hidden;
   background: $white;
   padding: clamp(28px, 3.4vw, 44px);
   border-radius: 20px;
@@ -489,11 +551,29 @@ $white:  #FFFFFF;
               box-shadow 220ms var(--ei-ease-launch),
               border-color 220ms var(--ei-ease-soft);
 
+  /* filet d'or qui se déploie au survol — signature système */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto auto 0;
+    height: 3px;
+    width: 0;
+    background: var(--ei-gold-grad);
+    border-radius: 20px 0 3px 0;
+    transition: width 360ms var(--ei-ease-launch);
+  }
+
   &:hover {
     background: #fffdf7;
     transform: translateY(-8px);
     border-color: rgba(243, 146, 0, 0.35);
     box-shadow: 0 26px 56px rgba($deep, 0.13);
+
+    &::before { width: 100%; }
+    .resource-icon {
+      background: rgba(243, 146, 0, 0.16);
+      transform: translateY(-2px);
+    }
   }
 
   .resource-icon {
@@ -509,6 +589,8 @@ $white:  #FFFFFF;
     background: rgba(243, 146, 0, 0.10);
     color: #9a6a16;
     margin-bottom: 20px;
+    transition: background 220ms var(--ei-ease-soft),
+                transform 220ms var(--ei-ease-launch);
   }
   .resource-title {
     margin: 0 0 10px;
@@ -642,8 +724,10 @@ $white:  #FFFFFF;
     font-size: 1.04rem;
     line-height: 1.35;
   }
-  /* l'icône question prend de la place inutile en mobile : on l'enlève */
+  /* l'icône question prend de la place inutile en mobile : on l'enlève.
+     Le rail reste : repère fin, tactilement neutre, lisible. */
   .faq-accordion .question-icon { display: none; }
+  .faq-accordion .question-rail { margin-right: 12px; height: 1.25em; }
 
   .faq-accordion ::ng-deep .mat-expansion-panel-body {
     padding: 0 4px 20px;
@@ -679,7 +763,10 @@ $white:  #FFFFFF;
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.001ms !important;
   }
+  /* trajectoire d'or affichée d'emblée, sans tracé animé */
+  .hero-trajectory { stroke-dashoffset: 0 !important; }
 }
 

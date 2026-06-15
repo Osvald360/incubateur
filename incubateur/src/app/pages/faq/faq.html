@@ -5,6 +5,7 @@
   <!-- ===================================================== -->
   <section class="faq-hero" aria-label="Questions fréquentes">
     <div class="faq-hero-halo" aria-hidden="true"></div>
+    <div class="faq-hero-grain" aria-hidden="true"></div>
 
     <!-- Trajectoire d'or : courbe interrogative -->
     <svg class="hero-traj-svg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -65,6 +66,7 @@
           <mat-expansion-panel *ngFor="let faq of category.questions" class="faq-panel ei-glass-card">
             <mat-expansion-panel-header>
               <mat-panel-title>
+                <span class="question-rail" aria-hidden="true"></span>
                 <mat-icon class="question-icon">help_center</mat-icon>
                 {{ faq.question }}
               </mat-panel-title>

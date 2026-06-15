@@ -9,20 +9,24 @@
   <header class="hero">
     <div class="hero-bg" data-parallax="0.12">
       <img
-        src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=2000&q=80"
         alt=""
         aria-hidden="true"
         class="hero-bg-img"
       />
       <div class="hero-overlay hero-overlay--left"></div>
       <div class="hero-overlay hero-overlay--bottom"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
     </div>
 
     <div class="hero-content">
+      <span class="hero-eyebrow" data-reveal-child>Fonds d'investissement solidaire · Incubateur</span>
+
       <h1 class="hero-title">
-        Transformer<br>
-        <span class="hero-title--orange">l'épargne solidaire</span><br>
-        <span class="hero-title--outline">en opportunités.</span>
+        Transformer l'épargne<br>
+        <span class="hero-title--orange">participative et citoyenne</span><br>
+        en opportunités pour les<br>
+        <span class="hero-title--outline">entrepreneurs oubliés.</span>
       </h1>
 
       <p class="hero-subtitle">
@@ -118,9 +122,10 @@
 
       <div class="mission-visual" data-reveal-child>
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80"
-          alt="L'équipe Envol Impact"
+          src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1500&q=80"
+          alt="L'équipe Envol Impact en réunion de travail"
           class="mission-img"
+          loading="lazy"
         />
         <div class="mission-img-overlay"></div>
       </div>
@@ -128,14 +133,61 @@
     </div>
   </section>
 
-  <!-- ============================================================ NOTRE RÉPONSE -->
+  <!-- ============================================================ NOTRE RÉPONSE (3 étapes) -->
+  <section class="reponse" id="reponse" data-reveal>
+    <div class="reponse-inner">
+      <div class="reponse-header" data-reveal-child>
+        <span class="section-badge">Notre réponse</span>
+        <h2 class="reponse-title">
+          Trois gestes,<br>
+          <span class="reponse-title--orange">une trajectoire.</span>
+        </h2>
+        <p class="reponse-lead">
+          De l'épargne citoyenne jusqu'à l'entreprise qui crée des emplois,
+          un circuit clair en trois temps.
+        </p>
+      </div>
+
+      <ol class="reponse-steps">
+        <li class="reponse-step step-node" data-reveal-child>
+          <span class="reponse-step-index">01</span>
+          <div class="reponse-step-icon"><mat-icon>savings</mat-icon></div>
+          <h3 class="reponse-step-title">Épargner</h3>
+          <p class="reponse-step-text">
+            Des citoyens mettent leur épargne en commun dans un fonds solidaire
+            entièrement dédié à l'entrepreneuriat local.
+          </p>
+        </li>
+        <li class="reponse-step step-node" data-reveal-child>
+          <span class="reponse-step-index">02</span>
+          <div class="reponse-step-icon"><mat-icon>school</mat-icon></div>
+          <h3 class="reponse-step-title">Accompagner</h3>
+          <p class="reponse-step-text">
+            L'incubateur structure, professionnalise et outille chaque projet
+            pour le rendre solide et durable.
+          </p>
+        </li>
+        <li class="reponse-step step-node" data-reveal-child>
+          <span class="reponse-step-index">03</span>
+          <div class="reponse-step-icon"><mat-icon>rocket_launch</mat-icon></div>
+          <h3 class="reponse-step-title">Financer</h3>
+          <p class="reponse-step-text">
+            Les projets sélectionnés sont financés et accompagnés sur la durée,
+            jusqu'au décollage.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================================================ NOTRE MODÈLE -->
   <section class="tontine" id="tontine" data-reveal>
     <div class="tontine-split">
 
       <!-- Photo + témoignage -->
       <div class="tontine-photo-side" data-reveal-child>
         <img
-          src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+          src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80"
           alt="Entrepreneurs réunis autour d'un projet"
           class="tontine-img"
           loading="lazy"
@@ -145,10 +197,12 @@
             « Envol Impact m'a permis de structurer mon projet et de croire en sa faisabilité. »
           </p>
           <div class="tontine-testimonial-author">
-            <div class="tontine-testimonial-avatar">Y</div>
+            <div class="tontine-testimonial-avatar" aria-hidden="true">
+              <mat-icon>format_quote</mat-icon>
+            </div>
             <div>
-              <strong>Yasmine</strong>
-              <span>Créatrice, boutique de mode — Paris 93</span>
+              <strong>Entrepreneur accompagné</strong>
+              <span>Programme Envol Impact</span>
             </div>
           </div>
         </div>
@@ -193,7 +247,7 @@
   <section class="parcours" id="parcours" data-reveal>
     <div class="parcours-bg" aria-hidden="true" data-parallax="0.1">
       <img
-        src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=2000&q=80"
         alt=""
         class="parcours-bg-img"
         loading="lazy"
@@ -282,7 +336,7 @@
   <section class="unique" id="unique" data-reveal>
     <div class="unique-bg" aria-hidden="true" data-parallax="0.1">
       <img
-        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=2000&q=80"
         alt=""
         class="unique-bg-img"
         loading="lazy"
@@ -330,7 +384,7 @@
   <section class="cta-contact" id="contact" data-reveal>
     <div class="cta-bg" aria-hidden="true" data-parallax="0.1">
       <img
-        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=80"
         alt=""
         class="cta-bg-img"
         loading="lazy"
