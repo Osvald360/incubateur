@@ -68,7 +68,7 @@
 
     &:hover {
       transform: translateY(-3px);
-      border-color: rgba(255, 179, 64, 0.3);
+      border-color: rgba(212, 175, 55, 0.3);
     }
 
     .project-header {
@@ -88,8 +88,8 @@
       }
 
       .project-category {
-        background: rgba(30, 91, 255, 0.16);
-        color: #FFB340;
+        background: rgba(212, 175, 55, 0.16);
+        color: var(--ei-gold-2);
         border-radius: var(--ei-r-4);
         padding: 4px 12px;
         font-size: 0.76rem;
@@ -129,7 +129,7 @@
 
     /* ---- Sous-bloc financement ---- */
     .project-financing {
-      background: rgba(11, 27, 43, 0.5);
+      background: rgba(11, 10, 8, 0.5);
       border: 1px solid rgba(237, 230, 216, 0.08);
       border-radius: var(--ei-r-8);
       padding: var(--ei-s-16);
@@ -163,7 +163,7 @@
         border-bottom: 1px solid rgba(237, 230, 216, 0.07);
 
         &.highlight {
-          background: rgba(255, 179, 64, 0.08);
+          background: rgba(212, 175, 55, 0.08);
           border: none;
           border-radius: var(--ei-r-4);
           padding: 10px var(--ei-s-12);
@@ -272,9 +272,9 @@
         font-size: 0.9rem;
       }
       .team-member.more .member-avatar {
-        background: rgba(255, 179, 64, 0.14);
+        background: rgba(212, 175, 55, 0.14);
         color: var(--ei-gold-2);
-        border-color: rgba(255, 179, 64, 0.3);
+        border-color: rgba(212, 175, 55, 0.3);
       }
     }
 
@@ -294,7 +294,7 @@
   overflow: hidden;
 }
 :host ::ng-deep .mat-mdc-progress-bar.mat-warn {
-  --mdc-linear-progress-active-indicator-color: #C9514B;
+  --mdc-linear-progress-active-indicator-color: #E5685F;
 }
 
 @media (max-width: 768px) {

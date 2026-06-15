@@ -77,8 +77,8 @@
          couvre l'état clavier/focus pour la lisibilité) */
       &:focus-visible {
         outline: none;
-        background: rgba(30, 91, 255, 0.12);
-        color: #fff;
+        background: rgba(212, 175, 55, 0.12);
+        color: var(--ei-gold-2);
         box-shadow: inset 0 0 0 1px var(--ei-elan);
       }
 
@@ -106,12 +106,12 @@
       /* bouton de déconnexion (color="warn") */
       &.mat-warn,
       &[color='warn'] {
-        color: #E0928D;
-        mat-icon { color: #C9514B; }
+        color: #E5685F;
+        mat-icon { color: #E5685F; }
         &:hover {
-          background: rgba(201, 81, 75, 0.12);
-          color: #F0B6B1;
-          &::before { background: #C9514B; }
+          background: rgba(229, 104, 95, 0.12);
+          color: #F0938C;
+          &::before { background: #E5685F; }
         }
       }
     }
@@ -162,7 +162,7 @@
     z-index: 1001;
     min-height: 48px;
     padding: 0 18px;
-    border: 1px solid rgba(255, 179, 64, 0.4);
+    border: 1px solid rgba(212, 175, 55, 0.4);
     border-radius: 999px;
     background: var(--ei-slate);
     color: var(--ei-on-dark);
@@ -187,7 +187,7 @@
     &:focus-visible {
       outline: none;
       border-color: var(--ei-elan);
-      box-shadow: 0 0 0 3px rgba(30, 91, 255, 0.4);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.4);
     }
 
     /* masque pendant que le tiroir est ouvert */

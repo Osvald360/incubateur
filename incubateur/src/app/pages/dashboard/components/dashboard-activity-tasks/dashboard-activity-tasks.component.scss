@@ -69,7 +69,7 @@
       &.approval { background: var(--ei-gold-grad); }
       /* nouvel utilisateur / financement → bleu élan */
       &.user,
-      &.application { background: var(--ei-elan); color: #fff; }
+      &.application { background: var(--ei-elan); color: #0B0A08; }
       &.funding { background: var(--ei-sprout); }
       /* méta / système → ardoise claire */
       &.review,
@@ -133,16 +133,16 @@
 
       /* signal d'erreur sobre (rouge tuilé, AA sur ardoise) */
       &.high {
-        background: rgba(201, 81, 75, 0.16);
-        color: #E0928D;
+        background: rgba(229, 104, 95, 0.16);
+        color: #E5685F;
       }
       &.medium {
-        background: rgba(255, 179, 64, 0.16);
+        background: rgba(212, 175, 55, 0.16);
         color: var(--ei-gold-2);
       }
       &.low {
-        background: rgba(63, 168, 138, 0.16);
-        color: #6FD0B4;
+        background: rgba(111, 185, 138, 0.16);
+        color: #6FB98A;
       }
     }
   }
